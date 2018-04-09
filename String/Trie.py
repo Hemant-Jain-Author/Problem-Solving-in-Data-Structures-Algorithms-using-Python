@@ -62,7 +62,7 @@ c = "appletree"
 d = "tree"
 t.Insert(a)
 t.Insert(d)
-print t.Find(a)
-print t.Find(b)
-print t.Find(c)
-print t.Find(d)
+print(t.Find(a))
+print(t.Find(b))
+print(t.Find(c))
+print(t.Find(d))

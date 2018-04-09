@@ -20,7 +20,7 @@ class Queue(object):
         return len(self.data)
     
     def printQueue(self):
-        print self.data
+        print(self.data)
 
 
 que = Queue()
@@ -30,5 +30,5 @@ while i < 20:
     i += 1
 i = 0
 while i < 22:
-    print que.remove()
+    print(que.remove())
     i += 1

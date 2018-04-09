@@ -7,9 +7,9 @@ def increment1(var):
 def main1():
     """ Source for method main """
     var = 1
-    print "Value before increment :" , var
+    print("Value before increment :" , var)
     increment1(var)
-    print "Value after increment :" , var
+    print("Value after increment :" , var)
     
 class MyInt(object):
     def __init__(self):
@@ -22,9 +22,9 @@ def increment2(value):
 def main2():
     """ Source for method main """
     var = MyInt()
-    print "Value before increment :" , var.value
+    print("Value before increment :" , var.value)
     increment2(var)
-    print "Value after increment :" , var.value  
+    print("Value after increment :" , var.value)  
         
 
 def swap(arr, x, y):
@@ -35,7 +35,7 @@ def swap(arr, x, y):
 
 def permutation(arr, i, length):
     if length == i:
-        print arr
+        print(arr)
         return
     j = i
     while j < length:
@@ -65,7 +65,7 @@ def GCD(m, n):
 
 
 def main4():
-    print GCD(5, 2)
+    print(GCD(5, 2))
 
 
 def towerOfHanoi(num, src, dst, temp):
@@ -73,30 +73,30 @@ def towerOfHanoi(num, src, dst, temp):
     if num < 1:
         return
     towerOfHanoi(num - 1, src, temp, dst)
-    print "Move " , num , " disk  from peg " , src , " to peg " , dst
+    print("Move " , num , " disk  from peg " , src , " to peg " , dst)
     towerOfHanoi(num - 1, temp, dst, src)
 
 
 def main5():
     num = 4
-    print "The sequence of moves involved in the Tower of Hanoi are :"
+    print("The sequence of moves involved in the Tower of Hanoi are :")
     towerOfHanoi(num, 'A', 'C', 'B')
 
 
 def function2():
-    print "fun2 line 1"
+    print("fun2 line 1")
 
 
 def function1():
-    print "fun1 line 1"
+    print("fun1 line 1")
     function2()
-    print "fun1 line 2"
+    print("fun1 line 2")
 
 
 def main6():
-    print "main line 1"
+    print("main line 1")
     function1()
-    print "main line 2"
+    print("main line 2")
 
 
 def maxSubArraySum(arr):
@@ -117,7 +117,7 @@ def maxSubArraySum(arr):
 
 def main7():
     arr = [1, -2, 3, 4, -4, 6, -4, 8, 2]
-    print maxSubArraySum(arr)
+    print(maxSubArraySum(arr))
 
 
 
@@ -126,7 +126,7 @@ def variableExample():
     var1 = 100
     var2 = 200
     var3 = var1 + var2
-    print "Adding" , var1 , "and" , var2 , "will give" , var3
+    print("Adding" , var1 , "and" , var2 , "will give" , var3)
 
 
 def arrayExample():
@@ -143,7 +143,7 @@ def printArray1(arr):
     count = len(arr)
     i = 0
     while i < count:
-        print arr[i],
+        print(arr[i], end=' ')
         i += 1
 
 
@@ -173,14 +173,14 @@ def print2DArray(arr, row, col):
     while i < row:
         j = 0
         while j < col:
-            print arr[i][j],
+            print(arr[i][j], end=' ')
             j += 1
         i += 1
 
 
 def main9():
     arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    print SumArray(arr)
+    print(SumArray(arr))
 
 
 
@@ -223,7 +223,7 @@ def BinarySearch(arr, value):
 def main10():
 
     arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    print BinarySearch(arr, 6)
+    print(BinarySearch(arr, 6))
 
 
 
@@ -262,7 +262,7 @@ def reverseArray_0(a):
 def main11():
     arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     rotateArray(arr, 3)
-    print arr
+    print(arr)
 
 
 
@@ -274,8 +274,8 @@ def main12():
     point = coord()
     point.x = 10
     point.y = 10
-    print "X axis coord value is  " , point.x
-    print "Y axis coord value is  " , point.y
+    print("X axis coord value is  " , point.x)
+    print("Y axis coord value is  " , point.y)
 
 
 class student(object):
@@ -289,14 +289,14 @@ def main13():
     refStud.rollNo = 1
     refStud.firstName = "john"
     refStud.lastName = "smith"
-    print "Roll No:   Student Name:  " , refStud.rollNo , refStud.firstName , refStud.lastName
+    print("Roll No:   Student Name:  " , refStud.rollNo , refStud.firstName , refStud.lastName)
 
 
 def main14():
     x = 10
     y = 20
     result = sum(x, y)
-    print "Sum is : " , result
+    print("Sum is : " , result)
 
 
 def sum(num1, num2):
@@ -311,7 +311,7 @@ def factorial(i):
 
 
 def main15():
-    print factorial(5)
+    print(factorial(5))
 
 
 
@@ -327,7 +327,7 @@ def printInt(number):
 
 
 def main16():
-    print printInt2(50, 2)
+    print(printInt2(50, 2))
     
 
 def printInt2(number, base):
@@ -348,7 +348,7 @@ def fibonacci(n):
 
 
 def main17():
-    print fibonacci(6)
+    print(fibonacci(6))
 
 
 def BinarySearchRecursive(arr, low, high, value):
@@ -364,8 +364,8 @@ def BinarySearchRecursive(arr, low, high, value):
 
 def main18():
     arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    print BinarySearch(arr, 6)
-    print BinarySearch(arr, 16)
+    print(BinarySearch(arr, 6))
+    print(BinarySearch(arr, 16))
 
         
 main1()

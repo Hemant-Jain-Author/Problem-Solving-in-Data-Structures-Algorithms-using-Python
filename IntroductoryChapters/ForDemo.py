@@ -7,7 +7,7 @@ def main1():
     totalsum = 0
     for n in numbers:
         totalsum += n
-    print "Sum is :: " , totalsum
+    print("Sum is :: " , totalsum)
 
 def main2():
     numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -16,7 +16,7 @@ def main2():
     while i < len(numbers):
         totalsum += numbers[i]
         i += 1
-    print "Sum is :: " , totalsum
+    print("Sum is :: " , totalsum)
 
 def main3():
     numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -27,7 +27,7 @@ def main3():
         i += 1
         if i >= len(numbers):
             break
-    print "Sum is :: " , totalsum
+    print("Sum is :: " , totalsum)
 
 
 main1()

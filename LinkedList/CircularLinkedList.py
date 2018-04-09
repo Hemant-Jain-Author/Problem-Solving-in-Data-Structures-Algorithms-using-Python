@@ -121,9 +121,9 @@ class CircularLinkedList(object):
             return
         temp = self.tail.next
         while temp != self.tail:
-            print temp.value,
+            print(temp.value, end=' ')
             temp = temp.next
-        print temp.value,
+        print(temp.value, end=' ')
 
 
 ll = CircularLinkedList()
@@ -133,7 +133,7 @@ ll.addHead(3)
 ll.addHead(1)
 ll.addHead(2)
 ll.addHead(3)
-print ll.size()
+print(ll.size())
 ll.printList()
 print()
 ll2 = ll.copyList()

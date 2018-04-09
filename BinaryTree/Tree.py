@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 from collections import deque
+import math
 
 class Tree(object):
     class Node(object):
@@ -46,7 +47,7 @@ class Tree(object):
     def PrintPreOrderUtil(self, node):
         #    pre order  
         if node != None:
-            print (node.value),
+            print((node.value), end=' ')
             self.PrintPreOrderUtil(node.lChild)
             self.PrintPreOrderUtil(node.rChild)
 
@@ -60,7 +61,7 @@ class Tree(object):
         if node != None:
             count[0] += 1
             if count[0] == index:
-                print (node.value),
+                print((node.value), end=' ')
             self.NthPreOrderUtil(node.lChild, index, count)
             self.NthPreOrderUtil(node.rChild, index, count)
 
@@ -73,7 +74,7 @@ class Tree(object):
         if node != None:
             self.PrintPostOrderUtil(node.lChild)
             self.PrintPostOrderUtil(node.rChild)
-            print (node.value),
+            print((node.value), end=' ')
 
     
     def NthPostOrder(self, index):
@@ -87,7 +88,7 @@ class Tree(object):
             self.NthPostOrderUtil(node.rChild, index, count)
             count[0] += 1
             if count[0] == index:
-                print (node.value),
+                print((node.value), end=' ')
 
     
     def PrintInOrder(self):
@@ -98,7 +99,7 @@ class Tree(object):
         #    In order  
         if node != None:
             self.PrintInOrderUtil(node.lChild)
-            print (node.value),
+            print((node.value), end=' ')
             self.PrintInOrderUtil(node.rChild)
 
     
@@ -112,7 +113,7 @@ class Tree(object):
             self.NthInOrderUtil(node.lChild, index, count)
             count[0] += 1
             if count[0] == index:
-                print (node.value),
+                print((node.value), end=' ')
             self.NthInOrderUtil(node.rChild, index, count)
 
     def PrintBredthFirst(self):
@@ -122,7 +123,7 @@ class Tree(object):
             que.append(self.root)
         while len(que) != 0:
             temp = que.popleft()
-            print (temp.value),
+            print((temp.value), end=' ')
             if temp.lChild != None:
                 que.append(temp.lChild)
             if temp.rChild != None:
@@ -134,7 +135,7 @@ class Tree(object):
             stk.append(self.root)
         while stk.isEmpty() == False:
             temp = stk.pop()
-            print (temp.value),
+            print((temp.value), end=' ')
             if temp.lChild != None:
                 stk.append(temp.lChild)
             if temp.rChild != None:
@@ -248,7 +249,7 @@ class Tree(object):
             second = temp
         curr = self.AncestorUtil(self.root, first, second)
         if curr == None:
-            retval = sys.maxint
+            retval = sys.maxsize
         else :
             retval = curr.value
         return retval
@@ -363,7 +364,7 @@ class Tree(object):
             stk.append(self.root)
         while len(stk) != 0:
             curr = stk.pop()
-            print (curr.value),
+            print((curr.value), end=' ')
             if curr.rChild != None:
                 stk.append(curr.rChild)
             if curr.lChild != None:
@@ -379,7 +380,7 @@ class Tree(object):
             curr = stk.pop()
             vtd = visited.pop()
             if vtd == 1:
-                print (curr.value),
+                print((curr.value), end=' ')
             else:
                 stk.append(curr)
                 visited.append(1)                
@@ -389,9 +390,6 @@ class Tree(object):
                 if curr.lChild != None:
                     stk.append(curr.lChild)
                     visited.append(0)
-
-
-
 
     def iterativeInOrder(self):
         stk = []
@@ -403,7 +401,7 @@ class Tree(object):
             curr = stk.pop()
             vtd = visited.pop()
             if vtd == 1:
-                print (curr.value),
+                print((curr.value), end=' ')
             else:
                 if curr.rChild != None:
                     stk.append(curr.rChild)
@@ -477,7 +475,7 @@ class Tree(object):
         if ans != None:
             return ans.value
         else:
-            return sys.maxint
+            return sys.maxsize
 
     def LCAUtil(self, curr, first, second):
         if curr == None:
@@ -533,12 +531,12 @@ class Tree(object):
             return
         self.printInRangeUtil(root.lChild, minval, maxval)
         if root.value >= minval and root.value <= maxval:
-            print (root.value),
+            print((root.value), end=' ')
         self.printInRangeUtil(root.rChild, minval, maxval)
 
     def FloorBST(self, val):
         curr = self.root
-        floor = sys.maxint
+        floor = sys.maxsize
         while curr != None:
             if curr.value == val:
                 floor = curr.value
@@ -571,7 +569,7 @@ class Tree(object):
 
     def findMaxBTUtil(self, curr):
         if curr == None:
-            return -1 * sys.maxint
+            return -1 * sys.maxsize
         maxval = curr.value
         left = self.findMaxBTUtil(curr.lChild)
         right = self.findMaxBTUtil(curr.rChild)
@@ -601,7 +599,7 @@ class Tree(object):
     def CreateBinaryTreeUtil(self, arr, start, end):
         if start > end:
             return None
-        mid = (start + end) / 2
+        mid = math.floor((start + end) / 2) 
         curr = self.Node(arr[mid])
         curr.lChild = self.CreateBinaryTreeUtil(arr, start, mid - 1)
         curr.rChild = self.CreateBinaryTreeUtil(arr, mid + 1, end)
@@ -693,15 +691,15 @@ t2 = Tree()
 #print t2.FloorBST(12)
 t2.CreateBinaryTree(arr)
 t2.PrintInOrder()
-print ""
+print("")
 t2.iterativeInOrder()
-print ""
+print("")
 t2.PrintPostOrder()
-print ""
+print("")
 t2.iterativePostOrder()
-print ""
+print("")
 t2.PrintPreOrder()
-print ""
+print("")
 t2.iterativePreOrder()
 #t2.DeleteNode(8)
 #=======================================================================
@@ -738,4 +736,3 @@ t2.iterativePreOrder()
 # print t2.trimOutsideRange(3, 8)
 # print t2.PrintInOrder()
 #=======================================================================
-

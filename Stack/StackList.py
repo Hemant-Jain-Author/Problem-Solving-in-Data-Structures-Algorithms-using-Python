@@ -36,7 +36,7 @@ class Stack(object):
     def printStack(self):
         temp = self.head
         while temp != None:
-            print temp.value,
+            print(temp.value, end=' ')
             temp = temp.next
 
 

@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 import sys
 
-value1 = sys.maxint
+value1 = sys.maxsize
 value2 = value1 + 1
 value3 = 13.05
 value4 = 3.14j
 value5 = "hello, world!"
-print type(value1),value2, type(value2), type(value3), type(value4),type(value5), value5
+print(type(value1),value2, type(value2), type(value3), type(value4),type(value5), value5)
 
 
 # Parameter Passing
@@ -15,7 +15,7 @@ def Change1(B):
         
 A = 1
 Change1(A)
-print A
+print(A)
 
     
 
@@ -25,6 +25,6 @@ def Change2(B):
 
 A = [1]
 Change2(A)
-print A
+print(A)
 
 

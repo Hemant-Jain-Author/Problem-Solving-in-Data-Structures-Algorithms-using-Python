@@ -3,9 +3,7 @@ from abc import ABCMeta
 from abc import abstractmethod
 
 # Abstract Class
-class Shape(object):
-    __metaclass__ = ABCMeta
-    
+class Shape(object, metaclass=ABCMeta):
     @abstractmethod
     def area(self):
         pass

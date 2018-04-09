@@ -63,7 +63,7 @@ class HashTable(object):
         i = 0
         while i < self.tableSize:
             if self.Flag[i] == self.FILLED_NODE:
-                print "Node at index [" , i , " ] :: " , self.Arr[i]
+                print("Node at index [" , i , " ] :: " , self.Arr[i])
             i += 1
 
 

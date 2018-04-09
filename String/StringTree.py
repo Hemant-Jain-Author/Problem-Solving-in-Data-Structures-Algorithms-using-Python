@@ -17,7 +17,7 @@ class StringTree(object):
     def printTreeUtil(self, curr):
         #  pre order 
         if curr != None:
-            print "[",curr.value, ":" , curr.count,"]"
+            print("[",curr.value, ":" , curr.count,"]")
             self.printTreeUtil(curr.lChild)
             self.printTreeUtil(curr.rChild)
 
@@ -53,7 +53,7 @@ class StringTree(object):
     
     def find(self, value):
         ret = self.findUtil(self.root, value)
-        print value , "found::" , ret
+        print(value , "found::" , ret)
         return ret
 
     def findUtil(self, curr, value):
@@ -99,8 +99,8 @@ tt.find("appletree")
 tt.find("grapes")
 
 tt.printTree()
-print "apple::" , tt.frequency("apple")
-print "banana::" , tt.frequency("banana")
-print "mango::" , tt.frequency("mango")
-print "android::" , tt.frequency("android")
+print("apple::" , tt.frequency("apple"))
+print("banana::" , tt.frequency("banana"))
+print("mango::" , tt.frequency("mango"))
+print("android::" , tt.frequency("android"))
 

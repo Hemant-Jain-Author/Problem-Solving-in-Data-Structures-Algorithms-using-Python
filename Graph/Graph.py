@@ -11,6 +11,9 @@ class Graph(object):
             self.cost = cst
             self.next = None
 
+        def __lt__(self, other):
+            return self.cost < other.cost
+
     class AdjList(object):
         def __init__(self):
             self.head = None
@@ -40,16 +43,16 @@ class Graph(object):
         while i < self.count:
             ad = self.array[i].head
             if ad != None:
-                print "Vertex " , i , " is connected to : ",
+                print("Vertex " , i , " is connected to : ", end=' ')
                 while ad != None:
-                    print ad.destination,
-                    ad = ad.next
-                print ""
+                    print(ad.destination, end=' ')
+                    ad = ad.__next__
+                print("")
             i += 1
 
 def Dijkstra(gph, source):
     previous = [-1] * gph.count
-    dist = [sys.maxint] * gph.count
+    dist = [sys.maxsize] * gph.count
 
     dist[source] = 0
     previous[source] = -1
@@ -76,15 +79,15 @@ def Dijkstra(gph, source):
     count = gph.count
     i = 0
     while i < count:
-        if dist[i] == sys.maxint:
-            print "node id" , i , "prev" , previous[i] , "distance : Unreachable"
+        if dist[i] == sys.maxsize:
+            print("node id" , i , "prev" , previous[i] , "distance : Unreachable")
         else:
-            print "node id" , i , "prev" , previous[i] , "distance :" , dist[i]
+            print("node id" , i , "prev" , previous[i] , "distance :" , dist[i])
         i += 1
         
 def Prims(gph):
     previous = [-1] * gph.count
-    dist = [sys.maxint] * gph.count
+    dist = [sys.maxsize] * gph.count
     source = 1
     dist[source] = 0
     previous[source] = -1
@@ -110,14 +113,14 @@ def Prims(gph):
             if previous[adn.destination]==-1:
                 node = Graph.AdjNode(adn.source, adn.destination, adn.cost)
                 heapq.heappush(pqarray, (adn.cost, node))
-            adn = adn.next
+            adn = adn.__next__
     count = gph.count
     i = 0
     while i < count:
-        if dist[i] == sys.maxint:
-            print "node id" , i , "prev" , previous[i] , "distance : Unreachable"
+        if dist[i] == sys.maxsize:
+            print("node id" , i , "prev" , previous[i] , "distance : Unreachable")
         else:
-            print "node id" , i , "prev" , previous[i] , "distance :" , dist[i]
+            print("node id" , i , "prev" , previous[i] , "distance :" , dist[i])
         i += 1
         
 
@@ -127,7 +130,7 @@ def TopologicalSortDFS(gph, index, visited, stk):
         if visited[head.destination] == 0:
             visited[head.destination] = 1
             TopologicalSortDFS(gph, head.destination, visited, stk)
-        head = head.next
+        head = head.__next__
     stk.append(index)
 
 def TopologicalSort(gph):
@@ -141,7 +144,7 @@ def TopologicalSort(gph):
             TopologicalSortDFS(gph, i, visited, stk)
         i += 1
     while len(stk) != 0:
-        print stk.pop(),
+        print(stk.pop(), end=' ')
 
 def PathExist(gph, source, destination):
     count = gph.count
@@ -156,7 +159,7 @@ def DFSRec(gph, index, visited):
         if visited[head.destination] == False:
             visited[head.destination] = True
             DFSRec(gph, head.destination, visited)
-        head = head.next
+        head = head.__next__
     
 def isConnected(gph):
     count = gph.count
@@ -183,7 +186,7 @@ def DFSStack(gph):
             if visited[head.destination] == 0:
                 visited[head.destination] = 1
                 append(head.destination)
-            head = head.next
+            head = head.__next__
  
 def DFS(gph):
     count = gph.count
@@ -206,7 +209,7 @@ def BFSQueue(gph, index, visited):
             if visited[head.destination] == 0:
                 visited[head.destination] = 1
                 que.append(head.destination)
-            head = head.next
+            head = head.__next__
  
 def BFS(gph):
     count = gph.count
@@ -233,15 +236,15 @@ def ShortestPath(gph, source):
                 distance[head.destination] = distance[curr] + 1
                 path[head.destination] = curr
                 que.append(head.destination)
-            head = head.next
+            head = head.__next__
     i = 0
     while i < count:
-        print path[i] , "to" , i , "weight" , distance[i]
+        print(path[i] , "to" , i , "weight" , distance[i])
         i += 1
 
 def BellmanFordShortestPath(gph, source):
     count = gph.count
-    distance = [sys.maxint] * count
+    distance = [sys.maxsize] * count
     path = [-1] * count
 
     distance[source] = 0
@@ -255,13 +258,13 @@ def BellmanFordShortestPath(gph, source):
                 if distance[head.destination] > newDistance:
                     distance[head.destination] = newDistance
                     path[head.destination] = j
-                head = head.next
+                head = head.__next__
             j += 1
         i += 1
         
     i = 0
     while i < count:
-        print path[i] , "to" , i , "weight" , distance[i]
+        print(path[i] , "to" , i , "weight" , distance[i])
         i += 1 
     
 

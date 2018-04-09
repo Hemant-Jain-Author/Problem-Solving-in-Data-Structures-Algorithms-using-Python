@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+
+import math
+
 class Heap:
     def __init__(self, array=None):
         self.size = len(array)
@@ -6,7 +9,7 @@ class Heap:
         self.arr.extend(array)     
         
         #  Build Heap operation over array
-        i = (self.size / 2)
+        i = math.floor(self.size / 2)
         while i > 0:
             self.proclateDown(i)
             i -= 1
@@ -27,7 +30,7 @@ class Heap:
             self.proclateDown(small)
 
     def proclateUp(self, position):
-        parent = position / 2
+        parent = math.floor(position / 2)
         if parent == 0:
             return
         if self.arr[parent].compareTo(self.arr[position]) < 0:
@@ -51,8 +54,8 @@ class Heap:
         return value
 
     def printHeap(self):
-        print self.arr[1:],
-        print ""
+        print(self.arr[1:], end=' ')
+        print("")
 
     def isEmpty(self):
         return (self.size == 0)
@@ -103,12 +106,12 @@ a = [1, 9, 6, 7, 8, 0, 2, 4, 5, 3]
 hp = Heap(a)
 hp.printHeap()
 b = hp.arr[1:]
-print hp.IsMinHeap(b)
-print hp.IsMinHeap(a)
+print(hp.IsMinHeap(b))
+print(hp.IsMinHeap(a))
 i = 0
 while i < len(a):
-    print hp.remove(),
+    print(hp.remove(), end=' ')
     i += 1
-print ""
+print("")
 heapSort(a)
-print a,
+print(a, end=' ')

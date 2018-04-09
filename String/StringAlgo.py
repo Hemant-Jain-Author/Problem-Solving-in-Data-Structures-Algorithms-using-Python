@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 from collections import Counter
+import math
 
 def matchExpUtil(exp, text, i, j):
     if i == len(exp) and j == len(text):
@@ -77,7 +78,7 @@ def isPermutation(s1, s2):
         mycounter[ch] += 1
     
     for ch in s2:
-        if mycounter.has_key(ch) == False:
+        if (ch in mycounter) == False:
             return False
         
         if(mycounter[ch] == 1):
@@ -93,10 +94,10 @@ def isPalindrome(text):
         i += 1
         j -= 1
     if i < j:
-        print "String is not a Palindrome"
+        print("String is not a Palindrome")
         return False
     else:
-        print "String is a Palindrome"
+        print("String is a Palindrome")
         return True
 
 def pow(x, n):
@@ -104,10 +105,10 @@ def pow(x, n):
     if n == 0:
         return (1)
     elif n % 2 == 0:
-        value = pow(x, n / 2)
+        value = pow(x, math.floor(n / 2))
         return (value * value)
     else:
-        value = pow(x, n / 2)
+        value = pow(x, math.floor(n / 2))
         return (x * value * value)
 
 def myStrcmp(a, b):
@@ -174,7 +175,7 @@ def printAnagram(a):
 
 def printAnagramUtil(a, maxindex, n):
     if maxindex == 1:
-        print "".join(a)
+        print("".join(a))
     i = -1
     while i < maxindex - 1:
         if i != -1:
@@ -189,7 +190,7 @@ def printAnagramUtil(a, maxindex, n):
         i += 1
 
 def shuffle(text):
-    n = len(text) / 2
+    n = math.floor(len(text) / 2)
     ar = list(text)
     count = 0
     k = 1
@@ -250,21 +251,21 @@ def addBinary(first, second):
     return "".join(total)
 
 
-print isPalindrome("hello")
-print isPalindrome("eoloe")
-print addBinary("1000", "11111111")
-print matchExp("*ello?","zdfsdfsdhellox")
-print match("hellappleappleappleapplexxappleapplexxxyyyxyyy","hellappleappleappleapplexxxyyy")
+print(isPalindrome("hello"))
+print(isPalindrome("eoloe"))
+print(addBinary("1000", "11111111"))
+print(matchExp("*ello?","zdfsdfsdhellox"))
+print(match("hellappleappleappleapplexxappleapplexxxyyyxyyy","hellappleappleappleapplexxxyyy"))
 for i in range(100):
    if(isPrime(i)):
-       print i,
-print myAtoi("1000")
-print isUniqueChar("1213456")
-print isPermutation("apple","plepa")
-print pow(5,2)
-print myStrcmp("abs", "abs")
-print reverseString("apple")
-print reverseWords("hello world")
-print printAnagram("1234")
-print shuffle("ABCDE12345")
+       print(i, end=' ')
+print(myAtoi("1000"))
+print(isUniqueChar("1213456"))
+print(isPermutation("apple","plepa"))
+print(pow(5,2))
+print(myStrcmp("abs", "abs"))
+print(reverseString("apple"))
+print(reverseWords("hello world"))
+print(printAnagram("1234"))
+print(shuffle("ABCDE12345"))
         

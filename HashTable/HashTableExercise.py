@@ -34,14 +34,14 @@ def findMissing(arr, start, end):
         if (curr in hs) == False:
             return curr
         curr += 1
-    return sys.maxint
+    return sys.maxsize
 
 def printRepeating(arr):
     hs = set()
-    print "Repeating elements are:",
+    print("Repeating elements are:", end=' ')
     for val in arr:
         if val in hs:
-            print val,
+            print(val, end=' ')
         else:
             hs.add(val)
 
@@ -55,7 +55,7 @@ def printFirstRepeating(arr):
     i = 0
     while i < size:
         if hs.get(arr[i]) > 1:
-            print "First Repeating number is : " , arr[i]
+            print("First Repeating number is : " , arr[i])
             return arr[i]
         i += 1
 
@@ -71,12 +71,12 @@ def hornerHash(self, key, tableSize):
 first = "hello"
 second = "elloh"
 third = "world"
-print "isAnagram : " , isAnagram(first, second)
-print "isAnagram : " , isAnagram(first, third)
-print removeDuplicate(first)
-print first
+print("isAnagram : " , isAnagram(first, second))
+print("isAnagram : " , isAnagram(first, third))
+print(removeDuplicate(first))
+print(first)
 arr = [1, 2, 3, 5, 6, 7, 8, 9, 10]
-print findMissing(arr, 1, 10)
+print(findMissing(arr, 1, 10))
 arr1 = [1, 2, 3, 4, 4, 5, 6, 7, 8, 9, 1]
 printRepeating(arr1)
 printFirstRepeating(arr1)

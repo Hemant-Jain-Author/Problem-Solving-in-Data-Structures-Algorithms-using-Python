@@ -43,12 +43,12 @@ class HashTableSC(object):
     def printHashTable(self):
         i = 0
         while i < self.tableSize:
-            print "Printing for index value :: " , i , "List of value printing :: "
+            print("Printing for index value :: " , i , "List of value printing :: ")
             head = self.listArray[i]
             while head != None:
-                print head.value,
+                print(head.value, end=' ')
                 head = head.next
-            print ""
+            print("")
             i += 1
 
     def find(self, value):
@@ -66,7 +66,7 @@ i = 100
 while i < 110:
     ht.insert(i)
     i += 1
-print "search 100 :: " , ht.find(100)
-print "remove 100 :: " , ht.delete(100)
-print "search 100 :: " , ht.find(100)
-print "remove 100 :: " , ht.delete(100)
+print("search 100 :: " , ht.find(100))
+print("remove 100 :: " , ht.delete(100))
+print("search 100 :: " , ht.find(100))
+print("remove 100 :: " , ht.delete(100))

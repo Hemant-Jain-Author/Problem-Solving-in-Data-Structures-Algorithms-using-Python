@@ -95,6 +95,6 @@ def KMPFindCount(text, pattern):
 
 st1 = "hello, world!"
 st2 = "world"
-print "BruteForceSearch return : " , BruteForceSearch(st1, st2)
-print "RobinKarp return : " , RobinKarp(st1, st2)
-print "KMP return : " , KMP(st1, st2)
+print("BruteForceSearch return : " , BruteForceSearch(st1, st2))
+print("RobinKarp return : " , RobinKarp(st1, st2))
+print("KMP return : " , KMP(st1, st2))

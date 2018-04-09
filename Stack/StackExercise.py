@@ -21,8 +21,8 @@ def isBalancedParenthesis(expn):
 def main1():
     expn = "{()}[]"
     value = isBalancedParenthesis(expn)
-    print "Given Expn:" , expn
-    print "Result after isParenthesisMatched:" , value
+    print("Given Expn:" , expn)
+    print("Result after isParenthesisMatched:" , value)
 
 
 def insertAtBottom(stk, value):  # !!!!!!!!! waste for python.
@@ -72,8 +72,8 @@ def postfixEvaluate(expn):
 def main2():
     expn = "6 5 2 3 + 8 * + 3 + *"
     value = postfixEvaluate(expn)
-    print "Given Postfix Expn: " , expn
-    print "Result after Evaluation: " , value
+    print("Given Postfix Expn: " , expn)
+    print("Result after Evaluation: " , value)
 
 
 def precedence(x):
@@ -120,8 +120,8 @@ def main3():
     expn = "10 + ( ( 3 ) ) * 5 / ( 16 - 4 )"
     # value = infixToPostfix(expn)
     value = infixToPrefix(expn)
-    print "Infix Expn: " , expn
-    print "Postfix Expn: " , value
+    print("Infix Expn: " , expn)
+    print("Postfix Expn: " , value)
 
 
 def infixToPrefix(expn):
@@ -160,8 +160,8 @@ def reverseString(expn):
 def main4():
     expn = "10+((3))*5/(16-4)"
     value = infixToPrefix(expn)
-    print "Infix Expn: " , expn
-    print "Prefix Expn: " , value
+    print("Infix Expn: " , expn)
+    print("Prefix Expn: " , value)
 
 
 def StockSpanRange(arr):
@@ -183,7 +183,7 @@ def StockSpanRange(arr):
 def main5():
     arr = [6, 5, 4, 3, 2, 4, 5, 7, 9]
     value = StockSpanRange2(arr)
-    print "StockSpanRange: " , value
+    print("StockSpanRange: " , value)
 
 
 
@@ -252,7 +252,7 @@ def GetMaxArea2(arr):
 def main6():
     arr = [7, 6, 5, 4, 4, 1, 6, 3, 1]
     value = GetMaxArea2(arr)
-    print "GetMaxArea: " , value
+    print("GetMaxArea: " , value)
 
 main1()
 main2()

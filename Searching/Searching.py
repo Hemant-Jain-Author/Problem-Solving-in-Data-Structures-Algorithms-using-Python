@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-
+import math
 
 def linearSearchUnsorted(arr, size, value):
     i = 0
@@ -22,7 +22,7 @@ def linearSearchSorted(arr, size, value):
 
 def main1():
     first = [1, 3, 5, 7, 9, 25, 30]
-    print linearSearchSorted(first, 7, 8)
+    print(linearSearchSorted(first, 7, 8))
 
     
 #  Binary Search Algorithm - Iterative Way
@@ -48,7 +48,7 @@ def BinarySearchRecursive(arr, value):
 def BinarySearchRecursiveUtil(arr, low, high, value):
     if low > high:
         return False
-    mid = (low + high) / 2
+    mid = math.floor((low + high) / 2)
     if arr[mid] == value:
         return True
     elif arr[mid] < value:
@@ -59,18 +59,18 @@ def BinarySearchRecursiveUtil(arr, low, high, value):
 
 def main2():
     first = [1, 3, 5, 7, 9, 25, 30]
-    print BinarySearchRecursive(first, 3)  
+    print(BinarySearchRecursive(first, 3))  
 
 
 def printRepeating(arr):
     size = len(arr)
     i = 0
-    print " Repeating elements :: ",
+    print(" Repeating elements :: ", end=' ')
     while i < size:
         j = i + 1
         while j < size:
             if arr[i] == arr[j]:
-                print arr[i],
+                print(arr[i], end=' ')
             j += 1
         i += 1
 
@@ -79,10 +79,10 @@ def printRepeating2(arr):
     size = len(arr)
     i = 0
     arr.sort()
-    print " Repeating elements are :: ",
+    print(" Repeating elements are :: ", end=' ')
     while i < size:
         if arr[i] == arr[i - 1]:
-            print arr[i],
+            print(arr[i], end=' ')
         i += 1
 
 
@@ -90,10 +90,10 @@ def printRepeating3(arr):
     size = len(arr)
     hs = set()
     i = 0
-    print " Repeating elements are ::",
+    print(" Repeating elements are ::", end=' ')
     while i < size:
         if arr[i] in hs:
-            print arr[i],
+            print(arr[i], end=' ')
         else:
             hs.add(arr[i])
         i += 1
@@ -103,10 +103,10 @@ def printRepeating4(arr, valrange):
     size = len(arr)
     count = [0] * valrange
     i = 0
-    print " Repeating elements are :: ",
+    print(" Repeating elements are :: ", end=' ')
     while i < size:
         if count[arr[i]] == 1:
-            print arr[i],
+            print(arr[i], end=' ')
         else:
             count[arr[i]] += 1
         i += 1
@@ -178,9 +178,9 @@ def getMax3(arr, valuerange):
 
 def main4():
     first = [1, 30, 5, 13, 9, 31, 5] 
-    print getMax(first)
-    print getMax2(first)
-    print getMax3(first, 50)
+    print(getMax(first))
+    print(getMax2(first))
+    print(getMax3(first, 50))
 
 
 def getMajority(arr):
@@ -207,7 +207,7 @@ def getMajority(arr):
 
 def getMajority2(arr):
     size = len(arr)
-    majIndex = size / 2
+    majIndex = math.floor(size / 2)
     i = 0      
     arr.sort()
     candidate = arr[majIndex]
@@ -251,9 +251,9 @@ def getMajority3(arr):
 
 def main5():
     first = [1, 5, 5, 13, 5, 31, 5]
-    print getMajority(first)
-    print getMajority2(first)
-    print getMajority3(first)
+    print(getMajority(first))
+    print(getMajority2(first))
+    print(getMajority3(first))
 
         
 def findMissingNumber(arr, upperRange):
@@ -306,7 +306,7 @@ def findMissingNumber3(arr, upperRange):
 def main6():
     first = [1, 5, 4, 3, 2, 7, 8, 9, 10]
     # print findMissingNumber(first, 9)
-    print findMissingNumber3(first, 9)
+    print(findMissingNumber3(first, 9))
         
 
 def FindPair(arr, value):
@@ -316,7 +316,7 @@ def FindPair(arr, value):
         j = i + 1
         while j < size:
             if (arr[i] + arr[j]) == value:
-                print "The pair is::", arr[i], "&" , arr[j]
+                print("The pair is::", arr[i], "&" , arr[j])
                 return True
             j += 1
         i += 1
@@ -331,7 +331,7 @@ def FindPair2(arr, value):
     while first < second:
         curr = arr[first] + arr[second]
         if curr == value:
-            print "The pair is::", arr[first], "&", arr[second]
+            print("The pair is::", arr[first], "&", arr[second])
             return True
         elif curr < value:
             first += 1
@@ -346,7 +346,7 @@ def FindPair3(arr, value):
     i = int()
     while i < size:
         if (value - arr[i]) in hs:
-            print "The pair is::", arr[i] , "&" , (value - arr[i])
+            print("The pair is::", arr[i] , "&" , (value - arr[i]))
             return True
         hs.add(arr[i])
         i += 1
@@ -355,15 +355,15 @@ def FindPair3(arr, value):
 
 def main7():
     first = [1, 5, 4, 3, 2, 7, 8, 9, 6]
-    print FindPair(first, 8)
-    print FindPair2(first, 8)
-    print FindPair3(first, 8)
+    print(FindPair(first, 8))
+    print(FindPair2(first, 8))
+    print(FindPair3(first, 8))
 
 
 def minabsSumPair(arr):
     size = len(arr)
     if size < 2:
-        print "Invalid Input"
+        print("Invalid Input")
         return
     minFirst = 0
     minSecond = 1
@@ -379,13 +379,13 @@ def minabsSumPair(arr):
                 minSecond = j
             j += 1
         i += 1
-    print " The two elements with minimum sum are : ", arr[minFirst], "&", arr[minSecond]
+    print(" The two elements with minimum sum are : ", arr[minFirst], "&", arr[minSecond])
 
 
 def minabsSumPair2(arr):
     size = len(arr)
     if size < 2:
-        print "Invalid Input"
+        print("Invalid Input")
         return
     arr.sort()
     minFirst = 0
@@ -405,13 +405,13 @@ def minabsSumPair2(arr):
             r -= 1
         else:
             break
-    print " The two elements with minimum sum are : ", arr[minFirst], "&" , arr[minSecond]
+    print(" The two elements with minimum sum are : ", arr[minFirst], "&" , arr[minSecond])
 
 
 def main8():
     first = [1, 5, -10, 3, 2, -6, 8, 9, 6] 
-    print minabsSumPair2(first)
-    print minabsSumPair(first)
+    print(minabsSumPair2(first))
+    print(minabsSumPair(first))
     # print minabsSumPair(first)
 
 
@@ -422,10 +422,10 @@ def SearchBotinicArrayMax(arr):
     mid = (start + end) / 2
     maximaFound = 0
     if size < 3:
-        print "error"
+        print("error")
         return 0
     while start <= end:
-        mid = (start + end) / 2
+        mid = math.floor((start + end) / 2)
         if arr[mid - 1] < arr[mid] and arr[mid + 1] < arr[mid]:
             maximaFound = 1
             break
@@ -436,7 +436,7 @@ def SearchBotinicArrayMax(arr):
         else:
             break
     if maximaFound == 0:
-        print "error"
+        print("error")
         return symaxint
     return arr[mid]
 
@@ -455,10 +455,10 @@ def FindMaxBitonicIndex(arr, size):
     start = 0
     end = size - 1
     if size < 3:
-        print "error"
+        print("error")
         return -1
     while start <= end:
-        mid = (start + end) / 2
+        mid = math.floor((start + end) / 2)
         if arr[mid - 1] < arr[mid] and arr[mid + 1] < arr[mid]:
             return mid
         elif arr[mid - 1] < arr[mid] and arr[mid] < arr[mid + 1]:
@@ -467,20 +467,20 @@ def FindMaxBitonicIndex(arr, size):
             end = mid - 1
         else:
             break
-    print "error"
+    print("error")
     return -1
 
 def main9():
     first = [1, 5, 10, 13, 20, 30, 8, 7, 6]
     
-    print SearchBotinicArrayMax(first)
-    print SearchBitonicArray(first, 32)
+    print(SearchBotinicArrayMax(first))
+    print(SearchBitonicArray(first, 32))
     # print minabsSumPair(first)
     
 def BinarySearch(arr, start, end, key, isInc):
     if end < start:
         return False
-    mid = (start + end) / 2
+    mid = math.floor((start + end) / 2)
     if key == arr[mid]:
         return True
     if isInc != False and key < arr[mid] or isInc == False and key > arr[mid]:
@@ -504,7 +504,7 @@ def findKeyCount(arr, key):
 def findFirstIndex(arr, start, end, key):
     if end < start:
         return -1
-    mid = (start + end) / 2
+    mid = math.floor((start + end) / 2)
     if key == arr[mid] and (mid == start or arr[mid - 1] != key):
         return mid
     if key <= arr[mid]:
@@ -515,7 +515,7 @@ def findFirstIndex(arr, start, end, key):
 def findLastIndex(arr, start, end, key):
     if end < start:
         return -1
-    mid = (start + end) / 2
+    mid = math.floor((start + end) / 2)
     if key == arr[mid] and (mid == end or arr[mid + 1] != key):
         return mid
     if key < arr[mid]:
@@ -531,15 +531,15 @@ def findKeyCount2(arr, key):
 def main10():
     first = [1, 5, 10, 13, 20, 30, 8, 7, 6]
     
-    print findKeyCount(first, 6)
-    print findKeyCount2(first, 6)
+    print(findKeyCount(first, 6))
+    print(findKeyCount2(first, 6))
     # print minabsSumPair(first)
 
 def main11():
     first = [1, 5, 6, 6, 6, 6, 6, 6, 7, 8, 10, 13, 20, 30 ]
     
-    print findKeyCount(first, 6)
-    print findKeyCount2(first, 6)
+    print(findKeyCount(first, 6))
+    print(findKeyCount2(first, 6))
     # print minabsSumPair(first)
 
 
@@ -568,14 +568,14 @@ def seperateEvenAndOdd(arr):
 def main12():
     first = [1, 5, 6, 6, 6, 6, 6, 6, 7, 8, 10, 13, 20, 30 ]
     
-    print seperateEvenAndOdd(first)
+    print(seperateEvenAndOdd(first))
     # print findKeyCount2(first, 6)
     # print minabsSumPair(first)
 
 def main13():
     first = [10, 150, 6, 67, 61, 16, 86, 6, 67, 78, 150, -3, 28, 143 ]
     
-    print maxProfit(first)
+    print(maxProfit(first))
     # print findKeyCount2(first, 6)
     # print minabsSumPair(first)
 
@@ -596,8 +596,8 @@ def maxProfit(stocks):
             sell = i
             maxProfit = currProfit
         i += 1
-    print "Purchase day is - ", buy , " at price " , stocks[buy]
-    print "Sell day is - " , sell , " at price " , stocks[sell]
+    print("Purchase day is - ", buy , " at price " , stocks[buy])
+    print("Sell day is - " , sell , " at price " , stocks[sell])
 
 
 def main14():
@@ -605,7 +605,7 @@ def main14():
     first = [1, 5, 6, 6, 6, 6, 6, 6, 7, 8, 10, 13, 20, 30 ]
     second = [1, 5, 6, 6, 6, 6, 6, 6, 7, 8, 10, 13, 20, 30 ]
     
-    print findMedian(first, second)
+    print(findMedian(first, second))
     # print findKeyCount2(first, 6)
     # print minabsSumPair(first)
 
@@ -646,7 +646,7 @@ def main15():
     # first = [1, 5, 6,6,6,6,6,6,7,8,10, 13, 20, 30 ]
     # second = [1, 5, 6,6,6,6,6,6,7,8,10, 13, 20, 30 ]
     first = "000000001111"
-    print BinarySearch01(first)
+    print(BinarySearch01(first))
     # print findKeyCount2(first, 6)
     # print minabsSumPair(first)
 
@@ -661,7 +661,7 @@ def BinarySearch01(arr):
 def BinarySearch01Util(arr, start, end):
     if end < start:
         return -1
-    mid = (start + end) / 2
+    mid = math.floor((start + end) / 2)
     if '1' == arr[mid] and '0' == arr[mid - 1]:
         return mid
     if '0' == arr[mid]:
@@ -674,7 +674,7 @@ def main16():
     # first = [10, 150, 6,67,61,16,86,6,67,78,150, -3, 28, 143 ]
     first = [34, 56, 77, 1, 5, 6, 6, 6, 6, 6, 6, 7, 8, 10, 13, 20, 30 ]
     # second = [1, 5, 6,6,6,6,6,6,7,8,10, 13, 20, 30 ]
-    print BinarySearchRotateArray(first, 20)
+    print(BinarySearchRotateArray(first, 20))
     # print findKeyCount2(first, 6)
     # print minabsSumPair(first)
 
@@ -687,7 +687,7 @@ def BinarySearchRotateArray(arr, key):
 def BinarySearchRotateArrayUtil(arr, start, end, key):
     if end < start:
         return False
-    mid = (start + end) / 2
+    mid = math.floor((start + end) / 2)
     if key == arr[mid]:
         return True
     if arr[mid] > arr[start]:
@@ -707,7 +707,7 @@ def main17():
     # first = [10, 150, 6,67,61,16,86,6,67,78,150, -3, 28, 143 ]
     first = [34, 56, 77, 1, 5, 6, 6, 6, 6, 6, 6, 7, 8, 10, 34, 20, 30 ]
     # second = [1, 5, 6,6,6,6,6,6,7,8,10, 13, 20, 30 ]    
-    print FirstRepeated(first)
+    print(FirstRepeated(first))
     # print findKeyCount2(first, 6)
     # print minabsSumPair(first)
 
@@ -729,13 +729,13 @@ def main18():
     # [10, 150, 6,67,61,16,86,6,67,78,150, -3, 28, 143 ]
     # first = [34, 56, 77, 1, 5, 6, 6, 6, 6, 6, 6, 7, 8, 10, 34, 20, 30 ]
     # second = [1, 5, 6,6,6,6,6,6,7,8,10, 13, 20, 30 ]    
-    print transformArrayAB1("aaaabbbb")
+    print(transformArrayAB1("aaaabbbb"))
 
 
 def transformArrayAB1(strval):
     arr = list(strval)
     size = len(arr)
-    N = size / 2
+    N = math.floor(size / 2)
     i = 1
     while i < N:
         j = 0
@@ -747,7 +747,7 @@ def transformArrayAB1(strval):
 
 
 def main19():
-    print checkPermutation2("aaaabbbb", "bbaaaabb")
+    print(checkPermutation2("aaaabbbb", "bbaaaabb"))
 
 
 def checkPermutation(str1, str2):
@@ -788,7 +788,7 @@ def checkPermutation2(array1, array2):
 
 def main20():
     first = [1, 7, 6, 4, 8, 3, 8, 2, 6, 9]
-    print removeDuplicates(first)
+    print(removeDuplicates(first))
 
 
 def removeDuplicates(array):

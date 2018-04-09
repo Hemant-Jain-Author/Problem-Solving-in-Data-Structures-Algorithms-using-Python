@@ -40,6 +40,6 @@ while j < 10:
 i = 0
 while i < 10:
     # print "stack one pop value is : " , st.StackPop1()
-    print "stack two pop value is : " , st.StackPop2()
+    print("stack two pop value is : " , st.StackPop2())
     i += 1
 

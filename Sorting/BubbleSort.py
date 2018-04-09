@@ -39,7 +39,7 @@ def BubbleSort2(arr):
 
 array = [9, 1, 8, 2, 7, 3, 6, 4, 5]
 BubbleSort(array)
-print array
+print(array)
 array = [9, 1, 8, 2, 7, 3, 6, 4, 5]
 BubbleSort2(array)
-print array
+print(array)

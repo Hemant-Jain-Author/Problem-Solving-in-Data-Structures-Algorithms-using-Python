@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import math
 
 def MergeSort(array):
     arr = array
@@ -9,7 +10,7 @@ def MergeSort(array):
 def mergeSrt(arr, tempArray, lowerIndex, upperIndex):
     if lowerIndex >= upperIndex:
         return
-    middleIndex = (lowerIndex + upperIndex) / 2
+    middleIndex = math.floor((lowerIndex + upperIndex) / 2)
     mergeSrt(arr, tempArray, lowerIndex, middleIndex)
     mergeSrt(arr, tempArray, middleIndex + 1, upperIndex)
     merge(arr, tempArray, lowerIndex, middleIndex, upperIndex)
@@ -49,4 +50,4 @@ def merge(arr, tempArray, lowerIndex, middleIndex, upperIndex):
 
 array = [3, 4, 2, 1, 6, 5, 7, 8, 1, 1]
 MergeSort(array)
-print array
+print(array)

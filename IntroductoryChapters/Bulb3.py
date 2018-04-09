@@ -35,5 +35,5 @@ class AdvanceBulb(Bulb):
 
 # b = Bulb()
 c = AdvanceBulb()
-print Bulb.getBulbCount()
-print c.isOnFun()
+print(Bulb.getBulbCount())
+print(c.isOnFun())

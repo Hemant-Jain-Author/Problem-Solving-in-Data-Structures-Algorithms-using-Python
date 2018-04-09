@@ -40,7 +40,7 @@ class MedianHeap(object):
 
     def getMedian(self):
         if len(self.maxHeap) == 0 and len(self.minHeap) == 0:
-            return sys.maxint
+            return sys.maxsize
         if len(self.maxHeap) == len(self.minHeap):
             return (self.MaxHeapPeek() + self.MinHeapPeek()) / 2
         elif len(self.maxHeap) > len(self.minHeap):
@@ -55,5 +55,5 @@ hp = MedianHeap()
 i = 0
 while i < 20:
     hp.insert(arr[i])
-    print "Median after insertion of " , arr[i] , " is  " , hp.getMedian()
+    print("Median after insertion of " , arr[i] , " is  " , hp.getMedian())
     i += 1

@@ -28,7 +28,7 @@ class Bulb(object):
 
 
 b = Bulb()
-print "bulb is on return : " , b.isOnFun()
+print("bulb is on return : " , b.isOnFun())
 b.turnOn()
-print "bulb is on return : " , b.isOnFun()
-print Bulb.getBulbCount()
+print("bulb is on return : " , b.isOnFun())
+print(Bulb.getBulbCount())

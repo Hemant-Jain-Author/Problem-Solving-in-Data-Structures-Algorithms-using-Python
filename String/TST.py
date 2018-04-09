@@ -40,18 +40,18 @@ class TST(object):
 
     def find(self, word):
         ret = self.findUtil(self.root, word, 0)
-        print word , " :: ",
+        print(word , " :: ", end=' ')
         if ret:
-            print " Found "
+            print(" Found ")
         else:
-            print "Not Found "
+            print("Not Found ")
         return ret
 
 tt = TST()
 tt.insert("banana")
 tt.insert("apple")
 tt.insert("mango")
-print "Search apple, banana, grapes and mango :"
+print("Search apple, banana, grapes and mango :")
 tt.find("apple")
 tt.find("banana")
 tt.find("mango")

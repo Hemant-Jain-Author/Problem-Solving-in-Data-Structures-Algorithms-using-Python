@@ -2,9 +2,7 @@
 from abc import ABCMeta
 from abc import abstractmethod
 
-class BulbInterface(object):
-    __metaclass__ = ABCMeta
-    
+class BulbInterface(object, metaclass=ABCMeta):
     @abstractmethod
     def turnOn(self):
         pass
@@ -20,9 +18,9 @@ class BulbInterface(object):
 # implements BulbInterface
 class Bulb(BulbInterface):
     class BulbSize:
-        SMALL = u'SMALL'
-        MEDIUM = u'MEDIUM'
-        LARGE = u'LARGE'
+        SMALL = 'SMALL'
+        MEDIUM = 'MEDIUM'
+        LARGE = 'LARGE'
 
     # Class Variables 
     TotalBulbCount = 0
@@ -69,8 +67,8 @@ class AdvanceBulb(Bulb):
 
 
 b = Bulb()
-print "Bulb Size : " + b.getBulbSize()
-print "bulb is on return : " , b.isOnFun()
+print("Bulb Size : " + b.getBulbSize())
+print("bulb is on return : " , b.isOnFun())
 b.turnOn()
-print "bulb is on return : " , b.isOnFun()
+print("bulb is on return : " , b.isOnFun())
 

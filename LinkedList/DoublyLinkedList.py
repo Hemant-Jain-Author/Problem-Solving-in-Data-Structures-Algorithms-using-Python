@@ -97,9 +97,9 @@ class DoublyLinkedList(object):
     def printList(self):
         temp = self.head
         while temp != None:
-            print temp.value,
+            print(temp.value, end=' ')
             temp = temp.next
-        print ""
+        print("")
 
     # SORTED INSERT DECREASING
     def sortedInsert(self, value):

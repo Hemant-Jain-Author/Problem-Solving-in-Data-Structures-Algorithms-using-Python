@@ -32,5 +32,5 @@ def swap(arr, first, second):
 
 array = [3, 4, 2, 1, 6, 5, 7, 8, 1, 1]
 QuickSort(array)
-print array
+print(array)
 

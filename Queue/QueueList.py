@@ -42,7 +42,7 @@ class Queue(object):
     def printList(self):
         temp = self.head
         while temp != None:
-            print temp.value,
+            print(temp.value, end=' ')
             temp = temp.next
 
  

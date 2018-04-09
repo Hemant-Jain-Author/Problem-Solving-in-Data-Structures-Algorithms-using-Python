@@ -36,5 +36,5 @@ def swap(arr, first, second):
 
 array = [3, 4, 2, 1, 6, 5, 7, 8, 10, 9]
 value = QuickSelect(array, 5)
-print "value at index 5 is : " , value,
+print("value at index 5 is : " , value, end=' ')
 

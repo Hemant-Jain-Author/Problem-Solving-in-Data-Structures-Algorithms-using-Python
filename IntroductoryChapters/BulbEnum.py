@@ -2,9 +2,9 @@
 
 class Bulb(object):
     class BulbSize:
-        SMALL = u'SMALL'
-        MEDIUM = u'MEDIUM'
-        LARGE = u'LARGE'
+        SMALL = 'SMALL'
+        MEDIUM = 'MEDIUM'
+        LARGE = 'LARGE'
 
     # Constructor
     def __init__(self):
@@ -31,4 +31,4 @@ class Bulb(object):
 
 
 b = Bulb()
-print "Bulb Size : " + b.getBulbSize()
+print("Bulb Size : " + b.getBulbSize())

@@ -217,9 +217,9 @@ class LinkedList(object):
     def printList(self):
         temp = self.head
         while temp != None:
-            print temp.value,
+            print(temp.value, end=' ')
             temp = temp.next
-        print ""
+        print("")
 
     def sortedInsert(self, value):
         newNode = self.Node(value, None)
@@ -255,9 +255,9 @@ class LinkedList(object):
             slowPtr = slowPtr.next
             fastPtr = fastPtr.next.next
             if slowPtr == fastPtr:
-                print "loop found"
+                print("loop found")
                 return True
-        print "loop not found"
+        print("loop not found")
         return False
 
     def reverseListLoopDetect(self):
@@ -265,25 +265,25 @@ class LinkedList(object):
         self.reverse()
         if tempHead == self.head:
             self.reverse()
-            print "loop found"
+            print("loop found")
             return True
         else:
             self.reverse()
-            print "loop not found"
+            print("loop not found")
             return False
 
     def loopTypeDetect(self):
         slowPtr = fastPtr = self.head
         while fastPtr.next != None and fastPtr.next.next != None:
             if self.head == fastPtr.next or self.head == fastPtr.next.next:
-                print "circular list loop found"
+                print("circular list loop found")
                 return 2
             slowPtr = slowPtr.next
             fastPtr = fastPtr.next.next
             if slowPtr == fastPtr:
-                print "loop found"
+                print("loop found")
                 return 1
-        print "loop not found"
+        print("loop not found")
         return 0
 
     def loopPointDetect(self):
@@ -321,11 +321,11 @@ ll.sortedInsert(5)
 ll.sortedInsert(0)
 ll.printList()
 ll.makeLoop()
-print ll.loopDetect()
-print ll.loopTypeDetect()
-print ll.loopPointDetect().value
-print ll.reverseListLoopDetect()
-print ll.removeLoop()
+print(ll.loopDetect())
+print(ll.loopTypeDetect())
+print(ll.loopPointDetect().value)
+print(ll.reverseListLoopDetect())
+print(ll.removeLoop())
 ll.printList()
 
 #=======================================================================

@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-""" generated source for module Queue """
+
 class Queue(object):
     class Node(object):
         def __init__(self, v, n=None):

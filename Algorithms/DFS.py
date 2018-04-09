@@ -8,7 +8,7 @@ def DFS(head):
         elif (curr.rChild != None & curr.rChild.visited == False):
             curr= curr.rChild;
         else:
-            print((curr.value))
+            print(curr.value)
             curr.visited = 1;
             curr = head;
 

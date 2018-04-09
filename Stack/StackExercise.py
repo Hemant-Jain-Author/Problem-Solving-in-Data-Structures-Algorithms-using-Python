@@ -187,8 +187,6 @@ def main5():
 
 
 
-
-
 def StockSpanRange2(arr):
     stk = []
     size = len(arr)
@@ -206,8 +204,6 @@ def StockSpanRange2(arr):
         stk.append(i)
         i += 1
     return SR
-
-
 
 
 

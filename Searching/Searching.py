@@ -489,8 +489,6 @@ def BinarySearch(arr, start, end, key, isInc):
         return BinarySearch(arr, mid + 1, end, key, isInc)
 
 
-
-
 def findKeyCount(arr, key):
     size = len(arr)
     i = 0
@@ -537,7 +535,6 @@ def main10():
 
 def main11():
     first = [1, 5, 6, 6, 6, 6, 6, 6, 7, 8, 10, 13, 20, 30 ]
-    
     print(findKeyCount(first, 6))
     print(findKeyCount2(first, 6))
     # print minabsSumPair(first)
@@ -567,14 +564,12 @@ def seperateEvenAndOdd(arr):
 
 def main12():
     first = [1, 5, 6, 6, 6, 6, 6, 6, 7, 8, 10, 13, 20, 30 ]
-    
     print(seperateEvenAndOdd(first))
     # print findKeyCount2(first, 6)
     # print minabsSumPair(first)
 
 def main13():
     first = [10, 150, 6, 67, 61, 16, 86, 6, 67, 78, 150, -3, 28, 143 ]
-    
     print(maxProfit(first))
     # print findKeyCount2(first, 6)
     # print minabsSumPair(first)
@@ -604,7 +599,6 @@ def main14():
     # first = [10, 150, 6,67,61,16,86,6,67,78,150, -3, 28, 143 ]
     first = [1, 5, 6, 6, 6, 6, 6, 6, 7, 8, 10, 13, 20, 30 ]
     second = [1, 5, 6, 6, 6, 6, 6, 6, 7, 8, 10, 13, 20, 30 ]
-    
     print(findMedian(first, second))
     # print findKeyCount2(first, 6)
     # print minabsSumPair(first)

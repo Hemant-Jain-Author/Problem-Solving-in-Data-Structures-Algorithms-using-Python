@@ -45,8 +45,6 @@ def permutation(arr, i, length):
         j += 1
 
 
-
-
 def main3():
     arr = [None] * 5
     i = 0
@@ -69,7 +67,6 @@ def main4():
 
 
 def towerOfHanoi(num, src, dst, temp):
-    """ Source for method towerOfHanoi """
     if num < 1:
         return
     towerOfHanoi(num - 1, src, temp, dst)
@@ -120,8 +117,6 @@ def main7():
     print(maxSubArraySum(arr))
 
 
-
-
 def variableExample():
     var1 = 100
     var2 = 200
@@ -149,7 +144,6 @@ def printArray1(arr):
 
 def main8():
     twoDArrayExample()
-
 
 
 def twoDArrayExample():
@@ -221,14 +215,11 @@ def BinarySearch(arr, value):
 
 
 def main10():
-
     arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     print(BinarySearch(arr, 6))
 
 
-
 def rotateArray(arr, k):
-
     n = len(arr)
     reverseArray(arr, 0, k - 1)
     reverseArray(arr, k, n - 1)
@@ -263,7 +254,6 @@ def main11():
     arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     rotateArray(arr, 3)
     print(arr)
-
 
 
 class coord(object):
@@ -314,7 +304,6 @@ def main15():
     print(factorial(5))
 
 
-
 def printInt(number):
     conversion = "0123456789"
     digit = number % 10
@@ -359,7 +348,6 @@ def BinarySearchRecursive(arr, low, high, value):
         return BinarySearchRecursive(arr, mid + 1, high, value)
     else:
         return BinarySearchRecursive(arr, low, mid - 1, value)
-
 
 
 def main18():

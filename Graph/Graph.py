@@ -282,8 +282,8 @@ gph.AddBiEdge(6, 7, 7)
 gph.AddBiEdge(7, 8, 17)
 Dijkstra(gph, 1)
 # Prims(gph)
-"""print PathExist(gph, 1, 5)
-print isConnected(gph)
+"""print(PathExist(gph, 1, 5))
+print(isConnected(gph)
 ShortestPath(gph, 1)
 BellmanFordShortestPath(gph, 1)
 g = Graph(6);
@@ -293,6 +293,6 @@ g.AddEdge(4, 0);
 g.AddEdge(4, 1);
 g.AddEdge(2, 3);
 g.AddEdge(3, 1);
-print "Topological Sort::",
+print("Topological Sort::")
 Graph.TopologicalSort(g);"""
 

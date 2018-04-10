@@ -23,7 +23,7 @@ class Stack(object):
         return self.data.pop()
 
     def printStack(self):
-        print(self.data, end=' ')
+        print(self.data)
 
 
 s = Stack()

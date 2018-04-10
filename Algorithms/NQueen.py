@@ -8,7 +8,7 @@ def Feasible(Q, k):
 
 def NQueens(Q, k, n):
     if k == n:
-        print (Q)
+        print(Q)
         return
     i = 0
     while i < n:

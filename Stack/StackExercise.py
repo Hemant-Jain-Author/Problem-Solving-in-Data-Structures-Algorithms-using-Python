@@ -227,7 +227,6 @@ def GetMaxArea(arr):
 
 
 def GetMaxArea2(arr):
-    """ generated source for method GetMaxArea2 """
     size = len(arr)
     stk = []
     maxArea = 0

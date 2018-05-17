@@ -51,7 +51,6 @@ class Tree(object):
             self.PrintPreOrderUtil(node.lChild)
             self.PrintPreOrderUtil(node.rChild)
 
-    
     def NthPreOrder(self, index):
         count = [0] 
         self.NthPreOrderUtil(self.root, index, count)

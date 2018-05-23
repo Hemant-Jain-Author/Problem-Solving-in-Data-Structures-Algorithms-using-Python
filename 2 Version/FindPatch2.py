@@ -25,8 +25,8 @@ def findMaxPath(arr, maxCol, maxRow):
     maxVal = 0
     traversed = [[0]*maxCol for i in range(maxRow)]
     tempVal = [0]
-    for i in range(0, maxCol-1, 1):
-        for j in range(0, maxRow-1, 1):
+    for i in range(maxCol):
+        for j in range(maxRow):
             tempVal[0] = 0
             findMaxPathUtil(arr, maxCol, maxRow, i, j, arr[i][j], traversed, tempVal)
             if(tempVal[0] > maxVal):
@@ -40,6 +40,7 @@ def main():
         [ 0 , 0 , 1, 1 , 1], 
         [ 0 , 1 , 0, 0 , 0], 
         [ 1 , 1 , 0, 0 , 1]]
+    print(arr)
     print(findMaxPath(arr, 5, 5))
 
     arr = [
@@ -48,7 +49,8 @@ def main():
         [ 3 , 3 , 1, 1 , 3], 
         [ 0 , 3 , 3, 0 , 3], 
         [ 1 , 1 , 0, 3 , 3]]    
-    print(findMaxPath(arr, 5, 5))
     print(arr)
+    print(findMaxPath(arr, 5, 5))
+    
 
 main()

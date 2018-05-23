@@ -18,6 +18,25 @@ def maxSlidingWindows(arr, k):
         if i >= (k - 1):
             print(arr[que[0]])
 
+
+def firstNegSlidingWindows(arr, k):
+    size = len(arr)
+    que = deque()
+    for i in range(size):
+        # Remove out of range elements
+        if que and que[0] <= i - k:
+            que.popleft()
+        if arr[i] < 0:
+            que.append(i)
+        # window of size k
+        if i >= (k - 1) :
+            if len(que) > 0:
+                print(arr[que[0]])
+            else:
+                print("NAN") 
+
+
+
 def minOfMaxSlidingWindows(arr, k):
     size = len(arr)
     que = deque()
@@ -61,3 +80,6 @@ minOfMaxSlidingWindows(arr, k)
 arr2 = [10, 20, 30, 50, 10, 70, 30]
 for i in range(1,8):
     maxOfMinSlidingWindows(arr2, i)
+    
+arr3 = [13, -2, -6, 10, -14, 50, 14, 21]
+firstNegSlidingWindows(arr3, 3)

@@ -1,4 +1,25 @@
-#!/usr/bin/env python
+"""
+Find kth smallest elements in an unsorted array.
+"""
+
+def KthSmallest(arr, k):
+    arr.sort()
+    return arr[k-1]
+
+import heapq
+def KthSmallest2(arr, k):
+    size = len(arr)
+    heapq.heapify(arr)
+    i = 0
+    value = 0
+    while i < size and i < k:
+        value = heapq.heappop(arr)
+        i += 1
+    return value
+
+"""
+Quick select method
+"""
 def QuickSelect(array, k):
     arr = array
     size = len(arr)
@@ -29,12 +50,15 @@ def QuickSelectUtil(arr, lower, upper, k):
         QuickSelectUtil(arr, upper + 1, stop, k)   
           
 def swap(arr, first, second):
-    temp = arr[first]
-    arr[first] = arr[second]
-    arr[second] = temp
-    
+    arr[first], arr[second] = arr[second], arr[first]
 
-array = [3, 4, 2, 1, 6, 5, 7, 8, 10, 9]
-value = QuickSelect(array, 5)
-print("value at index 5 is : " , value, end=' ')
 
+def main():
+    first = [1, 7, 5, 4, 8, 3, 9, 2, 6, 10]
+    print(KthSmallest(first, 5))
+    first = [1, 7, 5, 4, 8, 3, 9, 2, 6, 10]
+    print(KthSmallest2(first, 5))
+    first = [1, 7, 5, 4, 8, 3, 9, 2, 6, 10]
+    print(QuickSelect(first, 5))
+
+main()

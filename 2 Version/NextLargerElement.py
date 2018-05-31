@@ -122,6 +122,7 @@ def nextSmallerElement3(arr):
     print(output)
 
 # Testing code
+"""
 arr = [13,21,3,6,20,3]
 print(arr)
 nextLargerElement(arr)
@@ -129,3 +130,62 @@ nextLargerElement2(arr)
 nextLargerElement3(arr)
 nextSmallerElement(arr)
 nextSmallerElement3(arr)
+"""
+def nextLargerElementCircular(arr):
+    size = len(arr)
+    stk = Stack()
+    output = [-1]*size
+    for i in range(2*size - 1) :
+        curr = arr[i % size]
+        # stack always have values in decreasing order.
+        if stk.isEmpty() == True or arr[stk.top()] > curr :
+            stk.push(i % size)
+            continue
+        while stk.isEmpty() == False and arr[stk.top()] <= curr:
+            index = stk.pop()
+            output[index] = curr
+        stk.push(i % size)
+    
+    # index which dont have any next Larger.
+    while stk.isEmpty() == False :
+        index = stk.pop()
+        output[index] = -1
+        
+    print(output)
+"""
+arr = [6, 3, 9, 8, 10, 2, 1, 15, 7]
+nextLargerElementCircular(arr)
+"""
+"""
+Given an array you need to find smalles larger element for each element.
+"""
+import sys
+def smallestLargerElementArray(arr):
+    size = len(arr)
+    output = []
+    for i in range(size): 
+        minDiff = sys.maxint
+        value = -1
+        for j in range(size):
+            if arr[i] < arr[j] and (arr[j] - arr[i] ) < minDiff :
+                minDiff = arr[j] - arr[i]
+                value = arr[j]
+        output.append(value)
+    print output
+
+def smallestLargerElementArray2(arr):
+    size = len(arr)
+    output = [-1]*size
+    aux = []
+    for i in range(size) :
+        aux.append((arr[i], i))
+    aux.sort()
+    
+    for i in range(size-1) :
+        output[aux[i][1]] = aux[i+1][0]
+    output[aux[size - 1][1]] = -1
+    print output
+
+arr = [6, 3, 9, 8, 10, 2, 1, 15, 7]
+smallestLargerElementArray(arr)
+smallestLargerElementArray2(arr)

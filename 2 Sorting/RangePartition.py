@@ -18,3 +18,5 @@ def RangePartition(arr, lower, higher):
 arr = [1,21,2,20,3,19,4,18,5,17,6,16,7,15,8,14,9,13,10,12,11]
 RangePartition(arr, 8, 12)
 print arr
+
+

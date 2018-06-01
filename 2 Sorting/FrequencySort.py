@@ -19,7 +19,7 @@ def SortFrequency(arr):
             print key ,
 
 arr = [2, 3, 2, 4, 5, 12, 2, 3, 3, 3, 12]
-#SortFrequency(arr)
+SortFrequency(arr)
 
 """
 Sort array according to the order defined in another array.
@@ -42,7 +42,7 @@ def PrintKeyVal(arr, arr2):
     for key in mp:
         for i in range(mp[key]):
             print key ,
-
+print ""
 arr = [2, 1, 2, 5, 7, 1, 9, 3, 6, 8, 8]
 arr2 = [2, 1, 8, 3]
 PrintKeyVal(arr, arr2)

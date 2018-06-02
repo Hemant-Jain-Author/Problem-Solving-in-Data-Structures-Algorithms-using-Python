@@ -47,10 +47,8 @@ def permutation(arr, i, length):
 
 def main3():
     arr = [None] * 5
-    i = 0
-    while i < 5:
+    for i in range(5):
         arr[i] = i
-        i += 1
     permutation(arr, 0, 5)
 
 
@@ -100,14 +98,12 @@ def maxSubArraySum(arr):
     size = len(arr)
     maxSoFar = 0
     maxEndingHere = 0
-    i = 0
-    while i < size:
+    for i in range(size):
         maxEndingHere = maxEndingHere + arr[i]
         if maxEndingHere < 0:
             maxEndingHere = 0
         if maxSoFar < maxEndingHere:
             maxSoFar = maxEndingHere
-        i += 1
     return maxSoFar
 
 
@@ -126,20 +122,16 @@ def variableExample():
 
 def arrayExample():
     arr = [0] * 10
-    i = 0
-    while i < 10:
+    for i in range(10):
         arr[i] = i
-        i += 1
+    printArray1(arr)
     return arr
-    printArray1(arr, 10)
 
 
 def printArray1(arr):
     count = len(arr)
-    i = 0
-    while i < count:
-        print(arr[i], end=' ')
-        i += 1
+    for i in range(count):
+        print(arr[i])#, end=' ')
 
 
 def main8():
@@ -149,52 +141,38 @@ def main8():
 def twoDArrayExample():
     first = 4
     second = 4
-    arr = [[0 for x in range(first)] for y in range(second) ]      
+    arr = [[0 for x in range(first)] for y in range(second) ]
     count = 0
-    i = 0
-    while i < first:
-        j = 0
-        while j < second:
+    for i in range(first):
+        for j in range(second):
             arr[i][j] = count
             count += 1
-            j += 1
-        i += 1
     print2DArray(arr, first, second)
 
 
 def print2DArray(arr, row, col):
     i = 0
-    while i < row:
-        j = 0
-        while j < col:
-            print(arr[i][j], end=' ')
-            j += 1
-        i += 1
-
+    for i in range(row):
+        for j in range(col):
+            print(arr[i][j])#, end=' ')
 
 def main9():
     arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     print(SumArray(arr))
 
-
-
 def SumArray(arr):
     size = len(arr)
     total = 0
-    index = 0
-    while index < size:
+    for index in range(size):
         total = total + arr[index]
-        index += 1
     return total
 
 
 def SequentialSearch(arr, value):
     size = len(arr)
-    i = 0
-    while i < size:
+    for i in range(size):
         if value == arr[i]:
             return True
-        i += 1
     return False
 
 

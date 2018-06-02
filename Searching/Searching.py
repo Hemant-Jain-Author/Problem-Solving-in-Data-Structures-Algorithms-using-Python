@@ -1,23 +1,20 @@
 #!/usr/bin/env python
 import math
+import sys
 
 def linearSearchUnsorted(arr, size, value):
-    i = 0
-    while i < size:
+    for i in range(size):
         if value == arr[i]:
             return True
-        i += 1
     return False
 
 
 def linearSearchSorted(arr, size, value):
-    i = 0
-    while i < size:
+    for i in range(size):
         if value == arr[i]:
             return True
         elif value < arr[i]:
             return False
-        i += 1
     return False
 
 def main1():
@@ -48,7 +45,8 @@ def BinarySearchRecursive(arr, value):
 def BinarySearchRecursiveUtil(arr, low, high, value):
     if low > high:
         return False
-    mid = math.floor((low + high) / 2)
+    # mid = math.floor((low + high) / 2)
+    mid = ((low + high) / 2)
     if arr[mid] == value:
         return True
     elif arr[mid] < value:
@@ -64,52 +62,42 @@ def main2():
 
 def printRepeating(arr):
     size = len(arr)
-    i = 0
-    print(" Repeating elements :: ", end=' ')
-    while i < size:
-        j = i + 1
-        while j < size:
+    print(" Repeating elements :: ")#, end=' ')
+    for i in range(size):
+        for j in range(i+1, size):
             if arr[i] == arr[j]:
-                print(arr[i], end=' ')
-            j += 1
-        i += 1
+                print(arr[i])#, end=' ')
 
 
 def printRepeating2(arr):
     size = len(arr)
-    i = 0
     arr.sort()
-    print(" Repeating elements are :: ", end=' ')
-    while i < size:
+    print(" Repeating elements are :: ")#, end=' ')
+    for i in range(size):
         if arr[i] == arr[i - 1]:
-            print(arr[i], end=' ')
-        i += 1
+            print(arr[i])#, end=' ')
 
 
 def printRepeating3(arr):
     size = len(arr)
     hs = set()
-    i = 0
-    print(" Repeating elements are ::", end=' ')
-    while i < size:
+    print(" Repeating elements are ::")#, end=' ')
+    for i in range(size):
         if arr[i] in hs:
-            print(arr[i], end=' ')
+            print(arr[i])#, end=' ')
         else:
             hs.add(arr[i])
-        i += 1
 
 
 def printRepeating4(arr, valrange):
     size = len(arr)
     count = [0] * valrange
-    i = 0
-    print(" Repeating elements are :: ", end=' ')
-    while i < size:
+    print(" Repeating elements are :: ")#, end=' ')
+    for i in range(size):
         if count[arr[i]] == 1:
-            print(arr[i], end=' ')
+            print(arr[i])#, end=' ')
         else:
             count[arr[i]] += 1
-        i += 1
 
 
 def main3():
@@ -125,18 +113,14 @@ def getMax(arr):
     maxval = arr[0]
     count = 1
     maxCount = 1
-    i = 0
-    while i < size:
-        j = i + 1
+    for i in range(size):
         count = 1
-        while j < size:
+        for j in range(i+1, size):
             if arr[i] == arr[j]:
                 count += 1
-            j += 1
         if count > maxCount:
             maxval = arr[i]
             maxCount = count
-        i += 1
     return maxval
 
 
@@ -147,8 +131,7 @@ def getMax2(arr):
     curr = arr[0]
     currCount = 1
     arr.sort()
-    i = 0
-    while i < size:
+    for i in range(size):
         if arr[i] == arr[i - 1]:
             currCount += 1
         else:
@@ -157,7 +140,6 @@ def getMax2(arr):
         if currCount > maxCount:
             maxCount = currCount
             maximum = curr
-        i += 1
     return maximum
 
 
@@ -166,13 +148,11 @@ def getMax3(arr, valuerange):
     maximum = arr[0]
     maxCount = 1
     count = [0] * valuerange
-    i = int()
-    while i < size:
+    for i in range(size):
         count[arr[i]] += 1
         if count[arr[i]] > maxCount:
             maxCount = count[arr[i]]
             maximum = arr[i]
-        i += 1
     return maximum
 
 
@@ -188,46 +168,40 @@ def getMajority(arr):
     maximum = 0
     count = 0
     maxCount = 0
-    i = 0
-    while i < size:
-        j = i + 1
-        while j < size:
+    for i in range(size):
+        for j in range(i+1, size):
             if arr[i] == arr[j]:
                 count += 1
-            j += 1
         if count > maxCount:
             maximum = arr[i]
             maxCount = count
-        i += 1
     if maxCount > size / 2:
         return maximum
     else:
-        return symaxint # can also raised exception.
+        return sys.maxint # can also raised exception.
 
 
 def getMajority2(arr):
     size = len(arr)
-    majIndex = math.floor(size / 2)
-    i = 0      
+    #majIndex = math.floor(size / 2)
+    majIndex = (size / 2)
     arr.sort()
     candidate = arr[majIndex]
     count = 1
-    while i < size:
+    for i in range(size):
         if arr[i] == candidate:
             count += 1
-        i += 1
     if count > size / 2:
         return arr[majIndex]
     else:
-        return symaxint # can also raised exception.
+        return sys.maxint # can also raised exception.
 
 
 def getMajority3(arr):
     size = len(arr)
     majIndex = 0
     count = 1
-    i = 1
-    while i < size:
+    for i in range(1, size):
         if arr[majIndex] == arr[i]:
             count += 1
         else:
@@ -235,18 +209,17 @@ def getMajority3(arr):
         if count == 0:
             majIndex = i
             count = 1
-        i += 1
     candidate = arr[majIndex]
     count = 0
-    i = 0
-    while i < size:
+
+    for i in range(size):
         if arr[i] == candidate:
             count += 1
-        i += 1
+    
     if count > size / 2:
         return arr[majIndex]
     else:
-        return symaxint  # can also raised exception.
+        return sys.maxint  # can also raised exception.
 
 
 def main5():
@@ -271,7 +244,7 @@ def findMissingNumber(arr, upperRange):
         if found == 0:
             return i
         i += 1
-    return symaxint
+    return sys.maxint
 
 
 def findMissingNumber2(arr, upperRange):
@@ -300,7 +273,7 @@ def findMissingNumber3(arr, upperRange):
         if (i in mSet) == False:
             return i
         i += 1
-    return symaxint
+    return sys.maxint
 
 
 def main6():
@@ -311,15 +284,11 @@ def main6():
 
 def FindPair(arr, value):
     size = len(arr)
-    i = 0
-    while i < size:
-        j = i + 1
-        while j < size:
+    for i in range(size):
+        for j in range(i+1, size):
             if (arr[i] + arr[j]) == value:
                 print("The pair is::", arr[i], "&" , arr[j])
                 return True
-            j += 1
-        i += 1
     return False
 
 
@@ -343,13 +312,11 @@ def FindPair2(arr, value):
 def FindPair3(arr, value):
     size = len(arr)
     hs = set()
-    i = int()
-    while i < size:
+    for i in range(size):
         if (value - arr[i]) in hs:
             print("The pair is::", arr[i] , "&" , (value - arr[i]))
             return True
         hs.add(arr[i])
-        i += 1
     return False
 
 
@@ -367,18 +334,14 @@ def minabsSumPair(arr):
         return
     minFirst = 0
     minSecond = 1
-    i = 0
     minSum = abs(arr[0] + arr[1])
-    while i < size - 1:
-        j = i + 1
-        while j < size:
+    for i in range(size - 1):
+        for j in range(i+1, size):
             currsum = abs(arr[i] + arr[j])
             if currsum < minSum:
                 minSum = currsum
                 minFirst = i
                 minSecond = j
-            j += 1
-        i += 1
     print(" The two elements with minimum sum are : ", arr[minFirst], "&", arr[minSecond])
 
 
@@ -425,7 +388,8 @@ def SearchBotinicArrayMax(arr):
         print("error")
         return 0
     while start <= end:
-        mid = math.floor((start + end) / 2)
+        #mid = math.floor((start + end) / 2)
+        mid = ((start + end) / 2)
         if arr[mid - 1] < arr[mid] and arr[mid + 1] < arr[mid]:
             maximaFound = 1
             break
@@ -437,7 +401,7 @@ def SearchBotinicArrayMax(arr):
             break
     if maximaFound == 0:
         print("error")
-        return symaxint
+        return sys.maxint
     return arr[mid]
 
 
@@ -458,7 +422,8 @@ def FindMaxBitonicIndex(arr, size):
         print("error")
         return -1
     while start <= end:
-        mid = math.floor((start + end) / 2)
+        #mid = math.floor((start + end) / 2)
+        mid = ((start + end) / 2)
         if arr[mid - 1] < arr[mid] and arr[mid + 1] < arr[mid]:
             return mid
         elif arr[mid - 1] < arr[mid] and arr[mid] < arr[mid + 1]:
@@ -480,7 +445,8 @@ def main9():
 def BinarySearch(arr, start, end, key, isInc):
     if end < start:
         return False
-    mid = math.floor((start + end) / 2)
+    #mid = math.floor((start + end) / 2)
+    mid = ((start + end) / 2)
     if key == arr[mid]:
         return True
     if isInc != False and key < arr[mid] or isInc == False and key > arr[mid]:
@@ -491,18 +457,17 @@ def BinarySearch(arr, start, end, key, isInc):
 
 def findKeyCount(arr, key):
     size = len(arr)
-    i = 0
     count = 0
-    while i < size:
+    for i in range(size):
         if arr[i] == key:
             count += 1
-        i += 1
     return count
 
 def findFirstIndex(arr, start, end, key):
     if end < start:
         return -1
-    mid = math.floor((start + end) / 2)
+    #mid = math.floor((start + end) / 2)
+    mid = ((start + end) / 2)
     if key == arr[mid] and (mid == start or arr[mid - 1] != key):
         return mid
     if key <= arr[mid]:
@@ -513,13 +478,15 @@ def findFirstIndex(arr, start, end, key):
 def findLastIndex(arr, start, end, key):
     if end < start:
         return -1
-    mid = math.floor((start + end) / 2)
+    #mid = math.floor((start + end) / 2)
+    mid = ((start + end) / 2)
     if key == arr[mid] and (mid == end or arr[mid + 1] != key):
         return mid
     if key < arr[mid]:
         return findLastIndex(arr, start, mid - 1, key)
     else:
         return findLastIndex(arr, mid + 1, end, key)
+
 def findKeyCount2(arr, key):
     size = len(arr)
     firstIndex = findFirstIndex(arr, 0, size - 1, key)
@@ -569,7 +536,7 @@ def main12():
     # print(minabsSumPair(first))
 
 def main13():
-    first = [10, 150, 6, 67, 61, 16, 86, 6, 67, 78, 150, -3, 28, 143 ]
+    first = [10, 150, 6, 67, 61, 16, 86, 6, 67, 78, 150, 3, 28, 143 ]
     print(maxProfit(first))
     # print(findKeyCount2(first, 6))
     # print(minabsSumPair(first)
@@ -581,8 +548,7 @@ def maxProfit(stocks):
     curMin = 0
     currProfit = 0
     maxProfit = 0
-    i = 0
-    while i < size:
+    for i in range(size):
         if stocks[i] < stocks[curMin]:
             curMin = i
         currProfit = stocks[i] - stocks[curMin]
@@ -590,7 +556,6 @@ def maxProfit(stocks):
             buy = curMin
             sell = i
             maxProfit = currProfit
-        i += 1
     print("Purchase day is - ", buy , " at price " , stocks[buy])
     print("Sell day is - " , sell , " at price " , stocks[sell])
 
@@ -655,7 +620,9 @@ def BinarySearch01(arr):
 def BinarySearch01Util(arr, start, end):
     if end < start:
         return -1
-    mid = math.floor((start + end) / 2)
+    #mid = math.floor((start + end) / 2)
+    mid = ((start + end) / 2)
+    
     if '1' == arr[mid] and '0' == arr[mid - 1]:
         return mid
     if '0' == arr[mid]:
@@ -681,7 +648,9 @@ def BinarySearchRotateArray(arr, key):
 def BinarySearchRotateArrayUtil(arr, start, end, key):
     if end < start:
         return False
-    mid = math.floor((start + end) / 2)
+    #mid = math.floor((start + end) / 2)
+    mid = ((start + end) / 2)
+    
     if key == arr[mid]:
         return True
     if arr[mid] > arr[start]:
@@ -708,15 +677,11 @@ def main17():
 
 def FirstRepeated(arr):
     size = len(arr)
-    i = 0
-    while i < size:
-        j = i + 1
-        while j < size:
+    for i in range(size):
+        for j in range(i+1, size):
             if arr[i] == arr[j]:
                 return arr[i]
-            j += 1
-        i += 1
-    return symaxint  # can raise exception.
+    return sys.maxint  # can raise exception.
 
 
 def main18():
@@ -729,14 +694,12 @@ def main18():
 def transformArrayAB1(strval):
     arr = list(strval)
     size = len(arr)
-    N = math.floor(size / 2)
+    #N = math.floor(size / 2)
+    N = (size / 2)
     i = 1
-    while i < N:
-        j = 0
-        while j < i:
+    for i in range(1, N):
+        for j in range(i):
             swap(arr, N - i + 2 * j, N - i + 2 * j + 1)
-            j += 1
-        i += 1
     return "".join(arr)
 
 
@@ -753,11 +716,9 @@ def checkPermutation(str1, str2):
         return False
     array1.sort()
     array2.sort()
-    i = 0
-    while i < size1:
+    for i in range(size1):
         if array1[i] != array2[i]:
             return False
-        i += 1
     return True
 
 
@@ -767,16 +728,13 @@ def checkPermutation2(array1, array2):
     if size1 != size2:
         return False
     al = []
-    i = 0
-    while i < size1:
+    for i in range(size1):
         al.append(array1[i])
-        i += 1
-    i = 0
-    while i < size2:
+
+    for i in range(size2):
         if al.count(array2[i]) == 0:
             return False
         al.remove(array2[i])
-        i += 1
     return True
 
 
@@ -787,16 +745,14 @@ def main20():
 
 def removeDuplicates(array):
     size = len(array)
-    j = 0
-    i = int()
     if size == 0:
         return 0
     array.sort()
-    while i < size:
+    j = 0
+    for i in range(size):
         if array[i] != array[j]:
             j += 1
             array[j] = array[i]
-        i += 1
     array[j:size - 1] = []
     return array
 

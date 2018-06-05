@@ -115,6 +115,11 @@ print SmallestPossitiveMissingNumber5(arr)
 arr = [2, 3, 7, 6, 8, 1, 4, 5]
 print SmallestPossitiveMissingNumber5(arr)
 """
+"""
+Given an array of length N. It contains unique elements from 1 to N. 
+Sort the elements of the array.
+"""
+
 def Sort1toN(arr):
     size = len(arr)
     for i in range(size):

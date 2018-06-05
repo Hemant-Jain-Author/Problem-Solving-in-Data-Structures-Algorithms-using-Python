@@ -1,5 +1,7 @@
 """
-Find a circular tour that visits all petrol pumps.
+Their are N number of petrol pumps. Each petrol pump have 
+some limited amount of petrol and they also their distance from each other is provided.
+Find if their is a circular tour possible to visit all the petrol pumps.
 """
 from collections import deque
 
@@ -33,4 +35,3 @@ tour = [[8, 6],
 [7, 6]]
 
 print CircularTour(tour, 3)
-

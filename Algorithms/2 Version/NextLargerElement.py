@@ -186,6 +186,47 @@ def smallestLargerElementArray2(arr):
     output[aux[size - 1][1]] = -1
     print output
 
+"""
 arr = [6, 3, 9, 8, 10, 2, 1, 15, 7]
 smallestLargerElementArray(arr)
 smallestLargerElementArray2(arr)
+"""
+
+
+"""
+Given an array of integers. Find leaders in this array. 
+A leader is value which is grater then all the values at the right of it.
+Hint:= Next largest value stack need to be output in this problem.
+"""
+def FindLeaders(arr):
+    size = len(arr)
+    stk = []
+    for i in range(size) :
+        curr = arr[i]
+        # stack always have values in decreasing order.
+        if len(stk) == 0 or stk[-1] > curr :
+            stk.append(arr[i])
+            continue
+        while len(stk) != 0 and stk[-1] <= curr:
+            stk.pop()
+        stk.append(arr[i])
+    print(stk)
+
+import sys
+def FindLeaders2(arr):
+    size = len(arr)
+    largest = -sys.maxint
+    i = size -1
+    output = []
+    while i >= 0 :
+        curr = arr[i]
+        if largest < curr:
+            largest = curr
+            output.append(curr)
+        i -= 1
+    print output
+
+
+arr = [16, 17, 4, 3, 5, 2]
+FindLeaders(arr)
+FindLeaders2(arr)

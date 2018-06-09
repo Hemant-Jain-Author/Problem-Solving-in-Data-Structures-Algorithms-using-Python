@@ -162,7 +162,10 @@ def main4():
     print(getMax2(first))
     print(getMax3(first, 50))
 
-
+"""
+majority in an unsorted array is this problem , if array is sorted then majority candidate will be at 
+n/2 index.
+"""
 def getMajority(arr):
     size = len(arr)
     maximum = 0

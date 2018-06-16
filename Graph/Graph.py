@@ -57,12 +57,12 @@ def Dijkstra(gph, source):
     dist[source] = 0
     previous[source] = -1
 
-    pqarray = []
+    pqueue = []
     node = Graph.AdjNode(source, source, 0)        
-    heapq.heappush(pqarray, (0, node))
+    heapq.heappush(pqueue, (0, node))
     
-    while len(pqarray) != 0:
-        val = heapq.heappop(pqarray)
+    while len(pqueue) != 0:
+        val = heapq.heappop(pqueue)
         node = val[1]
         
         adl = gph.array[node.destination]
@@ -74,7 +74,7 @@ def Dijkstra(gph, source):
                 dist[adn.destination] = alt
                 previous[adn.destination] = adn.source
                 node = Graph.AdjNode(adn.source, adn.destination, alt)
-                heapq.heappush(pqarray, (alt, node))
+                heapq.heappush(pqueue, (alt, node))
             adn = adn.next
     count = gph.count
     i = 0
@@ -92,12 +92,12 @@ def Prims(gph):
     dist[source] = 0
     previous[source] = -1
 
-    pqarray = []
+    pqueue = []
     node = Graph.AdjNode(source, source, 0)        
-    heapq.heappush(pqarray, (0, node))
+    heapq.heappush(pqueue, (0, node))
     
-    while len(pqarray) != 0:
-        val = heapq.heappop(pqarray)
+    while len(pqueue) != 0:
+        val = heapq.heappop(pqueue)
         node = val[1]
         
         if dist[node.destination] < node.cost:
@@ -112,7 +112,7 @@ def Prims(gph):
         while adn != None:
             if previous[adn.destination]==-1:
                 node = Graph.AdjNode(adn.source, adn.destination, adn.cost)
-                heapq.heappush(pqarray, (adn.cost, node))
+                heapq.heappush(pqueue, (adn.cost, node))
             adn = adn.__next__
     count = gph.count
     i = 0
@@ -185,7 +185,7 @@ def DFSStack(gph):
         while head != None:
             if visited[head.destination] == 0:
                 visited[head.destination] = 1
-                append(head.destination)
+                stk.append(head.destination)
             head = head.__next__
  
 def DFS(gph):

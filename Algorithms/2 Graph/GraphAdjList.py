@@ -4,38 +4,28 @@ import sys
 from collections import deque
 
 class Graph(object):
-    class Edge(object):
-        def __init__(self, dst, cst=1):
-            self.destination = dst
-            self.cost = cst
-            self.next = None
-
     def __init__(self, cnt):
         self.count = cnt
-        self.array = [None] * cnt
+        self.array = [[] for _ in range(cnt)]
     
     def AddDirectedEdge(self, source, destination, cost=1):
-        node = self.Edge(destination, cost)
-        node.next = self.array[source]
-        self.array[source] = node
+        edge = (destination, cost)
+        self.array[source].append(edge)
     
     def AddUndirectedEdge(self, source, destination, cost=1):
         self.AddDirectedEdge(source, destination, cost)
         self.AddDirectedEdge(destination, source, cost)
 
     def Print(self):
-        i = 0
-        while i < self.count:
-            ad = self.array[i]
-            if ad != None:
-                print "Vertex " , i , " is connected to : ",
-                while ad != None:
-                    print ad.destination ,
-                    ad = ad.next
-                print("")
-            i += 1
+        for i in range(self.count):
+            print "Vertex " , i , " is connected to : ",
+            for edge in self.array[i]:
+                print (edge[0] , edge[1]),
+            print("")
+
 
 class PriorityQueue(object):
+
     def __init__(self):
         self.pQueue = []
         self.count = 0
@@ -44,6 +34,8 @@ class PriorityQueue(object):
         heapq.heappush(self.pQueue, (key, value))
     
     def UpdateKey(self, key, value):
+        # this is a dummy function actual implimentation 
+        # tbd
         heapq.heappush(self.pQueue, (key, value))
 
     def Pop(self):
@@ -53,6 +45,27 @@ class PriorityQueue(object):
     def Size(self):
         return len(self.pQueue)
     
+
+def BellmanFordShortestPath(gph, source):
+    count = gph.count
+    distance = [sys.maxsize] * count
+    path = [-1] * count
+    distance[source] = 0
+
+    # Outer loop will run (V-1) number of times. 
+    # Inner for loop and while loop runs combined will 
+    # run for Edges number of times.
+    # Which make the total complexity as O(V*E)
+    for _ in range(count - 1):
+        for j in range(count):
+            for edge in gph.array[j]:
+                newDistance = distance[j] + edge[1]
+                if distance[edge[0]] > newDistance:
+                    distance[edge[0]] = newDistance
+                    path[edge[0]] = j
+    for i in range(count):
+        print (path[i] , "to" , i , "weight" , distance[i])
+
 
 def Dijkstra(gph, source):
     previous = [-1] * gph.count
@@ -69,16 +82,16 @@ def Dijkstra(gph, source):
     while pq.Size() != 0:
         val = pq.Pop()
         source = val[1]
-        curr = gph.array[source]
         visited[source] = True
-        
-        while curr != None:
-            alt = curr.cost + dist[source]
-            if alt < dist[curr.destination] and visited[curr.destination] == False:
-                dist[curr.destination] = alt
-                previous[curr.destination] = source
-                pq.UpdateKey(alt, curr.destination)
-            curr = curr.next
+        for edge in gph.array[source]:
+            destination = edge[0]
+            cost = edge[1]
+            alt = cost + dist[source]
+            if alt < dist[destination] and visited[destination] == False:
+                dist[destination] = alt
+                previous[destination] = source
+                pq.UpdateKey(alt, destination)
+
     
     for i in range(gph.count):
         if dist[i] == sys.maxsize:
@@ -101,31 +114,44 @@ def Prims(gph):
     while pq.Size() != 0:
         val = pq.Pop()
         source = val[1]
-        curr = gph.array[source]
         visited[source] = True
 
-        while curr != None:
-            alt = curr.cost
-            if alt < dist[curr.destination] and visited[curr.destination] == False:
-                dist[curr.destination] = curr.cost
-                previous[curr.destination] = source
-                pq.UpdateKey(alt, curr.destination)
-            curr = curr.next
+        for edge in gph.array[source]:
+            destination = edge[0]
+            cost = edge[1]
+            if cost < dist[destination] and visited[destination] == False:
+                dist[destination] = cost
+                previous[destination] = source
+                pq.UpdateKey(cost, destination)
     
     for i in range(gph.count):
         if dist[i] == sys.maxsize:
             print("node id" , i , "prev" , previous[i] , "distance : Unreachable")
         else:
             print("node id" , i , "prev" , previous[i] , "distance :" , dist[i])
-        
+
+def DFSUtil(gph, index, visited):
+    visited[index] = True
+    for edge in gph.array[index]:
+        if visited[edge[0]] == False:
+            DFSUtil(gph, edge[0], visited)
+
+def RootVertex(gph):
+    count = gph.count
+    visited = [False] * count
+    retVal = -1
+    for i in range(count):
+        if visited[i] == False:
+            DFSUtil(gph, i, visited)
+            retVal = i
+    print "Root vertex is :: ", retVal
 
 def TopologicalSortDFS(gph, index, visited, stk):
-    head = gph.array[index]
     visited[index] = True
-    while head != None:
-        if visited[head.destination] == False:
-            TopologicalSortDFS(gph, head.destination, visited, stk)
-        head = head.next
+    for edge in gph.array[index]:
+        destination = edge[0]
+        if visited[destination] == False:
+            TopologicalSortDFS(gph, destination, visited, stk)
     stk.append(index)
 
 def TopologicalSort(gph):
@@ -135,8 +161,10 @@ def TopologicalSort(gph):
     for i in range(count):
         if visited[i] == False:
             TopologicalSortDFS(gph, i, visited, stk)
+    print "TopologicalSort :: ",
     while len(stk) != 0:
         print stk.pop() , 
+    print ""
 
 def PathExist(gph, source, destination):
     count = gph.count
@@ -145,32 +173,29 @@ def PathExist(gph, source, destination):
     return visited[destination]
 
 def DFSRec(gph, index, visited):
-    head = gph.array[index]
     visited[index] = True
-    print index ,
-    while head != None:
-        if visited[head.destination] == False:
-            DFSRec(gph, head.destination, visited)
-        head = head.next
+    # print index ,
+    for edge in gph.array[index]:
+        destination = edge[0]
+        if visited[destination] == False:
+            DFSRec(gph, destination, visited)
 
 def reverseGraph(gph):
     count = gph.count
     g = Graph(count)
     for i in range(count):
-        head = gph.array[i]
-        while head != None:
-            g.AddDirectedEdge(head.destination, i)
-            head = head.next
+        for edge in gph.array[i]:
+            destination = edge[0]
+            g.AddDirectedEdge(destination, i)
     return g
 
 
 def DFSRec2(gph, index, visited, stk):
-    head = gph.array[index]
     visited[index] = True
-    while head != None:
-        if visited[head.destination] == False:
-            DFSRec2(gph, head.destination, visited, stk)
-        head = head.next
+    for edge in gph.array[index]:
+        destination = edge[0]
+        if visited[destination] == False:
+            DFSRec2(gph, destination, visited, stk)
     stk.append(index)
 
 # Kosaraju Algorithm
@@ -216,11 +241,6 @@ def stronglyConnectedComponent(gph):
             DFSRec2(gReversed, index, visited, stk2)
             print stk2
         
-    DFSRec(gReversed, 0, visited)
-    for i in range(count):
-        if visited[i] == False:
-            return False
-    return True
 
 def isConnectedUndirected(gph):
     count = gph.count
@@ -241,13 +261,12 @@ def DFSStack(gph, source):
     while len(stk) != 0:
         curr = stk.pop()
         print curr ,
-        head = gph.array[curr]
-        while head != None:
-            if visited[head.destination] == False:
-                stk.append(head.destination)
-                visited[head.destination] = True
-            head = head.next
- 
+        for edge in gph.array[curr]:
+            destination = edge[0]
+            if visited[destination] == False:
+                stk.append(destination)
+                visited[destination] = True
+            
 def DFS(gph, source):
     count = gph.count
     visited = [False] * count
@@ -261,12 +280,11 @@ def BFSQueue(gph, source, visited):
     while len(que) != 0:
         curr = que.popleft()
         print curr ,
-        head = gph.array[curr]
-        while head != None:
-            if visited[head.destination] == False:
-                que.append(head.destination)
-                visited[head.destination] = True
-            head = head.next
+        for edge in gph.array[curr]:
+            destination = edge[0]
+            if visited[destination] == False:
+                que.append(destination)
+                visited[destination] = True
  
 def BFS(gph, source):
     count = gph.count
@@ -284,70 +302,15 @@ def ShortestPath(gph, source):
     distance[source] = 0
     while len(que) != 0:
         curr = que.popleft()
-        head = gph.array[curr]
-        while head != None:
-            if distance[head.destination] == -1:
-                distance[head.destination] = distance[curr] + 1
-                path[head.destination] = curr
-                que.append(head.destination)
-            head = head.next
+        for edge in gph.array[curr]:
+            destination = edge[0]
+            if distance[destination] == -1:
+                distance[destination] = distance[curr] + 1
+                path[destination] = curr
+                que.append(destination)
     
     for i in range(count):
         print(path[i] , "to" , i , "weight" , distance[i])
-
-
-
-def BellmanFordShortestPath(gph, source):
-    count = gph.count
-    distance = [sys.maxsize] * count
-    path = [-1] * count
-    distance[source] = 0
-
-    # Outer loop will run (V-1) number of times. 
-    # Inner for loop and while loop runs combined will 
-    # run for Edges number of times.
-    # Which make the total complexity as O(V*E)
-    for _ in range(count - 1):
-        for j in range(count):
-            head = gph.array[j]
-            while head != None:
-                newDistance = distance[j] + head.cost
-                if distance[head.destination] > newDistance:
-                    distance[head.destination] = newDistance
-                    path[head.destination] = j
-                head = head.next
-
-    for i in range(count):
-        print (path[i] , "to" , i , "weight" , distance[i])
-
-def IsNegativeCycle(gph, source):
-    count = gph.count
-    distance = [sys.maxsize] * count
-    path = [-1] * count
-    distance[source] = 0
-
-    for _ in range(count - 1):
-        for j in range(count):
-            head = gph.array[j]
-            while head != None:
-                newDistance = distance[j] + head.cost
-                if distance[head.destination] > newDistance:
-                    distance[head.destination] = newDistance
-                    path[head.destination] = j
-                head = head.next
-    # After V-1 iterations the distance array shold be fina.
-    # If further distance array is modified after V-1 iterations 
-    # then there is -ve loop in graph.
-    for j in range(count):
-        head = gph.array[j]
-        while head != None:
-            newDistance = distance[j] + head.cost
-            if distance[head.destination] > newDistance:
-                print "Negative Cycle Detected"
-                return True
-            head = head.next
-    return False
-
 
 
 g = Graph(5)
@@ -357,10 +320,22 @@ g.AddDirectedEdge(1, 2, 1)
 g.AddDirectedEdge(2, 3, 1)
 g.AddDirectedEdge(4, 1, -2)
 g.AddDirectedEdge(4, 3, 1)
+g.Print()
 BellmanFordShortestPath(g, 0)
-DFS(g, 0)
-BFS(g, 0)
-"""
+
+g = Graph(7)
+g.AddDirectedEdge(0, 1)
+g.AddDirectedEdge(0, 2)
+g.AddDirectedEdge(1, 3)
+g.AddDirectedEdge(4, 1)
+g.AddDirectedEdge(6, 4)
+g.AddDirectedEdge(5, 6)
+g.AddDirectedEdge(5, 2)
+g.AddDirectedEdge(6, 0)
+g.Print()
+RootVertex(g)
+
+
 graph = Graph(9)
 graph.AddUndirectedEdge(0, 1, 4)
 graph.AddUndirectedEdge(0, 7, 8)
@@ -377,7 +352,7 @@ graph.AddUndirectedEdge(6, 7, 1)
 graph.AddUndirectedEdge(6, 8, 6)
 graph.AddUndirectedEdge(7, 8, 7)
 Prims(graph)
-# Dijkstra(graph, 0)
+Dijkstra(graph, 0)
 
 gph = Graph(9)
 gph.AddUndirectedEdge(0, 2, 1)
@@ -392,11 +367,10 @@ gph.AddUndirectedEdge(5, 7, 1)
 gph.AddUndirectedEdge(6, 7, 7)
 gph.AddUndirectedEdge(7, 8, 17)
 BellmanFordShortestPath(gph, 1)
+DFS(g, 0)
+BFS(g, 0)
 Dijkstra(gph, 1)
-
 Prims(gph)
-Dijkstra(gph, 1)
-gph.Print()
 
 print(PathExist(gph, 1, 5))
 print(isConnectedUndirected(gph))
@@ -409,7 +383,6 @@ g.AddDirectedEdge(4, 0)
 g.AddDirectedEdge(4, 1)
 g.AddDirectedEdge(2, 3)
 g.AddDirectedEdge(3, 1)
-print("Topological Sort::")
 TopologicalSort(g)
 
 # Create a graph given in the above diagram
@@ -438,4 +411,3 @@ graph.AddDirectedEdge(4, 5)
 graph.AddDirectedEdge(5, 3)
 graph.AddDirectedEdge(5, 6)
 stronglyConnectedComponent(graph)
-"""

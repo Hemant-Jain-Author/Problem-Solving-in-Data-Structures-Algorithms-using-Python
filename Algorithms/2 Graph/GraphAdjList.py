@@ -66,6 +66,17 @@ def BellmanFordShortestPath(gph, source):
     for i in range(count):
         print (path[i] , "to" , i , "weight" , distance[i])
 
+"""
+g = Graph(5)
+g.AddDirectedEdge(0, 1, 3)
+g.AddDirectedEdge(0, 4, 2)
+g.AddDirectedEdge(1, 2, 1)
+g.AddDirectedEdge(2, 3, 1)
+g.AddDirectedEdge(4, 1, -2)
+g.AddDirectedEdge(4, 3, 1)
+g.Print()
+BellmanFordShortestPath(g, 0)
+"""
 
 def Dijkstra(gph, source):
     previous = [-1] * gph.count
@@ -130,6 +141,26 @@ def Prims(gph):
         else:
             print("node id" , i , "prev" , previous[i] , "distance :" , dist[i])
 
+"""
+graph = Graph(9)
+graph.AddUndirectedEdge(0, 1, 4)
+graph.AddUndirectedEdge(0, 7, 8)
+graph.AddUndirectedEdge(1, 2, 8)
+graph.AddUndirectedEdge(1, 7, 11)
+graph.AddUndirectedEdge(2, 3, 7)
+graph.AddUndirectedEdge(2, 8, 2)
+graph.AddUndirectedEdge(2, 5, 4)
+graph.AddUndirectedEdge(3, 4, 9)
+graph.AddUndirectedEdge(3, 5, 14)
+graph.AddUndirectedEdge(4, 5, 10)
+graph.AddUndirectedEdge(5, 6, 2)
+graph.AddUndirectedEdge(6, 7, 1)
+graph.AddUndirectedEdge(6, 8, 6)
+graph.AddUndirectedEdge(7, 8, 7)
+Prims(graph)
+Dijkstra(graph, 0)
+"""
+
 def DFSUtil(gph, index, visited):
     visited[index] = True
     for edge in gph.array[index]:
@@ -145,6 +176,20 @@ def RootVertex(gph):
             DFSUtil(gph, i, visited)
             retVal = i
     print "Root vertex is :: ", retVal
+
+"""
+g = Graph(7)
+g.AddDirectedEdge(0, 1)
+g.AddDirectedEdge(0, 2)
+g.AddDirectedEdge(1, 3)
+g.AddDirectedEdge(4, 1)
+g.AddDirectedEdge(6, 4)
+g.AddDirectedEdge(5, 6)
+g.AddDirectedEdge(5, 2)
+g.AddDirectedEdge(6, 0)
+g.Print()
+RootVertex(g)
+"""
 
 def TopologicalSortDFS(gph, index, visited, stk):
     visited[index] = True
@@ -165,6 +210,17 @@ def TopologicalSort(gph):
     while len(stk) != 0:
         print stk.pop() , 
     print ""
+
+"""
+g = Graph(6)
+g.AddDirectedEdge(5, 2)
+g.AddDirectedEdge(5, 0)
+g.AddDirectedEdge(4, 0)
+g.AddDirectedEdge(4, 1)
+g.AddDirectedEdge(2, 3)
+g.AddDirectedEdge(3, 1)
+TopologicalSort(g)
+"""
 
 def PathExist(gph, source, destination):
     count = gph.count
@@ -223,6 +279,23 @@ def isStronglyConnected(gph):
         if visited[i] == False:
             return False
     return True
+"""
+# Create a graph given in the above diagram
+g1 = Graph(5)
+g1.AddDirectedEdge(0, 1)
+g1.AddDirectedEdge(1, 2)
+g1.AddDirectedEdge(2, 3)
+g1.AddDirectedEdge(3, 0)
+g1.AddDirectedEdge(2, 4)
+g1.AddDirectedEdge(4, 2)
+print isStronglyConnected(g1)
+ 
+g2 = Graph(4)
+g2.AddDirectedEdge(0, 1)
+g2.AddDirectedEdge(1, 2)
+g2.AddDirectedEdge(2, 3)
+print isStronglyConnected(g2)
+"""
 
 def stronglyConnectedComponent(gph):
     count = gph.count
@@ -240,7 +313,19 @@ def stronglyConnectedComponent(gph):
             stk2 = []
             DFSRec2(gReversed, index, visited, stk2)
             print stk2
-        
+
+"""
+graph = Graph(7)
+graph.AddDirectedEdge(0, 1)
+graph.AddDirectedEdge(1, 2)
+graph.AddDirectedEdge(2, 0)
+graph.AddDirectedEdge(2, 3)
+graph.AddDirectedEdge(3, 4)
+graph.AddDirectedEdge(4, 5)
+graph.AddDirectedEdge(5, 3)
+graph.AddDirectedEdge(5, 6)
+stronglyConnectedComponent(graph)
+"""
 
 def isConnectedUndirected(gph):
     count = gph.count
@@ -292,7 +377,6 @@ def BFS(gph, source):
     print "BFS : ",
     BFSQueue(gph, source, visited)
 
-
 def ShortestPath(gph, source):
     count = gph.count
     distance = [-1] * count
@@ -312,48 +396,7 @@ def ShortestPath(gph, source):
     for i in range(count):
         print(path[i] , "to" , i , "weight" , distance[i])
 
-
-g = Graph(5)
-g.AddDirectedEdge(0, 1, 3)
-g.AddDirectedEdge(0, 4, 2)
-g.AddDirectedEdge(1, 2, 1)
-g.AddDirectedEdge(2, 3, 1)
-g.AddDirectedEdge(4, 1, -2)
-g.AddDirectedEdge(4, 3, 1)
-g.Print()
-BellmanFordShortestPath(g, 0)
-
-g = Graph(7)
-g.AddDirectedEdge(0, 1)
-g.AddDirectedEdge(0, 2)
-g.AddDirectedEdge(1, 3)
-g.AddDirectedEdge(4, 1)
-g.AddDirectedEdge(6, 4)
-g.AddDirectedEdge(5, 6)
-g.AddDirectedEdge(5, 2)
-g.AddDirectedEdge(6, 0)
-g.Print()
-RootVertex(g)
-
-
-graph = Graph(9)
-graph.AddUndirectedEdge(0, 1, 4)
-graph.AddUndirectedEdge(0, 7, 8)
-graph.AddUndirectedEdge(1, 2, 8)
-graph.AddUndirectedEdge(1, 7, 11)
-graph.AddUndirectedEdge(2, 3, 7)
-graph.AddUndirectedEdge(2, 8, 2)
-graph.AddUndirectedEdge(2, 5, 4)
-graph.AddUndirectedEdge(3, 4, 9)
-graph.AddUndirectedEdge(3, 5, 14)
-graph.AddUndirectedEdge(4, 5, 10)
-graph.AddUndirectedEdge(5, 6, 2)
-graph.AddUndirectedEdge(6, 7, 1)
-graph.AddUndirectedEdge(6, 8, 6)
-graph.AddUndirectedEdge(7, 8, 7)
-Prims(graph)
-Dijkstra(graph, 0)
-
+"""
 gph = Graph(9)
 gph.AddUndirectedEdge(0, 2, 1)
 gph.AddUndirectedEdge(1, 2, 5)
@@ -371,43 +414,61 @@ DFS(g, 0)
 BFS(g, 0)
 Dijkstra(gph, 1)
 Prims(gph)
-
 print(PathExist(gph, 1, 5))
 print(isConnectedUndirected(gph))
 ShortestPath(gph, 1)
+"""
 
-g = Graph(6)
-g.AddDirectedEdge(5, 2)
-g.AddDirectedEdge(5, 0)
-g.AddDirectedEdge(4, 0)
-g.AddDirectedEdge(4, 1)
+"""
+Given a directed graph, fidn transitive closure matrix or reachablity matrix
+vertex v is reachable form vertex u if their is a path from u to v.
+"""
+
+def TransitiveClosureUtil(gph, source ,index, tc):
+    if tc[source][index] == 1:
+        return
+    tc[source][index] = 1
+    for edge in gph.array[index]:
+            TransitiveClosureUtil(gph, source, edge[0], tc)
+
+def TransitiveClosure(gph):
+    count = gph.count
+    tc = [[0 for _ in range(count)] for _ in range(count)]
+    for source in range(count):
+        TransitiveClosureUtil(gph, source, source, tc)
+    for row in tc:
+        print row
+
+g = Graph(4)
+g.AddDirectedEdge(0, 1)
+g.AddDirectedEdge(0, 2)
+g.AddDirectedEdge(1, 2)
+g.AddDirectedEdge(2, 0)
 g.AddDirectedEdge(2, 3)
-g.AddDirectedEdge(3, 1)
-TopologicalSort(g)
+g.AddDirectedEdge(3, 3)
+g.Print()
+TransitiveClosure(g)
 
-# Create a graph given in the above diagram
-g1 = Graph(5)
-g1.AddDirectedEdge(0, 1)
-g1.AddDirectedEdge(1, 2)
-g1.AddDirectedEdge(2, 3)
-g1.AddDirectedEdge(3, 0)
-g1.AddDirectedEdge(2, 4)
-g1.AddDirectedEdge(4, 2)
-print isStronglyConnected(g1)
- 
-g2 = Graph(4)
-g2.AddDirectedEdge(0, 1)
-g2.AddDirectedEdge(1, 2)
-g2.AddDirectedEdge(2, 3)
-print isStronglyConnected(g2)
+def countAllPathDFS(gph, visited, source ,dest):
+    count = 0
+    visited[source] = 1
+    for edge in gph.array[source]:
+        if edge[0] == dest:
+            count += 1
+        elif visited[edge[0]] == 0:
+            count += countAllPathDFS(gph, visited, edge[0], dest)
+    visited[source] = 0
+    return count
 
-graph = Graph(7)
-graph.AddDirectedEdge(0, 1)
-graph.AddDirectedEdge(1, 2)
-graph.AddDirectedEdge(2, 0)
-graph.AddDirectedEdge(2, 3)
-graph.AddDirectedEdge(3, 4)
-graph.AddDirectedEdge(4, 5)
-graph.AddDirectedEdge(5, 3)
-graph.AddDirectedEdge(5, 6)
-stronglyConnectedComponent(graph)
+def countAllPath(gph, src ,dest):
+    visited = [0]*gph.count
+    return countAllPathDFS(gph, visited, src, dest)
+
+g = Graph(5);
+g.AddDirectedEdge(0, 1)
+g.AddDirectedEdge(0, 2)
+g.AddDirectedEdge(2, 3)
+g.AddDirectedEdge(1, 3)
+g.AddDirectedEdge(3, 4)
+g.AddDirectedEdge(1, 4)
+print countAllPath(g, 0, 4)

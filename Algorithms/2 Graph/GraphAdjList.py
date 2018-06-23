@@ -228,15 +228,19 @@ def PathExist(gph, source, destination):
     DFSRec(gph, source, visited)
     return visited[destination]
 
+"""
+"""
+
 def DFSRec(gph, index, visited):
     visited[index] = True
-    # print index ,
+    print index ,
     for edge in gph.array[index]:
         destination = edge[0]
         if visited[destination] == False:
             DFSRec(gph, destination, visited)
 
-def reverseGraph(gph):
+
+def TransposeGraph(gph):
     count = gph.count
     g = Graph(count)
     for i in range(count):
@@ -246,13 +250,6 @@ def reverseGraph(gph):
     return g
 
 
-def DFSRec2(gph, index, visited, stk):
-    visited[index] = True
-    for edge in gph.array[index]:
-        destination = edge[0]
-        if visited[destination] == False:
-            DFSRec2(gph, destination, visited, stk)
-    stk.append(index)
 
 # Kosaraju Algorithm
 """
@@ -272,7 +269,7 @@ def isStronglyConnected(gph):
     for i in range(count):
         if visited[i] == False:
             return False
-    gReversed = reverseGraph(gph)
+    gReversed = TransposeGraph(gph)
     visited = [False] * count
     DFSRec(gReversed, 0, visited)
     for i in range(count):
@@ -297,6 +294,15 @@ g2.AddDirectedEdge(2, 3)
 print isStronglyConnected(g2)
 """
 
+
+def DFSRec2(gph, index, visited, stk):
+    visited[index] = True
+    for edge in gph.array[index]:
+        destination = edge[0]
+        if visited[destination] == False:
+            DFSRec2(gph, destination, visited, stk)
+    stk.append(index)
+
 def stronglyConnectedComponent(gph):
     count = gph.count
     visited = [False] * count
@@ -305,7 +311,7 @@ def stronglyConnectedComponent(gph):
         if visited[i] == False:
             DFSRec2(gph, i, visited, stk)
     
-    gReversed = reverseGraph(gph)
+    gReversed = TransposeGraph(gph)
     visited = [False] * count
     while len(stk) != 0:
         index = stk.pop()
@@ -314,7 +320,6 @@ def stronglyConnectedComponent(gph):
             DFSRec2(gReversed, index, visited, stk2)
             print stk2
 
-"""
 graph = Graph(7)
 graph.AddDirectedEdge(0, 1)
 graph.AddDirectedEdge(1, 2)
@@ -325,7 +330,7 @@ graph.AddDirectedEdge(4, 5)
 graph.AddDirectedEdge(5, 3)
 graph.AddDirectedEdge(5, 6)
 stronglyConnectedComponent(graph)
-"""
+
 
 def isConnectedUndirected(gph):
     count = gph.count
@@ -336,13 +341,12 @@ def isConnectedUndirected(gph):
             return False
     return True
     
-def DFSStack(gph, source):
+def DFSStack(gph, source, target):
     count = gph.count
     visited = [False] * count
     stk = []
     stk.append(source)
     visited[source] = True
-
     while len(stk) != 0:
         curr = stk.pop()
         print curr ,
@@ -351,17 +355,22 @@ def DFSStack(gph, source):
             if visited[destination] == False:
                 stk.append(destination)
                 visited[destination] = True
+    return visited[target]
             
-def DFS(gph, source):
+def DFS(gph, source, target):
     count = gph.count
     visited = [False] * count
     print "DFS : ",
     DFSRec(gph, source, visited)
+    return visited[target]
  
-def BFSQueue(gph, source, visited):
+def BFS(gph, source, target):
+    count = gph.count
+    visited = [False] * count
+    visited[source] = True
+    print "BFS : ",
     que = deque([])
     que.append(source)
-    visited[source] = True
     while len(que) != 0:
         curr = que.popleft()
         print curr ,
@@ -370,12 +379,56 @@ def BFSQueue(gph, source, visited):
             if visited[destination] == False:
                 que.append(destination)
                 visited[destination] = True
- 
-def BFS(gph, source):
+    return visited[target]
+
+
+def BFSLevelNode(gph, source):
     count = gph.count
     visited = [False] * count
-    print "BFS : ",
-    BFSQueue(gph, source, visited)
+    visited[source] = True
+    que = deque([])
+    que.append((source, 0))
+    print "\nNode  - Level"
+    while len(que) != 0:
+        node = que.popleft()
+        curr = node[0]
+        depth = node[1]
+        print curr ," - ", depth
+        for edge in gph.array[curr]:
+            destination = edge[0]
+            if visited[destination] == False:
+                que.append((destination, depth+1))
+                visited[destination] = True
+
+def BFSDistance(gph, source, dest):
+    count = gph.count
+    visited = [False] * count
+    visited[source] = True
+    que = deque([])
+    que.append((source, 0))
+    while len(que) != 0:
+        node = que.popleft()
+        curr = node[0]
+        depth = node[1]
+        for edge in gph.array[curr]:
+            if edge[0] == dest:
+                return depth
+            if visited[edge[0]] == False:
+                que.append((edge[0], depth+1))
+                visited[edge[0]] = True
+    return -1
+"""
+g = Graph(7)
+g.AddUndirectedEdge(0, 1)
+g.AddUndirectedEdge(0, 2)
+g.AddUndirectedEdge(0, 4)
+g.AddUndirectedEdge(1, 2)
+g.AddUndirectedEdge(2, 5)
+g.AddUndirectedEdge(3, 4)
+g.AddUndirectedEdge(4, 5)
+g.AddUndirectedEdge(4, 6)
+print BFSDistance(g, 1, 3)
+"""
 
 def ShortestPath(gph, source):
     count = gph.count
@@ -409,9 +462,10 @@ gph.AddUndirectedEdge(4, 6, 3)
 gph.AddUndirectedEdge(5, 7, 1)
 gph.AddUndirectedEdge(6, 7, 7)
 gph.AddUndirectedEdge(7, 8, 17)
+DFS(gph, 0)
+BFS(gph, 0)
+BFSLevelNode(gph, 0)
 BellmanFordShortestPath(gph, 1)
-DFS(g, 0)
-BFS(g, 0)
 Dijkstra(gph, 1)
 Prims(gph)
 print(PathExist(gph, 1, 5))
@@ -423,7 +477,6 @@ ShortestPath(gph, 1)
 Given a directed graph, fidn transitive closure matrix or reachablity matrix
 vertex v is reachable form vertex u if their is a path from u to v.
 """
-
 def TransitiveClosureUtil(gph, source ,index, tc):
     if tc[source][index] == 1:
         return
@@ -439,6 +492,7 @@ def TransitiveClosure(gph):
     for row in tc:
         print row
 
+"""
 g = Graph(4)
 g.AddDirectedEdge(0, 1)
 g.AddDirectedEdge(0, 2)
@@ -448,14 +502,15 @@ g.AddDirectedEdge(2, 3)
 g.AddDirectedEdge(3, 3)
 g.Print()
 TransitiveClosure(g)
-
+"""
 def countAllPathDFS(gph, visited, source ,dest):
+    if source == dest:
+        return 1
+
     count = 0
     visited[source] = 1
     for edge in gph.array[source]:
-        if edge[0] == dest:
-            count += 1
-        elif visited[edge[0]] == 0:
+        if visited[edge[0]] == 0:
             count += countAllPathDFS(gph, visited, edge[0], dest)
     visited[source] = 0
     return count
@@ -464,7 +519,25 @@ def countAllPath(gph, src ,dest):
     visited = [0]*gph.count
     return countAllPathDFS(gph, visited, src, dest)
 
-g = Graph(5);
+def printAllPathDFS(gph, visited, source ,dest, path):
+    path.append(source)
+    if source == dest:
+        print path
+        return
+
+    visited[source] = 1
+    for edge in gph.array[source]:
+        if visited[edge[0]] == 0:
+            printAllPathDFS(gph, visited, edge[0], dest, path)
+    visited[source] = 0
+    path.pop()
+
+def printAllPath(gph, src ,dest):
+    visited = [0]*gph.count
+    path = []
+    printAllPathDFS(gph, visited, src, dest, path)
+"""
+g = Graph(5)
 g.AddDirectedEdge(0, 1)
 g.AddDirectedEdge(0, 2)
 g.AddDirectedEdge(2, 3)
@@ -472,3 +545,108 @@ g.AddDirectedEdge(1, 3)
 g.AddDirectedEdge(3, 4)
 g.AddDirectedEdge(1, 4)
 print countAllPath(g, 0, 4)
+printAllPath(g, 0, 4)
+"""
+def HightTreeParentArr(arr):
+    count = len(arr)
+    gph = Graph(count)
+    for i in range(len(arr)):
+        if arr[i] != -1 :
+            gph.AddDirectedEdge(arr[i], i)
+        else:
+            source = i
+
+    visited = [False] * count
+    visited[source] = True
+    que = deque([])
+    que.append((source, 0))
+    maxHight = 0
+    while len(que) != 0:
+        node = que.popleft()
+        curr = node[0]
+        height = node[1]
+        if height > maxHight:
+            maxHight = height
+        for edge in gph.array[curr]:
+            destination = edge[0]
+            if visited[destination] == False:
+                que.append((destination, height+1))
+                visited[destination] = True
+    return maxHight
+
+def getHeight(arr, height, index):
+    if arr[index] == -1:
+        return 0
+    else:
+        return getHeight(arr, height, arr[index]) + 1
+
+def HightTreeParentArr2(arr):
+    count = len(arr)
+    height = [-1] * count
+    maxHeight = -1
+    for i in range(len(arr)):
+        height[i] = getHeight(arr, height, i)
+        maxHeight = max(maxHeight, height[i])
+    return maxHeight
+"""
+parentArray = [-1, 0, 1, 2, 3]
+print HightTreeParentArr(parentArray)
+print HightTreeParentArr2(parentArray)
+parentArray = [-1, 0, 0, 0, 3, 1, 1, 2]
+print HightTreeParentArr(parentArray)
+print HightTreeParentArr2(parentArray)
+"""
+
+def BestFirstSearchPQ(gph, source, dest):
+    previous = [-1] * gph.count
+    dist = [sys.maxsize] * gph.count
+    visited = [False] * gph.count
+    pq = PriorityQueue()
+    dist[source] = 0
+    previous[source] = -1
+    pq.Add(0, source)
+    
+    while pq.Size() != 0:
+        val = pq.Pop()
+        if val[1] == dest:
+            return val[0]
+        source = val[1]
+        visited[source] = True
+        for edge in gph.array[source]:
+            destination = edge[0]
+            cost = edge[1]
+            alt = cost + dist[source]
+            if alt < dist[destination] and visited[destination] == False:
+                dist[destination] = alt
+                previous[destination] = source
+                pq.Add(alt, destination)
+    return -1
+
+
+
+"""
+Given a directed graph find if there is a cycle in it. 
+"""
+def isCyclePresentUtil(graph, index, visited, processed):
+    visited[index] = True
+    processed[index] = True
+
+    for node in graph[index]:
+        if visited[node] == False:
+            if isCyclePresentUtil(graph, node, visited, processed) == True:
+                return True
+        elif processed[node] == True:
+            return True
+            
+    processed[node] = False
+    return False
+
+def isCyclePresent(graph):
+    count = graph.count
+    visited = [False] * count
+    processed = [False] * count
+    for index in range(count):
+        if visited[index] == False:
+            if isCyclePresentUtil(graph, index, visited, processed) == True:
+                return True
+    return False

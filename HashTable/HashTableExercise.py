@@ -80,6 +80,3 @@ print(findMissing(arr, 1, 10))
 arr1 = [1, 2, 3, 4, 4, 5, 6, 7, 8, 9, 1]
 printRepeating(arr1)
 printFirstRepeating(arr1)
-
-
-

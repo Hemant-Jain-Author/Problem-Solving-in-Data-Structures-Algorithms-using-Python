@@ -6,11 +6,11 @@ from collections import deque
 class Graph(object):
     def __init__(self, cnt):
         self.count = cnt
-        self.array = [[] for _ in range(cnt)]
+        self.adj = [[] for _ in range(cnt)]
     
     def AddDirectedEdge(self, source, destination, cost=1):
         edge = (destination, cost)
-        self.array[source].append(edge)
+        self.adj[source].append(edge)
     
     def AddUndirectedEdge(self, source, destination, cost=1):
         self.AddDirectedEdge(source, destination, cost)
@@ -19,7 +19,7 @@ class Graph(object):
     def Print(self):
         for i in range(self.count):
             print "Vertex " , i , " is connected to : ",
-            for edge in self.array[i]:
+            for edge in self.adj[i]:
                 print (edge[0] , edge[1]),
             print("")
 
@@ -58,7 +58,7 @@ def BellmanFordShortestPath(gph, source):
     # Which make the total complexity as O(V*E)
     for _ in range(count - 1):
         for j in range(count):
-            for edge in gph.array[j]:
+            for edge in gph.adj[j]:
                 newDistance = distance[j] + edge[1]
                 if distance[edge[0]] > newDistance:
                     distance[edge[0]] = newDistance
@@ -74,7 +74,6 @@ g.AddDirectedEdge(1, 2, 1)
 g.AddDirectedEdge(2, 3, 1)
 g.AddDirectedEdge(4, 1, -2)
 g.AddDirectedEdge(4, 3, 1)
-g.Print()
 BellmanFordShortestPath(g, 0)
 """
 
@@ -94,7 +93,7 @@ def Dijkstra(gph, source):
         val = pq.Pop()
         source = val[1]
         visited[source] = True
-        for edge in gph.array[source]:
+        for edge in gph.adj[source]:
             destination = edge[0]
             cost = edge[1]
             alt = cost + dist[source]
@@ -127,7 +126,7 @@ def Prims(gph):
         source = val[1]
         visited[source] = True
 
-        for edge in gph.array[source]:
+        for edge in gph.adj[source]:
             destination = edge[0]
             cost = edge[1]
             if cost < dist[destination] and visited[destination] == False:
@@ -163,10 +162,12 @@ Dijkstra(graph, 0)
 
 def DFSUtil(gph, index, visited):
     visited[index] = True
-    for edge in gph.array[index]:
+    for edge in gph.adj[index]:
         if visited[edge[0]] == False:
             DFSUtil(gph, edge[0], visited)
+"""
 
+"""
 def RootVertex(gph):
     count = gph.count
     visited = [False] * count
@@ -193,7 +194,7 @@ RootVertex(g)
 
 def TopologicalSortDFS(gph, index, visited, stk):
     visited[index] = True
-    for edge in gph.array[index]:
+    for edge in gph.adj[index]:
         destination = edge[0]
         if visited[destination] == False:
             TopologicalSortDFS(gph, destination, visited, stk)
@@ -234,7 +235,7 @@ def PathExist(gph, source, destination):
 def DFSRec(gph, index, visited):
     visited[index] = True
     print index ,
-    for edge in gph.array[index]:
+    for edge in gph.adj[index]:
         destination = edge[0]
         if visited[destination] == False:
             DFSRec(gph, destination, visited)
@@ -244,7 +245,7 @@ def TransposeGraph(gph):
     count = gph.count
     g = Graph(count)
     for i in range(count):
-        for edge in gph.array[i]:
+        for edge in gph.adj[i]:
             destination = edge[0]
             g.AddDirectedEdge(destination, i)
     return g
@@ -255,7 +256,7 @@ def TransposeGraph(gph):
 """
 Kosaraju’s Algorithm to find strongly connected directed graph based on DFS :
 1)	Create a visited array of size V, and Initialize all vertices in visited array as False.
-2)	Choose any vertice and perform a DFS traversal of graph. For all visited vertices mark them visited as True. 
+2)	Choose any vertex and perform a DFS traversal of graph. For all visited vertices mark them visited as True. 
 3)	If DFS traversal does not mark all vertices as True, then return False.
 4)	Find transpose or reverse of graph
 5)	Repeat step 1, 2 and 3 for the reversed graph. 
@@ -297,7 +298,7 @@ print isStronglyConnected(g2)
 
 def DFSRec2(gph, index, visited, stk):
     visited[index] = True
-    for edge in gph.array[index]:
+    for edge in gph.adj[index]:
         destination = edge[0]
         if visited[destination] == False:
             DFSRec2(gph, destination, visited, stk)
@@ -319,7 +320,7 @@ def stronglyConnectedComponent(gph):
             stk2 = []
             DFSRec2(gReversed, index, visited, stk2)
             print stk2
-
+"""
 graph = Graph(7)
 graph.AddDirectedEdge(0, 1)
 graph.AddDirectedEdge(1, 2)
@@ -330,7 +331,7 @@ graph.AddDirectedEdge(4, 5)
 graph.AddDirectedEdge(5, 3)
 graph.AddDirectedEdge(5, 6)
 stronglyConnectedComponent(graph)
-
+"""
 
 def isConnectedUndirected(gph):
     count = gph.count
@@ -350,7 +351,7 @@ def DFSStack(gph, source, target):
     while len(stk) != 0:
         curr = stk.pop()
         print curr ,
-        for edge in gph.array[curr]:
+        for edge in gph.adj[curr]:
             destination = edge[0]
             if visited[destination] == False:
                 stk.append(destination)
@@ -374,7 +375,7 @@ def BFS(gph, source, target):
     while len(que) != 0:
         curr = que.popleft()
         print curr ,
-        for edge in gph.array[curr]:
+        for edge in gph.adj[curr]:
             destination = edge[0]
             if visited[destination] == False:
                 que.append(destination)
@@ -394,7 +395,7 @@ def BFSLevelNode(gph, source):
         curr = node[0]
         depth = node[1]
         print curr ," - ", depth
-        for edge in gph.array[curr]:
+        for edge in gph.adj[curr]:
             destination = edge[0]
             if visited[destination] == False:
                 que.append((destination, depth+1))
@@ -410,7 +411,7 @@ def BFSDistance(gph, source, dest):
         node = que.popleft()
         curr = node[0]
         depth = node[1]
-        for edge in gph.array[curr]:
+        for edge in gph.adj[curr]:
             if edge[0] == dest:
                 return depth
             if visited[edge[0]] == False:
@@ -439,7 +440,7 @@ def ShortestPath(gph, source):
     distance[source] = 0
     while len(que) != 0:
         curr = que.popleft()
-        for edge in gph.array[curr]:
+        for edge in gph.adj[curr]:
             destination = edge[0]
             if distance[destination] == -1:
                 distance[destination] = distance[curr] + 1
@@ -481,7 +482,7 @@ def TransitiveClosureUtil(gph, source ,index, tc):
     if tc[source][index] == 1:
         return
     tc[source][index] = 1
-    for edge in gph.array[index]:
+    for edge in gph.adj[index]:
             TransitiveClosureUtil(gph, source, edge[0], tc)
 
 def TransitiveClosure(gph):
@@ -509,7 +510,7 @@ def countAllPathDFS(gph, visited, source ,dest):
 
     count = 0
     visited[source] = 1
-    for edge in gph.array[source]:
+    for edge in gph.adj[source]:
         if visited[edge[0]] == 0:
             count += countAllPathDFS(gph, visited, edge[0], dest)
     visited[source] = 0
@@ -526,7 +527,7 @@ def printAllPathDFS(gph, visited, source ,dest, path):
         return
 
     visited[source] = 1
-    for edge in gph.array[source]:
+    for edge in gph.adj[source]:
         if visited[edge[0]] == 0:
             printAllPathDFS(gph, visited, edge[0], dest, path)
     visited[source] = 0
@@ -547,7 +548,7 @@ g.AddDirectedEdge(1, 4)
 print countAllPath(g, 0, 4)
 printAllPath(g, 0, 4)
 """
-def HightTreeParentArr(arr):
+def HeightTreeParentArr(arr):
     count = len(arr)
     gph = Graph(count)
     for i in range(len(arr)):
@@ -560,19 +561,19 @@ def HightTreeParentArr(arr):
     visited[source] = True
     que = deque([])
     que.append((source, 0))
-    maxHight = 0
+    maxHeight = 0
     while len(que) != 0:
         node = que.popleft()
         curr = node[0]
         height = node[1]
-        if height > maxHight:
-            maxHight = height
-        for edge in gph.array[curr]:
+        if height > maxHeight:
+            maxHeight = height
+        for edge in gph.adj[curr]:
             destination = edge[0]
             if visited[destination] == False:
                 que.append((destination, height+1))
                 visited[destination] = True
-    return maxHight
+    return maxHeight
 
 def getHeight(arr, height, index):
     if arr[index] == -1:
@@ -580,7 +581,7 @@ def getHeight(arr, height, index):
     else:
         return getHeight(arr, height, arr[index]) + 1
 
-def HightTreeParentArr2(arr):
+def HeightTreeParentArr2(arr):
     count = len(arr)
     height = [-1] * count
     maxHeight = -1
@@ -590,11 +591,11 @@ def HightTreeParentArr2(arr):
     return maxHeight
 """
 parentArray = [-1, 0, 1, 2, 3]
-print HightTreeParentArr(parentArray)
-print HightTreeParentArr2(parentArray)
+print HeightTreeParentArr(parentArray)
+print HeightTreeParentArr2(parentArray)
 parentArray = [-1, 0, 0, 0, 3, 1, 1, 2]
-print HightTreeParentArr(parentArray)
-print HightTreeParentArr2(parentArray)
+print HeightTreeParentArr(parentArray)
+print HeightTreeParentArr2(parentArray)
 """
 
 def BestFirstSearchPQ(gph, source, dest):
@@ -612,7 +613,7 @@ def BestFirstSearchPQ(gph, source, dest):
             return val[0]
         source = val[1]
         visited[source] = True
-        for edge in gph.array[source]:
+        for edge in gph.adj[source]:
             destination = edge[0]
             cost = edge[1]
             alt = cost + dist[source]
@@ -627,26 +628,224 @@ def BestFirstSearchPQ(gph, source, dest):
 """
 Given a directed graph find if there is a cycle in it. 
 """
-def isCyclePresentUtil(graph, index, visited, processed):
+def isCyclePresentDFS(graph, index, visited, marked):
     visited[index] = True
-    processed[index] = True
+    marked[index] = True
 
-    for node in graph[index]:
-        if visited[node] == False:
-            if isCyclePresentUtil(graph, node, visited, processed) == True:
-                return True
-        elif processed[node] == True:
+    for node in graph.adj[index]:
+        dest = node[0]
+        if marked[dest] == True:
             return True
-            
-    processed[node] = False
+
+        if visited[dest] == False:
+            if isCyclePresentDFS(graph, dest, visited, marked) :
+                return True
+        
+    marked[index] = False
     return False
 
 def isCyclePresent(graph):
     count = graph.count
     visited = [False] * count
-    processed = [False] * count
+    marked = [False] * count
     for index in range(count):
         if visited[index] == False:
-            if isCyclePresentUtil(graph, index, visited, processed) == True:
+            if isCyclePresentDFS(graph, index, visited, marked) :
                 return True
     return False
+
+
+def isCyclePresentDFSColor(graph, index, visited):
+    visited[index] = "Grey"
+
+    for node in graph.adj[index]:
+        dest = node[0]
+        if visited[dest] == "Grey":
+            return True
+            
+        if visited[dest] == "White":
+            if isCyclePresentDFSColor(graph, dest, visited) :
+                return True
+        
+    visited[index] = "Black"
+    return False
+
+def isCyclePresentColor(graph):
+    count = graph.count
+    visited = ["White"] * count
+    for index in range(count):
+        if visited[index] == "White":
+            if isCyclePresentDFSColor(graph, index, visited) :
+                return True
+    return False
+
+"""
+g = Graph(5)
+g.AddDirectedEdge(0, 1)
+g.AddDirectedEdge(0, 2)
+g.AddDirectedEdge(1, 3)
+g.AddDirectedEdge(2, 3)
+g.AddDirectedEdge(3, 4)
+#g.AddDirectedEdge(4, 1)
+print isCyclePresentColor(g)
+"""
+
+def isCyclePresentUndirectedDFS(graph, index, parentIndex, visited):
+    visited[index] = True
+    for node in graph.adj[index]:
+        dest = node[0]
+        if visited[dest] == False:
+            if isCyclePresentUndirectedDFS(graph, dest, index, visited) :
+                return True
+        elif parentIndex != dest :
+            return True
+    return False
+
+
+def isCyclePresentUndirected(graph):
+    count = graph.count
+    visited = [False] * count
+    for index in range(count):
+        if visited[index] == False:
+            if isCyclePresentUndirectedDFS(graph, index, -1, visited) :
+                return True
+    return False
+"""
+g = Graph(6)
+g.AddUndirectedEdge(0, 1)
+g.AddUndirectedEdge(1, 2)
+g.AddUndirectedEdge(3, 4)
+g.AddUndirectedEdge(4, 2)
+g.AddUndirectedEdge(2, 5)
+#g.AddUndirectedEdge(4, 1)
+#print isCyclePresentUndirected(g)
+"""
+
+def isConnected(graph):
+    count = graph.count
+    visited =[False]*count
+ 
+    # Find a vertex with non-zero degree
+    for i in range(count):
+        if len(graph.adj[i]) > 1:
+            # DFS traversal of graph from a vertex with non-zero degree
+            DFSUtil(graph, i, visited)
+            break
+
+    # Check if all non-zero degree vertices are visited
+    for i in range(count):
+        if visited[i]==False and len(graph.adj[i]) > 0:
+            return False
+        
+    return True
+
+'''
+The function returns one of the following values
+Return 0 if grpah is not Eulerian
+Return 1 if graph has an Euler path (Semi-Eulerian)
+Return 2 if graph has an Euler Circuit (Eulerian)
+'''
+def isEulerian(graph):
+    count = graph.count
+    # Check if all non-zero degree vertices are connected
+    if isConnected(graph) == False:
+        print "graph is not Eulerian"
+        return 0
+    else:
+        # Count vertices with odd degree
+        odd = 0
+        for i in range(count):
+            if len(graph.adj[i]) % 2 !=0:
+                odd +=1
+
+        if odd > 2:
+            print "graph is not Eulerian"
+            return 0
+        elif odd == 2:
+            print "graph is Semi-Eularian"
+            return 1
+        elif odd == 0:
+            print "graph is Eularian"
+            return 2
+
+g1 = Graph(5)
+g1.AddUndirectedEdge(1, 0)
+g1.AddUndirectedEdge(0, 2)
+g1.AddUndirectedEdge(2, 1)
+g1.AddUndirectedEdge(0, 3)
+g1.AddUndirectedEdge(3, 4)
+isEulerian(g1)
+ 
+g2 = Graph(5)
+g2.AddUndirectedEdge(1, 0)
+g2.AddUndirectedEdge(0, 2)
+g2.AddUndirectedEdge(2, 1)
+g2.AddUndirectedEdge(0, 3)
+g2.AddUndirectedEdge(3, 4)
+g2.AddUndirectedEdge(4, 0)
+isEulerian(g2)
+ 
+g3 = Graph(5)
+g3.AddUndirectedEdge(1, 0)
+g3.AddUndirectedEdge(0, 2)
+g3.AddUndirectedEdge(2, 1)
+g3.AddUndirectedEdge(0, 3)
+g3.AddUndirectedEdge(3, 4)
+g3.AddUndirectedEdge(1, 3)
+isEulerian(g3)
+
+def isStronglyConnected2(graph):
+    count = graph.count
+    visited = [False] * count
+    
+        # Find a vertex with non-zero degree
+    for index in range(count):
+        if len(graph.adj[index]) > 1:
+            break
+    # DFS traversal of graph from a vertex with non-zero degree
+    DFSUtil(graph, index, visited)
+            
+    for i in range(count):
+        if visited[i] == False and len(graph.adj[i]) > 0:
+            return False
+
+    gReversed = TransposeGraph(graph)
+    visited = [False] * count
+    DFSRec(gReversed, index, visited)
+    
+    for i in range(count):
+        if visited[i] == False and len(graph.adj[i]) > 0:
+            return False
+    return True
+
+def isEulerianCycle(graph):
+    # Check if all non-zero degree vertices 
+    # are connected
+    if isStronglyConnected2(graph) == False:
+        return False
+    count = graph.count
+    inDegree = [0] * count
+    outDegree = [0] * count
+
+    # Check if in degree and out degree of 
+    # every vertex is same
+    for i in range(count):
+        outDegree[i] = len(graph.adj[i])
+        for j in graph.adj[i]:
+            inDegree[j[0]] += 1
+        
+    for i in range(count):
+        if inDegree[i] != outDegree[i]:
+            return False
+    return True
+
+g = Graph(5)
+g.AddDirectedEdge(0, 1)
+g.AddDirectedEdge(1, 2)
+g.AddDirectedEdge(2, 0)
+g.AddDirectedEdge(0, 4)
+g.AddDirectedEdge(4, 3)
+g.AddDirectedEdge(3, 0)
+print isEulerianCycle(g)
+
+

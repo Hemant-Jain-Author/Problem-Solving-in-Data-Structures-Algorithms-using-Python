@@ -10,7 +10,7 @@ def maxCircularSum(arr):
     maxVal = currVal
     for i in range(1, n, 1):
         currVal = ( currVal + sumAll ) - ( n * arr[n-i] )
-        print currVal
+        #print currVal
         if currVal > maxVal:
             maxVal = currVal
             

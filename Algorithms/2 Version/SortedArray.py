@@ -1,8 +1,10 @@
 """
 given two sorted array. You need to print all possible sorted array by picking alternate elements from both the array.
-The first elemetn of the arrays should be from the first array. and last element of the output arrays should be from the second array.
+The first elemetn of the arrays should be from the first array. 
+and last element of the output arrays should be from the second array.
 """
 def sortedArrayUtil(first, fSize, fIndex, second, sSize, sIndex,arr, index, flag):
+    # print arr # all alternate sorted array. 
     if flag == 0:
         for i in range(fIndex, fSize):
             # first element should be from first.

@@ -53,5 +53,4 @@ def main16():
     print(FindRotationMax(second))
     print(CountRotation(second))
 
-
 main16()

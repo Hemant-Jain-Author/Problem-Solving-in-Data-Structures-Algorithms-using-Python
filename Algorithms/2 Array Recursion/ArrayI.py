@@ -3,6 +3,8 @@ Given array of size N, containing elements from 0 to N-1.
 All values from O to N-1 are present in array and if they 
 are not there then -1 is there to take its place.
 Arrange values of array so that value i is stored at arr[i].
+arr = [ 8, -1, 6, 1, 9, 3, 2, 7, 4, -1 ]
+
 """
 def indexArray( arr):
     size = len(arr)
@@ -41,7 +43,7 @@ print arr
 
 
 """
-Given an unsorted array , find smallest possitive number missing in the array.
+Given an unsorted array , find smallest positive number missing in the array.
 """
 def SmallestPossitiveMissingNumber(arr):
     size = len(arr)

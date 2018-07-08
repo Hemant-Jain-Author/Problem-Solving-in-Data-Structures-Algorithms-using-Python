@@ -1,5 +1,5 @@
 """
-Given array of possitive numbers, you need to find the maximum sum under 
+Given array of positive numbers, you need to find the maximum sum under 
 constraint that no two elements should be adjacent.
 
 basically constraint make only two sum possible, one for even index and one 

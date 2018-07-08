@@ -1,5 +1,5 @@
 """
-Given an array of possitive integers indicates maximum number of steps jump that can be taken forward.
+Given an array of positive integers indicates maximum number of steps jump that can be taken forward.
 Write a function to return the minimum number of jumps needed to reach from start of array
 to its end.
 

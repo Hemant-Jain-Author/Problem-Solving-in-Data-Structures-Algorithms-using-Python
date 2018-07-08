@@ -1,26 +1,3 @@
-"""
-Chota bhim had visited his meternal grandfather takshak. 
-Takshak had offered bhim to drink elixir of power. 
-He had offered number of cups filled with different quantity of elixir. 
-Bhim is instructed to drink maximum quantity of elixir from the cups.
-The cups are magical when bhim drink from a cup, it refill itself with half the previous quantity it uses ceil [ previous amont / 2 ] function to fill itself.
-Bhim is given 1 munutes time. He is efficient, in each second he drink from one cup and puts it back.
-Bhim had consumed lot of elixir by always picking the cup with maxumum elixir.
-Now takshak had called you to find how much he had consumed.
-5 Cups
-2,1,7,4,2
-
->> 7
-2 1 4 4 2
->> 4 two times
-2 1 2 2 2
->> 2 four times
-1 1 1 1 1
->> rest all 1
-
-7+4+4+2+2+2+2+(60 - 7)
-76 units of elixir
-"""
 import math
 def ChotaBhim(cups):
     time = 60

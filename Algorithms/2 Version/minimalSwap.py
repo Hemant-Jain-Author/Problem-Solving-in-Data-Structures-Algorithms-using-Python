@@ -71,9 +71,3 @@ def main2():
     print minSwapsWin(arr1, k)
 
 main2()
-
-"""
-find product of first k elements.
-Use quick select to find kth element the elements which are at the left of 
-kth index will be the elements less then it.
-"""

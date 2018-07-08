@@ -741,7 +741,7 @@ def isConnected(graph):
 
 '''
 The function returns one of the following values
-Return 0 if grpah is not Eulerian
+Return 0 if graph is not Eulerian
 Return 1 if graph has an Euler path (Semi-Eulerian)
 Return 2 if graph has an Euler Circuit (Eulerian)
 '''
@@ -762,10 +762,10 @@ def isEulerian(graph):
             print "graph is not Eulerian"
             return 0
         elif odd == 2:
-            print "graph is Semi-Eularian"
+            print "graph is Semi-Eulerian"
             return 1
         elif odd == 0:
-            print "graph is Eularian"
+            print "graph is Eulerian"
             return 2
 
 g1 = Graph(5)

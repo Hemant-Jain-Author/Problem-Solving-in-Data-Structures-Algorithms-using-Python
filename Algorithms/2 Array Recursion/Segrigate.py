@@ -13,7 +13,7 @@ def SegregateEvenOdd(arr):
 
 
 """
-Segregate possitive ans negative.
+Segregate positive ans negative.
 """
 def SegregatePossitiveNegative(arr):
     first = 0
@@ -27,7 +27,7 @@ def SegregatePossitiveNegative(arr):
             arr[first], arr[second] = arr[second], arr[first]
 
 """
-Segrigate possitive and negative , order of appearence should be maintained.
+Segrigate positive and negative , order of appearence should be maintained.
 Just Segregate like insertion sort.
 Use an array.
 """

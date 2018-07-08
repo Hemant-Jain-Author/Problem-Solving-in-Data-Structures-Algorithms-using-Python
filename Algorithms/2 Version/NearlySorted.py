@@ -1,6 +1,5 @@
 """
-Given a nearly sorted array, in which an element is at max k units away from 
-its sorted possition.
+Given a nearly sorted array, in which an element is at max k units away from its sorted possition.
 
 If you use sorting then it will take O(NlogN) time 
 
@@ -40,9 +39,7 @@ def sortK2(arr, k):
         arr[index] = heapq.heappop(heap)
         index += 1
 
-
 k = 3
 arr = [1, 5, 4, 10, 50, 9]
 sortK2(arr, k)
 print arr
-

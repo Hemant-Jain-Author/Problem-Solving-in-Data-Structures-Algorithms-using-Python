@@ -1,5 +1,5 @@
 """
-Given an array of possitive elements. Find minimum product of k elements in array.
+Given an array of positive elements. Find minimum product of k elements in array.
 """
 def KSmallestProduct(arr, k):
     arr.sort()
@@ -70,7 +70,7 @@ def main():
 
 def PrintLargerHalf(arr):
     arr.sort()
-    size = len(arr)    
+    size = len(arr)
     for i in range(size/2, size):
         print arr[i],
 

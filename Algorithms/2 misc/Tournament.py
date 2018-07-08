@@ -1,4 +1,5 @@
-"""Find second minimum value in an array efficiently the soulution should be done in 
+"""
+Find second minimum value in an array efficiently the soulution should be done in 
 less then (2n-3) comparisions.
 """
 import math

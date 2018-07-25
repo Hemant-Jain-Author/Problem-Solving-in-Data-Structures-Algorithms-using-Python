@@ -1,3 +1,4 @@
+
 def RottenFruitUtil(arr, maxCol, maxRow, currCol, currRow, traversed, day):
     # Range check
     if currCol < 0 or currCol >= maxCol or currRow < 0 or currRow >= maxRow :
@@ -45,12 +46,12 @@ def main():
 
 def DistNearestFillUtil(arr, maxCol, maxRow, currCol, currRow, traversed, dist):
     # Range check
-    if currCol < 0 or currCol >= maxCol or currRow < 0 or currRow >= maxRow :
+    if currCol < 0 or  currCol >= maxCol or currRow < 0 or currRow >= maxRow :
         return
-    # Traversable and rot if not already rotten.
+    # Traversable if their is a better distance.
     if traversed[currCol][currRow] <= dist :
         return
-    # Update rot time.
+    # Update distance.
     traversed[currCol][currRow] = dist
     # each line corresponding to 4 direction.
     DistNearestFillUtil(arr, maxCol, maxRow, currCol-1, currRow, traversed, dist+1)
@@ -77,7 +78,7 @@ def main2():
     print(arr)
     DistNearestFill(arr, 5, 5)
 
-#main2()
+main2()
 
 def StepsOfKnightUtil(size, currCol, currRow, traversed, dist):
     # Range check
@@ -106,4 +107,4 @@ def StepsOfKnight(size, srcX, srcY, dstX, dstY):
         print traversed[i]
     return traversed[dstX - 1][dstY - 1]
 
-print StepsOfKnight(20,10,10,20,20)
+#print StepsOfKnight(20,10,10,20,20)

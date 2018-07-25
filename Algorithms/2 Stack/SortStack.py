@@ -140,5 +140,3 @@ reverseStack2(stk)
 stk.printStack()
 sortStack2(stk)
 stk.printStack()
-
-

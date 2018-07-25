@@ -1,17 +1,17 @@
 def RangePartition(arr, lower, higher):
     size = len(arr)
-    start = 0
-    end = size - 1
+    left = 0
+    right = size - 1
     i = 0
-    while i <= end:
+    while i <= right:
         print arr , i
         if arr[i] < lower :
-            arr[i], arr[start] = arr[start], arr[i]
+            arr[i], arr[left] = arr[left], arr[i]
             i += 1
-            start += 1
+            left += 1
         elif arr[i] > higher :
-            arr[i], arr[end] = arr[end], arr[i]
-            end -= 1
+            arr[i], arr[right] = arr[right], arr[i]
+            right -= 1
         else :
             i += 1
 

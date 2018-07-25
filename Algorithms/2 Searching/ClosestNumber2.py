@@ -2,7 +2,7 @@
 Given a sorted array and a number. 
 You need to find the element in array which is closest to the given number.
 """
-def ColsestNumber(arr, num):
+def ClosestNumber(arr, num):
     size = len(arr)
     start = 0
     stop = size - 1
@@ -26,5 +26,5 @@ def ColsestNumber(arr, num):
 
 arr = [2, 5, 6, 7, 8, 8, 9]
 for i in range(10):
-    print ColsestNumber(arr, i)
+    print ClosestNumber(arr, i)
 

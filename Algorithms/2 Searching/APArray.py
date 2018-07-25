@@ -1,5 +1,6 @@
 """
-Given an array of N intergers you need to find if array elements can form an Arithimatic progression.
+Given an array of N intergers you need to find if array elements can form an Arithimatic 
+progression.
 """
 import sys
 

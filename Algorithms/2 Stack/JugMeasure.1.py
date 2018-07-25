@@ -1,6 +1,4 @@
 """
-
-
 Let (X, Y) is a current state so their can be max 6 other states:
 1: Second jug is emptied (X, 0)
 2: First jug is emptied (0, Y)
@@ -8,7 +6,6 @@ Let (X, Y) is a current state so their can be max 6 other states:
 4: Second jug is completely filled (X, maxY)
 5: Content of second jug added to first jug (min(maxX, X+Y), max(0, X+Y-maxX))
 6: Content of first jug added to second jug (max(X+Y-maxY, 0), min(maxY, X+Y))
-
 """
 def WaterJug(maxX, maxY, target) :
     stk = []

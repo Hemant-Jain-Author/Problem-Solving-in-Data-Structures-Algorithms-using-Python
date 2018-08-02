@@ -1,5 +1,4 @@
-# Given an array of integer, 
-# find maximum in all the sliding windows of length.k.
+# Given an array of integer, find maximum in all the sliding windows of length.k.
 
 from collections import deque
 
@@ -72,7 +71,7 @@ def maxOfMinSlidingWindows(arr, k):
     print("Max of min is : ", maxVal)
 
 
-arr = [11,2,75,92,59,90,55]
+"""arr = [11, 2, 75, 92, 59, 90, 55]
 k = 3
 maxSlidingWindows(arr, k)
 minOfMaxSlidingWindows(arr, k)
@@ -81,5 +80,6 @@ arr2 = [10, 20, 30, 50, 10, 70, 30]
 for i in range(1,8):
     maxOfMinSlidingWindows(arr2, i)
     
+"""
 arr3 = [13, -2, -6, 10, -14, 50, 14, 21]
 firstNegSlidingWindows(arr3, 3)

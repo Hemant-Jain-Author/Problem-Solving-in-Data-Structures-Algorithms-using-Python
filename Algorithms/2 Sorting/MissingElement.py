@@ -6,16 +6,16 @@ the values in range minimum and maximum that are absent in the array.
 def MissingValues(arr):
     size = len(arr)
     arr.sort()
-    count = arr[0]
+    value = arr[0]
     missing = []
     i = 0
     while i < size:
-        if count == arr[i]:
-            count += 1
+        if value == arr[i]:
+            value += 1
             i += 1
         else:
-            missing.append(count)
-            count += 1
+            missing.append(value)
+            value += 1
     print missing
 
 import sys
@@ -35,8 +35,6 @@ def MissingValues2(arr):
         if i not in dict:
             missing.append(i)
     print missing
-
-
 
 arr = [4, 5, 3, 8, 6,10]
 MissingValues(arr)

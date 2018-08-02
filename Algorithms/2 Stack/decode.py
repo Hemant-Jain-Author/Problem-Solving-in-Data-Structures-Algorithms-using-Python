@@ -17,19 +17,17 @@ def decode(text):
         elif text[i] == ']' :
             temp = stk.pop()
             while temp != '[' :
-                output = temp + output
-                temp = stk.pop()
+                temp += stk.pop()
             count = stk.pop()
-            temp = ""
+            output = ""
             for _ in range(count):
-                temp = temp + output
-            output = temp
+                output += temp
         else :
             output = output + text[i]
         i += 1
     while len(stk) != 0:
         output = stk.pop() + output
     return output
-
-str = '1[x4[y]]13[Z]1[a]'
+str = '3[Z]'
+# str = '1[x4[y]]13[Z]1[a]'
 print(decode(str))

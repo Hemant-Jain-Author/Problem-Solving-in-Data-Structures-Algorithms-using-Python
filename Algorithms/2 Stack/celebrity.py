@@ -44,14 +44,33 @@ def findCelebrity2(relation, count):
 
     return first
 
+
+def findCelebrity3(relation, count):
+    first, second = 0,1
+
+    for i in range(count-1):
+        if isKnown(relation, first, second) :
+            first = second
+        second = second+1
+    
+    for i in range(count):
+        if first != i and isKnown(relation, first, i) :
+            return -1
+        if first != i and isKnown(relation,i, first) == False:
+            return -1
+
+    return first
+
+
 def main():
     arr = [
         [ 1 , 0 , 1, 1 , 0], 
         [ 1 , 0 , 0, 1 , 0], 
         [ 0 , 0 , 1, 1 , 1], 
-        [ 0 , 0 , 0, 0 , 0], 
+        [ 0 , 0 , 0, 1 , 0], 
         [ 1 , 1 , 0, 1 , 1]]
     print(findCelebrity(arr, 5))
     print(findCelebrity2(arr, 5))
+    print(findCelebrity3(arr, 5))
 
 main()

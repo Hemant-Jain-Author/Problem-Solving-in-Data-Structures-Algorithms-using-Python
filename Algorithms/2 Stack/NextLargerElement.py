@@ -63,9 +63,6 @@ def nextLargerElement3(arr):
     for i in range(size) :
         curr = arr[i]
         # stack always have values in decreasing order.
-        if stk.isEmpty() == True or arr[stk.top()] > curr :
-            stk.push(i)
-            continue
         while stk.isEmpty() == False and arr[stk.top()] <= curr:
             index = stk.pop()
             output[index] = curr
@@ -77,7 +74,6 @@ def nextLargerElement3(arr):
         output[index] = -1
         
     print(output)
-
 
 def nextSmallerElement(arr):
     size = len(arr)
@@ -107,10 +103,6 @@ def nextSmallerElement3(arr):
     output = [-1]*size
     for i in range(size) :
         curr = arr[i]
-        # stack always have values in increasing order.
-        if stk.isEmpty() == True or arr[stk.top()] <= curr :
-            stk.push(i)
-            continue
         while stk.isEmpty() == False and arr[stk.top()] > curr:
             index = stk.pop()
             output[index] = curr
@@ -122,15 +114,16 @@ def nextSmallerElement3(arr):
     print(output)
 
 # Testing code
-"""
+
 arr = [13,21,3,6,20,3]
 print(arr)
 nextLargerElement(arr)
-nextLargerElement2(arr)
+# nextLargerElement2(arr)
 nextLargerElement3(arr)
-nextSmallerElement(arr)
+"""nextSmallerElement(arr)
 nextSmallerElement3(arr)
 """
+
 def nextLargerElementCircular(arr):
     size = len(arr)
     stk = Stack()
@@ -138,9 +131,6 @@ def nextLargerElementCircular(arr):
     for i in range(2*size - 1) :
         curr = arr[i % size]
         # stack always have values in decreasing order.
-        if stk.isEmpty() == True or arr[stk.top()] > curr :
-            stk.push(i % size)
-            continue
         while stk.isEmpty() == False and arr[stk.top()] <= curr:
             index = stk.pop()
             output[index] = curr
@@ -152,10 +142,12 @@ def nextLargerElementCircular(arr):
         output[index] = -1
         
     print(output)
-"""
+
+
 arr = [6, 3, 9, 8, 10, 2, 1, 15, 7]
+print(arr)
 nextLargerElementCircular(arr)
-"""
+
 """
 Given an array you need to find smalles larger element for each element.
 """
@@ -226,7 +218,8 @@ def FindLeaders2(arr):
         i -= 1
     print output
 
-
+"""
 arr = [16, 17, 4, 3, 5, 2]
 FindLeaders(arr)
 FindLeaders2(arr)
+"""

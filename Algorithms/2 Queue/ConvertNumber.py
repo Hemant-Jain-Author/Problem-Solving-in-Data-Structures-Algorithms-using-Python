@@ -7,6 +7,8 @@ def convertXY(src, dst):
     que.append((src, 0))
     while len(que) != 0:
         node = que.popleft()
+        print len(que)
+        visited[node[0]] = 1
         value = node[0]
         steps = node[1]
         if value == dst:

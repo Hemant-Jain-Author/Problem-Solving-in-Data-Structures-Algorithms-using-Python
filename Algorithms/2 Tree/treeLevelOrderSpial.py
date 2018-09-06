@@ -162,7 +162,24 @@ class Tree(object):
         infi = -9999999
         return self.isCompleteTree() and self.isHeapUtil(self.root, infi)
 
+
+    def isHeapUtil2(self, curr, index, count, parentValue):
+        if curr == None:
+            return True
+        if index > count:
+            return False
+        if curr.value < parentValue:
+            return False 
+        return self.isHeapUtil2(curr.lChild, index*2+1, count, curr.value) and self.isHeapUtil2(curr.rChild, index*2+2, count, curr.value)
+
     def isHeap2(self):
+        count = self.findCount()
+        parentValue = -9999999
+        return self.isHeapUtil2(self.root, 0, count, parentValue)
+
+
+
+    def isHeap3(self):
         que = deque([])
         que.append(self.root)
         que.append(0)

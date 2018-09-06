@@ -140,3 +140,48 @@ reverseStack2(stk)
 stk.printStack()
 sortStack2(stk)
 stk.printStack()
+
+
+
+
+def GetMaxArea(arr):
+	size = len(arr)
+	maxArea = -1
+	minHeight = 0
+	i = 1
+	while i < size:
+		minHeight = arr[i]
+		j = i - 1
+		while j >= 0:
+			if minHeight > arr[j]:
+				minHeight = arr[j]
+			currArea = minHeight * (i - j + 1)
+			if maxArea < currArea:
+				maxArea = currArea
+			j -= 1
+		i += 1
+	return maxArea
+
+def GetMaxArea2(arr):
+	size = len(arr)
+	stk = []
+	maxArea = 0
+	i = 0
+	while i < size:
+		while (i < size) and (len(stk) == 0 or arr[stk[-1]] <= arr[i]):
+			stk.append(i)
+			i += 1
+		while len(stk) != 0 and (i == size or arr[stk[-1]] > arr[i]):
+			top = stk[-1]
+			stk.pop()
+			topArea = arr[top] * (i if len(stk) == 0 else i-stk[-1]-1)
+			if maxArea < topArea:
+				maxArea = topArea
+	return maxArea
+
+
+
+# Testing code
+arr = [7, 6, 5, 4, 4, 1, 6, 3, 1]
+value = GetMaxArea2(arr)
+print "GetMaxArea: " , value

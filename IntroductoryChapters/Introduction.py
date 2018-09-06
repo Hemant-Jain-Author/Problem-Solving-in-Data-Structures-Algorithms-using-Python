@@ -1,31 +1,36 @@
 #!/usr/bin/env python
 
+
 def increment1(var):
     """ Source for method increment """
     var += 1
 
+
 def main1():
     """ Source for method main """
     var = 1
-    print("Value before increment :" , var)
+    print("Value before increment :", var)
     increment1(var)
-    print("Value after increment :" , var)
-    
+    print("Value after increment :", var)
+
+
 class MyInt(object):
     def __init__(self):
         self.value = 1
 
+
 def increment2(value):
     """ Source for method increment """
-    value.value += 1   
-    
+    value.value += 1
+
+
 def main2():
     """ Source for method main """
     var = MyInt()
-    print("Value before increment :" , var.value)
+    print("Value before increment :", var.value)
     increment2(var)
-    print("Value after increment :" , var.value)  
-        
+    print("Value after increment :", var.value)
+
 
 def swap(arr, x, y):
     temp = arr[x]
@@ -68,7 +73,7 @@ def towerOfHanoi(num, src, dst, temp):
     if num < 1:
         return
     towerOfHanoi(num - 1, src, temp, dst)
-    print("Move " , num , " disk  from peg " , src , " to peg " , dst)
+    print("Move ", num, " disk  from peg ", src, " to peg ", dst)
     towerOfHanoi(num - 1, temp, dst, src)
 
 
@@ -107,7 +112,6 @@ def maxSubArraySum(arr):
     return maxSoFar
 
 
-
 def main7():
     arr = [1, -2, 3, 4, -4, 6, -4, 8, 2]
     print(maxSubArraySum(arr))
@@ -117,7 +121,7 @@ def variableExample():
     var1 = 100
     var2 = 200
     var3 = var1 + var2
-    print("Adding" , var1 , "and" , var2 , "will give" , var3)
+    print("Adding", var1, "and", var2, "will give", var3)
 
 
 def arrayExample():
@@ -131,7 +135,7 @@ def arrayExample():
 def printArray1(arr):
     count = len(arr)
     for i in range(count):
-        print(arr[i])#, end=' ')
+        print(arr[i])  # , end=' ')
 
 
 def main8():
@@ -141,7 +145,7 @@ def main8():
 def twoDArrayExample():
     first = 4
     second = 4
-    arr = [[0 for x in range(first)] for y in range(second) ]
+    arr = [[0 for x in range(first)] for y in range(second)]
     count = 0
     for i in range(first):
         for j in range(second):
@@ -154,11 +158,13 @@ def print2DArray(arr, row, col):
     i = 0
     for i in range(row):
         for j in range(col):
-            print(arr[i][j])#, end=' ')
+            print(arr[i][j])  # , end=' ')
+
 
 def main9():
     arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     print(SumArray(arr))
+
 
 def SumArray(arr):
     size = len(arr)
@@ -238,12 +244,13 @@ class coord(object):
     x = int()
     y = int()
 
+
 def main12():
     point = coord()
     point.x = 10
     point.y = 10
-    print("X axis coord value is  " , point.x)
-    print("Y axis coord value is  " , point.y)
+    print("X axis coord value is  ", point.x)
+    print("Y axis coord value is  ", point.y)
 
 
 class student(object):
@@ -251,20 +258,22 @@ class student(object):
     firstName = str()
     lastName = str()
 
+
 def main13():
     stud = student()
     refStud = stud
     refStud.rollNo = 1
     refStud.firstName = "john"
     refStud.lastName = "smith"
-    print("Roll No:   Student Name:  " , refStud.rollNo , refStud.firstName , refStud.lastName)
+    print("Roll No:   Student Name:  ", refStud.rollNo,
+          refStud.firstName, refStud.lastName)
 
 
 def main14():
     x = 10
     y = 20
     result = sum(x, y)
-    print("Sum is : " , result)
+    print("Sum is : ", result)
 
 
 def sum(num1, num2):
@@ -295,7 +304,7 @@ def printInt(number):
 
 def main16():
     print(printInt2(50, 2))
-    
+
 
 def printInt2(number, base):
     conversion = "0123456789ABCDEF"
@@ -319,6 +328,9 @@ def main17():
 
 
 def BinarySearchRecursive(arr, low, high, value):
+    if low > high:
+        return -1
+
     mid = low + (high - low) / 2
     if arr[mid] == value:
         return mid
@@ -333,7 +345,7 @@ def main18():
     print(BinarySearch(arr, 6))
     print(BinarySearch(arr, 16))
 
-        
+
 main1()
 main2()
 main3()

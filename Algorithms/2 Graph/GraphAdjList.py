@@ -413,7 +413,7 @@ def BFSDistance(gph, source, dest):
         depth = node[1]
         for edge in gph.adj[curr]:
             if edge[0] == dest:
-                return depth
+                return depth+1
             if visited[edge[0]] == False:
                 que.append((edge[0], depth+1))
                 visited[edge[0]] = True

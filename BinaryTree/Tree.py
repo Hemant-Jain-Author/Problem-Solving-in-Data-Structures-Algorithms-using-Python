@@ -135,10 +135,11 @@ class Tree(object):
         while stk.isEmpty() == False:
             temp = stk.pop()
             print(temp.value, end=' ')
+            if temp.rChild != None:
+                stk.append(temp.rChild)            
             if temp.lChild != None:
                 stk.append(temp.lChild)
-            if temp.rChild != None:
-                stk.append(temp.rChild)
+
 
     def Find(self, value):
         curr = self.root
@@ -595,7 +596,7 @@ class Tree(object):
     def CreateBinaryTree(self, arr):
         self.root = self.CreateBinaryTreeUtil(arr, 0, len(arr)-1)
 
-    def CreateBinaryTreeUtil(self, arr, start, end):
+    def (self, arr, start, end):
         if start > end:
             return None
         mid = math.floor((start + end) / 2) 
@@ -635,7 +636,7 @@ class Tree(object):
         return Head
 
 #=======================================================================
-# arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+# arr = [1, 2, 3, 4, 5, 6, 7, 8, 9CreateBinaryTreeUtil, 10]
 # t2 = Tree()
 # t2.levelOrderBinaryTree(arr)
 #=======================================================================

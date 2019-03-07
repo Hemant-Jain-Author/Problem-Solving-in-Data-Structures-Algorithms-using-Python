@@ -20,5 +20,5 @@ def fibonacci(n):
     return temp
 
 
-print((fibonacci(50)))
-print((fibonacci2(50)))
+print(fibonacci(50))
+print(fibonacci2(50))

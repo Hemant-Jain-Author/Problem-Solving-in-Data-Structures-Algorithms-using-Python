@@ -37,7 +37,7 @@ class HashTableSC(object):
 
     def printHashTable(self):
         for i in range(self.tableSize):
-            print(("Printing for index value :: " , i , "List of value printing :: "))
+            print("Printing for index value :: " , i , "List of value printing :: ")
             for keyvalue in self.listArray[i]:
                 print(keyvalue, end=' ')
             print("")

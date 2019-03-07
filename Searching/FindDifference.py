@@ -29,7 +29,7 @@ def FindDifference2(arr, value):
     return False
 
 first = [10, 20, 3, 4, 50, 80]
-print((FindDifference(first, 70)))
+print(FindDifference(first, 70))
 first = [10, 20, 3, 4, 50, 80]
 
 print(FindDifference2(first, 47))

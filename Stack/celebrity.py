@@ -69,8 +69,8 @@ def main():
         [ 0 , 0 , 1, 1 , 1], 
         [ 0 , 0 , 0, 1 , 0], 
         [ 1 , 1 , 0, 1 , 1]]
-    print((findCelebrity(arr, 5)))
-    print((findCelebrity2(arr, 5)))
-    print((findCelebrity3(arr, 5)))
+    print(findCelebrity(arr, 5))
+    print(findCelebrity2(arr, 5))
+    print(findCelebrity3(arr, 5))
 
 main()

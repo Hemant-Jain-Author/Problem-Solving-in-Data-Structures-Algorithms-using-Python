@@ -22,7 +22,7 @@ class Stack(object):
         return self.data.pop()
 
     def printStack(self):
-        print((self.data))
+        print(self.data)
 
 def sortedInsert(stk, element) :
     if stk.isEmpty() or element > stk.top() :
@@ -84,7 +84,7 @@ class Queue(object):
         return len(self.data)
     
     def printQueue(self):
-        print((self.data))
+        print(self.data)
 
 def reverseStack2(stk):
     que = Queue()

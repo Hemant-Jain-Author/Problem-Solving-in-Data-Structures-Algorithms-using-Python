@@ -56,9 +56,9 @@ class PriorityQueue(object):
 def printPath(count, previous, dist):
     for i in range(count):
         if dist[i] == sys.maxsize:
-            print(("node id" , i , "prev" , previous[i] , "distance : Unreachable"))
+            print("node id" , i , "prev" , previous[i] , "distance : Unreachable")
         else:
-            print(("node id" , i , "prev" , previous[i] , "distance :" , dist[i]))
+            print("node id" , i , "prev" , previous[i] , "distance :" , dist[i])
 
 
 

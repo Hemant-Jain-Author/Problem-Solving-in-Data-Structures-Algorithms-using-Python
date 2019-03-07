@@ -4,7 +4,7 @@ def findTriplet(arr, value):
         for j in range(i+1, size-1): 
             for k in range(j + 1, size):
                 if arr[i] + arr[j] + arr[k] == value:
-                    print((arr[i], arr[j], arr[k]))
+                    print(arr[i], arr[j], arr[k])
 
 def findTriplet2(arr, value):
     size = len(arr)
@@ -15,7 +15,7 @@ def findTriplet2(arr, value):
 
         while start < stop:
             if arr[i] + arr[start] + arr[stop] == value:
-                print((arr[i], arr[start], arr[stop]))
+                print(arr[i], arr[start], arr[stop])
                 start += 1
                 stop -= 1
             elif arr[i] + arr[start] + arr[stop] > value:
@@ -36,7 +36,7 @@ def ZeroSumTriplets(arr):
         for j in range(i+1, size-1): 
             for k in range(j + 1, size):
                 if arr[i] + arr[j] + arr[k] == 0:
-                    print((arr[i], arr[j], arr[k]))
+                    print(arr[i], arr[j], arr[k])
 
 def ZeroSumTriplets2(arr):
     size = len(arr)
@@ -47,7 +47,7 @@ def ZeroSumTriplets2(arr):
 
         while start < stop:
             if arr[i] + arr[start] + arr[stop] == 0:
-                print((arr[i], arr[start], arr[stop]))
+                print(arr[i], arr[start], arr[stop])
                 start += 1
                 stop -= 1
             elif arr[i] + arr[start] + arr[stop] > 0:
@@ -73,7 +73,7 @@ def ABCTriplet(arr):
         stop = size-1
         while start < stop:
             if arr[i] == arr[start] + arr[stop]:
-                print((arr[i], arr[start], arr[stop]))
+                print(arr[i], arr[start], arr[stop])
                 start += 1
                 stop -= 1
             elif arr[i] > arr[start] + arr[stop]:

@@ -20,7 +20,7 @@ class Graph(object):
         for i in range(self.count):
             print("Vertex " , i , " is connected to : ", end=' ')
             for edge in self.adj[i]:
-                print((edge[0] , edge[1]), end=' ')
+                print(edge[0] , edge[1], end=' ')
             print("")
 
 
@@ -64,7 +64,7 @@ def BellmanFordShortestPath(gph, source):
                     distance[edge[0]] = newDistance
                     path[edge[0]] = j
     for i in range(count):
-        print((path[i] , "to" , i , "weight" , distance[i]))
+        print(path[i] , "to" , i , "weight" , distance[i])
 
 """
 g = Graph(5)

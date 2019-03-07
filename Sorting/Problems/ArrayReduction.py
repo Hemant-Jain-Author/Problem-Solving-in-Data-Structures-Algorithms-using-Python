@@ -21,11 +21,11 @@ def ArrayReduction(arr) :
 
     for i in range(size) :
         if (arr[i] - reduction > 0) :
-            print(size - i) ,
+            print((size - i), end=' ')
             reduction = arr[i]
             count += 1
 
-    print "\nTotal number of reductions", count,
+    print("\nTotal number of reductions", count, end=' ')
 
 arr = [ 5, 1, 1, 1, 2, 3, 5 ]
 ArrayReduction(arr)

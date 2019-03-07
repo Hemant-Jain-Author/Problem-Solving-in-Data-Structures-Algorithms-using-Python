@@ -15,8 +15,8 @@ def MinSwaps(arr):
         else:
             arr[start], arr[end] = arr[end], arr[start]
             count += 1
-    print arr
-    print count
+    print(arr)
+    print(count)
 
 arr = [0, 0, 1, 0, 1, 0, 1, 1]
 arr = [0, 1, 0, 1, 0]

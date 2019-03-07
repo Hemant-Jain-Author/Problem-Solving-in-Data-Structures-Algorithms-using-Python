@@ -19,7 +19,7 @@ def KLargestElements(arrIn, k):
     arr.sort()
     for i in range(size):
         if arrIn[i] >= arr[size - k]:
-            print arrIn[i] ,
+            print(arrIn[i], end=' ')
 
 
 def QuickSelectUtil(arr, lower, upper, k):
@@ -49,18 +49,18 @@ def KLargestElements2(arrIn, k):
     QuickSelectUtil(arr, 0, size-1, size - k)
     for i in range(size):
         if arrIn[i] >= arr[size - k]:
-            print arrIn[i] ,
+            print(arrIn[i], end=' ')
 
 arr = [10, 50, 30, 60, 15]
 KLargestElements(arr, 2)
-print ""
+print("")
 KLargestElements2(arr, 2)
-print ""
+print("")
 arr = [50, 8, 45, 12, 25, 40, 84]
 KLargestElements(arr, 3)
-print ""
+print("")
 KLargestElements2(arr, 3)
-print ""
+print("")
 
 def KSmallestElements(arrIn, k):
     size = len(arrIn)
@@ -68,7 +68,7 @@ def KSmallestElements(arrIn, k):
     arr.sort()
     for i in range(size):
         if arrIn[i] <= arr[k-1]:
-            print arrIn[i] ,
+            print(arrIn[i], end=' ')
 
 def KSmallestElements2(arrIn, k):
     size = len(arrIn)
@@ -76,15 +76,15 @@ def KSmallestElements2(arrIn, k):
     QuickSelectUtil(arr, 0, size-1, k)
     for i in range(size):
         if arrIn[i] <= arr[k-1]:
-            print arrIn[i] ,
+            print(arrIn[i], end=' ')
 
 arr = [4, 2, 6, 1, 5]
 KSmallestElements(arr, 3)
-print ""
+print("")
 KSmallestElements2(arr, 3)
-print ""
+print("")
 arr = [ 1, 5, 8, 9, 6, 7, 3, 4, 2, 0]
 KSmallestElements(arr, 5)
-print ""
+print("")
 KSmallestElements2(arr, 5)
-print ""
+print("")

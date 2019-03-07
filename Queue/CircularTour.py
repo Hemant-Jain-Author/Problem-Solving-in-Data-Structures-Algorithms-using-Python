@@ -34,4 +34,4 @@ tour = [[8, 6],
 [1, 4], 
 [7, 6]]
 
-print CircularTour(tour, 3)
+print(CircularTour(tour, 3))

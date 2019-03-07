@@ -16,8 +16,8 @@ def SortAB(A, B):
 
 A = [1, 2, 4, 3, 6, 5]
 B = [0, 0, 1, 1, 1]
-print SortAB(A, B)
+print(SortAB(A, B))
 
 A = [5, 3, 1, 4, 2, 6]
 B = [0, 1, 1, 1, 1]
-print SortAB(A, B)
+print(SortAB(A, B))

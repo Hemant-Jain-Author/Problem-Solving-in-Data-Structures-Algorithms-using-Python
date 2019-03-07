@@ -55,10 +55,10 @@ def swap(arr, first, second):
 
 def main():
     first = [1, 7, 5, 4, 8, 3, 9, 2, 6, 10]
-    print(KthSmallest(first, 5))
+    print((KthSmallest(first, 5)))
     first = [1, 7, 5, 4, 8, 3, 9, 2, 6, 10]
-    print(KthSmallest2(first, 5))
+    print((KthSmallest2(first, 5)))
     first = [1, 7, 5, 4, 8, 3, 9, 2, 6, 10]
-    print(QuickSelect(first, 5))
+    print((QuickSelect(first, 5)))
 
 main()

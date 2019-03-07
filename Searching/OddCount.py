@@ -12,7 +12,7 @@ def OddCount(arr):
 
     for key in hs:
         if hs[key] % 2 == 1:
-            print key ,
+            print(key, end=' ')
 
 """
 Given an array in which all the elements appear even number of times except two 
@@ -43,7 +43,7 @@ def OddCount2(arr):
         else:
             second = second ^ arr[i] 
 
-    print (first, "&", second)
+    print(first, "&", second)
  
 
 arr = [10, 25, 30, 10, 15, 25, 15, 40]
@@ -87,11 +87,11 @@ def RepeatedMissing(arr):
             break
 
     if found == True:
-        print "Repeated element ::", first
-        print "Missing element ::", second
+        print("Repeated element ::", first)
+        print("Missing element ::", second)
     else:
-        print "Repeated element ::", second
-        print "Missing element ::", first
+        print("Repeated element ::", second)
+        print("Missing element ::", first)
 
     
 arr = [1, 3, 6, 5, 4, 1]

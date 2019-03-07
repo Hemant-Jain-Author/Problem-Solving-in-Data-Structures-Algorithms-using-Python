@@ -32,5 +32,5 @@ def minDist2(arr, first, second):
 arr = [3, 5, 4, 2, 6, 5, 6, 6, 5, 4, 8, 3]
 first = 3
 second = 6
-print minDist(arr, first, second)
-print minDist2(arr, first, second)
+print(minDist(arr, first, second))
+print(minDist2(arr, first, second))

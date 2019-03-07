@@ -8,8 +8,8 @@ heapq.heappush(myheap, 3)
 heapq.heappush(myheap, 8)
 heapq.heappush(myheap, 2)
 print(myheap)
-print(heapq.heappop(myheap))     # pops the smallest item from the heap
+print((heapq.heappop(myheap)))     # pops the smallest item from the heap
 print(myheap)
-print(myheap[0])                 # peek the smallest element of the heap.
-print(len(myheap))
+print((myheap[0]))                 # peek the smallest element of the heap.
+print((len(myheap)))
 

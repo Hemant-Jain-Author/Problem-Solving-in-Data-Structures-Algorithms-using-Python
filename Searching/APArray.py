@@ -20,8 +20,8 @@ def isAP(arr):
 
 def isAP2(arr):
     size = len(arr)
-    first = sys.maxint
-    second = sys.maxint
+    first = sys.maxsize
+    second = sys.maxsize
     hs = {}
     for i in range(size):
         if arr[i] < first:
@@ -45,8 +45,8 @@ def isAP2(arr):
 
 def isAP3(arr):
     size = len(arr)
-    first = sys.maxint
-    second = sys.maxint
+    first = sys.maxsize
+    second = sys.maxsize
     count = [0]*size
     for i in range(size):
         if arr[i] < first:
@@ -58,7 +58,7 @@ def isAP3(arr):
     diff = second - first
 
     for i in range(size):
-        index = (arr[i] - first )/ diff
+        index = (arr[i] - first )// diff
         if index > size - 1 or count[index] != 0:
             return False
         count[index] = 1
@@ -69,8 +69,8 @@ def isAP3(arr):
     return True
 
 arr = [ 20, 25, 15, 5, 0, 10, 35, 30 ]
-print isAP(arr)
+print(isAP(arr))
 arr = [ 20, 25, 15, 5, 0, 10, 35, 30 ]
-print isAP2(arr)
+print(isAP2(arr))
 arr = [ 20, 25, 15, 5, 0, 10, 35, 30 ]
-print isAP3(arr)
+print(isAP3(arr))

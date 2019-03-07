@@ -18,4 +18,4 @@ def smallestSubGraterSum(arr, x):
 
 arr = [1, 4, 45, 6, 10, 19] 
 x = 51
-print smallestSubGraterSum(arr, x) 
+print(smallestSubGraterSum(arr, x)) 

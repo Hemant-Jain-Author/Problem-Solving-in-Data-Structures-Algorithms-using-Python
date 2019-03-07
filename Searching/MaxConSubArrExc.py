@@ -16,7 +16,7 @@ def MaxConSub(A):
             currMax = 0
         if maximum < currMax:
             maximum = currMax
-    print maximum
+    print(maximum)
 
 
 def MaxConSubArr(A, B):
@@ -37,13 +37,13 @@ def MaxConSubArr(A, B):
                 currMax = 0
             if maximum < currMax:
                 maximum = currMax
-    print maximum
+    print(maximum)
 
 def BinarySearch(arr, size, value):
     start = 0 
     stop = size - 1
     while start <= stop:
-        mid = (start + stop)/2
+        mid = (start + stop)//2
         if value == arr[mid]:
             return True
         elif value > arr[mid]:
@@ -72,7 +72,7 @@ def MaxConSubArr2(A, B):
                 currMax = 0
             if maximum < currMax:
                 maximum = currMax
-    print maximum
+    print(maximum)
 
 """
 O(MlogM + NlogM)  Solution.

@@ -5,7 +5,7 @@ def subArraySums(arr, value):
     sum = arr[first]
     while second < size and first < size:
         if sum == value:
-            print first , second
+            print(first , second)
 
         if sum < value:
             second += 1
@@ -23,7 +23,7 @@ def subArraySum(arr, value):
     sum = arr[first]
     while second < size and first < size:
         if sum == value:
-            print first , second
+            print(first , second)
             return True
         if sum < value:
             second += 1
@@ -36,5 +36,5 @@ def subArraySum(arr, value):
 
 arr = [15, 5, 5, 20, 10, 5, 5, 20, 10, 10]
 subArraySum(arr, 20)
-print ""
+print("")
 subArraySums(arr, 20)

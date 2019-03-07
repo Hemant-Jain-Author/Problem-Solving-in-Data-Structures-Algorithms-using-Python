@@ -13,7 +13,7 @@ def findBalancedPoint(arr):
     
     for i in range(size):
         if first == second :
-            print i ,
+            print(i, end=' ')
         if i < size - 1:
             first += arr[i]
             second -= arr[i+1]

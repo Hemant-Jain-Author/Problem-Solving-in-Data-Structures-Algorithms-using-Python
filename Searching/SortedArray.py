@@ -12,7 +12,7 @@ def BinarySearch(arr, value):
     low = 0
     high = size - 1
     while low <= high:
-        mid = (low + high) / 2
+        mid = (low + high) // 2
         if arr[mid] == value:
             return True
         elif arr[mid] < value:
@@ -23,11 +23,11 @@ def BinarySearch(arr, value):
 
 arr = [1, 9, 2, 8, 3, 7, 4, 6, 5]
 arr.sort()
-print BinarySearch(arr, 4)
-print BinarySearch(arr, 10)
+print(BinarySearch(arr, 4))
+print(BinarySearch(arr, 10))
 SortedInsert(arr, 11)
 SortedInsert(arr, 7)
-print arr
+print(arr)
 
 #linear search method
 def FixPoint(arr):
@@ -44,7 +44,7 @@ def FixPoint2(arr):
     low = 0
     high = size - 1
     while low <= high:
-        mid = (low + high) / 2
+        mid = (low + high) // 2
         if arr[mid] == mid:
             return mid
         elif arr[mid] < mid:
@@ -64,8 +64,8 @@ def findMaxima(arr):
     size = len(arr)
     for i in range(size):
         if ((i == 0) or arr[i-1] < arr[i]) and ((i == size -1 ) or arr[i] > arr[i+1]):
-            print arr[i],
-    print ""
+            print(arr[i], end=' ')
+    print("")
 
 arr = [10, 20, 30, 40, 50]
 findMaxima(arr)

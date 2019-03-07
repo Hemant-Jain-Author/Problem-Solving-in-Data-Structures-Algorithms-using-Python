@@ -6,7 +6,7 @@ import sys
 def MinDiffPair(arr1, arr2):
     size1 = len(arr1)
     size2 = len(arr2)
-    minDiff = sys.maxint
+    minDiff = sys.maxsize
     arr1.sort()
     arr2.sort()
     first = 0
@@ -22,8 +22,8 @@ def MinDiffPair(arr1, arr2):
             first += 1
         else:
             second += 1
-    print output
-    print minDiff
+    print(output)
+    print(minDiff)
     return minDiff
 
 arr1 = [1, 4, 12, 10, 2]

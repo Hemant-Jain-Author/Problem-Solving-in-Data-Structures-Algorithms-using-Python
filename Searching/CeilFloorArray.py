@@ -9,7 +9,7 @@ def findFloor(arr, value):
     start = 0
     stop = size -1
     while start <= stop:
-        mid = (start + stop)/2
+        mid = (start + stop)//2
         # search value is equal to arr[mid] value..
         # search value is grater then mid index value and less then mid+1 index value.
         # value is grater then arr[size-1] then floor is arr[size-1]
@@ -27,7 +27,7 @@ def findCeil(arr, value):
     stop = size -1
     
     while start <= stop:
-        mid = (start + stop)/2
+        mid = (start + stop)//2
         # search value is equal to arr[mid] value..
         # search value is less then mid index value and grater then mid-1 index value.
         # value is less then arr[0] then ceil is arr[0]
@@ -41,4 +41,4 @@ def findCeil(arr, value):
 
 arr = [2, 4, 6, 8, 10, 12, 14]
 for i in range(20):
-    print (i , findCeil(arr, i), findFloor(arr, i))
+    print(i , findCeil(arr, i), findFloor(arr, i))

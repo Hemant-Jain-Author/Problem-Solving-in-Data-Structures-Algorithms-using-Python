@@ -18,9 +18,9 @@ class Graph(object):
 
     def Print(self):
         for i in range(self.count):
-            print "Vertex " , i , " is connected to : ",
+            print("Vertex " , i , " is connected to : ", end=' ')
             for edge in self.adj[i]:
-                print (edge[0] , edge[1]),
+                print((edge[0] , edge[1]), end=' ')
             print("")
 
 
@@ -64,7 +64,7 @@ def BellmanFordShortestPath(gph, source):
                     distance[edge[0]] = newDistance
                     path[edge[0]] = j
     for i in range(count):
-        print (path[i] , "to" , i , "weight" , distance[i])
+        print((path[i] , "to" , i , "weight" , distance[i]))
 
 """
 g = Graph(5)
@@ -86,7 +86,7 @@ def Dijkstra(gph, source):
     previous[source] = -1
     pq = PriorityQueue()
     for i in range(gph.count):
-        pq.Add(sys.maxint, i)
+        pq.Add(sys.maxsize, i)
     pq.UpdateKey(0, source)
     
     while pq.Size() != 0:
@@ -105,9 +105,9 @@ def Dijkstra(gph, source):
     
     for i in range(gph.count):
         if dist[i] == sys.maxsize:
-            print("node id" , i , "prev" , previous[i] , "distance : Unreachable")
+            print(("node id" , i , "prev" , previous[i] , "distance : Unreachable"))
         else:
-            print("node id" , i , "prev" , previous[i] , "distance :" , dist[i])
+            print(("node id" , i , "prev" , previous[i] , "distance :" , dist[i]))
     
 def Prims(gph):
     previous = [-1] * gph.count
@@ -118,7 +118,7 @@ def Prims(gph):
     previous[source] = -1
     pq = PriorityQueue()
     for i in range(gph.count):
-        pq.Add(sys.maxint, i)
+        pq.Add(sys.maxsize, i)
     pq.UpdateKey(0, source)
     
     while pq.Size() != 0:
@@ -136,9 +136,9 @@ def Prims(gph):
     
     for i in range(gph.count):
         if dist[i] == sys.maxsize:
-            print("node id" , i , "prev" , previous[i] , "distance : Unreachable")
+            print(("node id" , i , "prev" , previous[i] , "distance : Unreachable"))
         else:
-            print("node id" , i , "prev" , previous[i] , "distance :" , dist[i])
+            print(("node id" , i , "prev" , previous[i] , "distance :" , dist[i]))
 
 """
 graph = Graph(9)
@@ -176,7 +176,7 @@ def RootVertex(gph):
         if visited[i] == False:
             DFSUtil(gph, i, visited)
             retVal = i
-    print "Root vertex is :: ", retVal
+    print("Root vertex is :: ", retVal)
 
 """
 g = Graph(7)
@@ -207,10 +207,10 @@ def TopologicalSort(gph):
     for i in range(count):
         if visited[i] == False:
             TopologicalSortDFS(gph, i, visited, stk)
-    print "TopologicalSort :: ",
+    print("TopologicalSort :: ", end=' ')
     while len(stk) != 0:
-        print stk.pop() , 
-    print ""
+        print(stk.pop(), end=' ') 
+    print("")
 
 """
 g = Graph(6)
@@ -234,7 +234,7 @@ def PathExist(gph, source, destination):
 
 def DFSRec(gph, index, visited):
     visited[index] = True
-    print index ,
+    print(index, end=' ')
     for edge in gph.adj[index]:
         destination = edge[0]
         if visited[destination] == False:
@@ -319,7 +319,7 @@ def stronglyConnectedComponent(gph):
         if visited[index] == False:
             stk2 = []
             DFSRec2(gReversed, index, visited, stk2)
-            print stk2
+            print(stk2)
 """
 graph = Graph(7)
 graph.AddDirectedEdge(0, 1)
@@ -350,7 +350,7 @@ def DFSStack(gph, source, target):
     visited[source] = True
     while len(stk) != 0:
         curr = stk.pop()
-        print curr ,
+        print(curr, end=' ')
         for edge in gph.adj[curr]:
             destination = edge[0]
             if visited[destination] == False:
@@ -361,7 +361,7 @@ def DFSStack(gph, source, target):
 def DFS(gph, source, target):
     count = gph.count
     visited = [False] * count
-    print "DFS : ",
+    print("DFS : ", end=' ')
     DFSRec(gph, source, visited)
     return visited[target]
  
@@ -369,12 +369,12 @@ def BFS(gph, source, target):
     count = gph.count
     visited = [False] * count
     visited[source] = True
-    print "BFS : ",
+    print("BFS : ", end=' ')
     que = deque([])
     que.append(source)
     while len(que) != 0:
         curr = que.popleft()
-        print curr ,
+        print(curr, end=' ')
         for edge in gph.adj[curr]:
             destination = edge[0]
             if visited[destination] == False:
@@ -389,12 +389,12 @@ def BFSLevelNode(gph, source):
     visited[source] = True
     que = deque([])
     que.append((source, 0))
-    print "\nNode  - Level"
+    print("\nNode  - Level")
     while len(que) != 0:
         node = que.popleft()
         curr = node[0]
         depth = node[1]
-        print curr ," - ", depth
+        print(curr ," - ", depth)
         for edge in gph.adj[curr]:
             destination = edge[0]
             if visited[destination] == False:
@@ -448,7 +448,7 @@ def ShortestPath(gph, source):
                 que.append(destination)
     
     for i in range(count):
-        print(path[i] , "to" , i , "weight" , distance[i])
+        print((path[i] , "to" , i , "weight" , distance[i]))
 
 """
 gph = Graph(9)
@@ -491,7 +491,7 @@ def TransitiveClosure(gph):
     for source in range(count):
         TransitiveClosureUtil(gph, source, source, tc)
     for row in tc:
-        print row
+        print(row)
 
 """
 g = Graph(4)
@@ -523,7 +523,7 @@ def countAllPath(gph, src ,dest):
 def printAllPathDFS(gph, visited, source ,dest, path):
     path.append(source)
     if source == dest:
-        print path
+        print(path)
         return
 
     visited[source] = 1
@@ -749,7 +749,7 @@ def isEulerian(graph):
     count = graph.count
     # Check if all non-zero degree vertices are connected
     if isConnected(graph) == False:
-        print "graph is not Eulerian"
+        print("graph is not Eulerian")
         return 0
     else:
         # Count vertices with odd degree
@@ -759,13 +759,13 @@ def isEulerian(graph):
                 odd +=1
 
         if odd > 2:
-            print "graph is not Eulerian"
+            print("graph is not Eulerian")
             return 0
         elif odd == 2:
-            print "graph is Semi-Eulerian"
+            print("graph is Semi-Eulerian")
             return 1
         elif odd == 0:
-            print "graph is Eulerian"
+            print("graph is Eulerian")
             return 2
 
 g1 = Graph(5)
@@ -846,6 +846,6 @@ g.AddDirectedEdge(2, 0)
 g.AddDirectedEdge(0, 4)
 g.AddDirectedEdge(4, 3)
 g.AddDirectedEdge(3, 0)
-print isEulerianCycle(g)
+print(isEulerianCycle(g))
 
 

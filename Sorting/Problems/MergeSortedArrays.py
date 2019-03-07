@@ -27,4 +27,4 @@ def merge(arr1, arr2):
 arr1 = [1, 5, 9, 10, 15, 20]
 arr2 = [2, 3, 8, 13]
 merge(arr1, arr2)
-print arr1, arr2
+print(arr1, arr2)

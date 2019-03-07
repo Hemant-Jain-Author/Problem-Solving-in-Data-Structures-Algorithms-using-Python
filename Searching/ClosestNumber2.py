@@ -9,7 +9,7 @@ def ClosestNumber(arr, num):
     output = -1
     minDist = 9999
     while start <= stop:
-        mid = (start + stop )/2
+        mid = (start + stop )//2
         if minDist > abs(arr[mid] - num):
             minDist = abs(arr[mid] - num)
             output = arr[mid]
@@ -26,5 +26,5 @@ def ClosestNumber(arr, num):
 
 arr = [2, 5, 6, 7, 8, 8, 9]
 for i in range(10):
-    print ClosestNumber(arr, i)
+    print(ClosestNumber(arr, i))
 

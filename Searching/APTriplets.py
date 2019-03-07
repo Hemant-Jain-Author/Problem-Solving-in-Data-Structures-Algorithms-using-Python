@@ -9,7 +9,7 @@ def APTriplets(arr):
         while j >= 0 and k < size : 
             # triplet found
             if arr[j] + arr[k] == 2 * arr[i]:
-                print(arr[j], arr[i], arr[k])
+                print((arr[j], arr[i], arr[k]))
                 k += 1
                 j -= 1
             elif arr[j] + arr[k] < 2 * arr[i]:
@@ -32,7 +32,7 @@ def GPTriplets(arr):
         while j >= 0 and k < size :
             # triplet found
             if arr[j] * arr[k] == arr[i] * arr[i]:
-                print(arr[j], arr[i], arr[k])
+                print((arr[j], arr[i], arr[k]))
                 k += 1
                 j -= 1
             elif arr[j] + arr[k] < 2 * arr[i]:

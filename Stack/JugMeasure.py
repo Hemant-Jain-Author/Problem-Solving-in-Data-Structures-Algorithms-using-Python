@@ -22,7 +22,7 @@ def WaterJug(maxX, maxY, target) :
     parent[start] = start
     cost[start] = 0
     ans = None
-    ansCost = sys.maxint
+    ansCost = sys.maxsize
 
     while len(stk) != 0:
         top = stk.pop()
@@ -78,7 +78,7 @@ def WaterJug(maxX, maxY, target) :
                 cost[child] = currCost + 1
 
     if ans == None :
-        print "target not found"
+        print("target not found")
         return []
 
     path.append(ans)
@@ -88,7 +88,7 @@ def WaterJug(maxX, maxY, target) :
     return path
 
 
-print WaterJug(4, 3, 2)
-print WaterJug(6, 1, 2)
-print WaterJug(9, 2, 7)
-print WaterJug(12, 19, 7)
+print(WaterJug(4, 3, 2))
+print(WaterJug(6, 1, 2))
+print(WaterJug(9, 2, 7))
+print(WaterJug(12, 19, 7))

@@ -24,11 +24,11 @@ def minSwaps(arr, val):
 def main():
     arr = [2, 1, 5, 6, 3]
     k = 3
-    print minSwaps(arr, k)
+    print(minSwaps(arr, k))
     
     arr1 = [2, 7, 9, 5, 8, 7, 4]
     k = 5
-    print minSwaps(arr1, k)
+    print(minSwaps(arr1, k))
 
 """
 Now in the above problem we dont want all the elements in start of array.
@@ -64,10 +64,10 @@ def minSwapsWin(arr, val):
 def main2():
     arr = [2, 1, 5, 6, 3]
     k = 3
-    print minSwapsWin(arr, k)
+    print(minSwapsWin(arr, k))
     
     arr1 = [2, 7, 9, 5, 8, 7, 4]
     k = 5
-    print minSwapsWin(arr1, k)
+    print(minSwapsWin(arr1, k))
 
 main2()

@@ -66,7 +66,7 @@ def DistNearestFill(arr, maxCol, maxRow):
         for j in range(0, maxRow, 1):
             if arr[i][j] == 1:
                 DistNearestFillUtil(arr, maxCol, maxRow, i, j, traversed, 0)
-    print traversed
+    print(traversed)
 
 def main2():
     arr = [
@@ -104,7 +104,7 @@ def StepsOfKnight(size, srcX, srcY, dstX, dstY):
     traversed = [[infi]*size for _ in range(size)]
     StepsOfKnightUtil(size, srcX - 1, srcY - 1, traversed, 0)
     for i in range(size):
-        print traversed[i]
+        print(traversed[i])
     return traversed[dstX - 1][dstY - 1]
 
 #print StepsOfKnight(20,10,10,20,20)

@@ -21,8 +21,8 @@ def ZeroReplace(arr):
     if maximum < (prev + curr + 1):
         maximum = prev + curr + 1
         index = zeroIndex
-    print index , maximum
+    print(index , maximum)
     return maximum
 
 arr = [1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1]
-print ZeroReplace(arr)
+print(ZeroReplace(arr))

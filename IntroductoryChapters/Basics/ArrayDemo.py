@@ -14,6 +14,6 @@ class ArrayDemo(object):
 d = ArrayDemo()
 d.addValue(0, 1)
 d.addValue(1, 2)
-print(d.getValue(0))
-print(d.getValue(1))
+print((d.getValue(0)))
+print((d.getValue(1)))
 

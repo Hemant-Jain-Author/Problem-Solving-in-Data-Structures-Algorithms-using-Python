@@ -6,7 +6,7 @@ class Tree(object):
             self.value = v
             self.lChild = l
             self.rChild = r
-    
+
     def __init__(self):
         self.root = None
 
@@ -37,7 +37,7 @@ class Tree(object):
                 que.append(temp.lChild)
             if temp.rChild != None:
                 que.append(temp.rChild)
-        print output
+        print(output)
 
     def PrintLevelOrderLineByLine(self):
         que1 = deque([])
@@ -48,20 +48,20 @@ class Tree(object):
         while len(que1) != 0 or len(que2) != 0 :
             while len(que1) != 0:
                 temp = que1.popleft()
-                print temp.value,
+                print(temp.value, end=" ")
                 if temp.lChild != None:
                     que2.append(temp.lChild)
                 if temp.rChild != None:
                     que2.append(temp.rChild)
-            print ""
+            print("")
             while len(que2) != 0:
                 temp = que2.popleft()
-                print temp.value,
+                print(temp.value, end=" ")
                 if temp.lChild != None:
                     que1.append(temp.lChild)
                 if temp.rChild != None:
                     que1.append(temp.rChild)
-            print ""
+            print("")
 
     def PrintLevelOrderLineByLine2(self):
         que = deque([])
@@ -72,13 +72,13 @@ class Tree(object):
             count = len(que)
             while count > 0:
                 temp = que.popleft()
-                print temp.value,
+                print (temp.value, end=" ")
                 if temp.lChild != None:
                     que.append(temp.lChild)
                 if temp.rChild != None:
                     que.append(temp.rChild)
                 count -= 1
-            print ""
+            print("")
 
     def PrintSpiralTree(self):
         stk1 = []
@@ -103,7 +103,7 @@ class Tree(object):
                     stk1.append(temp.lChild)
                 if temp.rChild != None:
                     stk1.append(temp.rChild)
-        print output
+        print(output)
 
     """
     To see if tree is a heap we need to check two conditions:
@@ -218,7 +218,7 @@ t.levelOrderBinaryTree(arr)
 t.PrintBredthFirst()
 t.PrintLevelOrderLineByLine()
 #print t.isCompleteTree()
-print t.isHeap()
+print (t.isHeap())
 # t.PrintSpiralTree()
 # t.PrintLevelOrderLineByLine()
 # t.PrintLevelOrderLineByLine2()

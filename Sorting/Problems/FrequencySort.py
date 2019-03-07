@@ -14,9 +14,9 @@ def SortFrequency(arr):
     User is recommended to write his own sorting function.
     for convinenance author is using inbuilt functions. 
     """
-    for key, value in reversed(sorted(mp.iteritems(), key = lambda (k, v): (v, k))):
+    for key, value in reversed(sorted(iter(mp.items()), key = lambda k_v: (k_v[1], k_v[0]))):
         for i in range(value):
-            print key ,
+            print(key, end=' ')
 
 # arr = [2, 3, 2, 4, 5, 12, 2, 3, 3, 3, 12]
 # SortFrequency(arr)
@@ -36,13 +36,13 @@ def SortByOrder(arr, arr2):
     for key in arr2:
         if key in mp:
             for i in range(mp[key]):
-                print key ,
+                print(key, end=' ')
             del mp[key]
 
     for key in mp:
         for i in range(mp[key]):
-            print key ,
-print ""
+            print(key, end=' ')
+print("")
 arr = [2, 1, 2, 5, 7, 1, 9, 3, 6, 8, 8]
 arr2 = [2, 1, 8, 3]
 SortByOrder(arr, arr2)

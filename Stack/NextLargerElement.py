@@ -156,14 +156,14 @@ def smallestLargerElementArray(arr):
     size = len(arr)
     output = []
     for i in range(size): 
-        minDiff = sys.maxint
+        minDiff = sys.maxsize
         value = -1
         for j in range(size):
             if arr[i] < arr[j] and (arr[j] - arr[i] ) < minDiff :
                 minDiff = arr[j] - arr[i]
                 value = arr[j]
         output.append(value)
-    print output
+    print(output)
 
 def smallestLargerElementArray2(arr):
     size = len(arr)
@@ -176,7 +176,7 @@ def smallestLargerElementArray2(arr):
     for i in range(size-1) :
         output[aux[i][1]] = aux[i+1][0]
     output[aux[size - 1][1]] = -1
-    print output
+    print(output)
 
 """
 arr = [6, 3, 9, 8, 10, 2, 1, 15, 7]
@@ -207,7 +207,7 @@ def FindLeaders(arr):
 import sys
 def FindLeaders2(arr):
     size = len(arr)
-    largest = -sys.maxint
+    largest = -sys.maxsize
     i = size -1
     output = []
     while i >= 0 :
@@ -216,7 +216,7 @@ def FindLeaders2(arr):
             largest = curr
             output.append(curr)
         i -= 1
-    print output
+    print(output)
 
 """
 arr = [16, 17, 4, 3, 5, 2]

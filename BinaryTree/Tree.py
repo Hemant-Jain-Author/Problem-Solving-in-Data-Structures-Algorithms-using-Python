@@ -596,10 +596,10 @@ class Tree(object):
     def CreateBinaryTree(self, arr):
         self.root = self.CreateBinaryTreeUtil(arr, 0, len(arr)-1)
 
-    def (self, arr, start, end):
+    def CreateBinaryTreeUtil(self, arr, start, end):
         if start > end:
             return None
-        mid = math.floor((start + end) / 2) 
+        mid = math.floor((start + end) / 2)
         curr = self.Node(arr[mid])
         curr.lChild = self.CreateBinaryTreeUtil(arr, start, mid - 1)
         curr.rChild = self.CreateBinaryTreeUtil(arr, mid + 1, end)

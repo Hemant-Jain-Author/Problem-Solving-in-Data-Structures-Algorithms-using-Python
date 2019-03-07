@@ -9,7 +9,7 @@ O(nk)
 import sys
 def minJumps(arr):
     size = len(arr)
-    jumps = [sys.maxint]*size
+    jumps = [sys.maxsize]*size
     jumps[0] = 0
  
     for i in range(size):
@@ -19,9 +19,8 @@ def minJumps(arr):
         while j <= i + steps and j < size:
             jumps[j] = min(jumps[j], jumps[i] + 1)
             j += 1
-        print jumps
+        print(jumps)
     return jumps[size-1]
  
 arr = [1, 4, 3, 7, 6, 1, 0, 3, 5, 1, 10]
-print minJumps(arr)
-
+print(minJumps(arr))

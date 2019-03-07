@@ -71,16 +71,16 @@ def main():
 def PrintLargerHalf(arr):
     arr.sort()
     size = len(arr)
-    for i in range(size/2, size):
-        print arr[i],
+    for i in range(size//2, size):
+        print(arr[i], end=' ')
 
 import heapq
 def PrintLargerHalf2(arr):
     size = len(arr)
     heapq.heapify(arr)
-    for _ in range(size/2) :
+    for _ in range(size//2) :
         heapq.heappop(arr)
-    print arr
+    print(arr)
 
 """
 Quick select method
@@ -88,9 +88,9 @@ Quick select method
 def PrintLargerHalf3(array):
     arr = array
     size = len(arr)
-    QuickSelectUtil(arr, 0, size-1, size/2)
-    for i in range(size/2, size):
-        print arr[i],
+    QuickSelectUtil(arr, 0, size-1, size//2)
+    for i in range(size//2, size):
+        print(arr[i], end=' ')
 
 def main2():
     first = [1, 7, 5, 4, 8, 3, 9, 2, 6, 10]

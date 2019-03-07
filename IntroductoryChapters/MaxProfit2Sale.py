@@ -8,19 +8,19 @@ def maxProfit(price):
             maxPrice = price[i]
              
         profit[i] = max(profit[i+1], maxPrice - price[i])
-    print profit
+    print(profit)
     minPrice=price[0]
     for i in range(1,size):
         if price[i] < minPrice:
             minPrice = price[i]
 
         profit[i] = max(profit[i-1], profit[i]+(price[i]-minPrice))
-    print profit
+    print(profit)
     result = profit[size-1]
      
     return result
 
 
 price = [2, 30, 15, 10, 8, 25, 80]
-print "Maximum profit is", maxProfit(price)
+print("Maximum profit is", maxProfit(price))
 

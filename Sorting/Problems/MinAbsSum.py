@@ -10,7 +10,7 @@ import sys
 def MinAbsSum(arr):
     size = len(arr)
     arr.sort()
-    minSum = sys.maxint
+    minSum = sys.maxsize
     low = 0
     high = size - 1
 
@@ -23,7 +23,7 @@ def MinAbsSum(arr):
             low += 1
         else :
             high -= 1
-    print minSum
+    print(minSum)
 
 arr = [1, 60, -10, 70, -80, 85]
-print MinAbsSum(arr)
+print(MinAbsSum(arr))

@@ -66,7 +66,7 @@ def kthAbsDiff2(arr, k):
     return value
 
 arr = [1, 2, 3, 4]
-print kthAbsDiff(arr, 5)
+print(kthAbsDiff(arr, 5))
 
 arr = [1, 2, 3, 4]
-print kthAbsDiff2(arr, 5)
+print(kthAbsDiff2(arr, 5))

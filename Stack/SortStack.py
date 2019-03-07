@@ -22,7 +22,7 @@ class Stack(object):
         return self.data.pop()
 
     def printStack(self):
-        print(self.data)
+        print((self.data))
 
 def sortedInsert(stk, element) :
     if stk.isEmpty() or element > stk.top() :
@@ -84,7 +84,7 @@ class Queue(object):
         return len(self.data)
     
     def printQueue(self):
-        print(self.data)
+        print((self.data))
 
 def reverseStack2(stk):
     que = Queue()
@@ -184,4 +184,4 @@ def GetMaxArea2(arr):
 # Testing code
 arr = [7, 6, 5, 4, 4, 1, 6, 3, 1]
 value = GetMaxArea2(arr)
-print "GetMaxArea: " , value
+print("GetMaxArea: " , value)

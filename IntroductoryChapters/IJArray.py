@@ -34,7 +34,7 @@ def ArrayIndexMaxDiff2(arr):
             leftMin[i] = arr[i] 
 
     rightMax[size - 1] = arr[size - 1]
-    for i in reversed(range(size - 1)):
+    for i in reversed(list(range(size - 1))):
         if rightMax[i+1] > arr[i]:
             rightMax[i] = rightMax[i+1]
         else:
@@ -60,7 +60,7 @@ def ArrayIndexMaxDiff3(arr):
             leftMin.append(i)
 
     rightMax.append(size - 1)
-    for i in reversed(range(size - 1)):
+    for i in reversed(list(range(size - 1))):
         if arr[rightMax[-1]] < arr[i]:
             rightMax.append(i)
 
@@ -79,15 +79,15 @@ def ArrayIndexMaxDiff3(arr):
 
 
 arr = [33, 9, 10, 3, 2, 60, 30, 33, 1]
-print ArrayIndexMaxDiff(arr)
+print(ArrayIndexMaxDiff(arr))
 arr = [33, 9, 10, 3, 2, 60, 30, 33, 1]
-print ArrayIndexMaxDiff2(arr)
+print(ArrayIndexMaxDiff2(arr))
 arr = [33, 9, 10, 3, 2, 60, 30, 33, 1]
-print ArrayIndexMaxDiff3(arr)
+print(ArrayIndexMaxDiff3(arr))
 
 arr = [9, 2, 3, 4, 5, 6, 7, 8, 1]
-print ArrayIndexMaxDiff(arr)
+print(ArrayIndexMaxDiff(arr))
 arr = [9, 2, 3, 4, 5, 6, 7, 8, 1]
-print ArrayIndexMaxDiff2(arr)
+print(ArrayIndexMaxDiff2(arr))
 arr = [9, 2, 3, 4, 5, 6, 7, 8, 1]
-print ArrayIndexMaxDiff3(arr)
+print(ArrayIndexMaxDiff3(arr))

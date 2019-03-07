@@ -46,7 +46,7 @@ def BinarySearchRecursiveUtil(arr, low, high, value):
     if low > high:
         return False
     # mid = math.floor((low + high) / 2)
-    mid = ((low + high) / 2)
+    mid = ((low + high) // 2)
     if arr[mid] == value:
         return True
     elif arr[mid] < value:
@@ -57,34 +57,34 @@ def BinarySearchRecursiveUtil(arr, low, high, value):
 
 def main2():
     first = [1, 3, 5, 7, 9, 25, 30]
-    print(BinarySearchRecursive(first, 3))  
+    print(BinarySearchRecursive(first, 3))
 
 
 def printRepeating(arr):
     size = len(arr)
-    print(" Repeating elements :: ")#, end=' ')
+    print(" Repeating elements :: ", end=' ')
     for i in range(size):
         for j in range(i+1, size):
             if arr[i] == arr[j]:
-                print(arr[i])#, end=' ')
+                print(arr[i], end=' ')
 
 
 def printRepeating2(arr):
     size = len(arr)
     arr.sort()
-    print(" Repeating elements are :: ")#, end=' ')
+    print(" Repeating elements are :: ", end=' ')
     for i in range(size):
         if arr[i] == arr[i - 1]:
-            print(arr[i])#, end=' ')
+            print(arr[i], end=' ')
 
 
 def printRepeating3(arr):
     size = len(arr)
     hs = set()
-    print(" Repeating elements are ::")#, end=' ')
+    print(" Repeating elements are ::", end=' ')
     for i in range(size):
         if arr[i] in hs:
-            print(arr[i])#, end=' ')
+            print(arr[i], end=' ')
         else:
             hs.add(arr[i])
 
@@ -92,10 +92,10 @@ def printRepeating3(arr):
 def printRepeating4(arr, valrange):
     size = len(arr)
     count = [0] * valrange
-    print(" Repeating elements are :: ")#, end=' ')
+    print(" Repeating elements are :: ", end=' ')
     for i in range(size):
         if count[arr[i]] == 1:
-            print(arr[i])#, end=' ')
+            print(arr[i], end=' ')
         else:
             count[arr[i]] += 1
 
@@ -178,26 +178,25 @@ def getMajority(arr):
         if count > maxCount:
             maximum = arr[i]
             maxCount = count
-    if maxCount > size / 2:
+    if maxCount > size // 2:
         return maximum
     else:
-        return sys.maxint # can also raised exception.
+        return sys.maxsize # can also raised exception.
 
 
 def getMajority2(arr):
     size = len(arr)
-    #majIndex = math.floor(size / 2)
-    majIndex = (size / 2)
+    majIndex = (size // 2)
     arr.sort()
     candidate = arr[majIndex]
     count = 1
     for i in range(size):
         if arr[i] == candidate:
             count += 1
-    if count > size / 2:
+    if count > size // 2:
         return arr[majIndex]
     else:
-        return sys.maxint # can also raised exception.
+        return sys.maxsize # can also raised exception.
 
 
 def getMajority3(arr):
@@ -219,10 +218,10 @@ def getMajority3(arr):
         if arr[i] == candidate:
             count += 1
     
-    if count > size / 2:
+    if count > size // 2:
         return arr[majIndex]
     else:
-        return sys.maxint  # can also raised exception.
+        return sys.maxsize  # can also raised exception.
 
 
 def main5():
@@ -247,7 +246,7 @@ def findMissingNumber(arr, upperRange):
         if found == 0:
             return i
         i += 1
-    return sys.maxint
+    return sys.maxsize
 
 
 def findMissingNumber2(arr, upperRange):
@@ -276,7 +275,7 @@ def findMissingNumber3(arr, upperRange):
         if (i in mSet) == False:
             return i
         i += 1
-    return sys.maxint
+    return sys.maxsize
 
 
 def main6():
@@ -385,14 +384,13 @@ def SearchBotinicArrayMax(arr):
     size = len(arr)
     start = 0
     end = size - 1
-    mid = (start + end) / 2
+    mid = (start + end) // 2
     maximaFound = 0
     if size < 3:
         print("error")
         return 0
     while start <= end:
-        #mid = math.floor((start + end) / 2)
-        mid = ((start + end) / 2)
+        mid = ((start + end) // 2)
         if arr[mid - 1] < arr[mid] and arr[mid + 1] < arr[mid]:
             maximaFound = 1
             break
@@ -404,7 +402,7 @@ def SearchBotinicArrayMax(arr):
             break
     if maximaFound == 0:
         print("error")
-        return sys.maxint
+        return sys.maxsize
     return arr[mid]
 
 
@@ -425,8 +423,7 @@ def FindMaxBitonicIndex(arr, size):
         print("error")
         return -1
     while start <= end:
-        #mid = math.floor((start + end) / 2)
-        mid = ((start + end) / 2)
+        mid = ((start + end) // 2)
         if arr[mid - 1] < arr[mid] and arr[mid + 1] < arr[mid]:
             return mid
         elif arr[mid - 1] < arr[mid] and arr[mid] < arr[mid + 1]:
@@ -448,8 +445,7 @@ def main9():
 def BinarySearch(arr, start, end, key, isInc):
     if end < start:
         return False
-    #mid = math.floor((start + end) / 2)
-    mid = ((start + end) / 2)
+    mid = ((start + end) // 2)
     if key == arr[mid]:
         return True
     if isInc != False and key < arr[mid] or isInc == False and key > arr[mid]:
@@ -469,8 +465,7 @@ def findKeyCount(arr, key):
 def findFirstIndex(arr, start, end, key):
     if end < start:
         return -1
-    #mid = math.floor((start + end) / 2)
-    mid = ((start + end) / 2)
+    mid = ((start + end) // 2)
     if key == arr[mid] and (mid == start or arr[mid - 1] != key):
         return mid
     if key <= arr[mid]:
@@ -482,7 +477,7 @@ def findLastIndex(arr, start, end, key):
     if end < start:
         return -1
     #mid = math.floor((start + end) / 2)
-    mid = ((start + end) / 2)
+    mid = ((start + end) // 2)
     if key == arr[mid] and (mid == end or arr[mid + 1] != key):
         return mid
     if key < arr[mid]:
@@ -574,12 +569,12 @@ def main14():
 def getMedian(arr):
     size = len(arr)
     arr.sort()
-    return arr[size / 2]
+    return arr[size // 2]
 
 def findMedian(arrFirst, arrSecond):
     sizeFirst = len(arrFirst)
     sizeSecond = len(arrSecond)
-    medianIndex = ((sizeFirst + sizeSecond) + (sizeFirst + sizeSecond) % 2) / 2
+    medianIndex = ((sizeFirst + sizeSecond) + (sizeFirst + sizeSecond) % 2) // 2
     i = 0
     j = 0
     count = 0
@@ -623,8 +618,7 @@ def BinarySearch01(arr):
 def BinarySearch01Util(arr, start, end):
     if end < start:
         return -1
-    #mid = math.floor((start + end) / 2)
-    mid = ((start + end) / 2)
+    mid = ((start + end) // 2)
     
     if '1' == arr[mid] and '0' == arr[mid - 1]:
         return mid
@@ -651,8 +645,7 @@ def BinarySearchRotateArray(arr, key):
 def BinarySearchRotateArrayUtil(arr, start, end, key):
     if end < start:
         return False
-    #mid = math.floor((start + end) / 2)
-    mid = ((start + end) / 2)
+    mid = ((start + end) // 2)
     
     if key == arr[mid]:
         return True
@@ -684,7 +677,7 @@ def FirstRepeated(arr):
         for j in range(i+1, size):
             if arr[i] == arr[j]:
                 return arr[i]
-    return sys.maxint  # can raise exception.
+    return sys.maxsize  # can raise exception.
 
 
 def main18():
@@ -697,8 +690,8 @@ def main18():
 def transformArrayAB1(strval):
     arr = list(strval)
     size = len(arr)
-    #N = math.floor(size / 2)
-    N = (size / 2)
+    #N = math.floor(size // 2)
+    N = (size // 2)
     i = 1
     for i in range(1, N):
         for j in range(i):
@@ -727,7 +720,7 @@ def checkPermutation(str1, str2):
 
 def checkPermutation2(array1, array2):
     size1 = len(array1)
-    size2 = len(array2)        
+    size2 = len(array2)
     if size1 != size2:
         return False
     al = []

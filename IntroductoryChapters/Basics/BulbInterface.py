@@ -67,8 +67,8 @@ class AdvanceBulb(Bulb):
 
 
 b = Bulb()
-print("Bulb Size : " + b.getBulbSize())
-print("bulb is on return : " , b.isOnFun())
+print(("Bulb Size : " + b.getBulbSize()))
+print(("bulb is on return : " , b.isOnFun()))
 b.turnOn()
-print("bulb is on return : " , b.isOnFun())
+print(("bulb is on return : " , b.isOnFun()))
 

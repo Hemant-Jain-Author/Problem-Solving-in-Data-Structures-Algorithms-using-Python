@@ -35,7 +35,7 @@ def numberOfTriangles2(arr):
     return count
 
 arr = [1, 2, 3, 4, 5]
-print numberOfTriangles(arr)
-print numberOfTriangles2(arr)
+print(numberOfTriangles(arr))
+print(numberOfTriangles2(arr))
 # (2,3,4)(2,4,5)(3,4,5)
 # three triangles

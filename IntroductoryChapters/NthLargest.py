@@ -4,7 +4,7 @@ Find second largest element in an array.
 def print2ndLargest(arr):
     size = len(arr)
     if size < 2:
-        print "Invalid Input"
+        print("Invalid Input")
         return
 
     if arr[0] > arr[1]:
@@ -22,7 +22,7 @@ def print2ndLargest(arr):
         elif (arr[i] < second ):
             second = arr[i]
 
-    print "second largest value : ", second
+    print("second largest value : ", second)
 
 """
 Find third largest element in an array.
@@ -30,7 +30,7 @@ Find third largest element in an array.
 def print3rdLargest(arr):
     size = len(arr)
     if size < 3:
-        print "Invalid Input"
+        print("Invalid Input")
         return
 
     first = second = third = -9999999
@@ -47,7 +47,7 @@ def print3rdLargest(arr):
         elif arr[i] < third :
             third = arr[i]
 
-    print "third largest value : ", third
+    print("third largest value : ", third)
 
 
 """

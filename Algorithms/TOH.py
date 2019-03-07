@@ -2,7 +2,7 @@ def TOHUtil(num, source, dest, temp):
     if num < 1:
         return
     TOHUtil(num - 1, source, temp, dest)
-    print("Move disk" , num , "from peg" , source , "to peg" , dest)
+    print(("Move disk" , num , "from peg" , source , "to peg" , dest))
     TOHUtil(num - 1, temp, dest, source)
 
 def TowersOfHanoi(num):

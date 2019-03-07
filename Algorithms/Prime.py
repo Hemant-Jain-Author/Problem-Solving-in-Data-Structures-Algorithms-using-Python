@@ -11,5 +11,5 @@ def isPrime(n):
         i += 1
     return answer
 
-print(isPrime(50))
-print(isPrime(47))
+print((isPrime(50)))
+print((isPrime(47)))

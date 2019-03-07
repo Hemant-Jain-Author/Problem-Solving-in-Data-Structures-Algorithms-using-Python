@@ -29,8 +29,8 @@ def Partition012(arr):
 
 arr = [0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 1]
 Partition012(arr)
-print arr
+print(arr)
 
 arr = [0, 1, 0, 1, 1, 1]
 Partition01(arr)
-print arr
+print(arr)

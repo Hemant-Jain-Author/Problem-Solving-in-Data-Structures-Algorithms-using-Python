@@ -17,7 +17,7 @@ def sortedArrayUtil(first, fSize, fIndex, second, sSize, sIndex,arr, index, flag
         for i in range(sIndex, sSize):
             if second[i] > arr[-1]:
                 arr.append(second[i])
-                print arr # last element should be from second.
+                print(arr) # last element should be from second.
                 sortedArrayUtil(first, fSize, fIndex, second, sSize, i+1,arr, index+1, not flag)
                 arr.pop()
 

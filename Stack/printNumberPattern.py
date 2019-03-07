@@ -52,7 +52,7 @@ def printNumberPattern(expr):
         val += 1
         j +=  1
     
-    print output
+    print(output)
 
 printNumberPattern("DIDD")
 printNumberPattern("DDIDDIID")

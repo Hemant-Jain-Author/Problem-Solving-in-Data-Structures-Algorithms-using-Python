@@ -16,15 +16,15 @@ def MissingValues(arr):
         else:
             missing.append(value)
             value += 1
-    print missing
+    print(missing)
 
 import sys
 def MissingValues2(arr):
     size = len(arr)
     missing = []
     dict = {}
-    minVal = sys.maxint
-    maxVal = -sys.maxint
+    minVal = sys.maxsize
+    maxVal = -sys.maxsize
     for i in range(size):
         dict[arr[i]] = 1
         if minVal > arr[i]:
@@ -34,7 +34,7 @@ def MissingValues2(arr):
     for i in range(minVal, maxVal+1):
         if i not in dict:
             missing.append(i)
-    print missing
+    print(missing)
 
 arr = [4, 5, 3, 8, 6,10]
 MissingValues(arr)

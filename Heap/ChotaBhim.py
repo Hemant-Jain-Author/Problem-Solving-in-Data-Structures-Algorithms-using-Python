@@ -6,7 +6,7 @@ def ChotaBhim(cup):
     cups.sort(reverse=True)
     value = 0
     while time > 0:
-        print cups
+        print(cups)
         value += cups[0]
         cups[0] = math.ceil(cups[0]/2.0)
         index = 0
@@ -18,7 +18,7 @@ def ChotaBhim(cup):
 
         #cups.sort(reverse=True)
         time -= 1
-    print value
+    print(value)
 
 def ChotaBhim2(cups):
     time = 60
@@ -38,7 +38,7 @@ def ChotaBhim2(cups):
             cups[i+1] = temp
             i += 1
         time -= 1
-    print value
+    print(value)
 
 """
 this performance can be further improved by using a heap to store the cups. 
@@ -66,7 +66,7 @@ def JoinRope(ropes):
             index -= 1
         ropes[index] = temp
         #ropes.sort(reverse=True)
-    print total
+    print(total)
 
 """
 Performance of JoinRope can be improved by using insertion into proper possition approach.
@@ -85,7 +85,7 @@ def JoinRope2(ropes):
         value += heapq.heappop(ropes)
         heapq.heappush(ropes, value)
         total += value
-    print total
+    print(total)
 
 """
 ropes = [4, 3, 2, 6]

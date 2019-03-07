@@ -15,7 +15,7 @@ def SubArrayZeroSum(arr):
                 stop = i
         else :
             hs[sum] = i
-    print start+1, stop, maxLength
+    print(start+1, stop, maxLength)
 
 arr = [4, 1, 2, -5, 1, 3, 0, -2, 6]
 SubArrayZeroSum(arr)
@@ -41,7 +41,7 @@ def SubArrayZeroOneEqual(arr):
                 stop = i
         else :
             hs[sum] = i
-    print start+1, stop, maxLength
+    print(start+1, stop, maxLength)
 
 arr = [0, 0, 0, 1, 0, 1, 0]
 SubArrayZeroOneEqual(arr)

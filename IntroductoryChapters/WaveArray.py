@@ -8,6 +8,7 @@ def WaveArray(arr):
     for i in range(0, size - 1, 2):
         swap(arr, i, i+1)
 
+
 def WaveArray2(arr):
     size = len(arr)
     
@@ -20,4 +21,4 @@ def WaveArray2(arr):
 
 arr = [8, 1, 2, 3, 4, 5, 6, 4, 2]
 WaveArray2(arr)
-print arr
+print(arr)

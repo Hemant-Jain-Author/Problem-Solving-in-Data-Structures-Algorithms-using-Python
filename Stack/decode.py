@@ -8,26 +8,28 @@ def decode(text):
         if text[i].isdigit() :
             value = value*10 + int(text[i])
         elif text[i] == '[':
-            if output != "" :
-                stk.append(output)
-                output = ""
             stk.append(value)
             value = 0
             stk.append('[')
         elif text[i] == ']' :
+            st = ""
             temp = stk.pop()
             while temp != '[' :
-                temp += stk.pop()
+                st = temp + st
+                temp = stk.pop()
+
             count = stk.pop()
-            output = ""
+            st2 = ""
             for _ in range(count):
-                output += temp
+                st2 += st
+            stk.append(st2)
         else :
-            output = output + text[i]
+            stk.append(text[i])
         i += 1
+
     while len(stk) != 0:
         output = stk.pop() + output
     return output
-str = '3[Z]'
-# str = '1[x4[y]]13[Z]1[a]'
+#str = '3[Z]'
+str = '1[x4[y]]13[Z]1[a]'
 print(decode(str))

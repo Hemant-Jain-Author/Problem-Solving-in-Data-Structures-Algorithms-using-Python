@@ -19,10 +19,10 @@ def isBSTArray(preorder):
     return True
  
 preorder1 = [30 , 20 , 25 , 70 , 200]
-print ("Is BST Array" , isBSTArray(preorder1) )
+print("Is BST Array" , isBSTArray(preorder1) )
 preorder2 = [30 , 20 , 25 , 10 , 70 , 200]
-print ("Is BST Array" , isBSTArray(preorder2) )
+print("Is BST Array" , isBSTArray(preorder2) )
 preorder3 = [30 , 20 , 35 , 30 ]
-print ("Is BST Array" , isBSTArray(preorder3) )
+print("Is BST Array" , isBSTArray(preorder3) )
 preorder4 = [30 , 20 , 35 , 29 ]
-print ("Is BST Array" , isBSTArray(preorder4) )
+print("Is BST Array" , isBSTArray(preorder4) )

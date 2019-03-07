@@ -135,7 +135,7 @@ def arrayExample():
 def printArray1(arr):
     count = len(arr)
     for i in range(count):
-        print(arr[i])  # , end=' ')
+        print(arr[i] , end=' ')
 
 
 def main8():
@@ -158,7 +158,7 @@ def print2DArray(arr, row, col):
     i = 0
     for i in range(row):
         for j in range(col):
-            print(arr[i][j])  # , end=' ')
+            print(arr[i][j] , end=' ')
 
 
 def main9():
@@ -187,7 +187,7 @@ def BinarySearch(arr, value):
     low = 0
     high = size - 1
     while low <= high:
-        mid = low + (high - low) / 2
+        mid = (low + high) // 2
         if arr[mid] == value:
             return True
         else:
@@ -265,8 +265,7 @@ def main13():
     refStud.rollNo = 1
     refStud.firstName = "john"
     refStud.lastName = "smith"
-    print("Roll No:   Student Name:  ", refStud.rollNo,
-          refStud.firstName, refStud.lastName)
+    print("Roll No:   Student Name:  ", refStud.rollNo, refStud.firstName, refStud.lastName)
 
 
 def main14():
@@ -309,7 +308,7 @@ def main16():
 def printInt2(number, base):
     conversion = "0123456789ABCDEF"
     digit = number % base
-    number = number / base
+    number = number // base
     temp = ""
     if number != 0:
         temp += printInt2(number, base)

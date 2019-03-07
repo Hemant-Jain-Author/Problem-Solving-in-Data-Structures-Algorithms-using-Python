@@ -23,7 +23,7 @@ def sortK(arr, k):
     
     while len(heap) > 0:
         output.append( heapq.heappop(heap))
-    print output
+    print(output)
 
 def sortK2(arr, k):
     size = len(arr)
@@ -42,4 +42,4 @@ def sortK2(arr, k):
 k = 3
 arr = [1, 5, 4, 10, 50, 9]
 sortK2(arr, k)
-print arr
+print(arr)

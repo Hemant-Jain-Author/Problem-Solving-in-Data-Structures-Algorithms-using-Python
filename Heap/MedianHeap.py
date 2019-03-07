@@ -55,5 +55,5 @@ hp = MedianHeap()
 i = 0
 while i < 20:
     hp.insert(arr[i])
-    print("Median after insertion of " , arr[i] , " is  " , hp.getMedian())
+    print(("Median after insertion of " , arr[i] , " is  " , hp.getMedian()))
     i += 1

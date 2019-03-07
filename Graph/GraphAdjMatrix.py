@@ -17,10 +17,10 @@ class Graph(object):
 
     def Print(self):
         for i in range(self.count):
-            print "Vertex " , i , " is connected to : ",
+            print("Vertex " , i , " is connected to : ", end=' ')
             for j in range(self.count):
                 if self.adj[i][j] != 0:
-                    print j ,""
+                    print(j ,"")
             print("")
 
 graph = Graph(4)
@@ -56,9 +56,9 @@ class PriorityQueue(object):
 def printPath(count, previous, dist):
     for i in range(count):
         if dist[i] == sys.maxsize:
-            print("node id" , i , "prev" , previous[i] , "distance : Unreachable")
+            print(("node id" , i , "prev" , previous[i] , "distance : Unreachable"))
         else:
-            print("node id" , i , "prev" , previous[i] , "distance :" , dist[i])
+            print(("node id" , i , "prev" , previous[i] , "distance :" , dist[i]))
 
 
 
@@ -72,7 +72,7 @@ def Dijkstra(gph, source):
     
     pq = PriorityQueue()
     for i in range(gph.count):
-        pq.Add(sys.maxint, i)
+        pq.Add(sys.maxsize, i)
     pq.UpdateKey(0, source)
     
     while pq.Size() != 0:
@@ -98,7 +98,7 @@ def Prims(gph):
     previous[source] = -1
     pq = PriorityQueue()
     for i in range(gph.count):
-        pq.Add(sys.maxint, i)
+        pq.Add(sys.maxsize, i)
     pq.UpdateKey(0, source)
     
     while pq.Size() != 0:
@@ -163,9 +163,9 @@ def HamiltonianCycle(graph):
     added = [False]*graph.count
     added[0] = True
     if HamiltonianCycleUtil(graph, path, added):
-        print "Hamiltonian Cycle found", path
+        print("Hamiltonian Cycle found", path)
         return True
-    print "Hamiltonian Cycle not found"
+    print("Hamiltonian Cycle not found")
     return False
 
 def HamiltonianPathUtil(graph , path, added):
@@ -192,9 +192,9 @@ def HamiltonianPath(graph):
     added = [False]*graph.count
     added[0] = True
     if HamiltonianPathUtil(graph, path, added):
-        print "Hamiltonian Path found", path
+        print("Hamiltonian Path found", path)
         return True
-    print "Hamiltonian Path not found"
+    print("Hamiltonian Path not found")
     return False
 """
 graph = Graph(5)

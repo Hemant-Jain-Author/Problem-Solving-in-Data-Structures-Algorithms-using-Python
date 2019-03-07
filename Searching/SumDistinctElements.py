@@ -13,7 +13,7 @@ def SumDistinct(arr):
             output.append(arr[i])
             sum += arr[i]
     sum += arr[size - 1]
-    print sum
+    print(sum)
 
 arr = [1, 2, 3, 1, 1, 4, 5, 6]
 SumDistinct(arr)

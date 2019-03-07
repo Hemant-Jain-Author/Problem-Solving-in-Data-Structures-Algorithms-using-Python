@@ -156,7 +156,7 @@ def reverseParenthesis(expn):
             openCount += 1
         else:
             closeCount += 1
-    reversal = math.ceil(openCount / 2.0) + math.ceil(closeCount/2.0)
+    reversal = math.ceil(openCount // 2) + math.ceil(closeCount // 2)
     """ when openCount is even closeCount is also even and 
     their half element reversal will make the expression balanced.
     when openCount is odd and also closeCount, then once you had reversed 

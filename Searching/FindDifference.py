@@ -16,7 +16,7 @@ def FindDifference2(arr, value):
     first = 0
     second = 0
     arr.sort()
-    print arr
+    print(arr)
     while first < size and second < size:
         curr = abs(arr[first] - arr[second])
         if curr == value:
@@ -29,7 +29,7 @@ def FindDifference2(arr, value):
     return False
 
 first = [10, 20, 3, 4, 50, 80]
-print(FindDifference(first, 70))
+print((FindDifference(first, 70)))
 first = [10, 20, 3, 4, 50, 80]
 
 print(FindDifference2(first, 47))
@@ -45,7 +45,7 @@ You need to find a pair in array which is closest to given number.
 import sys
 def ClosestPair(arr, value):
     size = len(arr)
-    diff = sys.maxint
+    diff = sys.maxsize
     first = -1
     second = -1
     for i in range(size):
@@ -55,7 +55,7 @@ def ClosestPair(arr, value):
                 diff = curr
                 first = arr[i]
                 second = arr[j]
-    print "closest pair is ::", first, second
+    print("closest pair is ::", first, second)
 
 def ClosestPair2(arr, value):
     size = len(arr)
@@ -63,7 +63,7 @@ def ClosestPair2(arr, value):
     start = 0
     stop = size - 1
     arr.sort()
-    diff = sys.maxint
+    diff = sys.maxsize
     while start < stop:
         curr = (value - (arr[start] + arr[stop]))
         if abs(curr) < diff:
@@ -77,7 +77,7 @@ def ClosestPair2(arr, value):
             start += 1
         else:
             stop -= 1
-    print "closest pair is ::", first, second
+    print("closest pair is ::", first, second)
 
 first = [10, 20, 3, 4, 50, 80]
 ClosestPair(first, 70)

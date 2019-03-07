@@ -14,7 +14,7 @@ def SumPairRestArray(arr):
     while low < high:
         curr = arr[low] + arr[high]
         if curr == value:
-            print arr[low] , arr[high],
+            print(arr[low] , arr[high], end=' ')
             return True
         elif curr < value:
             low += 1
@@ -23,4 +23,4 @@ def SumPairRestArray(arr):
     return False
     
 arr = [1, 2, 4, 8, 16, 15]
-print SumPairRestArray(arr)
+print(SumPairRestArray(arr))

@@ -18,7 +18,7 @@ def MaxMinArr(arr):
 
 arr = [1, 2, 3, 4, 5, 6, 7]
 MaxMinArr(arr)
-print arr
+print(arr)
 
 """
 Without using any auxilary array.
@@ -43,4 +43,4 @@ def MaxMinArr2(arr):
 
 arr = [1, 2, 3, 4, 5, 6, 7]
 MaxMinArr2(arr)
-print arr
+print(arr)

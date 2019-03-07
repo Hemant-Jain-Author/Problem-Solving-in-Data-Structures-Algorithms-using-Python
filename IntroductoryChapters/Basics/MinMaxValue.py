@@ -7,7 +7,7 @@ floatmax = sys.float_info.max
 floatmin = sys.float_info.min
 infi = float("inf")
 print(infi)
-print(maxInt , maxUCode)
+print((maxInt , maxUCode))
 print(floatmax)
 print(floatmin)
 

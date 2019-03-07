@@ -11,7 +11,7 @@ class Graph(object):
         def __init__(self, dst, cst=1):
             self.destination = dst
             self.cost = cst
-            self.next = None
+            self.__next__ = None
 
     def __init__(self, cnt):
         self.count = cnt
@@ -36,10 +36,10 @@ class Graph(object):
         while i < self.count:
             ad = self.array[i]
             if ad != None:
-                print "Vertex " , i , " is connected to : ",
+                print("Vertex " , i , " is connected to : ", end=' ')
                 while ad != None:
-                    print ad.destination ,
-                    ad = ad.next
+                    print(ad.destination, end=' ')
+                    ad = ad.__next__
                 print("")
             i += 1
 
@@ -49,7 +49,7 @@ def DFSUtil(gph, index, visited):
     while head != None:
         if visited[head.destination] == False:
             DFSUtil(gph, head.destination, visited)
-        head = head.next
+        head = head.__next__
 
 def RootVertex(gph):
     count = gph.count
@@ -59,7 +59,7 @@ def RootVertex(gph):
         if visited[i] == False:
             DFSUtil(gph, i, visited)
             retVal = i
-    print "Root vertex is :: ", retVal
+    print("Root vertex is :: ", retVal)
 
 g = Graph(7)
 g.AddDirectedEdge(0, 1)

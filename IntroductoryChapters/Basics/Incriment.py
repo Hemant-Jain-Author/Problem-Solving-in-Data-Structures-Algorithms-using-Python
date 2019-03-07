@@ -5,9 +5,9 @@ def increment1(var):
 
 def main1():
     var = 1
-    print("Value before increment :" , var)
+    print(("Value before increment :" , var))
     increment1(var)
-    print("Value after increment :" , var)
+    print(("Value after increment :" , var))
     
 class MyInt(object):
     def __init__(self):
@@ -18,9 +18,9 @@ def increment2(value):
     
 def main2():
     var = MyInt()
-    print("Value before increment :" , var.value)
+    print(("Value before increment :" , var.value))
     increment2(var)
-    print("Value after increment :" , var.value)  
+    print(("Value after increment :" , var.value))  
         
 
 main1()

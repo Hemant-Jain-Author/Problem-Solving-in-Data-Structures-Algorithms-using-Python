@@ -25,7 +25,7 @@ class HashTableSC(object):
         for pair in self.listArray[index]:
             if pair[0] == key:
                 return pair[1]
-        return sys.maxint
+        return sys.maxsize
         
     def delete(self, key):
         index = self.ComputeHash(key)
@@ -37,9 +37,9 @@ class HashTableSC(object):
 
     def printHashTable(self):
         for i in range(self.tableSize):
-            print("Printing for index value :: " , i , "List of value printing :: ")
+            print(("Printing for index value :: " , i , "List of value printing :: "))
             for keyvalue in self.listArray[i]:
-                print keyvalue,
+                print(keyvalue, end=' ')
             print("")
 
     def find(self, key):
@@ -52,8 +52,8 @@ class HashTableSC(object):
 ht = HashTableSC()
 for i in range(1, 110):
     ht.insert(i,i+1)
-print "get 100 :: " , ht.get(100)
-print "search 100 :: " , ht.find(100)
-print "remove 100 :: " , ht.delete(100)
-print "search 100 :: " , ht.find(100)
-print "remove 100 :: " , ht.delete(100)
+print("get 100 :: " , ht.get(100))
+print("search 100 :: " , ht.find(100))
+print("remove 100 :: " , ht.delete(100))
+print("search 100 :: " , ht.find(100))
+print("remove 100 :: " , ht.delete(100))

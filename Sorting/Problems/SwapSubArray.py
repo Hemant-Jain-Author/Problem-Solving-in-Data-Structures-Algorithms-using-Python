@@ -37,12 +37,12 @@ def checkReverse(arr):
     return True
 
 arr =[1,2,3,6,5,4,7,8,9]
-print checkReverse(arr)
+print(checkReverse(arr))
 arr =[1,2,3,6,5,4]
-print checkReverse(arr)
+print(checkReverse(arr))
 arr =[1,2,3,7,5,4,6,8,9]
-print checkReverse(arr)
+print(checkReverse(arr))
 arr =[1,2,3,4,5,6,7]
-print checkReverse(arr)
+print(checkReverse(arr))
 arr =[7,6,5,4,3,2,1]
-print checkReverse(arr)
+print(checkReverse(arr))

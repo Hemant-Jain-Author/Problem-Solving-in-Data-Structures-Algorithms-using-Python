@@ -28,9 +28,9 @@ class HashTableSC(object):
 
     def printHashTable(self):
         for i in range(self.tableSize):
-            print("Printing for index value :: " , i , "List of value printing :: ")
+            print(("Printing for index value :: " , i , "List of value printing :: "))
             for value in self.listArray[i]:
-                print value,
+                print(value, end=' ')
             print("")
 
     def find(self, value):
@@ -42,7 +42,7 @@ class HashTableSC(object):
 ht = HashTableSC()
 for i in range(100, 110):
     ht.insert(i)
-print "search 100 :: " , ht.find(100)
-print "remove 100 :: " , ht.delete(100)
-print "search 100 :: " , ht.find(100)
-print "remove 100 :: " , ht.delete(100)
+print("search 100 :: " , ht.find(100))
+print("remove 100 :: " , ht.delete(100))
+print("search 100 :: " , ht.find(100))
+print("remove 100 :: " , ht.delete(100))

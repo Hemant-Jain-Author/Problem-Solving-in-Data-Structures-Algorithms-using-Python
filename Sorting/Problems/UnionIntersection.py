@@ -33,8 +33,8 @@ def UnionIntersectionSorted(arr1, arr2):
     while second < size2 :
         union.append(arr2[second])
         second += 1
-    print union
-    print inter
+    print(union)
+    print(inter)
 
 """
 arr1 = [1, 2, 3, 5, 6, 8, 9]

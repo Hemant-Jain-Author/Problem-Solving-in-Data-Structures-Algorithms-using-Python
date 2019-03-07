@@ -1,7 +1,7 @@
 
 def isMaxHeap2(arr):
     size = len(arr)
-    parent = (size/2 - 1)
+    parent = (size//2 - 1)
     while parent >= 0:
         lchild = parent*2 + 1
         rchild = parent*2 + 2
@@ -17,7 +17,7 @@ def isMaxHeap(arr):
     size = len(arr)
     parent = 0
     #last element index size - 1
-    for parent in range(size/2 + 1):
+    for parent in range(size//2 + 1):
         lchild = parent*2 + 1
         rchild = parent*2 + 2
         # heap property check.
@@ -29,7 +29,7 @@ def isMinHeap(arr):
     size = len(arr)
     parent = 0
     #last element index size - 1
-    for parent in range(size/2 + 1):
+    for parent in range(size//2 + 1):
         lchild = parent*2 + 1
         rchild = parent*2 + 2
         # heap property check.
@@ -37,14 +37,13 @@ def isMinHeap(arr):
             return False
     return True
 
-
+def isMinHeap2(arr):
 	size = len(arr)
 	parent = 0
 	#last element index size - 1
-	while(parent <= size/2):
+	while(parent <= size//2):
 		if 2*i + 1 < size:
 			if arr[i] > arr[2*i + 1]:
-                111
 				return False
 		if 2*i + 2 < size:
 			if arr[i] > arr[2*i +2]:
@@ -54,4 +53,4 @@ def isMinHeap(arr):
 
 
 arr = [8,7,6,5,7,5,2.1]
-print isMaxHeap(arr)
+print (isMaxHeap(arr))

@@ -19,4 +19,4 @@ def maxSubArraySum(arr):
   
 # Driver function to check the above function 
 a = [-1, -3, 4, -1, -2, 1, 5]
-print maxSubArraySum(a)
+print(maxSubArraySum(a))

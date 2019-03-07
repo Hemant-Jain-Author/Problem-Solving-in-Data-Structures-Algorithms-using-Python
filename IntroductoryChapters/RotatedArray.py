@@ -7,7 +7,7 @@ def RotationMaxUtil(arr, start, end):
     if end <= start:
         return arr[start]
 
-    mid = (start + end) / 2
+    mid = (start + end) // 2
     if arr[mid] > arr[mid+1]:
         return arr[mid]
 
@@ -26,7 +26,7 @@ def FindRotationMaxUtil(arr, start, end):
     if end <= start:
         return start
 
-    mid = (start + end) / 2
+    mid = (start + end) // 2
     if arr[mid] > arr[mid+1]:
         return mid
 

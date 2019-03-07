@@ -23,12 +23,12 @@ def createTournamentTree(arr):
             links[parent] = links[second]
         last -= 2;
         second -= 2
-    print tree
-    print links
+    print(tree)
+    print(links)
 
     first = tree[0]
-    index = links[0]
-    print first
+    index = links[0] 
+    print (first)
     tree[index] = 99999
     parent = index/2 -1
     if index % 2 == 0 :
@@ -38,7 +38,7 @@ def createTournamentTree(arr):
 
     while parent >= 0:
         tree[parent] = tree [sibling]
-        links[] 
+        links[]
          
 
 

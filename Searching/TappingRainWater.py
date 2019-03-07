@@ -23,14 +23,14 @@ def RainWater(arr):
     
     rightHigh = [0]*size
     rightHigh[size - 1] = max = arr[size - 1]
-    for i in reversed(range(size-1)):
+    for i in reversed(list(range(size-1))):
         if max < arr[i]:
             max = arr[i]
         rightHigh[i] = max
     water = 0
     for i in range(size):
         water += min(leftHigh[i], rightHigh[i]) - arr[i]
-    print water
+    print(water)
 
 
 def RainWater2(arr):
@@ -53,7 +53,7 @@ def RainWater2(arr):
             else:
                 water += rightMax - arr[right]
             right -= 1
-    print water
+    print(water)
 
 arr = [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]
 RainWater(arr)

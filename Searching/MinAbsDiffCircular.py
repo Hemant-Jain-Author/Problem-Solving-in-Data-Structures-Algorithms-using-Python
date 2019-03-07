@@ -5,7 +5,7 @@ Given an array of integers, find minimum absolute difference of adjacent element
 import sys
 def minAbsDiffAdjCircular(arr):
     size = len(arr)
-    diff = sys.maxint
+    diff = sys.maxsize
     if (size < 2): 
         return -1
     
@@ -15,4 +15,4 @@ def minAbsDiffAdjCircular(arr):
     return diff
 
 arr = [5, 29, 18, 51, 11]
-print minAbsDiffAdjCircular(arr)
+print(minAbsDiffAdjCircular(arr))

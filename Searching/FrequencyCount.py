@@ -27,8 +27,8 @@ def frequencyCounts(arr):
                 arr[i] = 0
  
     for i in range(size):
-        print i+1, " : ", abs(arr[i])
-    print ""
+        print(i+1, " : ", abs(arr[i]))
+    print("")
  
 arr1 = [1, 2, 2, 2, 1]
 frequencyCounts(arr1)

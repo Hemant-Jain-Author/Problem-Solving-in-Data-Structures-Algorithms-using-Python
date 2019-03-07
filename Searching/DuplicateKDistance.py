@@ -3,7 +3,7 @@ def DuplicateKDistance(arr, k):
     hs = {}
     for i in range(size):
         if arr[i] in hs and i - hs[arr[i]] <= k:
-            print arr[i], hs[arr[i]], i,
+            print(arr[i], hs[arr[i]], i, end=' ')
             return True
         else :
             hs[arr[i]] = i

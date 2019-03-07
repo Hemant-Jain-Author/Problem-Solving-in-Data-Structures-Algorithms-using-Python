@@ -35,11 +35,11 @@ def indexArray2(arr):
 
 arr = [ 8, -1, 6, 1, 9, 3, 2, 7, 4, -1 ]
 indexArray2( arr)
-print arr
+print(arr)
 
 arr = [20, 11, 10, 9, 5, 13, 16, 2, 14, 17,19, 7, 0, 3, 18, 15, 12, 6, 1, 8, 4]
 indexArray2( arr)
-print arr
+print(arr)
 
 
 """

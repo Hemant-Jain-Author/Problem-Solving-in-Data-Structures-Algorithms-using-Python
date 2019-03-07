@@ -66,7 +66,7 @@ def getNext(index):
 input = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 binaryIndexedTree = createTree(input)
 for i in range(len(input)):
-    print getSum(binaryIndexedTree, i)
-    print getRangeSum(binaryIndexedTree, 0, i)
+    print(getSum(binaryIndexedTree, i))
+    print(getRangeSum(binaryIndexedTree, 0, i))
 
-print getRangeSum(binaryIndexedTree, 8, 8)
+print(getRangeSum(binaryIndexedTree, 8, 8))

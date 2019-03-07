@@ -31,7 +31,7 @@ def maxPathSum(arr1, arr2):
 
 arr1 = [12, 13, 18, 20, 22, 26, 70]
 arr2 = [11, 15, 18, 19, 20, 26, 30, 31]
-print maxPathSum(arr1, arr2)
+print(maxPathSum(arr1, arr2))
 
 # 11, 15, 18, 19, 20, 22, 26, 70
 # 201

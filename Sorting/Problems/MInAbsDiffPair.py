@@ -10,7 +10,7 @@ Using sorting munimum diff pairs will be adjacent to each other.
 import sys
 def MinAbsPairDifferences(arr):
     size = len(arr)
-    minimum = sys.maxint
+    minimum = sys.maxsize
     for i in range(size):
         for j in range(i+1, size):
             minimum = min(abs(arr[i] - arr[j]), minimum)
@@ -29,5 +29,5 @@ def MinAbsPairDifferences2(arr):
  
 # Driver code
 arr = [5, 101, 11, 14, 18, 71]
-print MinAbsPairDifferences(arr)
-print MinAbsPairDifferences2(arr)
+print(MinAbsPairDifferences(arr))
+print(MinAbsPairDifferences2(arr))

@@ -102,6 +102,7 @@ def heapSort(array):
         array[i] = hp.remove()
         i += 1
 
+# Testing Code
 a = [1, 9, 6, 7, 8, 0, 2, 4, 5, 3]
 hp = Heap(a)
 hp.printHeap()

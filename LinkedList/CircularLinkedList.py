@@ -116,14 +116,14 @@ class CircularLinkedList(object):
         self.tail = None
         self.count = 0
 
-    def printList(self):
-        if self.isEmpty():
-            return
-        temp = self.tail.next
-        while temp != self.tail:
+        def printList(self):
+            if self.isEmpty():
+                return
+            temp = self.tail.next
+            while temp != self.tail:
+                print(temp.value, end=' ')
+                temp = temp.next
             print(temp.value, end=' ')
-            temp = temp.next
-        print(temp.value, end=' ')
 
 
 ll = CircularLinkedList()

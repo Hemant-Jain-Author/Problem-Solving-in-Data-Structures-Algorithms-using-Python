@@ -144,6 +144,20 @@ class LinkedList(object):
         else:
             return self.compareListUtil(head1.next, head2.next)
 
+    def  compareList2(self, ll2):
+        head1 = self.head
+        head2 = ll2.head
+
+        while head1 != None and head2 != None:
+            if head1.value != head2.value:
+                return false;
+            head1 = head1.next
+            head2 = head2.next
+
+        if head1 == None and head2 == None:
+            return True
+        return False
+
     def findLength(self):
         curr = self.head
         count = 0
@@ -314,19 +328,25 @@ class LinkedList(object):
 
 
 ll = LinkedList()
-ll.sortedInsert(1)
-ll.sortedInsert(2)
-ll.sortedInsert(3)
-ll.sortedInsert(5)
-ll.sortedInsert(0)
+ll.addHead(1)
+ll.addHead(2)
+ll.addHead(3)
+ll.addHead(4)
 ll.printList()
-ll.makeLoop()
-print(ll.loopDetect())
-print(ll.loopTypeDetect())
-print(ll.loopPointDetect().value)
-print(ll.reverseListLoopDetect())
-print(ll.removeLoop())
-ll.printList()
+
+print(ll.compareList2(ll))
+# ll.sortedInsert(1)
+# ll.sortedInsert(2)
+# ll.sortedInsert(3)
+# ll.sortedInsert(5)
+# ll.sortedInsert(0)
+# ll.printList()
+# ll.makeLoop()
+# print(ll.loopDetect())
+# print(ll.loopTypeDetect())
+# print(ll.loopPointDetect().value)
+# print(ll.reverseListLoopDetect())
+# print(ll.removeLoop())
 
 #=======================================================================
 # print ll.isEmpty()

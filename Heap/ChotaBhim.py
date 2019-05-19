@@ -11,7 +11,7 @@ def ChotaBhim(cup):
         cups[0] = math.ceil(cups[0]/2.0)
         index = 0
         temp = cups[0]
-        while index < size-1 and temp < cups[index + 1]:
+        while index < size-1 and temp sortK< cups[index + 1]:
             cups[index] = cups[index + 1]
             index += 1
         cups[index] = temp

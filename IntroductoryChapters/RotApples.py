@@ -108,3 +108,35 @@ def StepsOfKnight(size, srcX, srcY, dstX, dstY):
     return traversed[dstX - 1][dstY - 1]
 
 #print StepsOfKnight(20,10,10,20,20)
+
+
+
+def findLargestIslandUtil(arr, maxCol, maxRow, currCol, currRow, value, traversed) :
+    if currCol < 0 or currCol >= maxCol or currRow < 0 or currRow >= maxRow :
+        return 0
+    if traversed[currCol][currRow] == 1 or arr[currCol][currRow] != value :
+        return 0
+    traversed[currCol][currRow] = 1
+
+    # each call corresponding to 8 direction.
+    return 1 + findLargestIslandUtil(arr, maxCol, maxRow, currCol - 1, currRow - 1, value, traversed) + findLargestIslandUtil(arr, maxCol, maxRow, currCol - 1, currRow, value, traversed) + findLargestIslandUtil(arr, maxCol, maxRow, currCol - 1, currRow + 1, value, traversed) + findLargestIslandUtil(arr, maxCol, maxRow, currCol, currRow - 1, value, traversed) + findLargestIslandUtil(arr, maxCol, maxRow, currCol, currRow + 1, value, traversed) + findLargestIslandUtil(arr, maxCol, maxRow, currCol + 1, currRow - 1, value, traversed) + findLargestIslandUtil(arr, maxCol, maxRow, currCol + 1, currRow, value, traversed) + findLargestIslandUtil(arr, maxCol, maxRow, currCol + 1, currRow + 1, value, traversed)
+
+def findLargestIsland(arr, maxCol, maxRow):
+    maxVal = 0
+    currVal = 0
+    traversed = [[infi]*maxCol for i in range(maxRow)]
+
+    for i in range(maxCol):
+        for j in range(maxRow):
+            currVal = findLargestIslandUtil(arr, maxCol, maxRow, i, j, arr[i][j], traversed)
+            if currVal > maxVal :
+                maxVal = currVal
+
+    return maxVal
+
+def main19():
+    arr = [[1, 0, 1, 1, 0], [1, 0, 0, 1, 0], [0, 1, 1, 1, 1 ], [ 0, 1, 0, 0, 0], [1, 1, 0, 0, 1]]
+    print("Largest Island : " , findLargestIsland(arr, 5, 5))
+
+main19()
+

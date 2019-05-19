@@ -4,7 +4,7 @@ def SelectionSort(arr):
     size = len(arr)
     for i in range(size - 1):
         maxIndex = 0
-        for j in range(1, size - 1 - i):
+        for j in range(1, size - i):
             if arr[j] > arr[maxIndex]:
                 maxIndex = j
         temp = arr[size - 1 - i]
@@ -24,5 +24,6 @@ def SelectionSort2(arr):
         arr[minIndex] = temp
 
 array = [9, 1, 8, 2, 7, 3, 6, 4, 5]
+array = [4, 5, 3, 2, 6, 7, 1, 8, 9, 10]
 SelectionSort(array)
 print(array)

@@ -20,7 +20,7 @@ class Graph(object):
             print("Vertex " , i , " is connected to : ", end=' ')
             for j in range(self.count):
                 if self.adj[i][j] != 0:
-                    print(j ,"")
+                    print(j ,end =" ")
             print("")
 
 graph = Graph(4)

@@ -70,3 +70,80 @@ print(kthAbsDiff(arr, 5))
 
 arr = [1, 2, 3, 4]
 print(kthAbsDiff2(arr, 5))
+
+def KSmallestProduct(arr, k):
+    size = len(arr)
+    arr.sort()
+    
+    product = 1
+    for i in range(k):
+        product *= arr[i]
+    return product
+
+
+def KSmallestProduct2(arr, k) :
+    size = len(arr)
+    
+    hp = []    
+    for i in range(size):
+        hp.append(arr[i])
+    heapq.heapify(hp)
+    product = 1
+    i = 0
+    while (i < size and i < k) :
+        product *= heapq.heappop(hp)      
+        i += 1
+    return product
+
+
+def KSmallestProduct3(arr, k) :
+    size = len(arr)
+    QuickSelectUtil(arr, 0, size - 1, k)
+    product = 1
+    for i in range(k):
+        product *= arr[i]
+    return product
+
+arr = [ 8, 7, 6, 5, 7, 5, 2, 1 ]
+print("Kth Smallest product:: " , KSmallestProduct(arr, 3))
+arr2 = [8, 7, 6, 5, 7, 5, 2, 1]
+print("Kth Smallest product:: " , KSmallestProduct2(arr2, 3))
+# arr3 = [ 8, 7, 6, 5, 7, 5, 2, 1] 
+# print("Kth Smallest product:: " , KSmallestProduct3(arr3, 3))
+
+
+def PrintLargerHalf(arr) :
+    size = len(arr)
+    arr.sort()
+    i = size // 2
+    while i < size:
+        print(arr[i], end=" ")
+        i += 1
+
+def PrintLargerHalf2(arr) :
+    size = len(arr)
+    hp = []    
+    for i in range(size):
+        hp.append(arr[i])
+    heapq.heapify(hp)
+
+    for i in range(size // 2):
+        heapq.heappop(hp)
+    print(hp)
+
+
+def PrintLargerHalf3(arr):
+    size = len(arr)
+    QuickSelectUtil(arr, 0, size - 1, size // 2)
+    i = size // 2
+    while i < size :
+        print(arr[i])
+        i += 1
+
+arr = [8, 7, 6, 5, 7, 5, 2, 1]
+PrintLargerHalf(arr)
+arr2 = [8, 7, 6, 5, 7, 5, 2, 1]
+PrintLargerHalf2(arr2)
+# arr3 = [8, 7, 6, 5, 7, 5, 2, 1]
+# PrintLargerHalf3(arr3, 8)
+

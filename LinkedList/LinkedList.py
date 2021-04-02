@@ -31,6 +31,7 @@ class LinkedList(object):
         curr = self.head
         if self.head == None:
             self.head = new_node
+            return
         while curr.next != None:
             curr = curr.next
         curr.next = new_node
@@ -150,7 +151,7 @@ class LinkedList(object):
 
         while head1 != None and head2 != None:
             if head1.value != head2.value:
-                return false;
+                return false
             head1 = head1.next
             head2 = head2.next
 

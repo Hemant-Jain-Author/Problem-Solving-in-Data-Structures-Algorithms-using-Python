@@ -1,48 +1,62 @@
 #!/usr/bin/env python
 class HashTableSC(object):
     def __init__(self):
-        self.tableSize = 512
-        self.listArray = [[] for _ in range(self.tableSize)]
+        self.table_size = 512
+        self.adj_list = [[] for _ in range(self.table_size)]
 
-    def ComputeHash(self, key):
+    def compute_hash(self, key):
         #  division method
-        hashValue = key
-        return hashValue % self.tableSize
+        hash_value = key
+        return hash_value % self.table_size
 
-    def resolverFun(self, i):
+    def resolver_fun(self, i):
         return i
 
-    def resolverFun2(self, i):
+    def resolver_fun2(self, i):
         return i * i
 
-    def insert(self, value):
-        index = self.ComputeHash(value)
-        self.listArray[index].append(value)
+    def add(self, value):
+        index = self.compute_hash(value)
+        self.adj_list[index].append(value)
 
-    def delete(self, value):
-        index = self.ComputeHash(value)
-        if value in self.listArray[index]:
-            self.listArray[index].remove(value)
+    def remove(self, value):
+        index = self.compute_hash(value)
+        if value in self.adj_list[index]:
+            self.adj_list[index].remove(value)
             return True
         return False
 
-    def printHashTable(self):
-        for i in range(self.tableSize):
-            print("Printing for index value :: " , i , "List of value printing :: ")
-            for value in self.listArray[i]:
-                print(value, end=' ')
-            print("")
+    def print(self):
+        for i in range(self.table_size):
+            if len(self.adj_list[i]) != 0:
+                print("Value at index ::" , i , "are :: ", end="")
+                for value in self.adj_list[i]:
+                    print(value, end=' ')
+                print("")
 
     def find(self, value):
-        index = self.ComputeHash(value)
-        if value in self.listArray[index]:
+        index = self.compute_hash(value)
+        if value in self.adj_list[index]:
             return True
         return False
 
 ht = HashTableSC()
-for i in range(100, 110):
-    ht.insert(i)
-print("search 100 :: " , ht.find(100))
-print("remove 100 :: " , ht.delete(100))
-print("search 100 :: " , ht.find(100))
-print("remove 100 :: " , ht.delete(100))
+ht.add(1)
+ht.add(2)
+ht.add(3)
+ht.print()
+
+print("find 2 :", ht.find(2))
+
+ht.remove(2)
+print("After deleting node with key 2.")
+print("find 2 :", ht.find(2))
+
+"""
+Value at index :: 1 are :: 1 
+Value at index :: 2 are :: 2 
+Value at index :: 3 are :: 3 
+find 2 : True
+After deleting node with key 2.
+find 2 : False
+"""

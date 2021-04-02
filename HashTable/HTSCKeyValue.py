@@ -1,59 +1,75 @@
-#!/usr/bin/env python
 import sys
+
 class HashTableSC(object):
     def __init__(self):
-        self.tableSize = 512
-        self.listArray = [[] for _ in range(self.tableSize)]
+        self.table_size = 512
+        self.adj_list = [[] for _ in range(self.table_size)]
 
-    def ComputeHash(self, key):
+    def compute_hash(self, key):
         #  division method
-        hashValue = key
-        return hashValue % self.tableSize
+        return key % self.table_size
 
-    def resolverFun(self, i):
+    def resolver_fun(self, i):
         return i
 
-    def resolverFun2(self, i):
+    def resolver_fun2(self, i):
         return i * i
 
-    def insert(self, key, value):
-        index = self.ComputeHash(key)
-        self.listArray[index].append((key, value))
+    def add(self, key, value):
+        index = self.compute_hash(key)
+        self.adj_list[index].append((key, value))
 
     def get(self, key):
-        index = self.ComputeHash(key)
-        for pair in self.listArray[index]:
+        index = self.compute_hash(key)
+        for pair in self.adj_list[index]:
             if pair[0] == key:
                 return pair[1]
         return sys.maxsize
         
-    def delete(self, key):
-        index = self.ComputeHash(key)
-        for pair in self.listArray[index]:
+    def remove(self, key):
+        index = self.compute_hash(key)
+        for pair in self.adj_list[index]:
             if pair[0] == key:
-                self.listArray[index].remove(pair)
+                self.adj_list[index].remove(pair)
             return True
         return False
 
-    def printHashTable(self):
-        for i in range(self.tableSize):
-            print("Printing for index value :: " , i , "List of value printing :: ")
-            for keyvalue in self.listArray[i]:
-                print(keyvalue, end=' ')
-            print("")
+    def print(self):
+        for i in range(self.table_size):
+            if len(self.adj_list[i]) != 0:
+                print("Values at index :: " , i , "are :: ", end = "")
+                for keyvalue in self.adj_list[i]:
+                    print(keyvalue[1], end=' ')
+                print()
 
     def find(self, key):
-        index = self.ComputeHash(key)
-        for pair in self.listArray[index]:
+        index = self.compute_hash(key)
+        for pair in self.adj_list[index]:
             if pair[0] == key:
                 return True
         return False
 
 ht = HashTableSC()
-for i in range(1, 110):
-    ht.insert(i,i+1)
-print("get 100 :: " , ht.get(100))
-print("search 100 :: " , ht.find(100))
-print("remove 100 :: " , ht.delete(100))
-print("search 100 :: " , ht.find(100))
-print("remove 100 :: " , ht.delete(100))
+ht.add(1, 10)
+ht.add(2, 20)
+ht.add(3, 30)
+ht.print()
+
+print("find key 2 : ", ht.find(2))
+print("Value at key 2 : ",ht.get(2))
+
+ht.remove(2)
+print("After deleting node with key 2.")
+print("find key 2 : ", ht.find(2))
+
+"""
+Values at index ::  1 are :: 10 
+Values at index ::  2 are :: 20 
+Values at index ::  3 are :: 30 
+
+find key 2 :  True
+Value at key 2 :  20
+
+After deleting node with key 2.
+find key 2 :  False
+"""

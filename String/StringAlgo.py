@@ -1,36 +1,66 @@
-#!/usr/bin/env python
 from collections import Counter
 import math
 
-def matchExpUtil(exp, text, i, j):
+def match_exp_util(exp, text, i, j):
     if i == len(exp) and j == len(text):
         return True
     if (i == len(exp) and j != len(text)) or (i != len(exp) and j == len(text)):
         return False
     if exp[i] == '?' or exp[i] == text[j]:
-        return matchExpUtil(exp, text, i + 1, j + 1)
+        return match_exp_util(exp, text, i + 1, j + 1)
     if exp[i] == '*':
-        return matchExpUtil(exp, text, i + 1, j) or matchExpUtil(exp, text, i, j + 1) or matchExpUtil(exp, text, i + 1, j + 1)
+        return match_exp_util(exp, text, i + 1, j) or match_exp_util(exp, text, i, j + 1) or match_exp_util(exp, text, i + 1, j + 1)
     return False
 
-def matchExp(exp, text):
-    return matchExpUtil(exp, text, 0, 0)
+def match_exp(exp, text):
+    return match_exp_util(exp, text, 0, 0)
+
+
+def main1():
+    print(match_exp("hello*", "helloworld"))
+    print(match_exp("hello?d", "hellowd"))
+    print(match_exp("hello*hemant", "helloworldfsdfsdfdsfhemant"))
+    print(match_exp("*hemantj", "helloworldfsdfsdfdsfhemant"))
+
+main1()
+
+"""
+True
+True
+True
+False
+"""
 
 # Match if the pattern is present in the source text.
 def match(source, pattern):
-    iSource = 0
-    iPattern = 0
+    index_source = 0
+    index_pattern = 0
     sourceLen = len(source)
     patternLen = len(pattern)
-    while iSource < sourceLen:
-        if source[iSource] == pattern[iPattern]:
-            iPattern += 1
-        if iPattern == patternLen:
+    while index_source < sourceLen:
+        if source[index_source] == pattern[index_pattern]:
+            index_pattern += 1
+        if index_pattern == patternLen:
             return True
-        iSource += 1
+        index_source += 1
     return False
 
-def myStrdup(src):
+
+def main2():
+    print(match("hellofskdlfjsdlfjsldjflksdworld", "helloworld"))
+    print(match("hellod", "hellowd"))
+    print(match("hello*xxxxxxxxxxhemantxxxxxxxxxxxx", "hellnt"))
+    print()
+
+main2()
+
+"""
+True
+False
+True
+"""
+
+def my_strdup(src):
     length = len(src)
     dst = [None] * length
     index = 0
@@ -39,7 +69,7 @@ def myStrdup(src):
         index += 1
     return dst
 
-def isPrime(n):
+def is_prime(n):
     if (n > 1):
         answer = True  
     else:
@@ -52,7 +82,20 @@ def isPrime(n):
         i += 1
     return answer
 
-def myAtoi(text):
+def main3():
+    print("Prime numbers under 10 :: ", end = " ")
+    for i in range(10):
+        if (is_prime(i)):
+            print(i, end = " ")
+    print()
+
+main3()
+
+"""
+Prime numbers under 10 :: 2 3 5 7 
+"""
+
+def my_atoi(text):
     value = 0
     size = len(text)
     i = 0
@@ -61,7 +104,7 @@ def myAtoi(text):
         i += 1
     return value
 
-def isUniqueChar(text):
+def is_unique_char(text):
     charset = set()
     for ch in text:
         if(ch in charset):
@@ -69,7 +112,19 @@ def isUniqueChar(text):
         charset.add(ch)
     return True
 
-def isPermutation(s1, s2):
+
+def main4():
+    is_unique_char("aple")
+    is_unique_char("apple")
+
+main4()
+
+"""
+No duplicate detected!
+Duplicate detected!
+"""
+
+def is_permutation(s1, s2):
     mycounter = Counter()
     if len(s1) != len(s2):
         return False
@@ -87,7 +142,19 @@ def isPermutation(s1, s2):
             mycounter[ch] -= 1
     return (len(mycounter) == 0)
 
-def isPalindrome(text):
+
+def main5():
+    print("is_permutation :", is_permutation("apple", "plepa"))
+    print("is_permutation :", is_permutation("appleb", "plepaa"))
+
+main5()
+
+"""
+is_permutation : True
+is_permutation : False
+"""
+
+def is_palindrome(text):
     i = 0
     j = len(text) - 1
     while i < j and text[i] == text[j]:
@@ -100,6 +167,18 @@ def isPalindrome(text):
         print("String is a Palindrome")
         return True
 
+
+def main6():
+    is_palindrome("hello")
+    is_palindrome("eoloe")
+
+main6()
+
+"""
+String is not a Palindrome
+String is a Palindrome
+"""
+
 def pow(x, n):
     value = int()
     if n == 0:
@@ -111,7 +190,16 @@ def pow(x, n):
         value = pow(x, math.floor(n / 2))
         return (x * value * value)
 
-def myStrcmp(a, b):
+def main7():
+    print(pow(5, 2))
+
+main7()
+
+"""
+25
+"""
+
+def my_strcmp(a, b):
     index = 0
     len1 = len(a)
     len2 = len(b)
@@ -130,7 +218,16 @@ def myStrcmp(a, b):
         return ord(a[index]) - ord(b[index])
 
 
-def reverseString(a):
+def main8():
+    print("StrCmp returns :", my_strcmp("aba", "aas"))
+
+main8()
+
+"""
+StrCmp returns : 1
+"""
+
+def reverse_string(a):
     a = list(a)
     lower = 0
     upper = len(a) - 1
@@ -142,7 +239,7 @@ def reverseString(a):
         upper -= 1
     return "".join(a)
 
-def reverseStringUtil(a, lower, upper):
+def reverse_string_util(a, lower, upper):
     while lower < upper:
         tempChar = a[lower]
         a[lower] = a[upper]
@@ -150,7 +247,7 @@ def reverseStringUtil(a, lower, upper):
         lower += 1
         upper -= 1
 
-def reverseWords(a):
+def reverse_words(a):
     a = list(a)
     length = len(a)
     upper = -1
@@ -158,22 +255,35 @@ def reverseWords(a):
     i = 0
     while i <= length:
         if i == length or a[i] == ' ':
-            reverseStringUtil(a, lower, upper)
+            reverse_string_util(a, lower, upper)
             lower = i + 1
             upper = i
         else:
             upper += 1
         i += 1
-    reverseStringUtil(a, 0, length - 1)
+    reverse_string_util(a, 0, length - 1)
     return "".join(a)
 
-def printAnagram(a):
+
+def main9():
+    print(reverse_string("apple"))
+    print(reverse_words("hello world"))
+
+main9()
+
+"""
+elppa
+world hello
+"""
+
+
+def print_anagram(a):
     n = len(a)
     a = list(a)
-    printAnagramUtil(a, n, n)
+    print_anagram_util(a, n, n)
 
 
-def printAnagramUtil(a, maxindex, n):
+def print_anagram_util(a, maxindex, n):
     if maxindex == 1:
         print("".join(a))
     i = -1
@@ -182,12 +292,26 @@ def printAnagramUtil(a, maxindex, n):
             temp = a[i]
             a[i] = a[maxindex - 1] 
             a[maxindex - 1] = temp
-        printAnagramUtil(a, maxindex - 1, n)
+        print_anagram_util(a, maxindex - 1, n)
         if i != -1:
             temp = a[i] 
             a[i] = a[maxindex - 1] 
             a[maxindex - 1] = temp
         i += 1
+
+def main10():
+    print_anagram("123")
+
+main10()
+
+"""
+123
+213
+321
+231
+132
+312
+"""
 
 def shuffle(text):
     n = math.floor(len(text) / 2)
@@ -213,17 +337,26 @@ def shuffle(text):
         i = i + 2
     return "".join(ar)
 
-def addBinary(first, second):
+def main11():
+    print(shuffle("ABCDE12345"))
+
+main11()
+
+"""
+A1B2C3D4E5
+"""
+
+def add_binary(first, second):
     size1 = len(first)
     size2 = len(second)
-    totalIndex = 0
+    index = 0
     total = []
     if size1 > size2:
         total = [0] * (size1 + 1)
-        totalIndex = size1
+        index = size1
     else:
         total = [0] * (size2 + 1)
-        totalIndex = size2
+        index = size2
     carry = 0
     size1 -= 1
     size2 -= 1
@@ -231,41 +364,32 @@ def addBinary(first, second):
         firstValue = 0
         secondValue = 0 
         if (size1 >= 0):
-            firstValue = ord(first[size1]) - ord('0');
+            firstValue = ord(first[size1]) - ord('0')
         if (size2 >= 0):
-            secondValue = ord(second[size2]) - ord('0');
+            secondValue = ord(second[size2]) - ord('0')
         sumvalue = firstValue + secondValue + carry
         carry = sumvalue >> 1
         sumvalue = sumvalue & 1
         if (sumvalue == 0):
-            total[totalIndex] = '0'  
+            total[index] = '0'  
         else:
-            total[totalIndex] ='1'
-        totalIndex -= 1
+            total[index] ='1'
+        index -= 1
         size1 -= 1
         size2 -= 1
     if (carry == 0):
-        total[totalIndex] = '0'  
+        total[index] = '0'  
     else:
-        total[totalIndex] = '1'
+        total[index] = '1'
     return "".join(total)
 
+def main12():
+    a = "101010"
+    b = "111111"
+    print(add_binary(a, b))
 
-print(isPalindrome("hello"))
-print(isPalindrome("eoloe"))
-print(addBinary("1000", "11111111"))
-print(matchExp("*ello?","zdfsdfsdhellox"))
-print(match("hellappleappleappleapplexxappleapplexxxyyyxyyy","hellappleappleappleapplexxxyyy"))
-for i in range(100):
-   if(isPrime(i)):
-       print(i, end=' ')
-print(myAtoi("1000"))
-print(isUniqueChar("1213456"))
-print(isPermutation("apple","plepa"))
-print(pow(5,2))
-print(myStrcmp("abs", "abs"))
-print(reverseString("apple"))
-print(reverseWords("hello world"))
-print(printAnagram("1234"))
-print(shuffle("ABCDE12345"))
-        
+main12()
+
+"""
+1101001
+"""

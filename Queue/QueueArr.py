@@ -2,7 +2,6 @@
 from collections import deque
 
 class Queue(object):
-    
     def __init__(self):
         self.data = deque([])
 
@@ -13,22 +12,33 @@ class Queue(object):
         value = self.data.popleft()
         return value
     
-    def isEmpty(self):
+    def is_empty(self):
         return (len(self.data) == 0)
 
-    def size(self):
+    def length(self):
         return len(self.data)
     
-    def printQueue(self):
+    def print(self):
         print(self.data)
 
 
 que = Queue()
-i = 0
-while i < 20:
-    que.add(i)
-    i += 1
-i = 0
-while i < 22:
-    print(que.remove())
-    i += 1
+que.add(1)
+que.add(2)
+que.add(3)
+print(que.length())
+print(que.is_empty())
+print(que.remove())
+print(que.remove())
+print(que.remove())
+print(que.length())
+print(que.is_empty())
+"""
+3
+False
+1
+2
+3
+0
+True
+"""

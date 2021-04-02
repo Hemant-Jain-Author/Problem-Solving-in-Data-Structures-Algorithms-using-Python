@@ -12,57 +12,59 @@ class Trie(object):
         self.root = self.Node(' ')
         #  first node with dummy value.
     
-    def Insert(self, token):
+    def insert(self, token):
         if token == None:
             return self.root
-        return self.InsertUtil(self.root, token.lower(), 0)
+        return self.insert_util(self.root, token.lower(), 0)
 
-    def InsertUtil(self, curr, token, index):
+    def insert_util(self, curr, token, index):
         if curr == None:
             curr = self.Node(token[index - 1])
         if index == len(token):
             curr.isLastChar = True
         else:
-            curr.child[ord(token[index]) - ord('a')] = self.InsertUtil(curr.child[ord(token[index]) - ord('a')], token, index + 1)
+            curr.child[ord(token[index]) - ord('a')] = self.insert_util(curr.child[ord(token[index]) - ord('a')], token, index + 1)
         return curr
 
     
-    def Remove(self, token):
+    def remove(self, token):
         if token == None:
             return
         token = token.lower()
-        self.RemoveUtil(self.root, token, 0)
+        self.remove_util(self.root, token, 0)
 
-    def RemoveUtil(self, curr, token, index):
+    def remove_util(self, curr, token, index):
         if curr == None:
             return
         if index == len(token):
             if curr.isLastChar:
                 curr.isLastChar = False
             return
-        self.RemoveUtil(curr.child[ord(token[index]) - ord('a')], token, index + 1)
+        self.remove_util(curr.child[ord(token[index]) - ord('a')], token, index + 1)
     
-    def Find(self, token):
+    def find(self, token):
         if token == None:
             return False
         token = token.lower()
-        return self.FindUtil(self.root, token, 0)
+        return self.find_util(self.root, token, 0)
 
-    def FindUtil(self, curr, token, index):
+    def find_util(self, curr, token, index):
         if curr == None:
             return False
         if index == len(token):
             return curr.isLastChar
-        return self.FindUtil(curr.child[ord(token[index]) - ord('a')], token, index + 1)
+        return self.find_util(curr.child[ord(token[index]) - ord('a')], token, index + 1)
 
 t = Trie()
-a = "apple"
-b = "app"
-c = "appletree"
-d = "tree"
-t.Insert(a)
-t.Insert(d)
-print(t.Find(a))
-print(t.Find(b))
-print(t.Find(c))
-print(t.Find(d))
+t.insert("banana")
+t.insert("apple")
+t.insert("mango")
+
+print("Apple Found :", t.find("apple"))
+print("Grapes Found :", t.find("grapes"))
+print("Banana Found :", t.find("banana"))
+"""
+Apple Found : True
+Grapes Found : False
+Banana Found : True
+"""

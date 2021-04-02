@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from collections import Counter
 
-def isAnagram(str1, str2):
+def is_anagram(str1, str2):
     size1 = len(str1)
     size2 = len(str2)
     if size1 != size2:
@@ -16,16 +16,34 @@ def isAnagram(str1, str2):
             cm[ch] -= 1
     return True
 
-def removeDuplicate(exp):
+first = "hello"
+second = "elloh"
+third = "world"
+print("is_anagram : " , is_anagram(first, second))
+print("is_anagram : " , is_anagram(first, third))
+
+"""
+is_anagram :  True
+is_anagram :  False
+"""
+
+def remove_duplicate(exp):
     hs = set()
-    retexp = ""
+    return_exp = ""
     for ch in exp:
         if (ch in hs) == False:
-            retexp += ch
+            return_exp += ch
             hs.add(ch)
-    return retexp
+    return return_exp
 
-def findMissing(arr, start, end):
+first = "hello"
+print(remove_duplicate(first))
+
+"""
+helo
+"""
+
+def find_missing(arr, start, end):
     hs = set()
     for i in arr:
         hs.add(i)
@@ -36,7 +54,13 @@ def findMissing(arr, start, end):
         curr += 1
     return sys.maxsize
 
-def printRepeating(arr):
+arr = [1, 2, 3, 5, 6, 7, 8, 9, 10]
+print(find_missing(arr, 1, 10))
+"""
+4
+"""
+
+def print_repeating(arr):
     hs = set()
     print("Repeating elements are:", end=' ')
     for val in arr:
@@ -45,7 +69,13 @@ def printRepeating(arr):
         else:
             hs.add(val)
 
-def printFirstRepeating(arr):
+arr = [1, 2, 3, 4, 4, 5, 6, 7, 8, 9, 1]
+print_repeating(arr)
+"""
+Repeating elements are: 4 1 
+"""
+
+def print_first_repeating(arr):
     size = len(arr)
     i = 0
     hs = Counter()
@@ -59,7 +89,14 @@ def printFirstRepeating(arr):
             return arr[i]
         i += 1
 
-def hornerHash(self, key, tableSize):
+arr = [1, 2, 3, 4, 4, 5, 6, 7, 8, 9, 1]
+print_first_repeating(arr)
+
+"""
+First Repeating number is :  1
+"""
+
+def horner_hash(self, key, tableSize):
     size = len(key)
     h = 0
     i = 0
@@ -67,16 +104,3 @@ def hornerHash(self, key, tableSize):
         h = (32 * h + key[i]) % tableSize
         i += 1
     return h
-
-first = "hello"
-second = "elloh"
-third = "world"
-print("isAnagram : " , isAnagram(first, second))
-print("isAnagram : " , isAnagram(first, third))
-print(removeDuplicate(first))
-print(first)
-arr = [1, 2, 3, 5, 6, 7, 8, 9, 10]
-print(findMissing(arr, 1, 10))
-arr1 = [1, 2, 3, 4, 4, 5, 6, 7, 8, 9, 1]
-printRepeating(arr1)
-printFirstRepeating(arr1)

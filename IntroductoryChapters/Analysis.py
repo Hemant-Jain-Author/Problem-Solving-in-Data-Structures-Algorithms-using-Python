@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 import math
 
 def fun1(n):
@@ -150,16 +148,32 @@ def fun13(n):
     return m
 
 
-print("Value of M fun1():" , fun1(100))
-print("Value of M fun2():" , fun2(100))
-print("Value of M fun3():" , fun3(100))
-print("Value of M fun4():" , fun4(100))
-print("Value of M fun5():" , fun5(100))
-print("Value of M fun6():" , fun6(100))
-print("Value of M fun7():" , fun7(100))
-print("Value of M fun8():" , fun8(100))
-print("Value of M fun9():" , fun9(100))
-print("Value of M fun10():" , fun10(100))
-print("Value of M fun11():" , fun11(100))
-print("Value of M fun12():" , fun12(100))
-print("Value of M fun13():" , fun13(100))
+print("N = 100, Number of instructions in fun1():" , fun1(100))
+print("N = 100, Number of instructions in fun2():" , fun2(100))
+print("N = 100, Number of instructions in fun3():" , fun3(100))
+print("N = 100, Number of instructions in fun4():" , fun4(100))
+print("N = 100, Number of instructions in fun5():" , fun5(100))
+print("N = 100, Number of instructions in fun6():" , fun6(100))
+print("N = 100, Number of instructions in fun7():" , fun7(100))
+print("N = 100, Number of instructions in fun8():" , fun8(100))
+print("N = 100, Number of instructions in fun9():" , fun9(100))
+print("N = 100, Number of instructions in fun10():" , fun10(100))
+print("N = 100, Number of instructions in fun11():" , fun11(100))
+print("N = 100, Number of instructions in fun12():" , fun12(100))
+print("N = 100, Number of instructions in fun13():" , fun13(100))
+
+"""
+N = 100, Number of instructions in fun1(): 100
+N = 100, Number of instructions in fun2(): 10000
+N = 100, Number of instructions in fun3(): 4950
+N = 100, Number of instructions in fun4(): 7
+N = 100, Number of instructions in fun5(): 1082
+N = 100, Number of instructions in fun6(): 1000000
+N = 100, Number of instructions in fun7(): 20000
+N = 100, Number of instructions in fun8(): 1000
+N = 100, Number of instructions in fun9(): 1276
+N = 100, Number of instructions in fun10(): 4950
+N = 100, Number of instructions in fun11(): 166650
+N = 100, Number of instructions in fun12(): 10000
+N = 100, Number of instructions in fun13(): 134
+"""

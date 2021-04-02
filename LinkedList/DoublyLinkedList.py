@@ -14,36 +14,36 @@ class DoublyLinkedList(object):
     def size(self):
         return self.count
 
-    def isEmpty(self):
+    def is_empty(self):
         return self.size() == 0
 
     def peek(self):
-        if self.isEmpty():
+        if self.is_empty():
             raise RuntimeError("EmptyListException")
         return self.head.value
 
-    def addHead(self, value):
+    def add_head(self, value):
         self.count += 1
         if self.head == None:
             self.tail = self.head = self.Node(value, None, None)
         else:
-            newNode = self.Node(value, self.head, None)
-            self.head.prev = newNode
-            self.head = newNode
+            new_node = self.Node(value, self.head, None)
+            self.head.prev = new_node
+            self.head = new_node
 
 
-    def addTail(self, value):
-        newNode = self.Node(value, None, None)
+    def add_tail(self, value):
+        new_node = self.Node(value, None, None)
         self.count += 1
         if self.head == None:
-            self.head = self.tail = newNode
+            self.head = self.tail = new_node
         else:
-            newNode.prev = self.tail
-            self.tail.next = newNode
-            self.tail = newNode
+            new_node.prev = self.tail
+            self.tail.next = new_node
+            self.tail = new_node
 
-    def removeHead(self):
-        if self.isEmpty():
+    def remove_head(self):
+        if self.is_empty():
             raise RuntimeError("EmptyListException")
         self.count -= 1
         value = self.head.value
@@ -54,7 +54,7 @@ class DoublyLinkedList(object):
             self.head.prev = None
         return value
 
-    def removeNode(self, key):
+    def remove_node(self, key):
         curr = self.head
         if curr == None:
             return False # empty list
@@ -81,7 +81,7 @@ class DoublyLinkedList(object):
             curr = curr.next
         return False
 
-    def isPresent(self, key):
+    def is_present(self, key):
         temp = self.head
         while temp != None:
             if temp.value == key:
@@ -89,12 +89,12 @@ class DoublyLinkedList(object):
             temp = temp.next
         return False
 
-    def freeList(self):
+    def free_list(self):
         self.head = None
         self.tail = None
         self.count = 0
 
-    def printList(self):
+    def print(self):
         temp = self.head
         while temp != None:
             print(temp.value, end=' ')
@@ -102,7 +102,7 @@ class DoublyLinkedList(object):
         print("")
 
     # SORTED INSERT DECREASING
-    def sortedInsert(self, value):
+    def sorted_insert(self, value):
         temp = self.Node(value)
         curr = self.head
         self.count += 1
@@ -110,10 +110,14 @@ class DoublyLinkedList(object):
             # first element
             self.head = temp
             self.tail = temp
+            return
+            
         if self.head.value <= value: # at the begining  
             temp.next = self.head
             self.head.prev = temp
             self.head = temp
+            return
+
         while curr.next != None and curr.next.value > value: # treversal
             curr = curr.next
         
@@ -129,13 +133,13 @@ class DoublyLinkedList(object):
 
 
     # Reverse a doubly linked List iteratively
-    def reverseList(self):
+    def reverse_list(self):
         curr = self.head
-        tempNode = self.Node()
+        temp_node = self.Node()
         while curr != None:
-            tempNode = curr.next
+            temp_node = curr.next
             curr.next = curr.prev
-            curr.prev = tempNode
+            curr.prev = temp_node
             if curr.prev == None:
                 self.tail = self.head
                 self.head = curr
@@ -144,7 +148,7 @@ class DoublyLinkedList(object):
         return
 
     #   Remove Duplicate 
-    def removeDuplicate(self):
+    def remove_duplicate(self):
         curr = self.head
         deleteMe = self.Node()
         while curr != None:
@@ -157,52 +161,41 @@ class DoublyLinkedList(object):
             else:
                 curr = curr.next
 
-    def copyListReversed(self):
+    def copy_list_reversed(self):
         dll = DoublyLinkedList()
         curr = self.head
         while curr != None:
-            dll.addHead(curr.value)
+            dll.add_head(curr.value)
             curr = curr.next
         return dll
 
-    def copyList(self):
+    def copy_list(self):
         dll = DoublyLinkedList()
         curr = self.head
         while curr != None:
-            dll.addTail(curr.value)
+            dll.add_tail(curr.value)
             curr = curr.next
         return dll
 
 
 
 ll = DoublyLinkedList()
-#=======================================================================
-# ll.addHead(1)
-# ll.addHead(2)
-# ll.addHead(3)
-# ll.addHead(4)
-# ll.addHead(5)
-# ll.addHead(6)
-# ll.printList()
-# ll.removeHead()
-# ll.removeHead()
-# ll.removeHead()
-# ll.removeHead()
-# ll.removeHead()
-# ll.printList()
-# ll.freeList()
-# ll.printList()
-#=======================================================================
-ll.addHead(11)
-ll.addHead(21)
-ll.addHead(31)
-ll.addHead(41)
-ll.addHead(51)
-ll.addHead(61)
-ll.printList()
-ll2 = ll.copyList()
-ll2.printList()
-ll3 = ll.copyListReversed()
-ll3.printList()
-        
-
+ll.add_head(1)
+ll.add_head(2)
+ll.add_head(3)
+ll.add_head(4)
+ll.add_head(5)
+ll.add_head(6)
+ll.print()
+ll.remove_head()
+ll.print()
+ll2 = ll.copy_list()
+ll2.print()
+ll3 = ll.copy_list_reversed()
+ll3.print()
+"""
+6 5 4 3 2 1 
+5 4 3 2 1 
+5 4 3 2 1 
+1 2 3 4 5 
+"""

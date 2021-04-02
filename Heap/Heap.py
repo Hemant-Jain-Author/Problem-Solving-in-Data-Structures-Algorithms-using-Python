@@ -1,118 +1,160 @@
-#!/usr/bin/env python
-
 import math
 
 class Heap:
-    def __init__(self, array=None):
-        self.size = len(array)
-        self.arr = [0] #  we do not use 0 index
-        self.arr.extend(array)     
-        
+    def __init__(self, isMin, array=None):    
+        if array == None:
+            self.arr = [] 
+        else:
+            self.arr = array
+        self.size = len(self.arr)
+        self.is_min_heap = isMin
+
         #  Build Heap operation over array
-        i = math.floor(self.size / 2)
-        while i > 0:
-            self.proclateDown(i)
+        i = self.size // 2
+        while i >= 0:
+            self.proclate_down(i)
             i -= 1
 
+    def comp(self, first, second):
+        if self.is_min_heap == True:
+            return (first - second) > 0 # Min Heap
+        else:
+            return (first - second) < 0 # Max Heap
+
     #  Other Methods.
-    def proclateDown(self, position):
-        lChild = 2 * position
-        rChild = lChild + 1
-        small = -1
-        if lChild <= self.size:
-            small = lChild
-        if rChild <= self.size and self.arr[rChild] - self.arr[lChild] < 0:
-            small = rChild
-        if small != -1 and self.arr[small] - self.arr[position] < 0:
-            temp = self.arr[position]
-            self.arr[position] = self.arr[small]
-            self.arr[small] = temp
-            self.proclateDown(small)
+    def proclate_down(self, parent):
+        left_child = 2 * parent +  1
+        right_child = left_child + 1
+        child = -1
+        if left_child < self.size:
+            child = left_child
+        if right_child < self.size and self.comp(self.arr[left_child], self.arr[right_child]):
+            child = right_child
 
-    def proclateUp(self, position):
-        parent = math.floor(position / 2)
-        if parent == 0:
+        if child != -1 and self.comp(self.arr[parent], self.arr[child]):
+            temp = self.arr[parent]
+            self.arr[parent] = self.arr[child]
+            self.arr[child] = temp
+            self.proclate_down(child)
+
+    def proclate_up(self, child):
+        parent = (child - 1)// 2
+        if parent < 0:
             return
-        if self.arr[parent].compareTo(self.arr[position]) < 0:
-            temp = self.arr[position]
-            self.arr[position] = self.arr[parent]
-            self.arr[parent] = temp
-            self.proclateUp(parent)
 
-    def add(self, value):
+        if self.comp(self.arr[parent], (self.arr[child])):
+            temp = self.arr[child]
+            self.arr[child] = self.arr[parent]
+            self.arr[parent] = temp
+            self.proclate_up(parent)
+
+    def add(self, value):    
+        self.arr.append(value)
+        self.proclate_up(self.size)
         self.size += 1
-        self.arr[self.size] = value
-        self.proclateUp(self.size)
+        
 
     def remove(self):
         if self.size == 0:
             raise RuntimeError("Heap is empty.")
-        value = self.arr[1]
-        self.arr[1] = self.arr[self.size]
+        value = self.arr[0]
+        self.arr[0] = self.arr[self.size - 1]
+        self.proclate_down(0)
         self.size -= 1
-        self.proclateDown(1)
         return value
 
-    def printHeap(self):
-        print(self.arr[1:], end=' ')
-        print("")
+    def print(self):
+        print(self.arr)
 
-    def isEmpty(self):
+    def is_empty(self):
         return (self.size == 0)
 
     def peek(self):
         if self.size() == 0:
             raise RuntimeError("Heap is empty.")        
-        return self.arr[1]
+        return self.arr[0]
 
-    def IsMinHeap(self, arr):
-        size = len(arr)
-        i = 0
-        while(i<= size/2):
-            if 2*i + 1 < size:
-                if arr[i] > arr[2*i + 1]:
-                    return False
-            if 2*i + 2 < size:
-                if arr[i] > arr[2*i +2]:
-                    return False
-            i += 1
-        return True
-    
-    
-    def IsMaxHeap(self, arr):
-        size = len(arr)
-        i = 0
-        #last element index size - 1
-        while(i<= size/2):
-            if 2*i + 1 < size:
-                if arr[i] < arr[2*i + 1]:
-                    return False
-            if 2*i + 2 < size:
-                if arr[i] < arr[2*i +2]:
-                    return False
-            i += 1
-        return True
+def is_min_heap(arr):
+    size = len(arr)
+    parent = 0
+    while(parent <= size/2):
+        left_child = parent * 2 + 1
+        right_child = parent * 2 + 2
+        # heap property check.
+        if (((left_child < size) and (arr[parent] > arr[left_child])) or ((right_child < size) and (arr[parent] > arr[right_child]))):
+            return False
+        parent += 1
+    return True
 
 
+def is_max_heap(arr):
+    size = len(arr)
+    parent = 0
+    #last element index size - 1
+    while(parent<= size/2):
+        left_child = parent * 2 + 1
+        right_child = left_child + 1
+        # heap property check.
+        if (((left_child < size) and (arr[parent] < arr[left_child])) or ((right_child < size) and (arr[parent] < arr[right_child]))):
+            return False
+        parent += 1
+    return True
 
-def heapSort(array):
-    hp = Heap(array)
+def heap_sort(array):
+    hp = Heap(False, array)
     i = 0
-    while i < len(array):
-        array[i] = hp.remove()
+    size = len(array)
+    while i < size:
+        array[size - i -1] = hp.remove()
         i += 1
 
 # Testing Code
 a = [1, 9, 6, 7, 8, 0, 2, 4, 5, 3]
-hp = Heap(a)
-hp.printHeap()
-b = hp.arr[1:]
-print(hp.IsMinHeap(b))
-print(hp.IsMinHeap(a))
+hp2 = Heap(True)
+for i in range(len(a)) :
+    hp2.add(a[i])
+hp2.print()
+i = 0
+while i < len(a):
+    print(hp2.remove(), end=' ')
+    i += 1
+print()
+
+hp = Heap(True, a)
+hp.print()
 i = 0
 while i < len(a):
     print(hp.remove(), end=' ')
     i += 1
 print("")
-heapSort(a)
-print(a, end=' ')
+
+a = [1, 9, 6, 7, 8, 0, 2, 4, 5, 3]
+hp = Heap(False, a)
+hp.print()
+i = 0
+while i < len(a):
+    print(hp.remove(), end=' ')
+    i += 1
+print("")
+
+a = [1, 9, 6, 7, 8, 0, 2, 4, 5, 3]
+heap_sort(a)
+print(a)
+
+a = [1, 2, 3, 4, 5, 6, 7, 8]
+print(is_min_heap(a))
+b = [8, 7, 6, 5, 4, 3, 2, 1]
+print(is_max_heap(b))
+
+
+"""
+[0, 3, 1, 5, 4, 6, 2, 9, 7, 8]
+0 1 2 3 4 5 6 7 8 9 
+[0, 3, 1, 4, 8, 6, 2, 7, 5, 9]
+0 1 2 3 4 5 6 7 8 9 
+[9, 8, 6, 7, 3, 0, 2, 4, 5, 1]
+9 8 7 6 5 4 3 2 1 0 
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+True
+True 
+"""

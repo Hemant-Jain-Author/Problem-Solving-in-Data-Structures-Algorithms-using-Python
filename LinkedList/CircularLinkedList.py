@@ -12,15 +12,15 @@ class CircularLinkedList(object):
     def size(self):
         return self.count
 
-    def isEmpty(self):
+    def is_empty(self):
         return self.tail == None
 
     def peek(self):
-        if self.isEmpty():
+        if self.is_empty():
             raise RuntimeError("EmptyListException")
         return self.tail.next.value
 
-    def addTail(self, value):
+    def add_tail(self, value):
         temp = self.Node(value, None)
         self.count += 1
         if self.tail == None:
@@ -32,7 +32,7 @@ class CircularLinkedList(object):
             self.tail = temp
         
 
-    def addHead(self, value):
+    def add_head(self, value):
         temp = self.Node(value, None)
         self.count += 1
         if self.tail == None:
@@ -42,8 +42,8 @@ class CircularLinkedList(object):
             temp.next = self.tail.next
             self.tail.next = temp
 
-    def removeHead(self):
-        if self.isEmpty():
+    def remove_head(self):
+        if self.is_empty():
             raise RuntimeError("EmptyListException")
         self.count -= 1
         value = self.tail.next.value
@@ -53,8 +53,8 @@ class CircularLinkedList(object):
             self.tail.next = self.tail.next.next
         return value
 
-    def removeNode(self, key):
-        if self.isEmpty():
+    def remove_node(self, key):
+        if self.is_empty():
             return False
         self.count -= 1
         curr = self.tail.next
@@ -78,31 +78,31 @@ class CircularLinkedList(object):
             curr = curr.next
         return False
 
-    def copyListReversed(self):
+    def copy_list_reversed(self):
         cl = CircularLinkedList()
         curr = self.tail.next
         head = curr
         if curr != None:
-            cl.addHead(curr.value)
+            cl.add_head(curr.value)
             curr = curr.next
         while curr != head:
-            cl.addHead(curr.value)
+            cl.add_head(curr.value)
             curr = curr.next
         return cl
 
-    def copyList(self):
+    def copy_list(self):
         cl = CircularLinkedList()
         curr = self.tail.next
         head = curr
         if curr != None:
-            cl.addTail(curr.value)
+            cl.add_tail(curr.value)
             curr = curr.next
         while curr != head:
-            cl.addTail(curr.value)
+            cl.add_tail(curr.value)
             curr = curr.next
         return cl
 
-    def isPresent(self, data):
+    def is_present(self, data):
         temp = self.tail
         i = 0
         while i < self.size():
@@ -112,33 +112,38 @@ class CircularLinkedList(object):
             i += 1
         return False
 
-    def freeList(self):
+    def free_list(self):
         self.tail = None
         self.count = 0
 
-        def printList(self):
-            if self.isEmpty():
-                return
-            temp = self.tail.next
-            while temp != self.tail:
-                print(temp.value, end=' ')
-                temp = temp.next
+    def print(self):
+        if self.is_empty():
+            return
+        temp = self.tail.next
+        while temp != self.tail:
             print(temp.value, end=' ')
+            temp = temp.next
+        print(temp.value, end=' ')
 
 
 ll = CircularLinkedList()
-ll.addHead(1)
-ll.addHead(2)
-ll.addHead(3)
-ll.addHead(1)
-ll.addHead(2)
-ll.addHead(3)
+ll.add_head(1)
+ll.add_head(2)
+ll.add_head(3)
+ll.add_head(1)
+ll.add_head(2)
+ll.add_head(3)
 print(ll.size())
-ll.printList()
+ll.print()
 print()
-ll2 = ll.copyList()
-ll2.printList()
+ll2 = ll.copy_list()
+ll2.print()
 print()
-ll3 = ll.copyListReversed()
-ll3.printList()
-
+ll3 = ll.copy_list_reversed()
+ll3.print()
+"""
+6
+3 2 1 3 2 1 
+3 2 1 3 2 1 
+1 2 3 1 2 3
+"""

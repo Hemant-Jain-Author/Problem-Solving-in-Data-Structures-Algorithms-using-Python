@@ -1,11 +1,11 @@
 #!/usr/bin/env python
-def QuickSelect(array, k):
+def quick_select(array, k):
     arr = array
     size = len(arr)
-    QuickSelectUtil(arr, 0, size-1, k)
+    quick_select_util(arr, 0, size-1, k)
     return arr[k-1]
 
-def QuickSelectUtil(arr, lower, upper, k):
+def quick_select_util(arr, lower, upper, k):
     if upper <= lower:
         return
     pivot = arr[lower]
@@ -22,11 +22,11 @@ def QuickSelectUtil(arr, lower, upper, k):
     
     if k < upper: 
         # pivot -1 is the upper for left sub array.
-        QuickSelectUtil(arr, start, upper - 1, k)
+        quick_select_util(arr, start, upper - 1, k)
     
     if k > upper:
         #  pivot + 1 is the lower for right sub array.
-        QuickSelectUtil(arr, upper + 1, stop, k)   
+        quick_select_util(arr, upper + 1, stop, k)   
           
 def swap(arr, first, second):
     temp = arr[first]
@@ -35,6 +35,9 @@ def swap(arr, first, second):
     
 
 array = [3, 4, 2, 1, 6, 5, 7, 8, 10, 9]
-value = QuickSelect(array, 5)
-print("value at index 5 is : " , value, end=' ')
+value = quick_select(array, 5)
+print("value at index 5 is : " , value)
 
+"""
+value at index 5 is :  5
+"""

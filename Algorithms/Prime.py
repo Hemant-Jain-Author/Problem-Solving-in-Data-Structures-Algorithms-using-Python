@@ -1,4 +1,4 @@
-def isPrime(n):
+def is_prime(n):
     if(n > 1):
         answer = True
     else:
@@ -11,5 +11,10 @@ def isPrime(n):
         i += 1
     return answer
 
-print(isPrime(50))
-print(isPrime(47))
+print(is_prime(10))
+print(is_prime(11))
+
+"""
+False
+True
+"""

@@ -3,56 +3,56 @@ class TST(object):
     class Node(object):
         def __init__(self, d, isLast = False):
             self.data = d
-            self.isLastChar = isLast
+            self.is_last_char = isLast
             self.left = self.equal = self.right = None
 
     def __init__(self):
         self.root = None
         
     def insert(self, word):
-        self.root = self.insertUtil(self.root, word, 0)
+        self.root = self.insert_util(self.root, word, 0)
 
-    def insertUtil(self, curr, word, wordIndex):
+    def insert_util(self, curr, word, word_index):
         if curr == None:
-            curr = self.Node(word[wordIndex])
-        if word[wordIndex] < curr.data:
-            curr.left = self.insertUtil(curr.left, word, wordIndex)
-        elif word[wordIndex] > curr.data:
-            curr.right = self.insertUtil(curr.right, word, wordIndex)
+            curr = self.Node(word[word_index])
+        if word[word_index] < curr.data:
+            curr.left = self.insert_util(curr.left, word, word_index)
+        elif word[word_index] > curr.data:
+            curr.right = self.insert_util(curr.right, word, word_index)
         else:
-            if wordIndex < len(word) - 1:
-                curr.equal = self.insertUtil(curr.equal, word, wordIndex + 1)
+            if word_index < len(word) - 1:
+                curr.equal = self.insert_util(curr.equal, word, word_index + 1)
             else:
-                curr.isLastChar = True
+                curr.is_last_char = True
         return curr
 
-    def findUtil(self, curr, word, wordIndex):
+    def find_util(self, curr, word, word_index):
         if curr == None:
             return False
-        if word[wordIndex] < curr.data:
-            return self.findUtil(curr.left, word, wordIndex)
-        elif word[wordIndex] > curr.data:
-            return self.findUtil(curr.right, word, wordIndex)
+        if word[word_index] < curr.data:
+            return self.find_util(curr.left, word, word_index)
+        elif word[word_index] > curr.data:
+            return self.find_util(curr.right, word, word_index)
         else:
-            if wordIndex == len(word) - 1:
-                return curr.isLastChar
-            return self.findUtil(curr.equal, word, wordIndex + 1)
+            if word_index == len(word) - 1:
+                return curr.is_last_char
+            return self.find_util(curr.equal, word, word_index + 1)
 
     def find(self, word):
-        ret = self.findUtil(self.root, word, 0)
-        print(word , " :: ", end=' ')
-        if ret:
-            print(" Found ")
-        else:
-            print("Not Found ")
+        ret = self.find_util(self.root, word, 0)
         return ret
 
-tt = TST()
-tt.insert("banana")
-tt.insert("apple")
-tt.insert("mango")
-print("Search apple, banana, grapes and mango :")
-tt.find("apple")
-tt.find("banana")
-tt.find("mango")
-tt.find("grapes")
+t = TST()
+t.insert("banana")
+t.insert("apple")
+t.insert("mango")
+
+print("Apple Found :", t.find("apple"))
+print("Grapes Found :", t.find("grapes"))
+print("Banana Found :", t.find("banana"))
+
+"""
+Apple Found : True
+Grapes Found : False
+Banana Found : True
+"""

@@ -14,37 +14,37 @@ class LinkedList(object):
     def length(self):
         return self.size
 
-    def isEmpty(self):
+    def is_empty(self):
         return self.size == 0
 
     def peek(self):
-        if self.isEmpty():
+        if self.is_empty():
             raise RuntimeError("EmptyListException")
         return self.head.value
 
-    def addHead(self, value):
+    def add_head(self, value):
         self.head = self.Node(value, self.head)
         self.size += 1
 
-    def addTail(self, value):
-        newNode = self.Node(value, None)
+    def add_tail(self, value):
+        new_node = self.Node(value, None)
         curr = self.head
         if self.head == None:
-            self.head = newNode
+            self.head = new_node
         while curr.next != None:
             curr = curr.next
-        curr.next = newNode
+        curr.next = new_node
         self.size += 1
 
-    def removeHead(self):
-        if self.isEmpty():
+    def remove_head(self):
+        if self.is_empty():
             raise RuntimeError("EmptyListException")
         value = self.head.value
         self.head = self.head.next
         self.size -= 1
         return value
 
-    def isPresent(self, data):
+    def is_present(self, data):
         temp = self.head
         while temp != None:
             if temp.value == data:
@@ -52,9 +52,9 @@ class LinkedList(object):
             temp = temp.next
         return False
 
-    def deleteNode(self, delValue):
+    def delete_node(self, delValue):
         temp = self.head
-        if self.isEmpty():
+        if self.is_empty():
             return False
         if delValue == self.head.value:
             self.head = self.head.next
@@ -68,7 +68,7 @@ class LinkedList(object):
             temp = temp.next
         return False
 
-    def deleteNodes(self, delValue):
+    def delete_nodes(self, delValue):
         currNode = self.head
         while currNode != None and currNode.value == delValue:
             # first node 
@@ -76,25 +76,25 @@ class LinkedList(object):
             currNode = self.head
             self.size -= 1
         while currNode != None:
-            nextNode = currNode.next
-            if nextNode != None and nextNode.value == delValue:
-                currNode.next = nextNode.next
+            next_node = currNode.next
+            if next_node != None and next_node.value == delValue:
+                currNode.next = next_node.next
                 self.size -= 1
             else:
-                currNode = nextNode
+                currNode = next_node
 
-    def reverseRecurseUtil(self, currentNode, nextNode):
+    def reverse_recurse_util(self, currentNode, next_node):
         if currentNode == None:
             return None
         if currentNode.next == None:
-            currentNode.next = nextNode
+            currentNode.next = next_node
             return currentNode
-        ret = self.reverseRecurseUtil(currentNode.next, currentNode)
-        currentNode.next = nextNode
+        ret = self.reverse_recurse_util(currentNode.next, currentNode)
+        currentNode.next = next_node
         return ret
 
-    def reverseRecurse(self):
-        self.head = self.reverseRecurseUtil(self.head, None)
+    def reverse_recurse(self):
+        self.head = self.reverse_recurse_util(self.head, None)
 
     def reverse(self):
         curr = self.head
@@ -106,45 +106,45 @@ class LinkedList(object):
             curr = nextval
         self.head = prev
 
-    def CopyListReversed(self):
-        tempNode = None
+    def copy_list_reversed(self):
+        temp_node = None
         curr = self.head
         while curr != None:
-            tempNode2 = self.Node(curr.value, tempNode)
+            temp_node2 = self.Node(curr.value, temp_node)
             curr = curr.next
-            tempNode = tempNode2
+            temp_node = temp_node2
         ll2 = LinkedList()
-        ll2.head = tempNode
+        ll2.head = temp_node
         return ll2
 
-    def copyList(self):
+    def copy_list(self):
         curr = self.head
         if curr == None:
             return None
         tailNode = headNode = self.Node(curr.value, None)
         curr = curr.next
         while curr != None:
-            tempNode = self.Node(curr.value, None)
-            tailNode.next = tempNode
-            tailNode = tempNode
+            temp_node = self.Node(curr.value, None)
+            tailNode.next = temp_node
+            tailNode = temp_node
             curr = curr.next
         ll2 = LinkedList()
         ll2.head = headNode
         return ll2
 
 
-    def compareList(self, ll):
-        return self.compareListUtil(self.head, ll.head)
+    def compare_list(self, ll):
+        return self.compare_list_util(self.head, ll.head)
 
-    def compareListUtil(self, head1, head2):
+    def compare_list_util(self, head1, head2):
         if head1 == None and head2 == None:
             return True
         elif (head1 == None) or (head2 == None) or (head1.value != head2.value):
             return False
         else:
-            return self.compareListUtil(head1.next, head2.next)
+            return self.compare_list_util(head1.next, head2.next)
 
-    def  compareList2(self, ll2):
+    def  compare_list2(self, ll2):
         head1 = self.head
         head2 = ll2.head
 
@@ -158,7 +158,7 @@ class LinkedList(object):
             return True
         return False
 
-    def findLength(self):
+    def length(self):
         curr = self.head
         count = 0
         while curr != None:
@@ -166,7 +166,7 @@ class LinkedList(object):
             curr = curr.next
         return count
 
-    def nthNodeFromBegining(self, index):
+    def nth_node_from_begining(self, index):
         if index > self.length() or index < 1:
             raise RuntimeError("IndexOutOfRange")
         count = 1
@@ -177,13 +177,13 @@ class LinkedList(object):
         return curr.value
 
 
-    def nthNodeFromEnd(self, index):
+    def nth_node_from_end(self, index):
         if self.size != 0 and self.size < index:
             raise RuntimeError("IndexOutOfRange")
         startIndex = self.size - index + 1
-        return self.nthNodeFromBegining(startIndex)
+        return self.nth_node_from_begining(startIndex)
 
-    def nthNodeFromEnd2(self, index):
+    def nth_node_from_end2(self, index):
         count = 1
         forward = self.head
         curr = self.head
@@ -197,7 +197,7 @@ class LinkedList(object):
             curr = curr.next
         return curr.value
 
-    def findIntersection(self, head, head2):
+    def find_intersection(self, head, head2):
         l1 = 0
         l2 = 0
         tempHead = head
@@ -228,26 +228,26 @@ class LinkedList(object):
         self.head = None
         self.size = 0
 
-    def printList(self):
+    def print(self):
         temp = self.head
         while temp != None:
             print(temp.value, end=' ')
             temp = temp.next
         print("")
 
-    def sortedInsert(self, value):
-        newNode = self.Node(value, None)
+    def sorted_insert(self, value):
+        new_node = self.Node(value, None)
         curr = self.head
         if curr == None or curr.value > value:
-            newNode.next = self.head
-            self.head = newNode
+            new_node.next = self.head
+            self.head = new_node
             return
         while curr.next != None and curr.next.value < value:
             curr = curr.next
-        newNode.next = curr.next
-        curr.next = newNode
+        new_node.next = curr.next
+        curr.next = new_node
 
-    def removeDuplicate(self):
+    def remove_duplicate(self):
         curr = self.head
         while curr != None:
             if curr.next != None and curr.value == curr.next.value:
@@ -255,7 +255,7 @@ class LinkedList(object):
             else:
                 curr = curr.next
 
-    def makeLoop(self):
+    def make_loop(self):
         temp = self.head
         while temp != None:
             if temp.next == None:
@@ -263,7 +263,7 @@ class LinkedList(object):
                 return
             temp = temp.next
 
-    def loopDetect(self):
+    def loop_detect(self):
         slowPtr = fastPtr = self.head
         while fastPtr.next != None and fastPtr.next.next != None:
             slowPtr = slowPtr.next
@@ -274,7 +274,7 @@ class LinkedList(object):
         print("loop not found")
         return False
 
-    def reverseListLoopDetect(self):
+    def reverse_list_loop_detect(self):
         tempHead = self.head
         self.reverse()
         if tempHead == self.head:
@@ -286,7 +286,7 @@ class LinkedList(object):
             print("loop not found")
             return False
 
-    def loopTypeDetect(self):
+    def loop_type_detect(self):
         slowPtr = fastPtr = self.head
         while fastPtr.next != None and fastPtr.next.next != None:
             if self.head == fastPtr.next or self.head == fastPtr.next.next:
@@ -300,7 +300,7 @@ class LinkedList(object):
         print("loop not found")
         return 0
 
-    def loopPointDetect(self):
+    def loop_point_detect(self):
         slowPtr = fastPtr = self.head
         while fastPtr.next != None and fastPtr.next.next != None:
             slowPtr = slowPtr.next
@@ -309,8 +309,8 @@ class LinkedList(object):
                 return slowPtr
         return None
 
-    def removeLoop(self):
-        loopPoint = self.loopPointDetect()
+    def remove_loop(self):
+        loopPoint = self.loop_point_detect()
         if loopPoint == None:
             raise RuntimeError("LoopNotFound")
         firstPtr = self.head
@@ -328,60 +328,64 @@ class LinkedList(object):
 
 
 ll = LinkedList()
-ll.addHead(1)
-ll.addHead(2)
-ll.addHead(3)
-ll.addHead(4)
-ll.printList()
+ll.add_head(1)
+ll.add_head(2)
+ll.add_head(3)
+ll.add_head(4)
+ll.print()
 
-print(ll.compareList2(ll))
-# ll.sortedInsert(1)
-# ll.sortedInsert(2)
-# ll.sortedInsert(3)
-# ll.sortedInsert(5)
-# ll.sortedInsert(0)
-# ll.printList()
-# ll.makeLoop()
-# print(ll.loopDetect())
-# print(ll.loopTypeDetect())
-# print(ll.loopPointDetect().value)
-# print(ll.reverseListLoopDetect())
-# print(ll.removeLoop())
+print(ll.compare_list2(ll))
+"""
+4 3 2 1 
+True
+"""
+# ll.sorted_insert(1)
+# ll.sorted_insert(2)
+# ll.sorted_insert(3)
+# ll.sorted_insert(5)
+# ll.sorted_insert(0)
+# ll.print()
+# ll.make_loop()
+# print(ll.loop_detect())
+# print(ll.loop_type_detect())
+# print(ll.loop_point_detect().value)
+# print(ll.reverse_list_loop_detect())
+# print(ll.remove_loop())
 
 #=======================================================================
-# print ll.isEmpty()
+# print ll.is_empty()
 #=======================================================================
 #=======================================================================
-# print ll.isEmpty()
+# print ll.is_empty()
 # print ll.peek()
-# print ll.removeHead()
-# ll.printList()
+# print ll.remove_head()
+# ll.print()
 #=======================================================================
 #=======================================================================
-# print ll.isPresent(5)
-# print ll.isPresent(2)
-# ll.removeDuplicate()
-# print ll.isEmpty()
-# ll.deleteNodes(3)
+# print ll.is_present(5)
+# print ll.is_present(2)
+# ll.remove_duplicate()
+# print ll.is_empty()
+# ll.delete_nodes(3)
 #=======================================================================
 #=======================================================================
 # ll.reverse()
-# ll.printList()
-# ll.reverseRecurse()
-# ll.printList()
+# ll.print()
+# ll.reverse_recurse()
+# ll.print()
 #=======================================================================
 #=======================================================================
-# ll3 = ll.CopyListReversed()
-# ll3.printList()
+# ll3 = ll.copy_list_reversed()
+# ll3.print()
 #  
-# ll2 = ll.copyList()
-# ll2.printList()
-# print ll.findLength()
+# ll2 = ll.copy_list()
+# ll2.print()
+# print ll.length()
 #=======================================================================
 #=======================================================================
-# print ll.nthNodeFromBegining(2)
-# print ll.nthNodeFromEnd(2)
-# print ll.nthNodeFromEnd2(2)
+# print ll.nth_node_from_begining(2)
+# print ll.nth_node_from_end(2)
+# print ll.nth_node_from_end2(2)
 #=======================================================================
 
       

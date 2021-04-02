@@ -1,32 +1,30 @@
 #!/usr/bin/env python
-class StringTree(object):
+class string_tree(object):
     class Node(object):
         def __init__(self, v, cnt=1, l=None, r=None):
             self.value = v
             self.count = cnt
-            self.lChild = l
-            self.rChild = r
+            self.lchild = l
+            self.rchild = r
     
     def __init__(self):
         self.root = None
 
     # Other Methods. 
-    def printTree(self):
-        self.printTreeUtil(self.root)
+    def print_tree(self):
+        self.print_tree_util(self.root)
 
-    def printTreeUtil(self, curr):
+    def print_tree_util(self, curr):
         #  pre order 
         if curr != None:
             print("[",curr.value, ":" , curr.count,"]")
-            self.printTreeUtil(curr.lChild)
-            self.printTreeUtil(curr.rChild)
-
+            self.print_tree_util(curr.lchild)
+            self.print_tree_util(curr.rchild)
     
     def insert(self, value):
-        self.root = self.insertUtil(value, self.root)
+        self.root = self.insert_util(value, self.root)
 
-
-    def insertUtil(self, value, curr):
+    def insert_util(self, value, curr):
         if curr == None:
             curr = self.Node(value)
         else:
@@ -34,9 +32,9 @@ class StringTree(object):
             if compare == 0:
                 curr.count += 1
             elif compare == 1:
-                curr.lChild = self.insertUtil(value, curr.lChild)
+                curr.lchild = self.insert_util(value, curr.lchild)
             else:
-                curr.rChild = self.insertUtil(value, curr.rChild)
+                curr.rchild = self.insert_util(value, curr.rchild)
         return curr
 
     def strcmp(self, first, second):
@@ -47,60 +45,49 @@ class StringTree(object):
         else:
             return -1
         
-    def freeTree(self):
+    def free(self):
         self.root = None
-
     
     def find(self, value):
-        ret = self.findUtil(self.root, value)
-        print(value , "found::" , ret)
+        ret = self.find_util(self.root, value)
         return ret
 
-    def findUtil(self, curr, value):
+    def find_util(self, curr, value):
         if curr == None:
             return False
         compare = self.strcmp(curr.value, value)
         if compare == 0:
             return True
         elif compare == 1:
-            return self.findUtil(curr.lChild, value)
+            return self.find_util(curr.lchild, value)
         else:
-            return self.findUtil(curr.rChild, value)
-
+            return self.find_util(curr.rchild, value)
     
     def frequency(self, value):
-        return self.frequencyUtil(self.root, value)
+        return self.frequency_util(self.root, value)
 
-    def frequencyUtil(self, curr, value):
+    def frequency_util(self, curr, value):
         if curr == None:
             return 0
         compare = self.strcmp(curr.value, value)
         if compare == 0:
             return curr.count
         elif compare > 0:
-            return self.frequencyUtil(curr.lChild, value)
+            return self.frequency_util(curr.lchild, value)
         else:
-            return self.frequencyUtil(curr.rChild, value)
+            return self.frequency_util(curr.rchild, value)
 
 
+t = string_tree()
+t.insert("banana")
+t.insert("apple")
+t.insert("mango")
+print("Apple Found :", t.find("apple"))
+print("Grapes Found :", t.find("grapes"))
+print("Banana Found :", t.find("banana"))
 
-tt = StringTree()
-tt.insert("banana")
-tt.insert("apple")
-tt.insert("mango")
-tt.insert("banana")
-tt.insert("apple")
-tt.insert("mango")
-tt.find("apple")
-tt.find("banana")
-tt.find("mango")
-tt.find("banan")
-tt.find("appletree")
-tt.find("grapes")
-
-tt.printTree()
-print("apple::" , tt.frequency("apple"))
-print("banana::" , tt.frequency("banana"))
-print("mango::" , tt.frequency("mango"))
-print("android::" , tt.frequency("android"))
-
+"""
+Apple Found : True
+Grapes Found : False
+Banana Found : True
+"""

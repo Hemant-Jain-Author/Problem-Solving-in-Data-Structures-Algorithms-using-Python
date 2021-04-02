@@ -1,12 +1,23 @@
-def TOHUtil(num, source, dest, temp):
+def toh_util(num, source, dest, temp):
     if num < 1:
         return
-    TOHUtil(num - 1, source, temp, dest)
+    toh_util(num - 1, source, temp, dest)
     print("Move disk" , num , "from peg" , source , "to peg" , dest)
-    TOHUtil(num - 1, temp, dest, source)
+    toh_util(num - 1, temp, dest, source)
 
-def TowersOfHanoi(num):
+def tower_of_hanoi(num):
     print("The sequence of moves involved in the Tower of Hanoi are :")
-    TOHUtil(num, 'A', 'C', 'B')
+    toh_util(num, 'A', 'C', 'B')
 
-TowersOfHanoi(3)
+tower_of_hanoi(3)
+
+"""
+The sequence of moves involved in the Tower of Hanoi are :
+Move disk 1 from peg A to peg C
+Move disk 2 from peg A to peg B
+Move disk 1 from peg C to peg B
+Move disk 3 from peg A to peg C
+Move disk 1 from peg B to peg A
+Move disk 2 from peg B to peg C
+Move disk 1 from peg A to peg C
+"""

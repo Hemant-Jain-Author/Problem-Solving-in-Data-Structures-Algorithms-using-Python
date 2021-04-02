@@ -1,16 +1,16 @@
 def fibonacci2(n):
     if n <= 1:
         return n
-    return fibonacci(n - 1) + fibonacci(n - 2)
+    return fibonacci2(n - 1) + fibonacci2(n - 2)
 
    
 def fibonacci(n):
     first = 0
     second = 1
     if (n == 0):
-        return first;
+        return first
     elif (n == 1):
-        return second;
+        return second
     i = 2
     while(i <= n):
         temp = first + second
@@ -20,5 +20,8 @@ def fibonacci(n):
     return temp
 
 
-print(fibonacci(50))
-print(fibonacci2(50))
+print(fibonacci(10))
+# 55
+
+print(fibonacci2(10))
+# 55

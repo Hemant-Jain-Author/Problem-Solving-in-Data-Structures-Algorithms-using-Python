@@ -16,18 +16,30 @@ class QueueUsingStack(object):
             self.stk2.append(value)
         return self.stk2.pop()
 
+    def length(self):
+        return len(self.stk1) + len(self.stk2)
+
+    def is_empty(self):
+        return len(self.stk1) + len(self.stk2) == 0
+
 que = QueueUsingStack()
 que.add(1)
-print(que.remove())
-
-que.add(11)
-que.add(111)
-print(que.remove())
 que.add(2)
-que.add(21)
-que.add(211)
+que.add(3)
+print(que.length())
+print(que.is_empty())
 print(que.remove())
 print(que.remove())
 print(que.remove())
-# print(que.remove())
-# print(que.remove())
+print(que.length())
+print(que.is_empty())
+
+"""
+3
+False
+1
+2
+3
+0
+True
+"""

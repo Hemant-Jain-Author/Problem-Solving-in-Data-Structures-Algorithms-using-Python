@@ -14,45 +14,45 @@ class DoublyCircularLinkedList(object):
     def size(self):
         return self.count
 
-    def isEmpty(self):
+    def is_empty(self):
         return self.head == None
 
-    def peekHead(self):
-        if self.isEmpty():
+    def peek_head(self):
+        if self.is_empty():
             raise RuntimeError("EmptyListException")
         return self.head.value
 
-    def addHead(self, value):
-        newNode = self.Node(value, None, None)
+    def add_head(self, value):
+        new_node = self.Node(value, None, None)
         self.count += 1
         if self.head == None:
-            self.tail = self.head = newNode
-            newNode.next = newNode
-            newNode.prev = newNode
+            self.tail = self.head = new_node
+            new_node.next = new_node
+            new_node.prev = new_node
         else:
-            newNode.next = self.head
-            newNode.prev = self.head.prev
-            self.head.prev = newNode
-            newNode.prev.next = newNode
-            self.head = newNode
+            new_node.next = self.head
+            new_node.prev = self.head.prev
+            self.head.prev = new_node
+            new_node.prev.next = new_node
+            self.head = new_node
 
 
-    def addTail(self, value):
-        newNode = self.Node(value, None, None)
+    def add_tail(self, value):
+        new_node = self.Node(value, None, None)
         self.count += 1
         if self.head == None:
-            self.head = self.tail = newNode
-            newNode.next = newNode
-            newNode.prev = newNode
+            self.head = self.tail = new_node
+            new_node.next = new_node
+            new_node.prev = new_node
         else:
-            newNode.next = self.tail.next
-            newNode.prev = self.tail
-            self.tail.next = newNode
-            newNode.next.prev = newNode
-            self.tail = newNode
+            new_node.next = self.tail.next
+            new_node.prev = self.tail
+            self.tail.next = new_node
+            new_node.next.prev = new_node
+            self.tail = new_node
 
 
-    def removeHead(self):
+    def remove_head(self):
         if self.head == None:
             raise RuntimeError("EmptyListException")
         self.count -= 1
@@ -62,13 +62,13 @@ class DoublyCircularLinkedList(object):
             self.head = None
             self.tail = None
             return value
-        nextNode = self.head.next
-        nextNode.prev = self.tail
-        self.tail.next = nextNode
-        self.head = nextNode
+        next_node = self.head.next
+        next_node.prev = self.tail
+        self.tail.next = next_node
+        self.head = next_node
         return value
 
-    def removeTail(self):
+    def remove_tail(self):
         if self.size == 0:
             raise RuntimeError("EmptyListException")
         self.count -= 1
@@ -84,7 +84,7 @@ class DoublyCircularLinkedList(object):
         self.tail = prev
         return value
 
-    def isPresent(self, key):
+    def is_present(self, key):
         temp = self.head
         if self.head == None:
             return False
@@ -96,14 +96,14 @@ class DoublyCircularLinkedList(object):
             i += 1
         return False
 
-    def freeList(self):
+    def free_list(self):
         self.head = None
         self.tail = None
         self.count = 0
 
     
-    def printList(self):
-        if self.isEmpty():
+    def print(self):
+        if self.is_empty():
             return
         temp = self.tail.next
         while temp != self.tail:
@@ -114,11 +114,15 @@ class DoublyCircularLinkedList(object):
             
 
 ll = DoublyCircularLinkedList()
-ll.addHead(1)
-ll.addHead(2)
-ll.addHead(3)
-ll.addHead(1)
-ll.addHead(2)
-ll.addHead(3)
+ll.add_head(1)
+ll.add_head(2)
+ll.add_head(3)
+ll.add_head(1)
+ll.add_head(2)
+ll.add_head(3)
 print(ll.size())
-ll.printList()
+ll.print()
+"""
+6
+3 2 1 3 2 1
+"""

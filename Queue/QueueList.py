@@ -11,14 +11,14 @@ class Queue(object):
         self.tail = None
         self.count = 0
     
-    def size(self):
+    def length(self):
         return self.count
     
-    def isEmpty(self):
+    def is_empty(self):
         return (self.head == None)
 
     def peek(self):
-        if self.isEmpty():
+        if self.is_empty():
             raise RuntimeError("StackEmptyException")
         return self.head.value
 
@@ -32,27 +32,38 @@ class Queue(object):
             self.tail = temp
 
     def remove(self):
-        if self.isEmpty():
+        if self.is_empty():
             raise RuntimeError("StackEmptyException")
         self.count -= 1
         value = self.head.value
         self.head = self.head.next
         return value
 
-    def printList(self):
+    def print(self):
         temp = self.head
         while temp != None:
             print(temp.value, end=' ')
             temp = temp.next
 
  
-q = Queue()
-i = 1
-while i <= 100:
-    q.add(i)
-    i += 1
-i = 1
-while i <= 50:
-    q.remove()
-    i += 1
-q.printList()
+que = Queue()
+que.add(1)
+que.add(2)
+que.add(3)
+print(que.length())
+print(que.is_empty())
+print(que.remove())
+print(que.remove())
+print(que.remove())
+print(que.length())
+print(que.is_empty())
+"""
+3
+False
+1
+2
+3
+0
+True
+"""
+

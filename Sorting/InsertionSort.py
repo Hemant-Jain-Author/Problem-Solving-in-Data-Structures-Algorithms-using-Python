@@ -3,12 +3,12 @@
 def more(value1, value2):
     return value1 > value2
 
-def InsertionSort(arr):
+def insertion_sort(arr):
     size = len(arr)
     i = 1
     while i < size:
         temp = arr[i]
-        j = i;
+        j = i
         while j > 0 and more(arr[j - 1], temp):
             arr[j] = arr[j - 1]
             j -= 1
@@ -17,5 +17,9 @@ def InsertionSort(arr):
 
 
 array = [9, 1, 8, 2, 7, 3, 6, 4, 5]
-InsertionSort(array)
+insertion_sort(array)
 print(array)
+
+"""
+[1, 2, 3, 4, 5, 6, 7, 8, 9]
+"""

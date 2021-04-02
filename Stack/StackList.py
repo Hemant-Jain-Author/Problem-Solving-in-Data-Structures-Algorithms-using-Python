@@ -7,33 +7,33 @@ class Stack(object):
 
     def __init__(self):
         self.head = None
-        self.stacksize = 0
+        self.size = 0
 
     def size(self):
-        return self.stacksize
+        return self.size
 
-    def isEmpty(self):
-        return self.stacksize == 0
+    def is_empty(self):
+        return self.size == 0
 
     def peek(self):
-        if self.isEmpty():
+        if self.is_empty():
             raise RuntimeError("StackEmptyException")
         return self.head.value
 
     def push(self, value):
         self.head = self.Node(value, self.head)
-        self.stacksize += 1
+        self.size += 1
 
     def pop(self):
-        if self.isEmpty():
+        if self.is_empty():
             raise RuntimeError("StackEmptyException")
         value = self.head.value
         self.head = self.head.next
-        self.stacksize -= 1
+        self.size -= 1
         return value
 
 
-    def printStack(self):
+    def print(self):
         temp = self.head
         while temp != None:
             print(temp.value, end=' ')
@@ -44,6 +44,9 @@ s = Stack()
 s.push(1)
 s.push(2)
 s.push(3) 
-s.pop()
-s.printStack()
-
+print(s.pop())
+s.print()
+"""
+3
+2 1
+"""

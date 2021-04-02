@@ -1,53 +1,57 @@
 #!/usr/bin/env python
 import math
 
-def MergeSort(array):
+def merge_sort(array):
     arr = array
     size = len(arr)
-    tempArray = [0] * size
-    mergeSrt(arr, tempArray, 0, size - 1)
+    temp_array = [0] * size
+    merge_sort_util(arr, temp_array, 0, size - 1)
     
-def mergeSrt(arr, tempArray, lowerIndex, upperIndex):
-    if lowerIndex >= upperIndex:
+def merge_sort_util(arr, temp_array, lower, upper):
+    if lower >= upper:
         return
-    middleIndex = math.floor((lowerIndex + upperIndex) / 2)
-    mergeSrt(arr, tempArray, lowerIndex, middleIndex)
-    mergeSrt(arr, tempArray, middleIndex + 1, upperIndex)
-    merge(arr, tempArray, lowerIndex, middleIndex, upperIndex)
+    middle = math.floor((lower + upper) / 2)
+    merge_sort_util(arr, temp_array, lower, middle)
+    merge_sort_util(arr, temp_array, middle + 1, upper)
+    merge(arr, temp_array, lower, middle, upper)
 
-def merge(arr, tempArray, lowerIndex, middleIndex, upperIndex):
-    lowerStart = lowerIndex
-    lowerStop = middleIndex
-    upperStart = middleIndex + 1
-    upperStop = upperIndex
-    count = lowerIndex
+def merge(arr, temp_array, lower, middle, upper):
+    lower_start = lower
+    lower_stop = middle
+    upper_start = middle + 1
+    upper_stop = upper
+    count = lower
     
-    while lowerStart <= lowerStop and upperStart <= upperStop:
-        if arr[lowerStart] < arr[upperStart]:
-            tempArray[count] = arr[lowerStart]
+    while lower_start <= lower_stop and upper_start <= upper_stop:
+        if arr[lower_start] < arr[upper_start]:
+            temp_array[count] = arr[lower_start]
             count += 1
-            lowerStart += 1
+            lower_start += 1
         else:
-            tempArray[count] = arr[upperStart]
+            temp_array[count] = arr[upper_start]
             count += 1
-            upperStart += 1
+            upper_start += 1
             
-    while lowerStart <= lowerStop:
-        tempArray[count] = arr[lowerStart]
+    while lower_start <= lower_stop:
+        temp_array[count] = arr[lower_start]
         count += 1
-        lowerStart += 1
+        lower_start += 1
         
-    while upperStart <= upperStop:
-        tempArray[count] = arr[upperStart]
+    while upper_start <= upper_stop:
+        temp_array[count] = arr[upper_start]
         count += 1
-        upperStart += 1
+        upper_start += 1
     
-    i = lowerIndex
-    while i <= upperIndex:
-        arr[i] = tempArray[i]
+    i = lower
+    while i <= upper:
+        arr[i] = temp_array[i]
         i += 1
 
 
 array = [3, 4, 2, 1, 6, 5, 7, 8, 1, 1]
-MergeSort(array)
+merge_sort(array)
 print(array)
+
+"""
+[1, 1, 1, 2, 3, 4, 5, 6, 7, 8]
+"""

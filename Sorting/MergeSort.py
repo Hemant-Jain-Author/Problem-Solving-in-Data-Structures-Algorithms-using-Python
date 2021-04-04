@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 import math
 
 def merge_sort(array):
@@ -10,7 +9,7 @@ def merge_sort(array):
 def merge_sort_util(arr, temp_array, lower, upper):
     if lower >= upper:
         return
-    middle = math.floor((lower + upper) / 2)
+    middle = (lower + upper) // 2
     merge_sort_util(arr, temp_array, lower, middle)
     merge_sort_util(arr, temp_array, middle + 1, upper)
     merge(arr, temp_array, lower, middle, upper)

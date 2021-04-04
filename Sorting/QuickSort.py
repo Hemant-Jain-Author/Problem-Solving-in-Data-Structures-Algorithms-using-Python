@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 def quick_sort(array):
     arr = array
     size = len(arr)

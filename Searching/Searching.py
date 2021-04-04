@@ -58,8 +58,8 @@ def main1():
     print(linear_search_sorted(first, 3))
 
     first = [1, 3, 5, 7, 9, 25, 30]
-    print(binary_search(first, 3))
     print(binary_search_recursive(first, 3))
+    print(binary_search(first, 3))
 
 
 #main1()
@@ -74,7 +74,7 @@ True
 
 def print_repeating(arr):
     size = len(arr)
-    print("Repeating elements are :: ", end=' ')
+    print("Repeating elements are:: ", end=' ')
     for i in range(size):
         for j in range(i+1, size):
             if arr[i] == arr[j]:
@@ -84,7 +84,7 @@ def print_repeating(arr):
 def print_repeating2(arr):
     size = len(arr)
     arr.sort()
-    print("Repeating elements are :: ", end=' ')
+    print("Repeating elements are:: ", end=' ')
     for i in range(size):
         if arr[i] == arr[i - 1]:
             print(arr[i], end=' ')
@@ -93,7 +93,7 @@ def print_repeating2(arr):
 def print_repeating3(arr):
     size = len(arr)
     hs = set()
-    print("Repeating elements are ::", end=' ')
+    print("Repeating elements are::", end=' ')
     for i in range(size):
         if arr[i] in hs:
             print(arr[i], end=' ')
@@ -104,7 +104,7 @@ def print_repeating3(arr):
 def print_repeating4(arr, valrange):
     size = len(arr)
     count = [0] * valrange
-    print("Repeating elements are :: ", end=' ')
+    print("Repeating elements are:: ", end=' ')
     for i in range(size):
         if count[arr[i]] == 1:
             print(arr[i], end=' ')

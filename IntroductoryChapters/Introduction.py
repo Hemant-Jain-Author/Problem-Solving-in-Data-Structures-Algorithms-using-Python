@@ -56,12 +56,10 @@ def permutation(arr, i, length):
         j += 1
 
 def test3():
-    arr = [None] * 3
-    for i in range(3):
-        arr[i] = i
+    arr = list(range(3))
     permutation(arr, 0, 3)
 
-# test3()
+test3()
 """
 [0, 1, 2]
 [0, 2, 1]
@@ -93,12 +91,12 @@ def tower_of_hanoi(num, src, dst, temp):
     print("Move ", num, " disk  from peg ", src, " to peg ", dst)
     tower_of_hanoi(num - 1, temp, dst, src)
 
-def test5():
-    num = 3
+def toh(num):  
     print("The sequence of moves involved in the Tower of Hanoi are :")
     tower_of_hanoi(num, 'A', 'C', 'B')
 
-# test5()
+toh(3)
+
 """
 Move  1  disk  from peg  A  to peg  C
 Move  2  disk  from peg  A  to peg  B
@@ -196,19 +194,19 @@ def test8():
 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 12
 """
 
-def test9():
-    arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    print(sum_array(arr))
-
-# test9()
-
 def sum_array(arr):
     size = len(arr)
     total = 0
     for index in range(size):
-        total = total + arr[index]
+        total += arr[index]
     return total
 
+def test9():
+    arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    print(sum_array(arr))
+
+#test9()
+#45
 
 def sequential_search(arr, value):
     size = len(arr)
@@ -257,11 +255,12 @@ def binary_search2(arr, value):
 
 
 def test10():
-    arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    arr = [1, 2, 3, 4, 5, 7, 8, 9]
     """
     print(sequential_search(arr, 5))
-    print(binary_search(arr, 5))
     print(sequential_search(arr, 6))
+
+    print(binary_search(arr, 5))
     print(binary_search(arr, 6))
     """
     print(binary_search(arr, 6))
@@ -272,8 +271,8 @@ def test10():
 #test10()
 """
 True
-True
 False
+True
 False
 
 True
@@ -444,7 +443,7 @@ def index_array( arr):
         curr = i
         value = -1
 
-        # swaps to move elements in proper possition.
+        # swaps to move elements in proper position.
         while arr[curr] != -1 and arr[curr] != curr:
             temp = arr[curr]
             arr[curr] = value
@@ -466,14 +465,14 @@ def index_array2(arr):
 
 def test19():
     arr = [ 8, -1, 6, 1, 9, 3, 2, 7, 4, -1 ]
-    index_array2( arr)
+    index_array( arr)
     print(arr)
 
     arr = [20, 11, 10, 9, 5, 13, 16, 2, 14, 17,19, 7, 0, 3, 18, 15, 12, 6, 1, 8, 4]
     index_array2( arr)
     print(arr)
 
-# test19()
+test19()
 """
 [-1, 1, 2, 3, 4, -1, 6, 7, 8, 9]
 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
@@ -482,7 +481,7 @@ def test19():
 """
 Given an unsorted array , find smallest positive number missing in the array.
 """
-def smallest_possitive_missing_number(arr):
+def smallest_positive_missing_number(arr):
     size = len(arr)
     for i in range(1, size+1, 1):
         found = False
@@ -494,7 +493,7 @@ def smallest_possitive_missing_number(arr):
             return i
     return -1
 
-def smallest_possitive_missing_number2(arr):
+def smallest_positive_missing_number2(arr):
     size = len(arr)
     hs = {}
     for i in range(size):
@@ -506,7 +505,7 @@ def smallest_possitive_missing_number2(arr):
     return -1
 
 
-def smallest_possitive_missing_number3(arr):
+def smallest_positive_missing_number3(arr):
     size = len(arr)
     aux = [-1]*size
     for i in range(size):
@@ -518,13 +517,13 @@ def smallest_possitive_missing_number3(arr):
             return i+1
     return -1
 
-def smallest_possitive_missing_number4(arr):
+def smallest_positive_missing_number4(arr):
     size = len(arr)
     for i in range(size):
         curr = i
         value = -1
         if arr[curr] > 0 :
-            # swaps to move elements in proper possition.
+            # swaps to move elements in proper position.
             while curr >= 0 and curr < size and arr[curr] != curr+1 :
                 next = arr[curr]
                 arr[curr] = value
@@ -536,7 +535,7 @@ def smallest_possitive_missing_number4(arr):
             return i+1
     return -1
 
-def smallest_possitive_missing_number5(arr):
+def smallest_positive_missing_number5(arr):
     size = len(arr)
     for i in range(size):
         while arr[i] != i+1 and arr[i] > 0 and arr[i] <= size:
@@ -551,17 +550,17 @@ def smallest_possitive_missing_number5(arr):
 
 def test20():
     arr = [2, 3, 7, 6, 8, -1, -10, 15]
-    print(smallest_possitive_missing_number(arr))
-    print(smallest_possitive_missing_number2(arr))
-    print(smallest_possitive_missing_number3(arr))
-    print(smallest_possitive_missing_number4(arr))
-    print(smallest_possitive_missing_number5(arr))
+    print(smallest_positive_missing_number(arr))
+    print(smallest_positive_missing_number2(arr))
+    print(smallest_positive_missing_number3(arr))
+    print(smallest_positive_missing_number4(arr))
+    print(smallest_positive_missing_number5(arr))
     arr = [2, 3, 7, 6, 8, 1, 4, 5]
-    print(smallest_possitive_missing_number(arr))
-    print(smallest_possitive_missing_number2(arr))
-    print(smallest_possitive_missing_number3(arr))
-    print(smallest_possitive_missing_number4(arr))
-    print(smallest_possitive_missing_number5(arr))
+    print(smallest_positive_missing_number(arr))
+    print(smallest_positive_missing_number2(arr))
+    print(smallest_positive_missing_number3(arr))
+    print(smallest_positive_missing_number4(arr))
+    print(smallest_positive_missing_number5(arr))
 
 #test20()
 """
@@ -588,7 +587,7 @@ def sort_1toN(arr):
     for i in range(size):
         curr = i
         value = -1
-        # swaps to move elements in proper possition.
+        # swaps to move elements in proper position.
         while curr >= 0 and curr < size and arr[curr] != curr+1 :
             next = arr[curr]
             arr[curr] = value
@@ -605,7 +604,6 @@ def sort_1toN2(arr):
 
 def test21():
     arr = [10, 7, 9, 2, 8, 3, 5, 4, 6, 1]
-    print(arr)
     sort_1toN(arr)
     print(arr)
     arr = [10, 7, 9, 2, 8, 3, 5, 4, 6, 1]
@@ -615,9 +613,7 @@ def test21():
 
 #test21()
 """
-[10, 7, 9, 2, 8, 3, 5, 4, 6, 1]
 [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-[10, 7, 9, 2, 8, 3, 5, 4, 6, 1]
 [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 """
 
@@ -638,23 +634,8 @@ def max_min_array(arr):
             arr[i] = aux[start]
             start += 1
 
-def test22():
-    arr = [1, 2, 3, 4, 5, 6, 7]
-    max_min_array(arr)
-    print(arr)
 
-# test22()
 """
-[7, 1, 6, 2, 5, 3, 4]
-"""
-
-def reverse_array(arr, start, stop):
-    while start < stop:
-        arr[start], arr[stop] = arr[stop], arr[start]
-        start += 1
-        stop -= 1
-"""
-
 Without using any auxilary array.
 1, 2, 3, 4, 5, 6, 7
 7, 6, 5, 4, 3, 2, 1
@@ -664,18 +645,29 @@ Without using any auxilary array.
 7, 1, 6, 2, 5, 4, 3
 7, 1, 6, 2, 5, 3, 4
 """
+def reverse_array(arr, start, stop):
+    while start < stop:
+        arr[start], arr[stop] = arr[stop], arr[start]
+        start += 1
+        stop -= 1
+
 def max_min_array2(arr):
     size = len(arr)
     for i in range(size-1):
         reverse_array(arr, i, size-1)
 
-def test23():
+def test22():
+    arr = [1, 2, 3, 4, 5, 6, 7]
+    max_min_array(arr)
+    print(arr)
     arr = [1, 2, 3, 4, 5, 6, 7]
     max_min_array2(arr)
     print(arr)
 
-# test23()
+# test22()
+
 """
+[7, 1, 6, 2, 5, 3, 4]
 [7, 1, 6, 2, 5, 3, 4]
 """
 
@@ -1066,7 +1058,6 @@ def max_subarray_sum(arr):
  
     return maximum
 
-# Driver function to check the above function 
 def test32():
     a = [-1, -3, 4, -1, -2, 1, 5]
     print(max_subarray_sum(a))
@@ -1390,7 +1381,7 @@ def test39():
 """
 
 """
-Given a nearly sorted array, in which an element is at max k units away from its sorted possition.
+Given a nearly sorted array, in which an element is at max k units away from its sorted position.
 
 If you use sorting then it will take O(NlogN) time 
 
@@ -1712,7 +1703,7 @@ def test44():
 """
 Segregate positive ans negative.
 """
-def segregate_possitive_negative(arr):
+def segregate_positive_negative(arr):
     first = 0
     second = len(arr) - 1
     while first < second:
@@ -1728,7 +1719,7 @@ Segrigate positive and negative , order of appearence should be # maintained.
 Just Segregate like insertion sort.
 Use an array.
 """
-def segregate_possitive_negative2(arr):
+def segregate_positive_negative2(arr):
     index = 0
     size = len(arr)
     arr2 = list(arr)
@@ -1930,7 +1921,7 @@ def test52():
     wave_array2(arr)
     print(arr)
 
-test52()
+#test52()
 """
 [2, 1, 3, 2, 4, 4, 6, 5, 8]
 [8, 1, 3, 2, 5, 4, 6, 2, 4]

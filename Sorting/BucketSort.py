@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 def bucket_sort(arr, lower_range, upper_range):
     array = arr
     data_range = upper_range - lower_range

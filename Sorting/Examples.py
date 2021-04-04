@@ -45,14 +45,14 @@ def test1():
 """
 Sort array according to the absolute difference from the given value.
 """
-def more(value1, value2, ref):
+def cmp(value1, value2, ref):
     return abs(value1 - ref) > abs(value2 - ref)
 
 def abs_sort(arr, ref):
     size = len(arr)
     for i in range(size - 1):
         for j in range(size - i - 1):
-            if more(arr[j], arr[j + 1], ref):
+            if cmp(arr[j], arr[j + 1], ref):
                 #  Swapping
                 arr[j], arr[j + 1] = arr[j + 1], arr[j]
 
@@ -91,6 +91,33 @@ def test3():
 [0, -1, 1, 2, 3, 4]
 """
 
+def swap(arr, left, right):
+    arr[left], arr[right] = arr[right], arr[left]
+
+def separate_even_odd(arr):
+    size = len(arr)
+    left = 0
+    right = size - 1
+    while left < right:
+        if arr[left] % 2 == 0:
+            left += 1
+        elif arr[right] % 2 == 1:
+            right -= 1
+        else:
+            swap(arr, left, right)
+            left += 1
+            right -= 1
+    return arr
+
+def test3():
+    array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    separate_even_odd(array)
+    print(array)
+
+test3()
+"""
+[8, 2, 6, 4, 5, 3, 7, 1, 9]
+"""
 
 """
 Element left after reductions.
@@ -105,7 +132,6 @@ You need to print the number of elements left after each reduction process.
 3 1 3 = 3
 2 2 = 2
 0
-
 """
 def array_reduction(arr) :
     size = len(arr)
@@ -130,7 +156,6 @@ def test4():
 Total number of reductions 4 
 """
 
-
 """
 In the above question you just need to find the number of reduction 
 operations required in linear time.
@@ -138,7 +163,6 @@ operations required in linear time.
 Hint:- Solution basically the total number of reductions is equal to the total 
 number of distinct elements.
 """
-
 
 """
 Sort elements of array by frequency.
@@ -202,7 +226,6 @@ def test5():
 2 2 1 1 8 8 3 5 7 9 6
 """
 
-
 """
 Given two sorted arrays. Sort the elements of these arrays so that first half of 
 sorted elements will lie in first array and second half lies in second array. 
@@ -222,7 +245,7 @@ def merge(arr1, arr2):
             arr1[first], arr2[0] = arr2[0], arr1[first]
             first += 1
             # After swap arr2 may be unsorted.
-            # Insertion of Oth element in proper sorted possition.
+            # Insertion of Oth element in proper sorted position.
             for i in range(size2 - 1):
                 if arr2[i] < arr2[i+1]:
                     break
@@ -239,7 +262,6 @@ def test6():
 """
 [1, 2, 3, 5, 8, 9] [10, 13, 15, 20]
 """
-
 
 """
 Given an array of integers, find minimum absoulute difference pair of all the possible pairs.
@@ -259,7 +281,6 @@ def min_abs_pair_differences(arr):
             minimum = min(abs(arr[i] - arr[j]), minimum)
     return minimum 
 
-
 def min_abs_pair_differences2(arr):
     size = len(arr)
     arr.sort()
@@ -268,8 +289,7 @@ def min_abs_pair_differences2(arr):
         temp = min(abs(arr[i] - arr[i - 1]), abs(arr[i] - arr[i + 1]))
         minimum = min(temp, minimum)
     return minimum 
-         
- 
+
 # Driver code
 def test7():
     arr = [5, 101, 11, 14, 18, 71]
@@ -281,7 +301,6 @@ def test7():
 3
 3
 """
-
 
 """
 Given an array of integers with both +ve and -ve values. 
@@ -343,7 +362,6 @@ def test9():
 1
 """
 
-
 """
 Given two array find pair with minmum difference , pair should take one element from each array.
 Brute force solution using two loops will be O(n2)
@@ -383,7 +401,6 @@ def test10():
 3
 """
 
-
 """
 Minimum swaps required to sort a binary array with 0 and 1 as elements.
 """
@@ -401,18 +418,16 @@ def min_swaps(arr):
         else:
             arr[start], arr[end] = arr[end], arr[start]
             count += 1
-    print(count)
     return count
 
 def test11():
     arr = [0, 1, 0, 1, 0]
-    min_swaps(arr)
+    print(min_swaps(arr))
 
 #test11()
 """
 1
 """
-
 
 """
 Given an array, find the miximum and minimum value in the array and also find 
@@ -463,7 +478,6 @@ def test12():
 [7, 9]
 """
 
-
 """
 Given an array of positive integers representing edges of triangles.
 Find the number of triangles that can be formed from these elements 
@@ -481,8 +495,6 @@ def number_of_triangles(arr):
                     count += 1
     return count
 
-
-
 def number_of_triangles2(arr):
     size = len(arr)
     arr.sort()
@@ -496,7 +508,6 @@ def number_of_triangles2(arr):
             # this improvement make algo O(n2)
             while k < size and arr[i] + arr[j] > arr[k]:
                 k += 1
-
             count += k - j - 1
     return count
 
@@ -511,10 +522,8 @@ def test13():
 22
 """
 
-
 # (2,3,4)(2,4,5)(3,4,5)
 # three triangles
-
 
 def range_partition(arr, lower, higher):
     size = len(arr)
@@ -575,7 +584,6 @@ True
 False
 """
 
-
 def sub_array_zero_sum(arr):
     size = len(arr)
     max_length = -1
@@ -603,7 +611,6 @@ test16()
 """
 2 6 5
 """
-
 
 def sub_array_zero_one_equal(arr):
     size = len(arr)
@@ -637,7 +644,6 @@ def test17():
 2 5 4
 """
 
-
 import sys
 
 def sum_pair_rest_array(arr):
@@ -647,7 +653,6 @@ def sum_pair_rest_array(arr):
     for i in range(size):
         total += arr[i]
     value = total / 2
-
     low = 0
     high = size - 1
     while low < high:
@@ -670,13 +675,11 @@ def test18():
 8 15 True
 """
 
-
 """
 Given an array of integers, find if reversing a sub-array makes the array sorted.
 
 In this algorithm start and stop are the boundry of reversed sub-array whose 
 revarsal makes the whole array sorted.
-
 """
 def check_reverse(arr):
     size = len(arr)
@@ -730,14 +733,11 @@ True
 True
 """
 
-
 """
 Given two sorted arrays find union and intersection of these two arrays.
 
-Another problem:
-Given two unsorted arrays find union and intersection of these two arrays.
-Use sorting then use th above algorithm.
-
+Another problem: Given two unsorted arrays find union and intersection of these 
+two arrays. Use sorting then use th above algorithm.
 """
 
 def union_intersection_sorted(arr1, arr2):
@@ -780,7 +780,6 @@ def test20():
 [2, 5, 8]
 """
 
-
 def union_intersection_unsorted(arr1, arr2):
     arr1.sort()
     arr2.sort()
@@ -798,7 +797,6 @@ def test21():
 [2, 5, 8]
 """
 
-
 def print_unique(arr):
     size = len(arr)
     print(" Unique elements are ::", end=' ')
@@ -809,7 +807,6 @@ def print_unique(arr):
         if j == i:
             print(arr[i], end=' ')
 
-
 def print_unique2(arr):
     size = len(arr)
     arr.sort()
@@ -817,7 +814,6 @@ def print_unique2(arr):
     for i in range(size):
         if arr[i] != arr[i - 1]:
             print(arr[i], end=' ')
-
 
 def print_unique3(arr):
     size = len(arr)
@@ -854,4 +850,3 @@ def test22():
  Unique elements are :: 1 3 5 9 30 
  Unique elements are :: 1 3 5 9 30 
 """
-

@@ -8,6 +8,12 @@ def fun1(n):
         i += 1
     return m
 
+print("N = 100, Number of instructions in O(n)::", fun1(100))
+
+"""
+N = 100, Number of instructions in O(n):: 100
+"""
+
 def fun2(n):
     m = 0
     i = 0
@@ -18,6 +24,12 @@ def fun2(n):
             j += 1
         i += 1
     return m
+
+print("N = 100, Number of instructions in O(n^2)::", fun2(100))
+
+"""
+N = 100, Number of instructions in O(n^2):: 10000
+"""
 
 def fun3(n):
     m = 0
@@ -30,6 +42,12 @@ def fun3(n):
         i += 1
     return m
 
+print("N = 100, Number of instructions in O(n^2)::", fun3(100))
+
+"""
+N = 100, Number of instructions in O(n^2):: 4950
+"""
+
 def fun4(n):
     m = 0
     i = 1
@@ -38,13 +56,25 @@ def fun4(n):
         i = i * 2
     return m
 
+print("N = 100, Number of instructions in O(log(n))::", fun4(100))
+
+"""
+N = 100, Number of instructions in O(log(n)):: 7
+"""
+
 def fun5(n):
     m = 0
     i = n
     while i > 0:
         m += 1
-        i = i / 2
+        i = i // 2
     return m
+
+print("N = 100, Number of instructions in O(log(n))::", fun5(100))
+
+"""
+N = 100, Number of instructions in O(log(n)):: 7
+"""
 
 def fun6(n):
     m = 0
@@ -59,6 +89,12 @@ def fun6(n):
             j += 1
         i += 1
     return m
+
+print("N = 100, Number of instructions in O(n^3)::", fun6(100))
+
+"""
+N = 100, Number of instructions in O(n^3):: 1000000
+"""
 
 def fun7(n):
     m = 0
@@ -78,6 +114,12 @@ def fun7(n):
         i += 1
     return m
 
+print("N = 100, Number of instructions in O(n^2)::", fun7(100))
+
+"""
+N = 100, Number of instructions in O(n^2):: 20000
+"""
+
 def fun8(n):
     m = 0
     i = 0
@@ -89,6 +131,12 @@ def fun8(n):
         i += 1
     return m
 
+print("N = 100, Number of instructions in O(n^(3/2))::", fun8(100))
+
+"""
+N = 100, Number of instructions in O(n^(3/2)):: 1000
+"""
+
 def fun9(n):
     m = 0
     i = n
@@ -97,8 +145,14 @@ def fun9(n):
         while j < i:
             m += 1
             j += 1
-        i /= 2
+        i //= 2
     return m
+
+print("N = 100, Number of instructions in O(n)::", fun9(100))
+
+"""
+N = 100, Number of instructions in O(n):: 197
+"""
 
 def fun10(n):
     m = 0
@@ -110,6 +164,12 @@ def fun10(n):
             j -= 1
         i += 1
     return m
+
+print("N = 100, Number of instructions in O(n^2)::", fun10(100))
+
+"""
+N = 100, Number of instructions in O(n^2):: 4950
+"""
 
 def fun11(n):
     m = 0
@@ -125,6 +185,12 @@ def fun11(n):
         i += 1
     return m
 
+print("N = 100, Number of instructions in O(n^3)::", fun11(100))
+
+"""
+N = 100, Number of instructions in O(n^3):: 166650
+"""
+
 def fun12(n):
     m = 0
     i = 0
@@ -135,6 +201,12 @@ def fun12(n):
             j += 1
         i += 1
     return m
+
+print("N = 100, Number of instructions in O(n)::", fun12(100))
+
+"""
+N = 100, Number of instructions in O(n):: 10000
+"""
 
 def fun13(n):
     m = 0
@@ -147,33 +219,8 @@ def fun13(n):
         i *= 2
     return m
 
-
-print("N = 100, Number of instructions in fun1():" , fun1(100))
-print("N = 100, Number of instructions in fun2():" , fun2(100))
-print("N = 100, Number of instructions in fun3():" , fun3(100))
-print("N = 100, Number of instructions in fun4():" , fun4(100))
-print("N = 100, Number of instructions in fun5():" , fun5(100))
-print("N = 100, Number of instructions in fun6():" , fun6(100))
-print("N = 100, Number of instructions in fun7():" , fun7(100))
-print("N = 100, Number of instructions in fun8():" , fun8(100))
-print("N = 100, Number of instructions in fun9():" , fun9(100))
-print("N = 100, Number of instructions in fun10():" , fun10(100))
-print("N = 100, Number of instructions in fun11():" , fun11(100))
-print("N = 100, Number of instructions in fun12():" , fun12(100))
-print("N = 100, Number of instructions in fun13():" , fun13(100))
+print("N = 100, Number of instructions in O(n)::", fun13(100))
 
 """
-N = 100, Number of instructions in fun1(): 100
-N = 100, Number of instructions in fun2(): 10000
-N = 100, Number of instructions in fun3(): 4950
-N = 100, Number of instructions in fun4(): 7
-N = 100, Number of instructions in fun5(): 1082
-N = 100, Number of instructions in fun6(): 1000000
-N = 100, Number of instructions in fun7(): 20000
-N = 100, Number of instructions in fun8(): 1000
-N = 100, Number of instructions in fun9(): 1276
-N = 100, Number of instructions in fun10(): 4950
-N = 100, Number of instructions in fun11(): 166650
-N = 100, Number of instructions in fun12(): 10000
-N = 100, Number of instructions in fun13(): 134
+N = 100, Number of instructions in O(n):: 134
 """

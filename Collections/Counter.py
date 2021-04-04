@@ -11,3 +11,12 @@ print(4 in ctr)
 ctr[5] += 1
 ctr[3] -= 1
 print(ctr)
+
+"""
+Counter({4: 4, 3: 3, 2: 2, 1: 1})
+3
+True
+Counter({3: 3, 2: 2, 1: 1})
+False
+Counter({2: 2, 3: 2, 1: 1, 5: 1})
+"""

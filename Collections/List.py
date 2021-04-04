@@ -1,4 +1,6 @@
-lst = []
+lst = [1, 2, 3, 4]
+print(lst)
+
 lst.append(5)
 lst.append(4)
 lst.append(2)

@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 class QueueUsingStack(object):
     def __init__(self):
         self.stk1 = []
@@ -22,6 +20,7 @@ class QueueUsingStack(object):
     def is_empty(self):
         return len(self.stk1) + len(self.stk2) == 0
 
+# Testing Code
 que = QueueUsingStack()
 que.add(1)
 que.add(2)

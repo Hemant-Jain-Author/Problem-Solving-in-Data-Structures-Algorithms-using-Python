@@ -11,6 +11,7 @@ def is_prime(n):
         i += 1
     return answer
 
+# Testing Code
 print(is_prime(10))
 print(is_prime(11))
 

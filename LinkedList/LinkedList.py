@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 class LinkedList(object):
     # Node class representing elements of linked list.
     class Node:
@@ -145,7 +144,7 @@ class LinkedList(object):
         else:
             return self.compare_list_util(head1.next, head2.next)
 
-    def  compare_list2(self, ll2):
+    def compare_list2(self, ll2):
         head1 = self.head
         head2 = ll2.head
 
@@ -225,7 +224,7 @@ class LinkedList(object):
             head2 = head2.next
         return head
 
-    def freeList(self):
+    def free(self):
         self.head = None
         self.size = 0
 

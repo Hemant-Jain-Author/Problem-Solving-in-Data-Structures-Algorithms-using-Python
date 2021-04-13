@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 class Stack(object):
     class Node(object):
         def __init__(self, v, n):
@@ -38,15 +37,18 @@ class Stack(object):
         while temp != None:
             print(temp.value, end=' ')
             temp = temp.next
+        print()
 
 
 s = Stack()
 s.push(1)
 s.push(2)
 s.push(3) 
+s.print()
 print(s.pop())
 s.print()
 """
+3 2 1 
 3
-2 1
+2 1 
 """

@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 class CircularLinkedList(object):
     class Node(object):
         def __init__(self, v, n=None):
@@ -102,7 +101,7 @@ class CircularLinkedList(object):
             curr = curr.next
         return cl
 
-    def is_present(self, data):
+    def search (self, data):
         temp = self.tail
         i = 0
         while i < self.size():
@@ -112,7 +111,7 @@ class CircularLinkedList(object):
             i += 1
         return False
 
-    def free_list(self):
+    def free(self):
         self.tail = None
         self.count = 0
 

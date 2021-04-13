@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 class TST(object):
     class Node(object):
         def __init__(self, d, isLast = False):
@@ -42,17 +41,18 @@ class TST(object):
         ret = self.find_util(self.root, word, 0)
         return ret
 
+# Testing code.
 t = TST()
 t.insert("banana")
 t.insert("apple")
 t.insert("mango")
 
-print("Apple Found :", t.find("apple"))
-print("Grapes Found :", t.find("grapes"))
-print("Banana Found :", t.find("banana"))
+print("Apple Found:", t.find("apple"))
+print("Grapes Found:", t.find("grapes"))
+print("Banana Found:", t.find("banana"))
 
 """
-Apple Found : True
-Grapes Found : False
-Banana Found : True
+Apple Found: True
+Grapes Found: False
+Banana Found: True
 """

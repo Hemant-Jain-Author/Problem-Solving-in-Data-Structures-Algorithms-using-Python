@@ -161,11 +161,11 @@ def get_max2(arr):
     return maximum
 
 
-def get_max3(arr, valuerange):
+def get_max3(arr, value_range):
     size = len(arr)
     maximum = arr[0]
     max_count = 1
-    count = [0] * valuerange
+    count = [0] * value_range
     for i in range(size):
         count[arr[i]] += 1
         if count[arr[i]] > max_count:
@@ -311,13 +311,61 @@ def find_missing_number3(arr, upper_range):
 
 def main5():
     first = [1, 5, 4, 3, 2, 7, 8, 9, 10]
-    print(find_missing_number(first, 9))
-    print(find_missing_number2(first, 9))
-    print(find_missing_number3(first, 9))
+    print(find_missing_number(first, 10))
+    print(find_missing_number2(first, 10))
+    print(find_missing_number3(first, 10))
         
 #main5()
 """
 6
+6
+6
+"""
+
+def missing_values(arr):
+    size = len(arr)
+    arr.sort()
+    value = arr[0]
+    missing = []
+    i = 0
+
+    while i < size:
+        if value == arr[i]:
+            value += 1
+            i += 1
+        else:
+            missing.append(value)
+            value += 1
+    return missing
+
+def missing_values2(arr):
+    size = len(arr)
+    missing = []
+    dict = {}
+    minVal = sys.maxsize
+    maxVal = -sys.maxsize
+
+    for i in range(size):
+        dict[arr[i]] = 1
+        if minVal > arr[i]:
+            minVal = arr[i]
+        if maxVal < arr[i]:
+            maxVal = arr[i]
+
+    for i in range(minVal, maxVal+1):
+        if i not in dict:
+            missing.append(i)
+    return missing
+
+def main6():
+    first = [11, 14, 13, 17, 21, 18, 19, 23, 24]
+    print(missing_values(first))
+    print(missing_values2(first))
+        
+#main6()
+"""
+[12, 15, 16, 20, 22]
+[12, 15, 16, 20, 22]
 """
 
 def find_pair(arr, value):
@@ -374,6 +422,45 @@ The pair is:: 5 & 3
 True
 """
 
+def find_min_diff(arr):
+    size = len(arr)
+    arr.sort()
+    diff = sys.maxsize
+    for i in range(size - 1):
+        if arr[i+1] - arr[i] < diff:
+            diff = arr[i+1] - arr[i]
+    return diff
+ 
+# Testing code.
+def main22():
+    arr = [1, 6, 4, 19, 17, 20]
+    print(find_min_diff(arr))
+
+#main22()
+"""
+1
+"""
+
+def min_abs_diff_adj_circular(arr):
+    size = len(arr)
+    diff = sys.maxsize
+    if (size < 2):
+        return -1
+    
+    for i in range(size):
+        diff = min(diff, abs(arr[i] - arr[(i + 1)%size]))
+    return diff
+
+# Testing code.
+def main23():
+    arr = [5, 29, 18, 51, 11]
+    print(min_abs_diff_adj_circular(arr))
+
+#main23()
+"""
+6
+"""
+
 def min_abs_sum_pair(arr):
     size = len(arr)
     if size < 2:
@@ -389,7 +476,7 @@ def min_abs_sum_pair(arr):
                 min_sum = currsum
                 min_first = i
                 min_second = j
-    print("The two elements with minimum sum are : ", arr[min_first], "&", arr[min_second])
+    print("The two elements with minimum sum are: ", arr[min_first], "&", arr[min_second])
 
 
 def min_abs_sum_pair2(arr):
@@ -415,7 +502,7 @@ def min_abs_sum_pair2(arr):
             r -= 1
         else:
             break
-    print("The two elements with minimum sum are : ", arr[min_first], "&" , arr[min_second])
+    print("The two elements with minimum sum are: ", arr[min_first], "&" , arr[min_second])
 
 
 def main7():
@@ -429,7 +516,7 @@ The two elements with minimum sum are :  -6 & 6
 The two elements with minimum sum are :  -6 & 6
 """
 
-def search_botinic_array_max(arr):
+def search_bitonic_array_max(arr):
     size = len(arr)
     start = 0
     end = size - 1
@@ -439,7 +526,7 @@ def search_botinic_array_max(arr):
         print("error")
         return 0
     while start <= end:
-        mid = ((start + end) // 2)
+        mid = (start + end) // 2
         if arr[mid - 1] < arr[mid] and arr[mid + 1] < arr[mid]:
             maxima_found = 1
             break
@@ -457,7 +544,7 @@ def search_botinic_array_max(arr):
 def binary_search(arr, start, end, key, isInc):
     if end < start:
         return False
-    mid = ((start + end) // 2)
+    mid = (start + end) // 2
     if key == arr[mid]:
         return True
     if isInc != False and key < arr[mid] or isInc == False and key > arr[mid]:
@@ -466,7 +553,7 @@ def binary_search(arr, start, end, key, isInc):
         return binary_search(arr, mid + 1, end, key, isInc)
 
 
-def search_botinic_array(arr, key):
+def search_bitonic_array(arr, key):
     size = len(arr)
     maxval = find_max_bitonic_index(arr, size)
     k = binary_search(arr, 0, maxval, key, True)
@@ -475,7 +562,16 @@ def search_botinic_array(arr, key):
     else:
         return binary_search(arr, maxval + 1, size - 1, key, False)
 
-
+def main8():
+    first = [1, 5, 10, 13, 20, 30, 8, 7, 6] 
+    print(search_bitonic_array_max(first))
+    print(search_bitonic_array(first, 8))
+    
+#main8()
+"""
+30
+True
+"""
 def find_max_bitonic_index(arr, size):
     start = 0
     end = size - 1
@@ -483,7 +579,7 @@ def find_max_bitonic_index(arr, size):
         print("error")
         return -1
     while start <= end:
-        mid = ((start + end) // 2)
+        mid = (start + end) // 2
         if arr[mid - 1] < arr[mid] and arr[mid + 1] < arr[mid]:
             return mid
         elif arr[mid - 1] < arr[mid] and arr[mid] < arr[mid + 1]:
@@ -497,8 +593,8 @@ def find_max_bitonic_index(arr, size):
 
 def main8():
     first = [1, 5, 10, 13, 20, 30, 8, 7, 6] 
-    print(search_botinic_array_max(first))
-    print(search_botinic_array(first, 8))
+    print(search_bitonic_array_max(first))
+    print(search_bitonic_array(first, 8))
     
 #main8()
 """
@@ -603,8 +699,8 @@ def max_profit(stocks):
             buy = cur_min
             sell = i
             max_profit = cur_profit
-    print("Purchase day is - ", buy , " at price " , stocks[buy])
-    print("Sell day is - " , sell , " at price " , stocks[sell])
+    print("Purchase day is-", buy , "at price" , stocks[buy])
+    print("Sell day is-" , sell , "at price" , stocks[sell])
     return stocks[sell] - stocks[buy]
 
 def main11():
@@ -613,8 +709,8 @@ def main11():
 
 #main11()
 """
-Purchase day is -  2  at price  6
-Sell day is -  10  at price  150
+Purchase day is- 2 at price 6
+Sell day is- 10 at price 150
 Profit: 144
 """
 
@@ -626,7 +722,9 @@ def get_median(arr):
 def find_median(arr_first, arr_second):
     size_first = len(arr_first)
     size_second = len(arr_second)
-    median_index = ((size_first + size_second) + (size_first + size_second) % 2) // 2
+    median_index = math.ceil((size_first + size_second)/2)
+    #median_index = ((size_first + size_second) + (size_first + size_second) % 2) // 2
+    print("median_index", median_index)
     i = 0
     j = 0
     count = 0
@@ -648,7 +746,7 @@ def main12():
     print(get_median(first))
     print(find_median(first, second))
 
-#main12()
+main12()
 """
 6
 6
@@ -669,7 +767,7 @@ def binary_search01(arr):
 def binary_search01_util(arr, start, end):
     if end < start:
         return -1
-    mid = ((start + end) // 2)
+    mid = (start + end) // 2
     
     if '1' == arr[mid] and '0' == arr[mid - 1]:
         return mid
@@ -694,7 +792,7 @@ def binary_search_rotate_array(arr, key):
 def binary_search_rotate_array_util(arr, start, end, key):
     if end < start:
         return False
-    mid = ((start + end) // 2)
+    mid = (start + end) // 2
     
     if key == arr[mid]:
         return True
@@ -710,10 +808,10 @@ def binary_search_rotate_array_util(arr, start, end, key):
             return binary_search_rotate_array_util(arr, start, mid - 1, key)
 
 def main14():
-    first = [34, 56, 77, 1, 5, 6, 6, 6, 6, 6, 6, 7, 8, 10, 13, 20, 30 ]
+    first = [34, 56, 77, 1, 5, 6, 8, 10, 13, 20, 30 ]
     print(binary_search_rotate_array(first, 20))
 
-#main14()
+main14()
 """
 True
 """
@@ -736,6 +834,30 @@ def find_rotation_max_util(arr, start, end):
     else:
         return find_rotation_max_util(arr, start, mid-1)
 
+def main15():
+    arr = [34, 56, 77, 1, 5, 6, 6, 8, 10, 20, 30, 34 ]
+    print(find_rotation_max(arr))
+
+#main15()
+"""
+2
+"""
+
+def count_rotation(arr):
+    size = len(arr)
+    maxIndex = find_rotation_max_util(arr, 0, size - 1)
+    rotations = (maxIndex + 1) % size
+    return rotations
+
+def main15():
+    arr = [34, 56, 77, 1, 5, 6, 6, 8, 10, 20, 30, 34 ]
+    print(count_rotation(arr))
+
+main15()
+"""
+3
+"""
+
 def first_repeated(arr):
     size = len(arr)
     for i in range(size):
@@ -745,8 +867,8 @@ def first_repeated(arr):
     return sys.maxsize  # can raise exception.
 
 def main15():
-    first = [34, 56, 77, 1, 5, 6, 6, 6, 6, 6, 6, 7, 8, 10, 34, 20, 30 ]
-    print(first_repeated(first))
+    arr = [34, 56, 77, 1, 5, 6, 6, 8, 10, 20, 30, 34 ]
+    print(first_repeated(arr))
 
 #main15()
 """
@@ -879,6 +1001,40 @@ Pairs are: ( 2 3 ) ( 3 2 ) Maximum: 5 Minimum: 5
 0
 """
 
+def sum_pair_rest_array(arr):
+    size = len(arr)
+    arr.sort()
+    total = 0
+
+    for i in range(size):
+        total += arr[i]
+
+    value = total // 2
+    low = 0
+    high = size - 1
+
+    while low < high:
+        curr = arr[low] + arr[high]
+        if curr == value:
+            print(arr[low] , arr[high])
+            return True
+        elif curr < value:
+            low += 1
+        else :
+            high -= 1
+    return False
+
+# Testing Code
+def main20():
+    arr = [1, 2, 4, 8, 16, 15]
+    print(sum_pair_rest_array(arr))
+
+#main20()
+
+"""
+8 15
+"""
+
 """
 Given an array of N intergers you need to find if array elements can form an Arithimatic 
 progression.
@@ -891,12 +1047,10 @@ def is_ap(arr):
         return True
 
     arr.sort()
- 
     diff = arr[1] - arr[0]
     for i in range(2, size):
         if (arr[i] - arr[i-1] != diff):
             return False
- 
     return True
 
 def is_ap2(arr):
@@ -984,14 +1138,11 @@ def ap_triplets(arr):
                 j -= 1          
 
 def main21():
-    arr = [ 2, 4, 8, 10, 12, 14, 18, 36, 38, 42 ]
+    arr = [ 2, 4, 10, 12, 14, 18, 36]
     ap_triplets(arr)
 
 #main21()
 """
-4 8 12
-2 8 14
-8 10 12
 2 10 18
 10 12 14
 10 14 18
@@ -1017,7 +1168,7 @@ def gp_triplets(arr):
                 j -= 1
           
 def main22():
-    arr = [ 1, 2, 4, 8, 16, 32 ]
+    arr = [ 1, 2, 4, 8, 16 ]
     gp_triplets(arr)
 
 #main22()
@@ -1026,8 +1177,45 @@ def main22():
 2 4 8
 1 4 16
 4 8 16
-2 8 32
-8 16 32
+"""
+
+def number_of_triangles(arr):
+    size = len(arr)
+    count = 0
+
+    for i in range(0,size - 2):
+        for j in range(i+1, size - 1):
+            for k in range(j+1, size):
+                if arr[i] + arr[j] > arr[k] and arr[i] + arr[k] > arr[j] and arr[k] + arr[j] > arr[i]:
+                    count += 1
+    return count
+
+def number_of_triangles2(arr):
+    size = len(arr)
+    arr.sort()
+    count = 0
+
+    for i in range(0,size - 2):
+        k = i + 2
+        for j in range(i+1, size - 1):
+            # if sum of arr[i] & arr[j] is greater arr[k] 
+            # then sum of arr[i] & arr[j+1] is also greater than arr[k]
+            # this improvement make algo O(n2)
+            while k < size and arr[i] + arr[j] > arr[k]:
+                k += 1
+
+            count += k - j - 1
+    return count
+
+def main24():
+    arr = [1, 2, 3, 4, 5]
+    print(number_of_triangles(arr))
+    print(number_of_triangles2(arr))
+
+#main24()
+"""
+3
+3
 """
 
 """
@@ -1078,7 +1266,7 @@ def find_floor(arr, value):
             start = mid+1
         else:
             stop = mid-1
-    return -9999
+    return -1
 
 def find_ceil(arr, value):
     size = len(arr)
@@ -1096,11 +1284,11 @@ def find_ceil(arr, value):
             start = mid+1
         else:
             stop = mid-1
-    return -9999
+    return -1
 
 def main24():
     arr = [2, 4, 8, 16]
-    for i in range(2,10):
+    for i in range(2,6):
         print(i , find_ceil(arr, i), find_floor(arr, i))
 
 #main24()
@@ -1109,10 +1297,7 @@ def main24():
 3 4 2
 4 4 4
 5 8 4
-6 8 4
-7 8 4
-8 8 8
-9 16 8
+
 """
 
 """
@@ -1142,7 +1327,7 @@ def closest_number(arr, num):
 
 def main25():
     arr = [2, 5, 8, 8, 9]
-    for i in range(10):
+    for i in range(6):
         print(i, "is closest to:", closest_number(arr, i))
 
 #main25()
@@ -1153,10 +1338,7 @@ def main25():
 3 is closest to: 2
 4 is closest to: 5
 5 is closest to: 5
-6 is closest to: 5
-7 is closest to: 8
-8 is closest to: 8
-9 is closest to: 9
+
 """
 
 def duplicate_Kdistance(arr, k):
@@ -1197,7 +1379,6 @@ def find_difference2(arr, value):
     first = 0
     second = 0
     arr.sort()
-    print(arr)
     while first < size and second < size:
         curr = abs(arr[first] - arr[second])
         if curr == value:
@@ -1212,12 +1393,30 @@ def find_difference2(arr, value):
 def main26():
     first = [10, 20, 3, 4, 50, 80]
     print(find_difference(first, 70))
-    first = [10, 20, 3, 4, 50, 80]
-
+    print(find_difference(first, 47))
+    print(find_difference(first, 17))
+    print(find_difference2(first, 70))
     print(find_difference2(first, 47))
     print(find_difference2(first, 17))
-    print(find_difference2(first, 30))
-    print(find_difference2(first, 46))
+
+#main26()
+"""
+The pair is:: 10 & 80
+True
+The pair is:: 3 & 50
+True
+The pair is:: 20 & 3
+True
+The pair is:: 10 & 80
+True
+The pair is:: 3 & 50
+True
+The pair is:: 3 & 20
+True
+"""
+
+
+
 
 
 """
@@ -1264,19 +1463,15 @@ def closest_pair2(arr, value):
 def main27():
     first = [10, 20, 3, 4, 50, 80]
     closest_pair(first, 70)
-
-    first = [10, 20, 3, 4, 50, 80]
+    closest_pair(first, 47)
+    closest_pair2(first, 70)
     closest_pair2(first, 47)
-    closest_pair2(first, 17)
-    closest_pair2(first, 30)
-    closest_pair2(first, 46)
 
 #main27()
 """
 closest pair is :: 20 50
 closest pair is :: 3 50
-closest pair is :: 4 10
-closest pair is :: 10 20
+closest pair is :: 20 50
 closest pair is :: 3 50
 """
 
@@ -1307,17 +1502,13 @@ def find_triplet2(arr, value):
 
 def main28():
     arr = [1, 5, 15, 6, 9, 8]
-    print(arr)
     find_triplet(arr, 22)
-    print(arr)
     find_triplet2(arr, 22)
 
 #main28()
 """
-[1, 5, 15, 6, 9, 8]
 1 15 6
 5 9 8
-[1, 5, 15, 6, 9, 8]
 1 6 15
 5 8 9
 """
@@ -1349,17 +1540,13 @@ def zero_sum_triplets2(arr):
 
 def main29():
     arr = [0, -1, 2, -3, 1]
-    print(arr)
     zero_sum_triplets(arr)
-    print(arr)
     zero_sum_triplets2(arr)
 
 #main29()
 """
-[0, -1, 2, -3, 1]
 0 -1 1
 2 -3 1
-[0, -1, 2, -3, 1]
 -3 1 2
 -1 0 1
 """
@@ -1591,7 +1778,7 @@ def first_index(arr, low, high, value):
         mid = (low + high)//2 
 
         """ 
-        Find first occurance of value, either it should be the first element of the array or 
+        Find first occurrence of value, either it should be the first element of the array or 
         the value before it is smaller then it.
         """ 
         if (mid == 0 or arr[mid-1] < value ) and (arr[mid] == value):
@@ -1605,13 +1792,13 @@ def first_index(arr, low, high, value):
 def main35():
     arr = [3, 3, 3, 3, 4, 5, 10]
     if (is_majority(arr)):
-        print("Majority found ", arr[len(arr)//2])
+        print("Majority found::", arr[len(arr)//2])
     else:
         print ("Majority not found")
 
 #main35()
 """
-Majority found  3
+Majority found:: 3
 """
 
 """
@@ -1655,6 +1842,12 @@ def max_con_sub_arr(A, B):
                 maximum = curr_max
     print(maximum)
 
+
+
+"""
+O(M + N) Solution.
+"""
+
 def binary_search(arr, size, value):
     start = 0 
     stop = size - 1
@@ -1667,11 +1860,6 @@ def binary_search(arr, size, value):
         else:
             stop = mid-1
     return False
-
-"""
-O(M + N) Solution.
-"""
-
 
 def max_con_sub_arr2(A, B):
     sizeA = len(A)
@@ -1695,12 +1883,14 @@ O(MlogM + NlogM)  Solution.
 for sorting and then for search each element.
 """
 def main36():
-    A = [1, 2, 3, 4, 5, -10, 6,7]
+    A = [1, 2, -3, 4, 5, -10, 6,7]
+    max_con_sub(A)
+    A = [1, 2, 3, 4, 5, -10, 6, 7, 3]
     B = [ 1, 3]
     max_con_sub_arr(A, B)
     max_con_sub_arr2(A, B)
 
-#main36()
+main36()
 """
 13
 13

@@ -1,5 +1,4 @@
-#!/usr/bin/env python
-class string_tree(object):
+class StringTree(object):
     class Node(object):
         def __init__(self, v, cnt=1, l=None, r=None):
             self.value = v
@@ -17,7 +16,7 @@ class string_tree(object):
     def print_tree_util(self, curr):
         #  pre order 
         if curr != None:
-            print("[",curr.value, ":" , curr.count,"]")
+            print("[", curr.value, ":", curr.count, "]")
             self.print_tree_util(curr.lchild)
             self.print_tree_util(curr.rchild)
     
@@ -77,17 +76,17 @@ class string_tree(object):
         else:
             return self.frequency_util(curr.rchild, value)
 
-
-t = string_tree()
+# Testing code.
+t = StringTree()
 t.insert("banana")
 t.insert("apple")
 t.insert("mango")
-print("Apple Found :", t.find("apple"))
-print("Grapes Found :", t.find("grapes"))
-print("Banana Found :", t.find("banana"))
+print("Apple Found:", t.find("apple"))
+print("Grapes Found:", t.find("grapes"))
+print("Banana Found:", t.find("banana"))
 
 """
-Apple Found : True
-Grapes Found : False
-Banana Found : True
+Apple Found: True
+Grapes Found: False
+Banana Found: True
 """

@@ -22,6 +22,31 @@ class Heap:
             return (first - second) < 0 # Max Heap
 
     #  Other Methods.
+    def add(self, value):    
+        self.arr.append(value)
+        self.proclate_up(self.size)
+        self.size += 1
+        
+    def remove(self):
+        if self.size == 0:
+            raise RuntimeError("Heap is empty.")
+        value = self.arr[0]
+        self.arr[0] = self.arr[self.size - 1]
+        self.proclate_down(0)
+        self.size -= 1
+        return value
+
+    def print(self):
+        print(self.arr)
+
+    def is_empty(self):
+        return (self.size == 0)
+
+    def peek(self):
+        if self.size() == 0:
+            raise RuntimeError("Heap is empty.")        
+        return self.arr[0]
+
     def proclate_down(self, parent):
         left_child = 2 * parent +  1
         right_child = left_child + 1
@@ -48,32 +73,68 @@ class Heap:
             self.arr[parent] = temp
             self.proclate_up(parent)
 
-    def add(self, value):    
-        self.arr.append(value)
-        self.proclate_up(self.size)
-        self.size += 1
-        
+    
 
-    def remove(self):
-        if self.size == 0:
-            raise RuntimeError("Heap is empty.")
-        value = self.arr[0]
-        self.arr[0] = self.arr[self.size - 1]
-        self.proclate_down(0)
-        self.size -= 1
-        return value
 
-    def print(self):
-        print(self.arr)
 
-    def is_empty(self):
-        return (self.size == 0)
+# Testing Code
+a = [1, 9, 6, 7, 8, 0, 2, 4, 5, 3]
+hp2 = Heap(True)
+for i in range(len(a)) :
+    hp2.add(a[i])
+hp2.print()
+i = 0
+while i < len(a):
+    print(hp2.remove(), end=' ')
+    i += 1
+print()
 
-    def peek(self):
-        if self.size() == 0:
-            raise RuntimeError("Heap is empty.")        
-        return self.arr[0]
+"""
+[0, 3, 1, 5, 4, 6, 2, 9, 7, 8]
+0 1 2 3 4 5 6 7 8 9 
+"""
 
+a = [1, 9, 6, 7, 8, 0, 2, 4, 5, 3]
+hp = Heap(True, a)
+hp.print()
+i = 0
+while i < len(a):
+    print(hp.remove(), end=' ')
+    i += 1
+print("")
+"""
+[0, 3, 1, 4, 8, 6, 2, 7, 5, 9]
+0 1 2 3 4 5 6 7 8 9 
+"""
+
+
+a = [1, 9, 6, 7, 8, 0, 2, 4, 5, 3]
+hp = Heap(False, a)
+hp.print()
+i = 0
+while i < len(a):
+    print(hp.remove(), end=' ')
+    i += 1
+print("")
+"""
+[9, 8, 6, 7, 3, 0, 2, 4, 5, 1]
+9 8 7 6 5 4 3 2 1 0 
+"""
+
+def heap_sort(array):
+    hp = Heap(False, array)
+    i = 0
+    size = len(array)
+    while i < size:
+        array[size - i -1] = hp.remove()
+        i += 1
+
+a = [1, 9, 6, 7, 8, 0, 2, 4, 5, 3]
+heap_sort(a)
+print(a)
+"""
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+"""
 def is_min_heap(arr):
     size = len(arr)
     parent = 0
@@ -86,6 +147,12 @@ def is_min_heap(arr):
         parent += 1
     return True
 
+a = [1, 2, 3, 4, 5, 6, 7, 8]
+print(is_min_heap(a))
+
+"""
+True 
+"""
 
 def is_max_heap(arr):
     size = len(arr)
@@ -100,61 +167,11 @@ def is_max_heap(arr):
         parent += 1
     return True
 
-def heap_sort(array):
-    hp = Heap(False, array)
-    i = 0
-    size = len(array)
-    while i < size:
-        array[size - i -1] = hp.remove()
-        i += 1
 
-# Testing Code
-a = [1, 9, 6, 7, 8, 0, 2, 4, 5, 3]
-hp2 = Heap(True)
-for i in range(len(a)) :
-    hp2.add(a[i])
-hp2.print()
-i = 0
-while i < len(a):
-    print(hp2.remove(), end=' ')
-    i += 1
-print()
-
-hp = Heap(True, a)
-hp.print()
-i = 0
-while i < len(a):
-    print(hp.remove(), end=' ')
-    i += 1
-print("")
-
-a = [1, 9, 6, 7, 8, 0, 2, 4, 5, 3]
-hp = Heap(False, a)
-hp.print()
-i = 0
-while i < len(a):
-    print(hp.remove(), end=' ')
-    i += 1
-print("")
-
-a = [1, 9, 6, 7, 8, 0, 2, 4, 5, 3]
-heap_sort(a)
-print(a)
-
-a = [1, 2, 3, 4, 5, 6, 7, 8]
-print(is_min_heap(a))
 b = [8, 7, 6, 5, 4, 3, 2, 1]
 print(is_max_heap(b))
 
 
 """
-[0, 3, 1, 5, 4, 6, 2, 9, 7, 8]
-0 1 2 3 4 5 6 7 8 9 
-[0, 3, 1, 4, 8, 6, 2, 7, 5, 9]
-0 1 2 3 4 5 6 7 8 9 
-[9, 8, 6, 7, 3, 0, 2, 4, 5, 1]
-9 8 7 6 5 4 3 2 1 0 
-[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-True
 True 
 """

@@ -51,15 +51,15 @@ class HashTable(object):
         i = 0
         while i < self.table_size:
             if self.flag[hash_value] == self.EMPTY_NODE:
-                return 0
+                return sys.maxsize
             if self.flag[hash_value] == self.FILLED_NODE and self.key_arr[hash_value] == key:
                 return self.data_arr[hash_value]
             hash_value += self.resolver_fun(i)
             hash_value %= self.table_size
             i += 1
-        return 0
+        return sys.maxsize
 
-    def delete(self, key):
+    def remove(self, key):
         hash_value = self.compute_hash(key)
         i = 0
         while i < self.table_size:
@@ -74,33 +74,26 @@ class HashTable(object):
         return False
 
     def print(self):
-        i = 0
-        while i < self.table_size:
+        for i in range(self.table_size) :
             if self.flag[i] == self.FILLED_NODE:
-                print("Node at index [" , i , " ] :: " , self.data_arr[i])
-            i += 1
+                print("Value for key [" , self.key_arr[i] , "] :: " , self.data_arr[i])
 
-
+# Testing Code
 ht = HashTable(1000)
 ht.add(1, 10)
 ht.add(2, 20)
 ht.add(3, 30)
 ht.print()
-
-print("find key 2 : ", ht.find(2))
-print("Value at key 2 : ", ht.get(2))
-
-ht.delete(1)
-ht.print()
+print("Find key 2 :", ht.find(2))
+ht.remove(2)
+print("After deleting node with key 2.")
+print("Find key 2 :", ht.find(2))
 
 """
-Node at index [ 1  ] ::  10
-Node at index [ 2  ] ::  20
-Node at index [ 3  ] ::  30
-
-find key 2 :  True
-Value at key 2 :  20
-
-Node at index [ 2  ] ::  20
-Node at index [ 3  ] ::  30
+Value at index [ 1 ] ::  10
+Value at index [ 2 ] ::  20
+Value at index [ 3 ] ::  30
+Find key 2 : True
+After deleting node with key 2.
+Find key 2 : False
 """

@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 class Trie(object):
     class Node(object):
         CharCount = 26
@@ -55,16 +54,17 @@ class Trie(object):
             return curr.isLastChar
         return self.find_util(curr.child[ord(token[index]) - ord('a')], token, index + 1)
 
+# Testing code.
 t = Trie()
 t.insert("banana")
 t.insert("apple")
 t.insert("mango")
 
-print("Apple Found :", t.find("apple"))
-print("Grapes Found :", t.find("grapes"))
-print("Banana Found :", t.find("banana"))
+print("Apple Found:", t.find("apple"))
+print("Grapes Found:", t.find("grapes"))
+print("Banana Found:", t.find("banana"))
 """
-Apple Found : True
-Grapes Found : False
-Banana Found : True
+Apple Found: True
+Grapes Found: False
+Banana Found: True
 """

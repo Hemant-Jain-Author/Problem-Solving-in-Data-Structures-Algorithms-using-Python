@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 class HashTableSC(object):
     def __init__(self):
         self.table_size = 512
@@ -27,12 +26,12 @@ class HashTableSC(object):
         return False
 
     def print(self):
+        print("Hash Table contains ::", end=" ")
         for i in range(self.table_size):
             if len(self.adj_list[i]) != 0:
-                print("Value at index ::" , i , "are :: ", end="")
                 for value in self.adj_list[i]:
-                    print(value, end=' ')
-                print("")
+                    print(value,  end=" ")
+        print()
 
     def find(self, value):
         index = self.compute_hash(value)
@@ -40,23 +39,20 @@ class HashTableSC(object):
             return True
         return False
 
+# Testing Code
 ht = HashTableSC()
 ht.add(1)
 ht.add(2)
 ht.add(3)
 ht.print()
-
-print("find 2 :", ht.find(2))
-
+print("Find key 2 :", ht.find(2))
 ht.remove(2)
 print("After deleting node with key 2.")
-print("find 2 :", ht.find(2))
+print("Find key 2 :", ht.find(2))
 
 """
-Value at index :: 1 are :: 1 
-Value at index :: 2 are :: 2 
-Value at index :: 3 are :: 3 
-find 2 : True
+Hash Table contains :: 1 2 3 
+Find key 2 : True
 After deleting node with key 2.
-find 2 : False
+Find key 2 : False
 """

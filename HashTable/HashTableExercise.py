@@ -16,6 +16,7 @@ def is_anagram(str1, str2):
             cm[ch] -= 1
     return True
 
+# Testing Code
 first = "hello"
 second = "elloh"
 third = "world"
@@ -36,6 +37,7 @@ def remove_duplicate(exp):
             hs.add(ch)
     return return_exp
 
+# Testing Code
 first = "hello"
 print(remove_duplicate(first))
 
@@ -54,8 +56,10 @@ def find_missing(arr, start, end):
         curr += 1
     return sys.maxsize
 
+# Testing Code
 arr = [1, 2, 3, 5, 6, 7, 8, 9, 10]
 print(find_missing(arr, 1, 10))
+
 """
 4
 """
@@ -69,8 +73,10 @@ def print_repeating(arr):
         else:
             hs.add(val)
 
+# Testing Code
 arr = [1, 2, 3, 4, 4, 5, 6, 7, 8, 9, 1]
 print_repeating(arr)
+
 """
 Repeating elements are: 4 1 
 """
@@ -89,6 +95,7 @@ def print_first_repeating(arr):
             return arr[i]
         i += 1
 
+# Testing Code
 arr = [1, 2, 3, 4, 4, 5, 6, 7, 8, 9, 1]
 print_first_repeating(arr)
 

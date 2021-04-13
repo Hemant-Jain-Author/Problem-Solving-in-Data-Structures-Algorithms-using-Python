@@ -2,13 +2,14 @@ def toh_util(num, source, dest, temp):
     if num < 1:
         return
     toh_util(num - 1, source, temp, dest)
-    print("Move disk" , num , "from peg" , source , "to peg" , dest)
+    print("Move disk", num, "from peg", source, "to peg", dest)
     toh_util(num - 1, temp, dest, source)
 
 def tower_of_hanoi(num):
-    print("The sequence of moves involved in the Tower of Hanoi are :")
+    print("The sequence of moves involved in the Tower of Hanoi are:")
     toh_util(num, 'A', 'C', 'B')
 
+# Testing Code
 tower_of_hanoi(3)
 
 """

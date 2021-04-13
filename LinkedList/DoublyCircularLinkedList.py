@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 class DoublyCircularLinkedList(object):
     class Node(object):
         def __init__(self, v, nxt=None, prv=None):
@@ -84,7 +83,7 @@ class DoublyCircularLinkedList(object):
         self.tail = prev
         return value
 
-    def is_present(self, key):
+    def search (self, key):
         temp = self.head
         if self.head == None:
             return False
@@ -96,7 +95,7 @@ class DoublyCircularLinkedList(object):
             i += 1
         return False
 
-    def free_list(self):
+    def free(self):
         self.head = None
         self.tail = None
         self.count = 0

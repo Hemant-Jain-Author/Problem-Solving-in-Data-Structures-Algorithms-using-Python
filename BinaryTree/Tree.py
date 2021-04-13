@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 from collections import deque
 import math
 import sys
@@ -9,7 +8,7 @@ class Tree(object):
             self.value = v
             self.lChild = l
             self.rChild = r
-    
+
     def __init__(self):
         self.root = None
 
@@ -26,7 +25,7 @@ class Tree(object):
         if right < size:
             curr.rChild = self.level_order_binary_tree_util(arr, right)
         return curr
-    
+
     def add(self, value):
         self.root = self.add_util(self.root, value)
 
@@ -40,14 +39,14 @@ class Tree(object):
                 node.rChild = self.add_util(node.rChild, value)
         return node
 
-    
+
     def print_pre_order(self):
         self.print_pre_order_util(self.root)
         print()
 
 
     def print_pre_order_util(self, node):
-        #    pre order  
+        # pre order  
         if node != None:
             print(node.value, end=' ')
             self.print_pre_order_util(node.lChild)
@@ -58,7 +57,7 @@ class Tree(object):
         self.nth_pre_order_util(self.root, index, count)
 
     def nth_pre_order_util(self, node, index, count):
-        #    pre order  
+        # pre order  
         if node != None:
             count[0] += 1
             if count[0] == index:
@@ -66,25 +65,25 @@ class Tree(object):
             self.nth_pre_order_util(node.lChild, index, count)
             self.nth_pre_order_util(node.rChild, index, count)
 
-    
+
     def print_post_order(self):
         self.print_post_order_util(self.root)
         print()
 
     def print_post_order_util(self, node):
-        #    post order  
+        # post order  
         if node != None:
             self.print_post_order_util(node.lChild)
             self.print_post_order_util(node.rChild)
             print(node.value, end=' ')
 
-    
+
     def nth_post_order(self, index):
         count = [0]
         self.nth_post_order_util(self.root, index, count)
 
     def nth_post_order_util(self, node, index, count):
-        #    post order  
+        # post order  
         if node != None:
             self.nth_post_order_util(node.lChild, index, count)
             self.nth_post_order_util(node.rChild, index, count)
@@ -92,7 +91,7 @@ class Tree(object):
             if count[0] == index:
                 print(node.value, end=' ')
 
-    
+
     def print_in_order(self):
         self.print_in_order_util(self.root)
         print()
@@ -105,7 +104,7 @@ class Tree(object):
             print(node.value, end=' ')
             self.print_in_order_util(node.rChild)
 
-    
+
     def nth_in_order(self, index):
         count = [0]
         self.nth_in_order_util(self.root, index, count)
@@ -157,7 +156,7 @@ class Tree(object):
                 curr = curr.rChild
         return False
 
-    
+
     def find_min(self):
         node = self.root
         if node == None:
@@ -166,7 +165,7 @@ class Tree(object):
             node = node.lChild
         return node.value
 
-    
+
     def find_max(self):
         node = self.root
         if node == None:
@@ -193,7 +192,7 @@ class Tree(object):
 
     def free(self):
         self.root = None
-    
+
     def delete_node(self, value):
         self.root = self.delete_node_util(self.root, value)
 
@@ -220,7 +219,7 @@ class Tree(object):
                     node.rChild = self.delete_node_util(node.rChild, value)
         return node
 
-    
+
     def tree_depth(self):
         return self.tree_depth_util(self.root)
 
@@ -236,17 +235,17 @@ class Tree(object):
                 return rDepth + 1
 
     def is_equal(self, T2):
-        return self.identical(self.root, T2.root)
+        return self.is_equal(self.root, T2.root)
 
-    def identical(self, node1, node2):
+    def is_equal(self, node1, node2):
         if node1 == None and node2 == None:
             return True
         elif node1 == None or node2 == None:
             return False
         else:
-            return (self.identical(node1.lChild, node2.lChild) and self.identical(node1.rChild, node2.rChild) and (node1.value == node2.value))
+            return (self.is_equal(node1.lChild, node2.lChild) and self.is_equal(node1.rChild, node2.rChild) and (node1.value == node2.value))
 
-    
+
     def ancestor(self, first, second):
         if first > second:
             temp = first
@@ -268,7 +267,7 @@ class Tree(object):
             return self.ancestor_util(curr.rChild, first, second)
         return curr
 
-    
+
     def copy_tree(self):
         tree2 = Tree()
         tree2.root = self.copy_tree_util(self.root)
@@ -283,7 +282,7 @@ class Tree(object):
         else:
             return None
 
-    
+
     def copy_mirror_tree(self):
         tree2 = Tree()
         tree2.root = self.copy_mirror_tree_util(self.root)
@@ -298,7 +297,7 @@ class Tree(object):
         else:
             return None
 
-    
+
     def num_nodes(self):
         return self.num_nodes_util(self.root)
 
@@ -308,7 +307,7 @@ class Tree(object):
         else:
             return (1 + self.num_nodes_util(curr.rChild) + self.num_nodes_util(curr.lChild))
 
-    
+
     def num_full_nodes_bt(self):
         return self.num_full_nodes_bt_util(self.root)
 
@@ -320,7 +319,7 @@ class Tree(object):
             count += 1
         return count
 
-    
+
     def max_length_path_bt(self):
         return self.max_length_path_bt_util(self.root)
 
@@ -339,7 +338,7 @@ class Tree(object):
             maxpath = rightMax
         return maxpath
 
-    
+
     def num_leaf_nodes(self):
         return self.num_leaf_nodes_util(self.root)
 
@@ -351,7 +350,7 @@ class Tree(object):
         else:
             return (self.num_leaf_nodes_util(curr.rChild) + self.num_leaf_nodes_util(curr.lChild))
 
-    
+
     def sum_all_bt(self):
         return self.sum_all_bt_util(self.root)
 
@@ -375,26 +374,26 @@ class Tree(object):
             if curr.lChild != None:
                 stk.append(curr.lChild)
 
-    def iterativePostOrder(self):
-        stk = []
-        visited = []
-        if self.root != None:
-            stk.append(self.root)
-            visited.append(0)
-        while len(stk) != 0:
-            curr = stk.pop()
-            vtd = visited.pop()
-            if vtd == 1:
-                print(curr.value, end=' ')
-            else:
-                stk.append(curr)
-                visited.append(1)                
-                if curr.rChild != None:
-                    stk.append(curr.rChild)
-                    visited.append(0)
-                if curr.lChild != None:
-                    stk.append(curr.lChild)
-                    visited.append(0)
+def iterative_post_order(self):
+    stk = []
+    visited = []
+    if self.root != None:
+        stk.append(self.root)
+        visited.append(0)
+    while len(stk) != 0:
+        curr = stk.pop()
+        vtd = visited.pop()
+        if vtd == 1:
+            print(curr.value, end=' ')
+        else:
+            stk.append(curr)
+            visited.append(1)                
+            if curr.rChild != None:
+                stk.append(curr.rChild)
+                visited.append(0)
+            if curr.lChild != None:
+                stk.append(curr.lChild)
+                visited.append(0)
 
     def iterative_in_order(self):
         stk = []
@@ -430,7 +429,7 @@ class Tree(object):
             return False
         return (self.is_bst3_util(root.lChild) and self.is_bst3_util(root.rChild))
 
-    
+
     def is_bst(self):
         return self.is_bst_util(self.root, -999999, 999999)
 
@@ -441,7 +440,7 @@ class Tree(object):
             return False
         return self.is_bst_util(curr.lChild, minval, curr.value) and self.is_bst_util(curr.rChild, curr.value, maxval)
 
-    
+
     def is_bst2(self):
         count = [0]
         return self.is_bst2_util(self.root, count)
@@ -478,7 +477,7 @@ class Tree(object):
         self.print_all_path_util(curr.lChild, stk)
         stk.pop()
 
-    
+
     def lca(self, first, second):
         ans = self.lca_util(self.root, first, second)
         if ans != None:
@@ -500,23 +499,28 @@ class Tree(object):
         else:
             return right
 
-    
+
     def lca_bst(self, first, second):
+        if first > second:
+            first, second = second, first
         curr = self.lca_bst_util(self.root, first, second)
         if(curr == None):
-            raise RuntimeError("lca does not exists.")
-        return curr.value
+            print("LCA does not exist")
+        else:
+            print("LCA is :", curr.value) 
 
     def lca_bst_util(self, curr, first, second):
         if curr == None:
             return None
-        if curr.value > first and curr.value > second:
+        if curr.value > second:
             return self.lca_bst_util(curr.lChild, first, second)
-        if curr.value < first and curr.value < second:
+        if curr.value < first:
             return self.lca_bst_util(curr.rChild, first, second)
-        return curr
+        if self.find(first) and self.find(second):
+            return curr
+        return None
 
-    
+
     def trim_outside_range(self, minval, maxval):
         self.trim_outside_range_util(self.root, minval, maxval)
 
@@ -531,7 +535,7 @@ class Tree(object):
             return curr.lChild
         return curr
 
-    
+
     def print_in_range(self, minval, maxval):
         self.print_in_range_util(self.root, minval, maxval)
         print()
@@ -572,7 +576,7 @@ class Tree(object):
                 curr = curr.rChild
         return ceil
 
-    
+
     def find_max_bt(self):
         return self.find_max_bt_util(self.root)
 
@@ -604,7 +608,7 @@ class Tree(object):
             return True
         return False
 
-    
+
     def create_binary_tree(self, arr):
         self.root = self.create_binary_tree_util(arr, 0, len(arr)-1)
 
@@ -754,7 +758,7 @@ class Tree(object):
 
     def find_count(self):
         return self.find_count_util(self.root)
-    
+
     def is_complete_tree_util(self, curr, index, count):
         if curr == None:
             return True
@@ -787,7 +791,6 @@ class Tree(object):
                 que.append(temp.rChild)
             else:
                 noChild = True
-
         return True
 
     def is_heap_util(self, curr, parentValue):
@@ -915,17 +918,8 @@ def main():
     print(t.search_bt(9))  
     # True
 
-    print(t.find(18))
-    # False
-
     print(t.find_max_bt())
     # 10
-
-    print(t.find_max())
-    # 7
-
-    print(t.find_min())
-    # 8
 
     print(t.tree_depth())
     # 4
@@ -934,7 +928,7 @@ def main():
     # 6
 
     t2 = t.copy_tree()
-    #t2 = t.copy_mirror_tree()
+    #
     print("Printing original tree")
     t.print_level_order_linebyline()
     """
@@ -943,6 +937,26 @@ def main():
     2 3 
     4 5 6 7 
     8 9 10 
+    """
+
+def main():
+    arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    t = Tree()
+    t.level_order_binary_tree(arr)
+
+    t.print_level_order_linebyline()
+    t2 = t.copy_mirror_tree()
+    t2.print_level_order_linebyline()
+    """
+    1 
+    2 3 
+    4 5 6 7 
+    8 9 10 
+
+    1 
+    3 2 
+    7 6 5 4 
+    10 9 8 
     """
 
     print("Printing mirror tree")
@@ -989,16 +1003,31 @@ def main():
     t.add(4)
     t.print_in_order()
     # 1 2 3 4
-
+    print(t.find(3))
     print(t.find(6))
-    print(t.find_min())
-    print(t.find_max())
     """
+    True
     False
     1
     4
     """
+    t = Tree()
+    t.add(2)
+    t.add(1)
+    t.add(3)
+    t.add(4)
+    print(t.find_min())
+    print(t.find_max())
+    """
+    1
+    4
+    """
 
+    t = Tree()
+    t.add(2)
+    t.add(1)
+    t.add(3)
+    t.add(4)
     print(t.is_bst())
     print(t.is_bst2())
     print(t.is_bst3())
@@ -1008,6 +1037,11 @@ def main():
     True
     """
 
+    t = Tree()
+    t.add(2)
+    t.add(1)
+    t.add(3)
+    t.add(4)
     print("Before delete operation.")
     t.print_in_order()
     t.delete_node(2)
@@ -1020,13 +1054,18 @@ def main():
     1 3 4 
     """
 
-    print(t.lca_bst(3, 4))
-    print(t.lca_bst(1, 4))
-    print(t.lca_bst(10, 4))
+    t = Tree()
+    t.add(2)
+    t.add(1)
+    t.add(3)
+    t.add(4)
+    t.lca_bst(3, 4)
+    t.lca_bst(1, 4)
+    t.lca_bst(10, 4)
     """
-    3
-    1
-    4
+    LCA is : 3
+    LCA is : 2
+    LCA does not exist
     """
 
 def main2():
@@ -1044,31 +1083,31 @@ def main2():
     print(t.ancestor(1, 10))
     # 5
 
+
+    arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    t = Tree()
+    t.create_binary_tree(arr)    
     print(t.ceil_bst(5.5))
     # 6
 
     print(t.floor_bst(8))
-    # 7
+    # 8
 
 def main3():
     arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     t = Tree()
     t.create_binary_tree(arr)
-
     t.iterative_in_order()
-    print()
     t.iterative_pre_order()
-    print()
-    t.iterativePostOrder()
-    print()
+    t.iterative_post_order()
 
-    print ( t.lca(10, 3) )
-"""
-1 2 3 4 5 6 7 8 9 10 
-5 2 1 3 4 8 6 7 9 10 
-1 4 3 2 7 6 10 9 8 5 
-5
-"""
+        print ( t.lca(10, 3) )
+    """
+    1 2 3 4 5 6 7 8 9 10 
+    5 2 1 3 4 8 6 7 9 10 
+    1 4 3 2 7 6 10 9 8 5 
+    5
+    """
 
 
 def is_bst_array(preorder):
@@ -1089,7 +1128,7 @@ def is_bst_array(preorder):
         # add current value to the stack.
         stk.append(value)
         i += 1
-    
+
     return True
 
 
@@ -1097,7 +1136,6 @@ def is_bst_array(preorder):
 def main4():
     arr = [5, 2, 4, 6, 9, 10]
     print(is_bst_array(arr))
-
 
     arr = [5, 2, 6, 4, 7, 9, 10]
     print(is_bst_array(arr))
@@ -1107,10 +1145,10 @@ True
 False
 """
 
-main()
-main2()
-main3()
-main4()
+#main()
+#main2()
+#main3()
+#main4()
 
 
 """

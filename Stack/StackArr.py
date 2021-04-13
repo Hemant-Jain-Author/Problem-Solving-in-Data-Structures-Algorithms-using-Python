@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 class Stack(object):
     def __init__(self):
         self.data = []     
@@ -30,9 +29,12 @@ s = Stack()
 s.push(1)
 s.push(2)
 s.push(3) 
+s.print()
 print(s.pop())
 s.print()
+
 """
+[1, 2, 3]
 3
 [1, 2]
 """

@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 class Queue(object):
     class Node(object):
         def __init__(self, v, n=None):

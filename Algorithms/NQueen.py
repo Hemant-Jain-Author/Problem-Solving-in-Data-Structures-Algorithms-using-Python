@@ -17,7 +17,7 @@ def nqueens(queen, k, size):
             nqueens(queen, k + 1, size)
         i += 1
 
-
+# Testing Code
 queen = [0] * 8
 nqueens(queen, 0, 8)
 

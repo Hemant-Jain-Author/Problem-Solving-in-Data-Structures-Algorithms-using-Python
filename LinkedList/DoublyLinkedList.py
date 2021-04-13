@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 class DoublyLinkedList(object):
     class Node(object):
         def __init__(self, v, nxt=None, prv=None):
@@ -89,7 +88,7 @@ class DoublyLinkedList(object):
             temp = temp.next
         return False
 
-    def free_list(self):
+    def free(self):
         self.head = None
         self.tail = None
         self.count = 0
@@ -184,8 +183,6 @@ ll.add_head(1)
 ll.add_head(2)
 ll.add_head(3)
 ll.add_head(4)
-ll.add_head(5)
-ll.add_head(6)
 ll.print()
 ll.remove_head()
 ll.print()
@@ -194,8 +191,8 @@ ll2.print()
 ll3 = ll.copy_list_reversed()
 ll3.print()
 """
-6 5 4 3 2 1 
-5 4 3 2 1 
-5 4 3 2 1 
-1 2 3 4 5 
+4 3 2 1 
+3 2 1 
+3 2 1 
+1 2 3 
 """

@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 import heapq
 import sys
 from collections import deque
@@ -17,11 +16,13 @@ class Graph(object):
 
     def print(self):
         for i in range(self.count):
-            print("Vertex " , i , " is connected to : ", end=' ')
+            print("Vertex", i, "is connected to:", end=' ')
             for j in range(self.count):
                 if self.adj[i][j] != 0:
-                    print(j ,end =" ")
+                    print( j, "(cost:", self.adj[i][j], ")", end =" ")
             print("")
+
+# Testing code
 def main():
     graph = Graph(4)
     graph.add_undirected_edge(0, 1)
@@ -30,12 +31,15 @@ def main():
     graph.add_undirected_edge(2, 3)
     graph.print()
 
+main()
+
 """
-Vertex  0  is connected to :  1 2
-Vertex  1  is connected to :  0 2
-Vertex  2  is connected to :  0 1 3
-Vertex  3  is connected to :  2
+Vertex 0 is connected to: 1 (cost: 1 ) 2 (cost: 1 ) 
+Vertex 1 is connected to: 0 (cost: 1 ) 2 (cost: 1 ) 
+Vertex 2 is connected to: 0 (cost: 1 ) 1 (cost: 1 ) 3 (cost: 1 ) 
+Vertex 3 is connected to: 2 (cost: 1 ) 
 """
+
 class PriorityQueue(object):
     def __init__(self):
         self.que = []
@@ -115,6 +119,7 @@ def prims(gph):
     
     print_path(gph.count, previous,dist)
 
+# Testing code
 def test1():
     graph = Graph(9)
     graph.add_undirected_edge(0, 1, 4)
@@ -194,7 +199,7 @@ def hamiltonian_cycle(graph):
     print("Hamiltonian Cycle not found")
     return False
 
-def HamiltonianPathUtil(graph , path, added):
+def hamiltonian_path_util(graph , path, added):
     # Base case: full length path is found 
     if len(path) == graph.count:
             return True
@@ -205,24 +210,25 @@ def HamiltonianPathUtil(graph , path, added):
         if graph.adj[path[-1]][vertex] == 1 and added[vertex] == False:
             path.append(vertex)
             added[vertex] = True
-            if HamiltonianPathUtil(graph, path, added):
+            if hamiltonian_path_util(graph, path, added):
                 return True
             # backtracking
             path.pop()
             added[vertex] = False
     return False
 
-def HamiltonianPath(graph):
+def hamiltonian_path(graph):
     path = []
     path.append(0)
     added = [False]*graph.count
     added[0] = True
-    if HamiltonianPathUtil(graph, path, added):
+    if hamiltonian_path_util(graph, path, added):
         print("Hamiltonian Path found", path)
         return True
     print("Hamiltonian Path not found")
     return False
 
+# Testing code
 def test2():
     graph = Graph(5)
     graph.adj = [ [0, 1, 0, 1, 0], 
@@ -230,7 +236,7 @@ def test2():
                     [0, 1, 0, 0, 1,],
                     [1, 1, 0, 0, 1], 
                     [0, 1, 1, 1, 0] ]
-    print(HamiltonianPath(graph))
+    print(hamiltonian_path(graph))
 
     g2 = Graph(5)
     g2.adj = [ [0, 1, 0, 1, 0], 
@@ -239,7 +245,7 @@ def test2():
                 [1, 1, 0, 0, 0], 
                 [0, 1, 1, 0, 0] ]
     
-    print(HamiltonianPath(g2))
+    print(hamiltonian_path(g2))
 
 # test2()
 
@@ -250,11 +256,12 @@ Hamiltonian Path found [0, 3, 1, 2, 4]
 True
 """
 
+# Testing code
 def test3():
     graph = Graph(5)
     graph.adj = [ [0, 1, 0, 1, 0], 
                     [1, 0, 1, 1, 0], 
-                    [0, 1, 0, 0, 1,],
+                    [0, 1, 0, 0, 1],
                     [1, 1, 0, 0, 1], 
                     [0, 1, 1, 1, 0] ]
     print(hamiltonian_cycle(graph))
@@ -262,7 +269,7 @@ def test3():
     g2 = Graph(5)
     g2.adj = [ [0, 1, 0, 1, 0], 
                 [1, 0, 1, 1, 0], 
-                [0, 1, 0, 0, 1,], 
+                [0, 1, 0, 0, 1], 
                 [1, 1, 0, 0, 0], 
                 [0, 1, 1, 0, 0] ]
     

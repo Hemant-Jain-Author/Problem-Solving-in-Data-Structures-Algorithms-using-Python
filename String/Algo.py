@@ -1,5 +1,4 @@
-#!/usr/bin/env python
-    
+   
 def brute_force_search(text, pattern):
     i = 0
     n = len(text)
@@ -93,14 +92,18 @@ def kmp_find_count(text, pattern):
             j = shift_arr[j]
     return count
 
+# Testing code.
 st1 = "hello, world!"
 st2 = "world"
-print("brute_force_search return : " , brute_force_search(st1, st2))
-print("robin_karp return : " , robin_karp(st1, st2))
-print("kmp return : " , kmp(st1, st2))
+print("brute_force_search return :", brute_force_search(st1, st2))
+print("robin_karp return :", robin_karp(st1, st2))
+print("kmp return:" , kmp(st1, st2))
+str3 = "Only time will tell if we stand the test of time"
+print("Frequency of 'time' is ", kmp_find_count(str3, "time"))
 
 """
-brute_force_search return :  7
-robin_karp return :  7
-kmp return :  7
+brute_force_search return : 7
+robin_karp return : 7
+kmp return : 7
+Frequency of 'time' is  2
 """

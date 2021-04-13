@@ -159,7 +159,7 @@ def k_smallest_product(arr, k):
     return product
 
 
-def k_smallest_product2(arr, k) :
+def k_smallest_product2(arr, k):
     size = len(arr)
     hp = []    
     for i in range(size):
@@ -167,7 +167,7 @@ def k_smallest_product2(arr, k) :
     heapq.heapify(hp)
     product = 1
     i = 0
-    while (i < size and i < k) :
+    while (i < size and i < k):
         product *= heapq.heappop(hp)      
         i += 1
     return product
@@ -359,7 +359,6 @@ def chota_bhim(cup):
             index += 1
         cups[index] = temp
 
-        #cups.sort(reverse=True)
         time -= 1
     print(value)
 
@@ -426,7 +425,6 @@ Performance can be improved by using a heap to store values. Deletion and Insert
 O(LogN) time and finally the whole algorithm will be over in O(NlogN)
 """
 import heapq
-
 def join_rope2(ropes):
     heapq.heapify(ropes)
     total = 0
@@ -449,4 +447,23 @@ test7()
 """
 29
 29
+"""
+def sortk(arr, k):
+    size = len(arr)
+    heap = arr[0:k]
+    heapq.heapify(heap)
+    output = []
+    for i in range(k, size, 1):
+        output.append(heapq.heappop(heap))
+        heapq.heappush(heap, arr[i])
+    
+    while len(heap) > 0:
+        output.append(heapq.heappop(heap))
+    return output
+
+
+a = [1, 4, 2, 3, 5, 6, 9, 8, 7]
+print(sortk(a, 3))
+"""
+[1, 2, 3, 4, 5, 6, 7, 8, 9]
 """

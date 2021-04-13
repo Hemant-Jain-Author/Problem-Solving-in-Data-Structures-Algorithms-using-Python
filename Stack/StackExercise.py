@@ -120,6 +120,19 @@ def infix_to_postfix(expn):
         output = output + " " + outsrt
     return output
 
+def main4():
+    expn = "10 + ( ( 3 ) ) * 5 / ( 16 - 4 )"
+    value = infix_to_postfix(expn)
+    print("Infix Expn: " , expn)
+    print("Postfix Expn: " , value)
+
+#main4()
+
+"""
+Infix Expn:  10 + ( ( 3 ) ) * 5 / ( 16 - 4 )
+Postfix Expn:   10 3 5 * 16 4 - / + 
+"""
+
 def reverse_string(expn):
     lower = 0
     upper = len(expn)
@@ -163,18 +176,7 @@ Infix Expn:  10 + ( ( 3 ) ) * 5 / ( 16 - 4 )
 Prefix Expn:  + 10 * 3 / 5 - 16 4 
 """
 
-def main4():
-    expn = "10 + ( ( 3 ) ) * 5 / ( 16 - 4 )"
-    value = infix_to_postfix(expn)
-    print("Infix Expn: " , expn)
-    print("Postfix Expn: " , value)
 
-#main4()
-
-"""
-Infix Expn:  10 + ( ( 3 ) ) * 5 / ( 16 - 4 )
-Postfix Expn:   10 3 5 * 16 4 - / + 
-"""
 
 def stock_span_range(arr):
     stock_range = [0] * len(arr)
@@ -297,7 +299,7 @@ def find_celebrity(relation, count):
 
 def find_celebrity2(relation, count):
     stk = []
-    first, second = 0,0
+    first, second = 0, 0
     
     for i in range(1,count,1):
         if is_known(relation, first, i) :
@@ -901,45 +903,16 @@ def longest_cont_bal_paren(string):
             else:
                 length = max(length, i - stk[-1])
     return length
-"""
-def longest_cont_bal_paren2(expn):
-    stk = []
-    count = 0
-    temp_count = 0
-    max_count = 0
-    depth = 0
-    for ch in expn:
-        if ch == '(':
-            depth += 1
-        elif ch == ')':
-            if(depth != 0):
-                depth -= 1
-                count += 2
-                print(count)
-            else:
-                count = 0
-        else:
-            count += 1
-
-        if count > max_count and depth == 0:
-            max_count = count
-
-    return max_count
-"""
 
 def main19():
-    expn = "())((()))(())()(()((()))((()))"
-
-    print("Given expn:", expn)
+    expn = "())((()))(())()(()((()))((()))"    
     value = longest_cont_bal_paren(expn)
-    print("longest Continous Balanced Parenthesis is:", value)
-    #value = longest_cont_bal_paren2(expn)
-    #print("longest Continous Balanced Parenthesis is:", value)
+    print("Longest Continuous  Balanced Parenthesis is:", value)
 
 #main19()
 """
 Given expn: ())((()))(())()(()
-longest Continous Balanced Parenthesis is: 12
+Longest Continuous  Balanced Parenthesis is: 12
 """
 
 import math
@@ -1143,6 +1116,19 @@ def sorted_insert(stk, element) :
         sorted_insert(stk, element)
         stk.push(temp)
 
+def main24():
+    stk = Stack()
+    sorted_insert(stk, 4)
+    sorted_insert(stk, 2)
+    sorted_insert(stk, 3)
+    sorted_insert(stk, 1)
+    stk.print()
+
+#main24()
+"""
+[1, 2, 3, 4]
+"""
+
 def sort_stack(stk):
     if stk.is_empty() == False :
         temp = stk.pop()
@@ -1160,6 +1146,28 @@ def sort_stack2(stk):
     while stk2.is_empty() == False :
         stk.push(stk2.pop())
 
+def main24():
+    stk = Stack()
+    stk.push(4)
+    stk.push(2)
+    stk.push(3)
+    stk.push(1)
+    sort_stack(stk)
+    stk.print()
+
+    stk = Stack()
+    stk.push(4)
+    stk.push(2)
+    stk.push(3)
+    stk.push(1)
+    sort_stack2(stk)
+    stk.print()
+
+#main24()
+"""
+[1, 2, 3, 4]
+[1, 2, 3, 4]
+"""
 
 def bottom_insert(stk, element) :
     if stk.is_empty() :
@@ -1169,11 +1177,25 @@ def bottom_insert(stk, element) :
         bottom_insert(stk, element)
         stk.push(temp)
 
+def main24():
+    stk = Stack()
+    stk.push(1)
+    stk.push(2)
+    stk.push(3)
+    bottom_insert(stk, 0)
+    stk.print()
+
+#main24()
+"""
+[0, 1, 2, 3]
+"""
+
 def reverse_stack(stk):
     if stk.is_empty() == False :
         temp = stk.pop()
         reverse_stack(stk)
         bottom_insert(stk, temp)
+
 
 from collections import deque
 class Queue(object):    
@@ -1193,7 +1215,7 @@ class Queue(object):
     def size(self):
         return len(self.data)
     
-    def print_queue(self):
+    def print(self):
         print(self.data)
 
 def reverse_stack2(stk):
@@ -1205,11 +1227,35 @@ def reverse_stack2(stk):
         stk.push(que.remove())
 
 
+def main24():
+    stk = Stack()
+    stk.push(1)
+    stk.push(2)
+    stk.push(3)
+    reverse_stack(stk)
+    stk.print()
+
+    stk = Stack()
+    stk.push(1)
+    stk.push(2)
+    stk.push(3)
+    reverse_stack2(stk)
+    stk.print()
+
+
+#main24()
+"""
+[3, 2, 1]
+[3, 2, 1]
+"""
+
+
 def reverse_Kelement_in_stack(stk, k):
     que = Queue()
     i = 1
-    while stk.is_empty() == False and i < k:
+    while stk.is_empty() == False and i <= k:
         que.add(stk.pop())
+        i += 1
 
     while que.is_empty() == False :
         stk.push(que.remove())
@@ -1225,8 +1271,9 @@ def reverse_queue(que):
 def reverse_Kelement_in_queue(que, k):
     stk = Stack()
     i = 1
-    while que.is_empty() == False and i < k:
+    while que.is_empty() == False and i <= k:
         stk.push(que.remove())
+        i += 1
 
     while stk.is_empty() == False :
         que.add(stk.pop())
@@ -1237,24 +1284,39 @@ def reverse_Kelement_in_queue(que, k):
         que.add(temp)
         diff -= 1
 
-
 def main24():
     stk = Stack()
     stk.push(1)
     stk.push(2)
     stk.push(3)
-    stk.push(4)
     stk.print()
-    reverse_stack2(stk)
+    reverse_Kelement_in_stack(stk, 2)
     stk.print()
-    sort_stack2(stk)
-    stk.print()
+
+    que = Queue()
+    que.add(1)
+    que.add(2)
+    que.add(3)
+    que.print()
+    reverse_queue(que)
+    que.print()
+
+    que = Queue()
+    que.add(1)
+    que.add(2)
+    que.add(3)
+    que.print()
+    reverse_Kelement_in_queue(que, 2)
+    que.print()
 
 #main24()
 """
-[1, 2, 3, 4]
-[4, 3, 2, 1]
-[1, 2, 3, 4]
+[1, 2, 3]
+[1, 3, 2]
+deque([1, 2, 3])
+deque([3, 2, 1])
+deque([1, 2, 3])
+deque([2, 1, 3])
 """
 
 def get_max_area(arr):
@@ -1304,4 +1366,151 @@ def main25():
 """
 get_max_area:  20
 get_max_area:  20
+"""
+
+def rotten_fruit_util (arr, max_col, max_row, curr_col, curr_row, traversed, day):
+    # Range check
+    if curr_col < 0 or curr_col >= max_col or curr_row < 0 or curr_row >= max_row :
+        return
+    # Traversable and rot if not already rotten.
+    if traversed[curr_col][curr_row] <= day or arr[curr_col][curr_row] == 0:
+        return
+    # Update rot time.
+    traversed[curr_col][curr_row] = day
+    # each line corresponding to 4 direction.
+    rotten_fruit_util (arr, max_col, max_row, curr_col-1, curr_row, traversed, day+1)
+    rotten_fruit_util (arr, max_col, max_row, curr_col+1, curr_row, traversed, day+1)
+    rotten_fruit_util (arr, max_col, max_row, curr_col, curr_row+1, traversed, day+1)
+    rotten_fruit_util (arr, max_col, max_row, curr_col, curr_row-1, traversed, day+1)
+
+infi = 99999
+def rotten_fruit(arr, max_col, max_row):
+    traversed = [[infi]*max_col for i in range(max_row)]
+    for i in range(0, max_col-1, 1):
+        for j in range(0, max_row-1, 1):
+            if arr[i][j] == 2:
+                rotten_fruit_util (arr, max_col, max_row, i, j, traversed, 0)
+    max_day = 0
+    for i in range(0, max_col, 1):
+        for j in range(0, max_row, 1):
+            if arr[i][j] == 1 : 
+                if traversed[i][j] == infi :
+                    return -1
+                if max_day < traversed[i][j]:
+                    max_day = traversed[i][j]
+    return max_day
+
+def main():
+    arr = [
+        [ 1, 1, 1, 1, 0], 
+        [ 1, 1, 0, 1, 0], 
+        [ 0, 0, 0, 2, 1], 
+        [ 0, 2, 0, 0, 1], 
+        [ 1, 1, 0, 0, 1]]
+    print(rotten_fruit(arr, 5, 5))
+
+#main()
+"""
+6
+"""
+
+def dist_nearest_fill_util(arr, max_col, max_row, curr_col, curr_row, traversed, dist):
+    # Range check
+    if curr_col < 0 or  curr_col >= max_col or curr_row < 0 or curr_row >= max_row :
+        return
+    # Traversable if their is a better distance.
+    if traversed[curr_col][curr_row] <= dist :
+        return
+    # Update distance.
+    traversed[curr_col][curr_row] = dist
+    # each line corresponding to 4 direction.
+    dist_nearest_fill_util(arr, max_col, max_row, curr_col-1, curr_row, traversed, dist+1)
+    dist_nearest_fill_util(arr, max_col, max_row, curr_col+1, curr_row, traversed, dist+1)
+    dist_nearest_fill_util(arr, max_col, max_row, curr_col, curr_row+1, traversed, dist+1)
+    dist_nearest_fill_util(arr, max_col, max_row, curr_col, curr_row-1, traversed, dist+1)
+
+infi = 99999
+def dist_nearest_fill(arr, max_col, max_row):
+    traversed = [[infi]*max_col for i in range(max_row)]
+    for i in range(0, max_col, 1):
+        for j in range(0, max_row, 1):
+            if arr[i][j] == 1:
+                dist_nearest_fill_util(arr, max_col, max_row, i, j, traversed, 0)
+    print(traversed)
+
+def main2():
+    arr = [
+        [ 1 , 0 , 1, 1 , 0], 
+        [ 1 , 1, 0, 1 , 0], 
+        [ 0 , 0 , 0, 0 , 1], 
+        [ 0 , 0 , 0, 0 , 1], 
+        [ 0 , 0 , 0, 0 , 1]]
+    dist_nearest_fill(arr, 5, 5)
+
+#main2()
+"""
+[[0, 1, 0, 0, 1], [0, 0, 1, 0, 1], [1, 1, 2, 1, 0], [2, 2, 2, 1, 0], [3, 3, 2, 1, 0]]
+"""
+
+def steps_of_knight_util(size, curr_col, curr_row, traversed, dist):
+    # Range check
+    if curr_col < 0 or curr_col >= size or curr_row < 0 or curr_row >= size :
+        return
+    # Traversable and rot if not already rotten.
+    if traversed[curr_col][curr_row] <= dist :
+        return
+    # Update rot time.
+    traversed[curr_col][curr_row] = dist
+    # each line corresponding to 4 direction.
+    steps_of_knight_util(size, curr_col-2, curr_row-1, traversed, dist+1)
+    steps_of_knight_util(size, curr_col-2, curr_row+1, traversed, dist+1)
+    steps_of_knight_util(size, curr_col+2, curr_row-1, traversed, dist+1)
+    steps_of_knight_util(size, curr_col+2, curr_row+1, traversed, dist+1)
+    steps_of_knight_util(size, curr_col-1, curr_row-2, traversed, dist+1)
+    steps_of_knight_util(size, curr_col+1, curr_row-2, traversed, dist+1)
+    steps_of_knight_util(size, curr_col-1, curr_row+2, traversed, dist+1)
+    steps_of_knight_util(size, curr_col+1, curr_row+2, traversed, dist+1)
+
+infi = 99999
+def steps_of_knight(size, srcX, srcY, dstX, dstY):
+    traversed = [[infi]*size for _ in range(size)]
+    steps_of_knight_util(size, srcX - 1, srcY - 1, traversed, 0)
+    return traversed[dstX - 1][dstY - 1]
+
+#print(steps_of_knight(20,10,10,20,20))
+"""
+8
+"""
+
+
+def find_largest_island_util(arr, max_col, max_row, curr_col, curr_row, value, traversed) :
+    if curr_col < 0 or curr_col >= max_col or curr_row < 0 or curr_row >= max_row :
+        return 0
+    if traversed[curr_col][curr_row] == 1 or arr[curr_col][curr_row] != value :
+        return 0
+    traversed[curr_col][curr_row] = 1
+
+    # each call corresponding to 8 direction.
+    return 1 + find_largest_island_util(arr, max_col, max_row, curr_col - 1, curr_row - 1, value, traversed) + find_largest_island_util(arr, max_col, max_row, curr_col - 1, curr_row, value, traversed) + find_largest_island_util(arr, max_col, max_row, curr_col - 1, curr_row + 1, value, traversed) + find_largest_island_util(arr, max_col, max_row, curr_col, curr_row - 1, value, traversed) + find_largest_island_util(arr, max_col, max_row, curr_col, curr_row + 1, value, traversed) + find_largest_island_util(arr, max_col, max_row, curr_col + 1, curr_row - 1, value, traversed) + find_largest_island_util(arr, max_col, max_row, curr_col + 1, curr_row, value, traversed) + find_largest_island_util(arr, max_col, max_row, curr_col + 1, curr_row + 1, value, traversed)
+
+def find_largest_island(arr, max_col, max_row):
+    maxVal = 0
+    currVal = 0
+    traversed = [[infi]*max_col for i in range(max_row)]
+
+    for i in range(max_col):
+        for j in range(max_row):
+            currVal = find_largest_island_util(arr, max_col, max_row, i, j, arr[i][j], traversed)
+            if currVal > maxVal :
+                maxVal = currVal
+
+    return maxVal
+
+def main19():
+    arr = [[1, 0, 1, 1, 0], [1, 0, 0, 1, 0], [0, 1, 1, 1, 1 ], [ 0, 1, 0, 0, 0], [1, 1, 0, 0, 1]]
+    print("Largest Island : " , find_largest_island(arr, 5, 5))
+
+#main19()
+"""
+Largest Island :  12
 """

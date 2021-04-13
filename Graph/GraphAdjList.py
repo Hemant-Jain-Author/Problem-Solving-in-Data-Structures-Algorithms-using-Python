@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 import heapq
 import sys
 from collections import deque
@@ -18,11 +17,28 @@ class Graph(object):
 
     def print(self):
         for i in range(self.count):
-            print("Vertex " , i , " is connected to : ", end=' ')
+            print("Vertex", i, "is connected to:", end=' ')
             for edge in self.adj[i]:
-                print(edge[0] , edge[1], end=' ')
-            print("")
+                print(edge[0], "(cost:", edge[1], ")", end=' ')
+            print()
 
+# Testing code
+def test1():
+    graph = Graph(4)
+    graph.add_undirected_edge(0, 1)
+    graph.add_undirected_edge(0, 2)
+    graph.add_undirected_edge(1, 2)
+    graph.add_undirected_edge(2, 3)
+    graph.print()
+
+#test1()
+
+"""
+Vertex 0 is connected to: 1 (cost: 1 ) 2 (cost: 1 ) 
+Vertex 1 is connected to: 0 (cost: 1 ) 2 (cost: 1 ) 
+Vertex 2 is connected to: 0 (cost: 1 ) 1 (cost: 1 ) 3 (cost: 1 ) 
+Vertex 3 is connected to: 2 (cost: 1 ) 
+"""
 
 class PriorityQueue(object):
     def __init__(self):
@@ -44,31 +60,12 @@ class PriorityQueue(object):
     def size(self):
         return len(self.que)
 
-
-def test1():
-    graph = Graph(4)
-    graph.add_undirected_edge(0, 1, 1)
-    graph.add_undirected_edge(0, 2, 1)
-    graph.add_undirected_edge(1, 2, 1)
-    graph.add_undirected_edge(2, 3, 1)
-    graph.print()
-
-# test1()
-"""
-Vertex  0  is connected to :  1 1 2 1 
-Vertex  1  is connected to :  0 1 2 1 
-Vertex  2  is connected to :  0 1 1 1 3 1 
-Vertex  3  is connected to :  2 1 
-"""
-
 def dfs_util(gph, index, visited):
     visited[index] = True
     for edge in gph.adj[index]:
         destination = edge[0]
         if visited[destination] == False:
             dfs_util(gph, destination, visited)
-
-
 
 
 def dfs_stack(gph, source, target):
@@ -107,6 +104,7 @@ def bfs(gph, source, target):
                 visited[destination] = True
     return visited[target]
 
+# Testing code
 def test2():
     gph =  Graph(8)
     gph.add_undirected_edge(0, 1)
@@ -118,17 +116,16 @@ def test2():
     gph.add_undirected_edge(4, 7)
     gph.add_undirected_edge(5, 7)
     gph.add_undirected_edge(6, 7)
-    print("Path between 0 & 6 : ", dfs(gph, 0, 6))
-    print("Path between 0 & 6 : ", bfs(gph, 0, 6))
-    print("Path between 0 & 6 : ", dfs_stack(gph, 0, 6))
+    print("Path between 0 & 6:", dfs(gph, 0, 6))
+    print("Path between 0 & 6:", bfs(gph, 0, 6))
+    print("Path between 0 & 6:", dfs_stack(gph, 0, 6))
 
 #test2()
 """
-Path between 0 & 6 :  True
-Path between 0 & 6 :  True
-Path between 0 & 6 :  True
+Path between 0 & 6: True
+Path between 0 & 6: True
+Path between 0 & 6: True
 """
-
 
 def topological_sort_dfs(gph, index, visited, stk):
     visited[index] = True
@@ -145,11 +142,12 @@ def topological_sort(gph):
     for i in range(count):
         if visited[i] == False:
             topological_sort_dfs(gph, i, visited, stk)
-    print("topological_sort :: ", end=' ')
+    print("topological_sort::", end=' ')
     while len(stk) != 0:
         print(stk.pop(), end=' ') 
     print("")
 
+# Testing code
 def test3():
     g = Graph(6)
     g.add_directed_edge(5, 2)
@@ -161,7 +159,7 @@ def test3():
     topological_sort(g)
 
 # test3()
-# topological_sort ::  5 4 2 3 1 0 
+# topological_sort :: 5 4 2 3 1 0 
 
 def path_exist(gph, source, destination):
     count = gph.count
@@ -189,6 +187,7 @@ def print_all_path_dfs(gph, visited, source ,dest, path):
     path.append(source)
     if source == dest:
         print(path)
+        path.pop()
         return
 
     visited[source] = 1
@@ -203,7 +202,7 @@ def print_all_path(gph, src ,dest):
     path = []
     print_all_path_dfs(gph, visited, src, dest, path)
 
-
+# Testing code
 def test4():
     gph = Graph(5)
     gph.add_directed_edge(0, 1, 1)
@@ -212,17 +211,17 @@ def test4():
     gph.add_directed_edge(1, 3, 1)
     gph.add_directed_edge(3, 4, 1)
     gph.add_directed_edge(1, 4, 1)
-    print("path_exist :: ", path_exist(gph, 0, 4))
-    print("Path Count :: " , count_all_path(gph, 0, 4))
+    #print("path_exist::", path_exist(gph, 0, 4))
+    #print("Path Count::", count_all_path(gph, 0, 4))
     print_all_path(gph, 0, 4)
 
-# test4()
+#test4()
 """
 path_exist ::  True
 Path Count ::  3
 [0, 1, 3, 4]
-[0, 1, 3, 4]
-[0, 1, 3, 2, 3, 4]
+[0, 1, 4]
+[0, 2, 3, 4]
 """
 
 def dfs_util(gph, index, visited):
@@ -241,6 +240,7 @@ def root_vertex(gph):
             retVal = i
     print("Root vertex is :: ", retVal)
 
+# Testing code
 def test5():
     g = Graph(7)
     g.add_directed_edge(0, 1)
@@ -276,6 +276,7 @@ def transitive_closure(gph):
         print(row)
     return tc
 
+# Testing code
 def test6():
     g = Graph(4)
     g.add_directed_edge(0, 1)
@@ -331,6 +332,7 @@ def bfs_level_node(gph, source):
                 que.append((destination, depth+1))
                 visited[destination] = True
 
+# Testing code
 def test7():
     g = Graph(7)
     g.add_undirected_edge(0, 1)
@@ -388,6 +390,7 @@ def is_connected_undirected(gph):
             return False
     return True
 
+# Testing code
 def test8():
     g = Graph(6)
     g.add_undirected_edge(0, 1)
@@ -437,7 +440,6 @@ def is_cycle_present(graph):
 
 def is_cycle_present_color_dfs(graph, index, visited):
     visited[index] = "Grey"
-
     for node in graph.adj[index]:
         dest = node[0]
         if visited[dest] == "Grey":
@@ -445,8 +447,7 @@ def is_cycle_present_color_dfs(graph, index, visited):
             
         if visited[dest] == "White":
             if is_cycle_present_color_dfs(graph, dest, visited) :
-                return True
-        
+                return True     
     visited[index] = "Black"
     return False
 
@@ -459,6 +460,7 @@ def is_cycle_present_color(graph):
                 return True
     return False
 
+# Testing code
 def test9():
     g = Graph(5)
     g.add_directed_edge(0, 1)
@@ -483,6 +485,7 @@ def transpose_graph(gph):
             g.add_directed_edge(destination, i)
     return g
 
+# Testing code
 def test10():
     g = Graph(4)
     g.add_directed_edge(0, 1)
@@ -492,13 +495,13 @@ def test10():
     g = transpose_graph(g)
     g.print()
 
-# test10()
+test10()
 
 """
-Vertex  0  is connected to :  
-Vertex  1  is connected to :  0 1 
-Vertex  2  is connected to :  0 1 1 1 
-Vertex  3  is connected to :  2 1 
+Vertex 0 is connected to: 
+Vertex 1 is connected to: 0 (cost: 1 ) 
+Vertex 2 is connected to: 0 (cost: 1 ) 1 (cost: 1 ) 
+Vertex 3 is connected to: 2 (cost: 1 )  
 """
 
 # Kosaraju Algorithm
@@ -527,7 +530,7 @@ def is_strongly_connected(gph):
             return False
     return True
 
-
+# Testing code
 def test11():
     # Create a graph given in the above diagram
     g1 = Graph(5)
@@ -576,6 +579,7 @@ def strongly_connected_component(gph):
             dfs_util2(graph_reversed, index, visited, stk2)
             print(stk2)
 
+# Testing code
 def test12():
     graph = Graph(7)
     graph.add_directed_edge(0, 1)
@@ -623,10 +627,11 @@ def dijkstra(gph, source):
     
     for i in range(gph.count):
         if dist[i] == sys.maxsize:
-            print("node id" , i , "prev" , previous[i] , "distance : Unreachable")
+            print("node id", i, "prev", previous[i], "distance: Unreachable")
         else:
-            print("node id" , i , "prev" , previous[i] , "distance :" , dist[i])
-    
+            print("node id", i, "prev", previous[i], "distance:", dist[i])
+
+
 def prims(gph):
     previous = [-1] * gph.count
     dist = [sys.maxsize] * gph.count
@@ -658,6 +663,7 @@ def prims(gph):
         else:
             print("node id" , i , "prev" , previous[i] , "distance :" , dist[i])
 
+# Testing code
 def test13():
     graph = Graph(9)
     graph.add_undirected_edge(0, 1, 4)
@@ -722,7 +728,7 @@ def shortest_path(gph, source):
     for i in range(count):
         print(path[i] , "to" , i , "weight" , distance[i])
 
-
+# Testing code
 def test14():
     gph = Graph(9)
     gph.add_directed_edge(0, 1, 4)
@@ -775,6 +781,7 @@ def bellman_ford_shortest_path(gph, source):
     for i in range(count):
         print(path[i] , "to" , i , "weight" , distance[i])
 
+# Testing code
 def test15():
     g = Graph(5)
     g.add_directed_edge(0, 1, 3)
@@ -836,6 +843,7 @@ def height_tree_parent_arr2(arr):
         maxHeight = max(maxHeight, height[i])
     return maxHeight
 
+# Testing code
 def test16():
     parentArray = [-1, 0, 1, 2, 3]
     print(height_tree_parent_arr(parentArray))
@@ -900,6 +908,7 @@ def is_eulerian(graph):
             print("graph is Eulerian")
             return 2
 
+# Testing code
 def test17():
     g1 = Graph(5)
     g1.add_undirected_edge(1, 0)
@@ -959,6 +968,7 @@ def is_eulerian_cycle(graph):
             return False
     return True
 
+# Testing code
 def test18():
     g = Graph(5)
     g.add_directed_edge(0, 1)
@@ -1014,6 +1024,7 @@ def root_vertex(gph):
             retVal = i
     print("Root vertex is :: ", retVal)
 
+# Testing code
 def test19():
     g = Graph(7)
     g.add_directed_edge(0, 1)

@@ -15,14 +15,14 @@ def match_exp_util(exp, text, i, j):
 def match_exp(exp, text):
     return match_exp_util(exp, text, 0, 0)
 
-
+# Testing code.
 def main1():
     print(match_exp("hello*", "helloworld"))
     print(match_exp("hello?d", "hellowd"))
     print(match_exp("hello*hemant", "helloworldfsdfsdfdsfhemant"))
     print(match_exp("*hemantj", "helloworldfsdfsdfdsfhemant"))
 
-main1()
+#main1()
 
 """
 True
@@ -45,14 +45,14 @@ def match(source, pattern):
         index_source += 1
     return False
 
-
+# Testing code.
 def main2():
     print(match("hellofskdlfjsdlfjsldjflksdworld", "helloworld"))
     print(match("hellod", "hellowd"))
     print(match("hello*xxxxxxxxxxhemantxxxxxxxxxxxx", "hellnt"))
     print()
 
-main2()
+#main2()
 
 """
 True
@@ -82,6 +82,7 @@ def is_prime(n):
         i += 1
     return answer
 
+# Testing code.
 def main3():
     print("Prime numbers under 10 :: ", end = " ")
     for i in range(10):
@@ -104,6 +105,12 @@ def my_atoi(text):
         i += 1
     return value
 
+# Testing code.
+#print(my_atoi("100"))
+"""
+100
+"""
+
 def is_unique_char(text):
     charset = set()
     for ch in text:
@@ -112,7 +119,7 @@ def is_unique_char(text):
         charset.add(ch)
     return True
 
-
+# Testing code.
 def main4():
     is_unique_char("aple")
     is_unique_char("apple")
@@ -142,7 +149,7 @@ def is_permutation(s1, s2):
             mycounter[ch] -= 1
     return (len(mycounter) == 0)
 
-
+# Testing code.
 def main5():
     print("is_permutation :", is_permutation("apple", "plepa"))
     print("is_permutation :", is_permutation("appleb", "plepaa"))
@@ -167,7 +174,7 @@ def is_palindrome(text):
         print("String is a Palindrome")
         return True
 
-
+# Testing code.
 def main6():
     is_palindrome("hello")
     is_palindrome("eoloe")
@@ -184,12 +191,13 @@ def pow(x, n):
     if n == 0:
         return (1)
     elif n % 2 == 0:
-        value = pow(x, math.floor(n / 2))
+        value = pow(x, n // 2)
         return (value * value)
     else:
-        value = pow(x, math.floor(n / 2))
+        value = pow(x, n // 2)
         return (x * value * value)
 
+# Testing code.
 def main7():
     print(pow(5, 2))
 
@@ -218,6 +226,7 @@ def my_strcmp(a, b):
         return ord(a[index]) - ord(b[index])
 
 
+# Testing code.
 def main8():
     print("StrCmp returns :", my_strcmp("aba", "aas"))
 
@@ -264,7 +273,7 @@ def reverse_words(a):
     reverse_string_util(a, 0, length - 1)
     return "".join(a)
 
-
+# Testing code.
 def main9():
     print(reverse_string("apple"))
     print(reverse_words("hello world"))
@@ -299,6 +308,7 @@ def print_anagram_util(a, maxindex, n):
             a[maxindex - 1] = temp
         i += 1
 
+# Testing code.
 def main10():
     print_anagram("123")
 
@@ -314,7 +324,7 @@ main10()
 """
 
 def shuffle(text):
-    n = math.floor(len(text) / 2)
+    n = len(text) // 2
     ar = list(text)
     count = 0
     k = 1
@@ -337,6 +347,7 @@ def shuffle(text):
         i = i + 2
     return "".join(ar)
 
+# Testing code.
 def main11():
     print(shuffle("ABCDE12345"))
 
@@ -383,6 +394,7 @@ def add_binary(first, second):
         total[index] = '1'
     return "".join(total)
 
+# Testing code.
 def main12():
     a = "101010"
     b = "111111"

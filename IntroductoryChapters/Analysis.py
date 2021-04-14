@@ -194,8 +194,8 @@ N = 100, Number of instructions in O(n^3):: 166650
 def fun12(n):
     m = 0
     i = 0
+    j = 0
     while i < n:
-        j = 0
         while j < n:
             m += 1
             j += 1
@@ -205,7 +205,7 @@ def fun12(n):
 print("N = 100, Number of instructions in O(n)::", fun12(100))
 
 """
-N = 100, Number of instructions in O(n):: 10000
+N = 100, Number of instructions in O(n):: 100
 """
 
 def fun13(n):

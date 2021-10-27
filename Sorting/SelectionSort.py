@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 def selection_sort(arr):
     # reverse array creation
     size = len(arr)

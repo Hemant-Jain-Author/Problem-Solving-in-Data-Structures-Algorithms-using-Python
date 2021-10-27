@@ -41,7 +41,7 @@ class MedianHeap(object):
         if len(self.maxHeap) == 0 and len(self.minHeap) == 0:
             return sys.maxsize
         if len(self.maxHeap) == len(self.minHeap):
-            return (self.max_heap_peek() + self.min_heap_peek()) / 2
+            return (self.max_heap_peek() + self.min_heap_peek()) // 2
         elif len(self.maxHeap) > len(self.minHeap):
             return self.max_heap_peek()
         else:
@@ -60,9 +60,9 @@ main()
 
 """
 Median after insertion of  1  is  1
-Median after insertion of  9  is  5.0
+Median after insertion of  9  is  5
 Median after insertion of  2  is  2
-Median after insertion of  8  is  5.0
+Median after insertion of  8  is  5
 Median after insertion of  3  is  3
-Median after insertion of  7  is  5.0
+Median after insertion of  7  is  5
 """

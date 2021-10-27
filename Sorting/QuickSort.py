@@ -18,16 +18,11 @@ def quick_sort_util(arr, lower, upper):
             swap(arr, upper, lower)
     swap(arr, upper, start)
     # upper is the pivot position
-    quick_sort_util(arr, start, upper - 1)
-    # pivot -1 is the upper for left sub array.
-    quick_sort_util(arr, upper + 1, stop)
-    #  pivot + 1 is the lower for right sub array.
-    
-def swap(arr, first, second):
-    temp = arr[first]
-    arr[first] = arr[second]
-    arr[second] = temp
+    quick_sort_util(arr, start, upper - 1) # pivot -1 is the upper for left sub array.
+    quick_sort_util(arr, upper + 1, stop) #  pivot + 1 is the lower for right sub array.
 
+def swap(arr, first, second):
+    arr[first], arr[second] = arr[second], arr[first]
 
 array = [3, 4, 2, 1, 6, 5, 7, 8, 1, 1]
 quick_sort(array)

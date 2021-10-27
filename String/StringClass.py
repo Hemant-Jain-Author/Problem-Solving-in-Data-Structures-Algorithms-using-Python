@@ -18,6 +18,6 @@ print("".join(arr))
 print(str1.replace("ll", "LL"))
 print(str1.lower())
 print(str1.upper())
-str2 = "johny     johny yes papa"
+str2 = "johny  johny yes papa"
 print(str2.split())
 

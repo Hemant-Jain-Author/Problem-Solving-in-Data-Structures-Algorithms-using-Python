@@ -31,7 +31,6 @@ def test1():
     graph.add_undirected_edge(2, 3)
     graph.print()
 
-#test1()
 
 """
 Vertex 0 is connected to: 1 (cost: 1 ) 2 (cost: 1 ) 
@@ -120,7 +119,6 @@ def test2():
     print("Path between 0 & 6:", bfs(gph, 0, 6))
     print("Path between 0 & 6:", dfs_stack(gph, 0, 6))
 
-#test2()
 """
 Path between 0 & 6: True
 Path between 0 & 6: True
@@ -149,17 +147,21 @@ def topological_sort(gph):
 
 # Testing code
 def test3():
-    g = Graph(6)
-    g.add_directed_edge(5, 2)
-    g.add_directed_edge(5, 0)
-    g.add_directed_edge(4, 0)
-    g.add_directed_edge(4, 1)
-    g.add_directed_edge(2, 3)
-    g.add_directed_edge(3, 1)
-    topological_sort(g)
+    gph = Graph(9)
+    gph.add_directed_edge(0, 2)
+    gph.add_directed_edge(1, 2)
+    gph.add_directed_edge(1, 3)
+    gph.add_directed_edge(1, 4)
+    gph.add_directed_edge(3, 2)
+    gph.add_directed_edge(3, 5)
+    gph.add_directed_edge(4, 5)
+    gph.add_directed_edge(4, 6)
+    gph.add_directed_edge(5, 7)
+    gph.add_directed_edge(6, 7)
+    gph.add_directed_edge(7, 8)
+    topological_sort(gph)
 
-# test3()
-# topological_sort :: 5 4 2 3 1 0 
+# topologicalSort ::  1 4 6 3 5 7 8 0 2
 
 def path_exist(gph, source, destination):
     count = gph.count
@@ -211,11 +213,10 @@ def test4():
     gph.add_directed_edge(1, 3, 1)
     gph.add_directed_edge(3, 4, 1)
     gph.add_directed_edge(1, 4, 1)
-    #print("path_exist::", path_exist(gph, 0, 4))
-    #print("Path Count::", count_all_path(gph, 0, 4))
+    print("path_exist::", path_exist(gph, 0, 4))
+    print("Path Count::", count_all_path(gph, 0, 4))
     print_all_path(gph, 0, 4)
 
-#test4()
 """
 path_exist ::  True
 Path Count ::  3
@@ -253,13 +254,9 @@ def test5():
     g.add_directed_edge(6, 0)
     root_vertex(g)
 
-# test5()
 # Root vertex is ::  5
 
-"""
-Given a directed graph, fidn transitive closure matrix or reachablity matrix
-vertex v is reachable form vertex u if their is a path from u to v.
-"""
+
 def transitive_closure_util(gph, source ,index, tc):
     if tc[source][index] == 1:
         return
@@ -287,7 +284,6 @@ def test6():
     g.add_directed_edge(3, 3)
     transitive_closure(g)
 
-# test6()
 """
 [1, 1, 1, 1]
 [1, 1, 1, 1]
@@ -347,7 +343,6 @@ def test7():
     bfs_level_node(g, 1)
 
 
-#test7()
 # 3
 """
 Node  - Level
@@ -381,6 +376,92 @@ def is_cycle_present_undirected(graph):
                 return True
     return False
 
+
+
+
+def find2(parent,  index) :
+    p = parent[index]
+    while (p != -1) :
+        index = p
+        p = parent[index]
+    return  index
+
+def union2(parent,  x,  y) :
+    parent[y] = x
+
+def is_cycle_present_undirected2(gph) :
+    count = gph.count
+    parent = [-1] * count
+    edge =  []
+    flags = [[False] * count for _ in range(count)]
+    i = 0
+    while (i < count) :
+        ad = gph.adj[i]
+        for adn in ad :
+            #  Using flags[][] list, if considered edge x to y, then ignore edge y to x.
+            if (flags[adn[0]][i] == False) :
+                edge.append((i, adn[0]))
+                flags[i][adn[0]] = True
+        i += 1
+    for e in edge:
+        x = find2(parent, e[0])
+        y = find2(parent, e[1])
+        if (x == y) :
+            return  True
+        union2(parent, x, y)
+    return  False
+
+class Sets :
+    def __init__(self, p,  r) :
+        self.parent = p
+        self.rank = r
+
+def find(sets,  index) :
+    p = sets[index].parent
+    while (p != index) :
+        index = p
+        p = sets[index].parent
+    return  index
+
+#  consider x and y are roots of sets.
+def union(sets,  x,  y) :
+    if (sets[x].rank < sets[y].rank) : 
+        sets[x].parent = y
+    elif (sets[y].rank < sets[x].rank) : 
+        sets[y].parent = x
+    else :
+        sets[x].parent = y
+        sets[y].rank += 1
+
+
+def is_cycle_present_undirected3(gph) :
+    count = gph.count
+    # Different subsets are created.
+    sets = [None] * count
+    i = 0
+    while (i < count) :
+        sets[i] = Sets(-1, 0)    
+        i += 1
+    edge =  []
+    flags = [[False] * count for _ in range(count)]
+    i = 0
+    while (i < count) :
+        ad = gph.adj[i]
+        for adn in ad:
+            #  Using flags[][] list, if considered edge x to y, 
+            #  then ignore edge y to x.
+            if (flags[adn[0]][i] == False) :
+                edge.append((i, adn[0]))
+                flags[i][adn[0]] = True
+        i += 1
+    for e in edge:
+        x = find(sets, e[0])
+        y = find(sets, e[1])
+        if (x == y) :
+            return  True
+        union(sets, x, y)
+    return  False
+
 def is_connected_undirected(gph):
     count = gph.count
     visited = [False] * count
@@ -400,17 +481,15 @@ def test8():
     g.add_undirected_edge(2, 5)
     #g.add_undirected_edge(3, 5)
     print(is_cycle_present_undirected(g))
+    print(is_cycle_present_undirected2(g))
+    print(is_cycle_present_undirected3(g))
     print("is_connected_undirected : ", is_connected_undirected(g))
 
-# test8()
 """
 False
 is_connected_undirected :  True
 """
 
-"""
-Given a directed graph find if there is a cycle in it. 
-"""
 def is_cycle_present_dfs(graph, index, visited, marked):
     visited[index] = True
     marked[index] = True
@@ -472,7 +551,6 @@ def test9():
     print(is_cycle_present(g))
     print(is_cycle_present_color(g))
 
-# test9()
 # False
 # False
 
@@ -495,7 +573,6 @@ def test10():
     g = transpose_graph(g)
     g.print()
 
-test10()
 
 """
 Vertex 0 is connected to: 
@@ -504,17 +581,6 @@ Vertex 2 is connected to: 0 (cost: 1 ) 1 (cost: 1 )
 Vertex 3 is connected to: 2 (cost: 1 )  
 """
 
-# Kosaraju Algorithm
-"""
-Kosaraju’s Algorithm to find strongly connected directed graph based on dfs :
-1)	Create a visited array of size V, and Initialize all vertices in visited array as False.
-2)	Choose any vertex and perform a dfs traversal of graph. For all visited vertices mark them visited as True. 
-3)	If dfs traversal does not mark all vertices as True, then return False.
-4)	Find transpose or reverse of graph
-5)	Repeat step 1, 2 and 3 for the reversed graph. 
-6)	If dfs traversal mark all the vertices as True, then return True.
-
-"""
 def is_strongly_connected(gph):
     count = gph.count
     visited = [False] * count
@@ -548,7 +614,6 @@ def test11():
     g2.add_directed_edge(2, 3)
     print(is_strongly_connected(g2))
 
-# test11()
 """
 True
 False
@@ -592,7 +657,6 @@ def test12():
     graph.add_directed_edge(5, 6)
     strongly_connected_component(graph)
 
-# test12()
 """
 [1, 2, 0]
 [4, 5, 3]
@@ -632,7 +696,7 @@ def dijkstra(gph, source):
             print("node id", i, "prev", previous[i], "distance:", dist[i])
 
 
-def prims(gph):
+def primsMST(gph):
     previous = [-1] * gph.count
     dist = [sys.maxsize] * gph.count
     visited = [False] * gph.count
@@ -657,11 +721,16 @@ def prims(gph):
                 previous[destination] = source
                 pq.update_key(cost, destination)
     
+    total_cost = 0
+
     for i in range(gph.count):
         if dist[i] == sys.maxsize:
             print("node id" , i , "prev" , previous[i] , "distance : Unreachable")
         else:
             print("node id" , i , "prev" , previous[i] , "distance :" , dist[i])
+            total_cost += dist[i]
+
+    print("Total MST cost: ", str(total_cost))
 
 # Testing code
 def test13():
@@ -680,12 +749,12 @@ def test13():
     graph.add_undirected_edge(6, 7, 1)
     graph.add_undirected_edge(6, 8, 6)
     graph.add_undirected_edge(7, 8, 7)
-    # prims(graph)
-    dijkstra(graph, 0)
+    primsMST(graph)
+    kruskalMST(graph)
+    #dijkstra(graph, 0)
 
-# test13()
 
-""" prims
+""" primsMST
 node id 0 prev -1 distance : 0
 node id 1 prev 0 distance : 4
 node id 2 prev 1 distance : 8
@@ -708,6 +777,40 @@ node id 6 prev 7 distance : 9
 node id 7 prev 0 distance : 8
 node id 8 prev 2 distance : 14
 """
+
+
+
+
+def kruskalMST(gph) :
+    count = gph.count
+    # Different subsets are created.
+    sets = []
+    for i in range(count) :
+        sets.append(Sets(i, 0))    
+        
+    #  Edges are added to list and sorted.
+    edges = []
+
+    for i in range(count)  :
+        for adn in gph.adj[i]:
+            edges.append((i, adn[0], adn[1]))
+    E = len(edges)
+
+    edges.sort(key=lambda edge : edge[2])
+    sum = 0
+    output =  []
+    i = 0
+    while (i < E) :
+        x = find(sets, edges[i][0])
+        y = find(sets, edges[i][1])
+        if (x != y) :
+            print("(", edges[i][0], "," , edges[i][1], ",", edges[i][2], ")", end ="")
+            sum += edges[i][2]
+            output.append(edges[i])
+            union(sets, x, y)
+        i += 1
+    print("\nTotal MST cost: ", str(sum))
+   
 
 def shortest_path(gph, source):
     count = gph.count
@@ -747,7 +850,6 @@ def test14():
     gph.add_directed_edge(7, 8, 7)
     shortest_path(gph, 0)
 
-# test14()
 
 """
 -1 to 0 weight 0
@@ -792,7 +894,6 @@ def test15():
     g.add_directed_edge(4, 3, 1)
     bellman_ford_shortest_path(g, 0)
 
-# test15()
 """
 -1 to 0 weight 0
 4 to 1 weight 0
@@ -852,7 +953,6 @@ def test16():
     print(height_tree_parent_arr(parentArray))
     print(height_tree_parent_arr2(parentArray))
 
-# test16()
 
 """
 4
@@ -879,12 +979,7 @@ def is_connected(graph):
         
     return True
 
-'''
-The function returns one of the following values
-Return 0 if graph is not Eulerian
-Return 1 if graph has an Euler path (Semi-Eulerian)
-Return 2 if graph has an Euler Circuit (Eulerian)
-'''
+
 def is_eulerian(graph):
     count = graph.count
     # Check if all non-zero degree vertices are connected
@@ -920,7 +1015,6 @@ def test17():
 #    g1.add_undirected_edge(1, 3)
     is_eulerian(g1)
 
-# test17()
 # graph is Semi-Eulerian
 
 def is_strongly_connected2(graph):
@@ -979,7 +1073,6 @@ def test18():
     g.add_directed_edge(3, 0)
     print(is_eulerian_cycle(g))
 
-# test18()
 # True
 
 def best_first_search_pq(gph, source, dest):
@@ -1007,13 +1100,7 @@ def best_first_search_pq(gph, source, dest):
                 pq.add(alt, destination)
     return -1
 
-"""
-Given a directed graph find a root. 
-A root vertex is a vertex from which all other vertex is visited
 
-Hint: root vertex can be find by dfs similar to topology sort. But in place of storing in stack we just 
-need to take care of the topmost vertex which can be a root vertex.
-"""
 def root_vertex(gph):
     count = gph.count
     visited = [False] * count
@@ -1037,8 +1124,103 @@ def test19():
     g.add_directed_edge(6, 0)
     root_vertex(g)
 
-test19()
 
 """
 Root vertex is ::  5
 """
+
+def floydWarshall(gph) :
+    V = gph.count
+    INF = sys.maxsize
+    dist = [[INF] * (V) for _ in range(V)]
+    path = [[-1] * (V) for _ in range(V)]
+    
+    i = 0
+    while (i < V) : 
+        path[i][i] = 0
+        i += 1
+    
+    i = 0
+    while (i < V) :
+        adl = gph.adj[i]
+        for adn in adl:
+            path[i][adn[0]] = i
+            dist[i][adn[0]] = adn[1]
+        i += 1
+    #  Pick intermediate vertices.
+    k = 0
+    while (k < V) :
+        #  Pick source vertices one by one.
+        i = 0
+        while (i < V) :
+            #  Pick destination vertices.
+            j = 0
+            while (j < V) :
+                #  If we have a shorter path from i to j via k.
+                #  then update dist[i][j] and  and path[i][j]
+                if (dist[i][k] + dist[k][j] < dist[i][j]) :
+                    dist[i][j] = dist[i][k] + dist[k][j]
+                    path[i][j] = path[k][j]
+                j += 1
+            #  dist[i][i] is 0 in the start.
+            #  If there is a better path from i to i and is better path then we have -ve cycle.                //
+            if (dist[i][i] < 0) :
+                print("Negative-weight cycle found.")
+                return
+            i += 1
+        k += 1
+    printSolution(dist, path, V)
+    
+def printSolution(cost,  path,  V) :
+    u = 0
+    while (u < V) :
+        v = 0
+        while (v < V) :
+            if (u != v and path[u][v] != -1) :
+                print("Shortest Path from %d to %d " % (u,v),end ="", sep ="")
+                print("Cost:" + str(cost[u][v]) + " Path:", end ="")
+                printPath(path, u, v)
+                print()
+            v += 1
+        u += 1
+
+def printPath(path,  u,  v) :
+    if (path[u][v] == u) :
+        print(str(u) + " " + str(v) + " ", end ="")
+        return
+
+    printPath(path, u, path[u][v])
+    print(str(v) + " ", end ="")
+
+def test20() :
+    gph = Graph(4)
+    gph.add_directed_edge(0, 0, 0)
+    gph.add_directed_edge(1, 1, 0)
+    gph.add_directed_edge(2, 2, 0)
+    gph.add_directed_edge(3, 3, 0)
+    gph.add_directed_edge(0, 1, 5)
+    gph.add_directed_edge(0, 3, 10)
+    gph.add_directed_edge(1, 2, 3)
+    gph.add_directed_edge(2, 3, 1)
+    floydWarshall(gph)
+
+test1()
+test2()
+test3()
+test4()
+test5()
+test6()
+test7()
+test8()
+test9()
+test10()
+test11()
+test12()
+test13()
+test14()
+test15()
+test16()
+test17()
+test18()
+test19()
+test20()

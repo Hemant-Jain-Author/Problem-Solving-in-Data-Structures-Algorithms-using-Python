@@ -19,11 +19,11 @@ class Graph(object):
             print("Vertex", i, "is connected to:", end=' ')
             for j in range(self.count):
                 if self.adj[i][j] != 0:
-                    print( j, "(cost:", self.adj[i][j], ")", end =" ")
+                    print( "(", j,",", self.adj[i][j],")", end =" ")
             print("")
 
 # Testing code
-def main():
+def test1():
     graph = Graph(4)
     graph.add_undirected_edge(0, 1)
     graph.add_undirected_edge(0, 2)
@@ -31,7 +31,6 @@ def main():
     graph.add_undirected_edge(2, 3)
     graph.print()
 
-main()
 
 """
 Vertex 0 is connected to: 1 (cost: 1 ) 2 (cost: 1 ) 
@@ -120,7 +119,7 @@ def prims(gph):
     print_path(gph.count, previous,dist)
 
 # Testing code
-def test1():
+def test2():
     graph = Graph(9)
     graph.add_undirected_edge(0, 1, 4)
     graph.add_undirected_edge(0, 7, 8)
@@ -137,10 +136,8 @@ def test1():
     graph.add_undirected_edge(6, 8, 6)
     graph.add_undirected_edge(7, 8, 7)
     dijkstra(graph, 0)
-    # prims(graph)
-    # graph.print()
+    prims(graph)
 
-# test1()
 
 """ prims
 node id 0 prev -1 distance : 0
@@ -229,7 +226,7 @@ def hamiltonian_path(graph):
     return False
 
 # Testing code
-def test2():
+def test3():
     graph = Graph(5)
     graph.adj = [ [0, 1, 0, 1, 0], 
                     [1, 0, 1, 1, 0], 
@@ -247,7 +244,6 @@ def test2():
     
     print(hamiltonian_path(g2))
 
-# test2()
 
 """
 Hamiltonian Path found [0, 1, 2, 4, 3]
@@ -257,7 +253,7 @@ True
 """
 
 # Testing code
-def test3():
+def test4():
     graph = Graph(5)
     graph.adj = [ [0, 1, 0, 1, 0], 
                     [1, 0, 1, 1, 0], 
@@ -275,7 +271,6 @@ def test3():
     
     print(hamiltonian_cycle(g2))
 
-test3()
 
 """
 Hamiltonian Cycle found [0, 1, 2, 4, 3, 0]
@@ -283,3 +278,8 @@ True
 Hamiltonian Cycle not found
 False
 """
+
+test1()
+test2()
+test3()
+test4()

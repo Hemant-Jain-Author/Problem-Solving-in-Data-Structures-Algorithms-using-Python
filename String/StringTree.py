@@ -3,8 +3,8 @@ class StringTree(object):
         def __init__(self, v, cnt=1, l=None, r=None):
             self.value = v
             self.count = cnt
-            self.lchild = l
-            self.rchild = r
+            self.left = l
+            self.right = r
     
     def __init__(self):
         self.root = None
@@ -17,8 +17,8 @@ class StringTree(object):
         #  pre order 
         if curr != None:
             print("[", curr.value, ":", curr.count, "]")
-            self.print_tree_util(curr.lchild)
-            self.print_tree_util(curr.rchild)
+            self.print_tree_util(curr.left)
+            self.print_tree_util(curr.right)
     
     def insert(self, value):
         self.root = self.insert_util(value, self.root)
@@ -31,9 +31,9 @@ class StringTree(object):
             if compare == 0:
                 curr.count += 1
             elif compare == 1:
-                curr.lchild = self.insert_util(value, curr.lchild)
+                curr.left = self.insert_util(value, curr.left)
             else:
-                curr.rchild = self.insert_util(value, curr.rchild)
+                curr.right = self.insert_util(value, curr.right)
         return curr
 
     def strcmp(self, first, second):
@@ -58,9 +58,9 @@ class StringTree(object):
         if compare == 0:
             return True
         elif compare == 1:
-            return self.find_util(curr.lchild, value)
+            return self.find_util(curr.left, value)
         else:
-            return self.find_util(curr.rchild, value)
+            return self.find_util(curr.right, value)
     
     def frequency(self, value):
         return self.frequency_util(self.root, value)
@@ -72,9 +72,9 @@ class StringTree(object):
         if compare == 0:
             return curr.count
         elif compare > 0:
-            return self.frequency_util(curr.lchild, value)
+            return self.frequency_util(curr.left, value)
         else:
-            return self.frequency_util(curr.rchild, value)
+            return self.frequency_util(curr.right, value)
 
 # Testing code.
 t = StringTree()

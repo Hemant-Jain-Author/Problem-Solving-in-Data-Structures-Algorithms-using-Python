@@ -76,7 +76,7 @@ class HashTable(object):
     def print(self):
         for i in range(self.table_size) :
             if self.flag[i] == self.FILLED_NODE:
-                print("Value for key [" , self.key_arr[i] , "] :: " , self.data_arr[i])
+                print("Value for key [" , self.key_arr[i] , "] ::" , self.data_arr[i])
 
 # Testing Code
 ht = HashTable(1000)
@@ -90,9 +90,9 @@ print("After deleting node with key 2.")
 print("Find key 2 :", ht.find(2))
 
 """
-Value at index [ 1 ] ::  10
-Value at index [ 2 ] ::  20
-Value at index [ 3 ] ::  30
+Value at index [ 1 ] :: 10
+Value at index [ 2 ] :: 20
+Value at index [ 3 ] :: 30
 Find key 2 : True
 After deleting node with key 2.
 Find key 2 : False

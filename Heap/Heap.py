@@ -12,7 +12,7 @@ class Heap:
         #  Build Heap operation over array
         i = self.size // 2
         while i >= 0:
-            self.proclate_down(i)
+            self.percolate_down(i)
             i -= 1
 
     def comp(self, first, second):
@@ -24,7 +24,7 @@ class Heap:
     #  Other Methods.
     def add(self, value):    
         self.arr.append(value)
-        self.proclate_up(self.size)
+        self.percolate_up(self.size)
         self.size += 1
         
     def remove(self):
@@ -32,7 +32,7 @@ class Heap:
             raise RuntimeError("Heap is empty.")
         value = self.arr[0]
         self.arr[0] = self.arr[self.size - 1]
-        self.proclate_down(0)
+        self.percolate_down(0)
         self.size -= 1
         return value
 
@@ -47,7 +47,7 @@ class Heap:
             raise RuntimeError("Heap is empty.")        
         return self.arr[0]
 
-    def proclate_down(self, parent):
+    def percolate_down(self, parent):
         left_child = 2 * parent +  1
         right_child = left_child + 1
         child = -1
@@ -60,9 +60,9 @@ class Heap:
             temp = self.arr[parent]
             self.arr[parent] = self.arr[child]
             self.arr[child] = temp
-            self.proclate_down(child)
+            self.percolate_down(child)
 
-    def proclate_up(self, child):
+    def percolate_up(self, child):
         parent = (child - 1)// 2
         if parent < 0:
             return
@@ -71,7 +71,7 @@ class Heap:
             temp = self.arr[child]
             self.arr[child] = self.arr[parent]
             self.arr[parent] = temp
-            self.proclate_up(parent)
+            self.percolate_up(parent)
 
     
 

@@ -19,19 +19,14 @@ def quick_select_util(arr, lower, upper, k):
             swap(arr, upper, lower)
     swap(arr, upper, start)    # upper is the pivot position
     
-    if k < upper: 
-        # pivot -1 is the upper for left sub array.
+    if k < upper: # pivot -1 is the upper for left sub array.
         quick_select_util(arr, start, upper - 1, k)
     
-    if k > upper:
-        #  pivot + 1 is the lower for right sub array.
+    if k > upper: #  pivot + 1 is the lower for right sub array.
         quick_select_util(arr, upper + 1, stop, k)   
           
 def swap(arr, first, second):
-    temp = arr[first]
-    arr[first] = arr[second]
-    arr[second] = temp
-    
+    arr[first], arr[second] = arr[second], arr[first]  
 
 array = [3, 4, 2, 1, 6, 5, 7, 8, 10, 9]
 value = quick_select(array, 5)

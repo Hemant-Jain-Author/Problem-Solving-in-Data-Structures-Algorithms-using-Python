@@ -1,3 +1,30 @@
+import math
+import sys
+
+def function2() :
+    print("Fun2 line 1")
+
+def function1() :
+    print("Fun1 line 1")
+    function2()
+    print("Fun1 line 2")
+
+# Testing code
+def main() :
+    print("Main line 1")
+    function1()
+    print("Main line 2")
+
+main()
+
+"""
+Main line 1
+Fun1 line 1
+Fun2 line 1
+Fun1 line 2
+Main line 2
+"""
+
 def is_balanced_parenthesis(expn):
     stk = []
     for ch in expn:
@@ -20,7 +47,7 @@ def main1():
     print("Given Expn:" , expn)
     print("Result after isParenthesisMatched:" , value)
 
-#main1()
+main1()
 
 """
 Given Expn: {()}[]
@@ -76,7 +103,7 @@ def main2():
     print("Given Postfix Expn: " , expn)
     print("Result after Evaluation: " , value)
 
-#main2()
+main2()
 
 """
 Given Postfix Expn:  6 5 2 3 + 8 * + 3 + *
@@ -126,7 +153,7 @@ def main4():
     print("Infix Expn: " , expn)
     print("Postfix Expn: " , value)
 
-#main4()
+main4()
 
 """
 Infix Expn:  10 + ( ( 3 ) ) * 5 / ( 16 - 4 )
@@ -169,14 +196,12 @@ def main3():
     print("Infix Expn: " , expn)
     print("Prefix Expn: " , value)
 
-#main3()
+main3()
 
 """
 Infix Expn:  10 + ( ( 3 ) ) * 5 / ( 16 - 4 )
 Prefix Expn:  + 10 * 3 / 5 - 16 4 
 """
-
-
 
 def stock_span_range(arr):
     stock_range = [0] * len(arr)
@@ -218,7 +243,7 @@ def main5():
     value = stock_span_range2(arr)
     print("stock_span_range: " , value)
 
-#main5()
+main5()
 
 """
 stock_span_range:  [1, 1, 1, 1, 1, 4, 6, 8, 9]
@@ -265,7 +290,7 @@ def main6():
     print("get_max_area:", get_max_area(arr))
     print("get_max_area:", get_max_area2(arr))
 
-#main6()
+main6()
 
 """
 get_max_area: 20
@@ -346,7 +371,7 @@ def main7():
     print(find_celebrity2(arr, 5))
     print(find_celebrity3(arr, 5))
 
-#main7()
+main7()
 
 """
 3
@@ -355,12 +380,11 @@ def main7():
 """
 
 def decode(text):
-    i = 0
-    value = 0
     n = len(text)
+    value = 0
     output = ""
     stk = []
-    while i < n :
+    for i in range(n):
         if text[i].isdigit() :
             value = value*10 + int(text[i])
         elif text[i] == '[':
@@ -381,7 +405,6 @@ def decode(text):
             stk.append(st2)
         else :
             stk.append(text[i])
-        i += 1
 
     while len(stk) != 0:
         output = stk.pop() + output
@@ -392,19 +415,14 @@ def main8():
     str = '1[x4[y]]13[Z]1[a]'
     print(decode(str))
 
-#main8()
+main8()
 """
 xyyyyZZZZZZZZZZZZZa
 """
 
-"""
-In preorder traversal <Root><Left child><Right child>. 
-Once we have a value grater then root value then we are in Right child subtree. 
-So all the nodes that will come will have value grater then root value.
-"""
 def is_bst_array(preorder):
     stk = []
-    root = -99999
+    root = -sys.maxsize
     for value in preorder:
         # If value of the right child is less then root.
         if value < root :
@@ -427,7 +445,7 @@ def main9():
     preorder4 = [30 , 20 , 35 , 29 ]
     print("Is BST Array" , is_bst_array(preorder4) )
 
-#main9()
+main9()
 """
 Is BST Array True
 Is BST Array False
@@ -435,19 +453,7 @@ Is BST Array True
 Is BST Array False
 """
 
-"""
-Let (X, Y) is a current state so their can be max 6 other states:
-1: Second jug is emptied (X, 0)
-2: First jug is emptied (0, Y)
-3: First jug is completely filled (maxX, Y)
-4: Second jug is completely filled (X, maxY)
-5: Content of second jug added to first jug (min(maxX, X+Y), max(0, X+Y-maxX))
-6: Content of first jug added to second jug (max(X+Y-maxY, 0), min(maxY, X+Y))
 
-
-You need to produce an optimal path to reach target.
-"""
-import sys
 def water_jug(maxX, maxY, target) :
     stk = []
     parent = {}
@@ -527,7 +533,7 @@ def main10():
     print(water_jug(9, 2, 7))
     print(water_jug(12, 19, 7))
 
-#main10()
+main10()
 """
 [(0, 0), (0, 3), (3, 0), (3, 3), (4, 2), (0, 2)]
 [(0, 0), (0, 1), (1, 0), (1, 1), (2, 0)]
@@ -535,7 +541,6 @@ def main10():
 [(0, 0), (0, 19), (12, 7), (0, 7)]
 """
 
-# Function to print next Larger element of each element of array.
 def next_larger_element(arr):
     size = len(arr)
     output = []
@@ -619,7 +624,7 @@ def main11():
     next_larger_element2(arr)
     next_larger_element3(arr)
 
-#main11()
+main11()
 """
 [21, -1, 6, 20, -1, -1]
 [21, -1, 6, 20, -1, -1]
@@ -648,7 +653,7 @@ def next_smaller_element(arr):
         i -= 1
     print(output)
 
-def next_smaller_element3(arr):
+def next_smaller_element2(arr):
     size = len(arr)
     stk = Stack()
     output = [-1]*size
@@ -658,7 +663,7 @@ def next_smaller_element3(arr):
             index = stk.pop()
             output[index] = curr
         stk.push(i)
-    # index which dont have any next Smaller.
+    # index which don't have any next Smaller.
     while stk.is_empty() == False :
         index = stk.pop()
         output[index] = -1
@@ -668,16 +673,26 @@ def next_smaller_element3(arr):
 def main12():
     arr = [13,21,3,6,20,3]
     next_smaller_element(arr)
-    next_smaller_element3(arr)
+    next_smaller_element2(arr)
     
-#main12()
+main12()
 """
 [3, 3, -1, 3, 3, -1]
 [3, 3, -1, 3, 3, -1]
 """
 
 
-def next_larger_element_circular(arr):
+def next_larger_element_circular(arr) :
+    size = len(arr)
+    output = [-1] * size
+    for i in range(size) :
+        for j in range(1, size) :
+            if (arr[i] < arr[(i + j) % size]) :
+                output[i] = arr[(i + j) % size]
+                break
+    print(output)
+
+def next_larger_element_circular2(arr):
     size = len(arr)
     stk = Stack()
     output = [-1]*size
@@ -689,26 +704,24 @@ def next_larger_element_circular(arr):
             output[index] = curr
         stk.push(i % size)
     
-    # index which dont have any next Larger.
+    # index which don't have any next Larger.
     while stk.is_empty() == False :
         index = stk.pop()
-        output[index] = -1
-        
+        output[index] = -1  
     print(output)
 
 def main13():
     arr = [6, 3, 9, 8, 10, 2, 1, 15, 7]
     next_larger_element_circular(arr)
+    next_larger_element_circular2(arr)
 
-#main13()
+main13()
 """
+[9, 9, 10, 10, 15, 15, 15, -1, 9]
 [9, 9, 10, 10, 15, 15, 15, -1, 9]
 """
 
-"""
-Given an array you need to find smalles larger element for each element.
-"""
-import sys
+
 def smallest_larger_element_array(arr):
     size = len(arr)
     output = []
@@ -740,17 +753,12 @@ def main14():
     smallest_larger_element_array(arr)
     smallest_larger_element_array2(arr)
 
-#main14()
+main14()
 """
 [7, 6, 10, 9, 15, 3, 2, -1, 8]
 [7, 6, 10, 9, 15, 3, 2, -1, 8]
 """
 
-"""
-Given an array of integers. Find leaders in this array. 
-A leader is value which is grater then all the values at the right of it.
-Hint:= Next largest value stack need to be output in this problem.
-"""
 def find_leaders(arr):
     size = len(arr)
     stk = []
@@ -783,7 +791,7 @@ def main15():
     find_leaders(arr)
     find_leaders2(arr)
 
-#main15()
+main15()
 """
 [17, 5, 2]
 [2, 5, 17]
@@ -812,7 +820,7 @@ def main16():
     print("Given Expn:", expn)
     print("Result after isParenthesisMatched:", value)
 
-#main16()
+main16()
 """
 Given Expn: {()}[]
 Result after isParenthesisMatched: True
@@ -856,7 +864,7 @@ def main17():
     print("Max depth parenthesis is:", value)
 
 
-#main17()
+main17()
 """
 Given expn: ((((A)))((((BBB()))))()()()())
 Max depth parenthesis is: 6
@@ -881,13 +889,13 @@ def main18():
     print("Given expn:", expn)
     print("longest Balanced Parenthesis is:", value)
 
-#main18()
+main18()
 """
 Given expn: ())(())(())(
 longest Balanced Parenthesis is: 10
 """
 
-def longest_cont_bal_paren(string):
+def longest_cont_bal_parenthesis(string):
     size = len(string)
     stk = []
     stk.append(-1)
@@ -906,16 +914,15 @@ def longest_cont_bal_paren(string):
 
 def main19():
     expn = "())((()))(())()(()((()))((()))"    
-    value = longest_cont_bal_paren(expn)
-    print("Longest Continuous  Balanced Parenthesis is:", value)
+    value = longest_cont_bal_parenthesis(expn)
+    print("Longest Continuous Balanced Parenthesis is:", value)
 
-#main19()
+main19()
 """
 Given expn: ())((()))(())()(()
-Longest Continuous  Balanced Parenthesis is: 12
+Longest Continuous Balanced Parenthesis is: 14
 """
 
-import math
 def reverse_parenthesis(expn):
     stk = []
     if len(expn) % 2 == 1:
@@ -938,13 +945,6 @@ def reverse_parenthesis(expn):
             close_count += 1
     
     reversal = math.ceil(open_count / 2) + math.ceil(close_count / 2) # fractional division.
-
-    """ when open_count is even close_count is also even and 
-    their half element reversal will make the expression balanced.
-    when open_count is odd and also close_count, then once you had reversed 
-    open_count/2 and close_count/2. You will be left with ")(" which need 2 more reversal
-    above formula is drived from this.
-    """
     return reversal
 
 def main20():
@@ -954,7 +954,7 @@ def main20():
     print("Given expn:", expn2)
     print("reverse Parenthesis is:", value)
 
-#main20()
+main20()
 """
 Given expn: )(())(((
 reverse Parenthesis is: 3
@@ -999,15 +999,13 @@ def find_duplicate_parenthesis2(expn):
 
 def main21():
     expn = "(((a+(b))+(c+d)))"
-    expn = "(((a+b))+c)"
-    expn = "(c)"
     print("Given expn:", expn)
     value = find_duplicate_parenthesis(expn)
     print("Duplicate Found :", value)
 
-#main21()
+main21()
 """
-Given expn: (c)
+Given expn: (((a+(b))+(c+d)))
 Duplicate Found : True
 """
 
@@ -1033,7 +1031,7 @@ def main22():
     print("Given expn:", expn2)
     print_parenthesis_number(expn2)
 
-#main22()
+main22()
 """
 Given expn: (((a+(b))+(c+d)))
 Parenthesis Count : [1, 2, 3, 4, 4, 3, 5, 5, 2, 1]
@@ -1056,19 +1054,15 @@ def print_number_pattern(expr):
                 output[i] = val
                 val += 1
                 continue
-            j = 0
-            while j <= count :
+            for j in range(count+1) :
                 output[i - j] = val
                 val += 1
-                j += 1
             count = 0
 
     i = size
-    j = 0
-    while j <= count :
+    for j in range(count+1):
         output[i - j] = val
         val += 1
-        j +=  1
     
     print(output)
 
@@ -1076,7 +1070,7 @@ def main23():
     print_number_pattern("DIDD")
     print_number_pattern("DDIDDIID")
 
-#main23()
+main23()
 """
 [2, 1, 5, 4, 3]
 [3, 2, 1, 6, 5, 4, 7, 9, 8]
@@ -1124,7 +1118,7 @@ def main24():
     sorted_insert(stk, 1)
     stk.print()
 
-#main24()
+main24()
 """
 [1, 2, 3, 4]
 """
@@ -1163,7 +1157,7 @@ def main24():
     sort_stack2(stk)
     stk.print()
 
-#main24()
+main24()
 """
 [1, 2, 3, 4]
 [1, 2, 3, 4]
@@ -1185,7 +1179,7 @@ def main24():
     bottom_insert(stk, 0)
     stk.print()
 
-#main24()
+main24()
 """
 [0, 1, 2, 3]
 """
@@ -1243,7 +1237,7 @@ def main24():
     stk.print()
 
 
-#main24()
+main24()
 """
 [3, 2, 1]
 [3, 2, 1]
@@ -1309,7 +1303,7 @@ def main24():
     reverse_Kelement_in_queue(que, 2)
     que.print()
 
-#main24()
+main24()
 """
 [1, 2, 3]
 [1, 3, 2]
@@ -1323,18 +1317,15 @@ def get_max_area(arr):
 	size = len(arr)
 	maxArea = -1
 	minHeight = 0
-	i = 1
-	while i < size:
+	for i in range(1, size):
 		minHeight = arr[i]
 		j = i - 1
-		while j >= 0:
+		for j in range(i-1, -1, -1):
 			if minHeight > arr[j]:
 				minHeight = arr[j]
 			currArea = minHeight * (i - j + 1)
 			if maxArea < currArea:
 				maxArea = currArea
-			j -= 1
-		i += 1
 	return maxArea
 
 def get_max_area2(arr):
@@ -1362,7 +1353,7 @@ def main25():
     print("get_max_area: " , get_max_area(arr))
     print("get_max_area: " , get_max_area2(arr))
 
-#main25()
+main25()
 """
 get_max_area:  20
 get_max_area:  20
@@ -1383,8 +1374,9 @@ def rotten_fruit_util (arr, max_col, max_row, curr_col, curr_row, traversed, day
     rotten_fruit_util (arr, max_col, max_row, curr_col, curr_row+1, traversed, day+1)
     rotten_fruit_util (arr, max_col, max_row, curr_col, curr_row-1, traversed, day+1)
 
-infi = 99999
+
 def rotten_fruit(arr, max_col, max_row):
+    infi = sys.maxsize
     traversed = [[infi]*max_col for i in range(max_row)]
     for i in range(0, max_col-1, 1):
         for j in range(0, max_row-1, 1):
@@ -1409,7 +1401,7 @@ def main():
         [ 1, 1, 0, 0, 1]]
     print(rotten_fruit(arr, 5, 5))
 
-#main()
+main()
 """
 6
 """
@@ -1429,7 +1421,7 @@ def dist_nearest_fill_util(arr, max_col, max_row, curr_col, curr_row, traversed,
     dist_nearest_fill_util(arr, max_col, max_row, curr_col, curr_row+1, traversed, dist+1)
     dist_nearest_fill_util(arr, max_col, max_row, curr_col, curr_row-1, traversed, dist+1)
 
-infi = 99999
+infi = sys.maxsize
 def dist_nearest_fill(arr, max_col, max_row):
     traversed = [[infi]*max_col for i in range(max_row)]
     for i in range(0, max_col, 1):
@@ -1447,7 +1439,7 @@ def main2():
         [ 0 , 0 , 0, 0 , 1]]
     dist_nearest_fill(arr, 5, 5)
 
-#main2()
+main2()
 """
 [[0, 1, 0, 0, 1], [0, 0, 1, 0, 1], [1, 1, 2, 1, 0], [2, 2, 2, 1, 0], [3, 3, 2, 1, 0]]
 """
@@ -1471,13 +1463,13 @@ def steps_of_knight_util(size, curr_col, curr_row, traversed, dist):
     steps_of_knight_util(size, curr_col-1, curr_row+2, traversed, dist+1)
     steps_of_knight_util(size, curr_col+1, curr_row+2, traversed, dist+1)
 
-infi = 99999
+infi = sys.maxsize
 def steps_of_knight(size, srcX, srcY, dstX, dstY):
     traversed = [[infi]*size for _ in range(size)]
     steps_of_knight_util(size, srcX - 1, srcY - 1, traversed, 0)
     return traversed[dstX - 1][dstY - 1]
 
-#print(steps_of_knight(20,10,10,20,20))
+print(steps_of_knight(20,10,10,20,20))
 """
 8
 """
@@ -1510,7 +1502,26 @@ def main19():
     arr = [[1, 0, 1, 1, 0], [1, 0, 0, 1, 0], [0, 1, 1, 1, 1 ], [ 0, 1, 0, 0, 0], [1, 1, 0, 0, 1]]
     print("Largest Island : " , find_largest_island(arr, 5, 5))
 
-#main19()
+main19()
 """
 Largest Island :  12
+"""
+
+
+def stockAnalystAdd(stk,  value) :
+    while (not (len(stk) == 0) and stk[-1] <= value) :
+        stk.pop()
+    stk.append(value)
+def main7a() :
+    arr = [20, 19, 10, 21, 40, 35, 39, 50, 45, 42]
+    stk =  []
+    i = len(arr) - 1
+    while (i >= 0) :
+        stockAnalystAdd(stk, arr[i])    
+        i -= 1
+    print(stk)
+
+main7a()
+"""
+[50, 40, 21, 20]
 """

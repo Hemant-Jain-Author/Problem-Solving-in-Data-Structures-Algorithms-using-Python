@@ -39,6 +39,7 @@ print("stk1 pop", st.pop1())
 print("stk1 pop", st.pop1())
 print("stk2 pop", st.pop2())
 print("stk2 pop", st.pop2())
+
 """
 stk1 pop 3
 stk1 pop 2

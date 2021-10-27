@@ -1,17 +1,24 @@
-st = set()
-st.add(3)
-st.add(4)
-st.add(2)
-st.add(1)
-print(st)
 
-print(4 in st) 
+hs =  set() #  Create a set.
 
-st.remove(4)
-print(st)
+#  Add elements to the set.
+hs.add("Banana")
+hs.add("Apple")
+hs.add("Mango")
+
+print(hs)
+print("Apple present : ", "Apple" in hs)
+print("Grapes present : ", "Grapes" in hs)
+
+hs.remove("Apple")
+print("Apple present : ", "Apple" in hs)
+print(hs)
+
 
 """
-{1, 2, 3, 4}
-True
-{1, 2, 3}
+{'Apple', 'Banana', 'Mango'}
+Apple present : True
+Grapes present : False
+Apple present : False
+{'Banana', 'Mango'}
 """

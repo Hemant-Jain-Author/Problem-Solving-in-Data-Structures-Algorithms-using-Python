@@ -10,21 +10,17 @@ def bubble_sort(arr):
         for j in range(size - i - 1):
             if more(arr[j], arr[j + 1]):
                 #  Swapping 
-                temp = arr[j]
-                arr[j] = arr[j + 1]
-                arr[j + 1] = temp
+                arr[j] , arr[j + 1] = arr[j + 1], arr[j]
 
 def bubble_sort2(arr):
     size = len(arr)
     swapped = 1
-    i = 0
     for i in range(size - 1):
         swapped = 0
         for j in range(size - i - 1):
             if more(arr[j], arr[j + 1]):
-                temp = arr[j]
-                arr[j] = arr[j + 1]
-                arr[j + 1] = temp
+                #  Swapping
+                arr[j] , arr[j + 1] = arr[j + 1], arr[j]
                 swapped = 1
         if swapped == 0:
             break

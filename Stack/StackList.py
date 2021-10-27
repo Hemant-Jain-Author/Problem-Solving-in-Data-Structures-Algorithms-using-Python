@@ -47,6 +47,7 @@ s.push(3)
 s.print()
 print(s.pop())
 s.print()
+
 """
 3 2 1 
 3

@@ -1,5 +1,14 @@
 {
     "python.formatting.provider": "autopep8",
     "python.linting.pylintEnabled": true,
-    "python.linting.enabled": true
+    "python.linting.enabled": true,
+    "cSpell.words": [
+        "curr",
+        "heapq",
+        "infi",
+        "Kdistance",
+        "klargest",
+        "segarray",
+        "segtree"
+    ]
 }

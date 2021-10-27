@@ -91,7 +91,7 @@ def print_first_repeating(arr):
     i = 0
     while i < size:
         if hs.get(arr[i]) > 1:
-            print("First Repeating number is : " , arr[i])
+            print("First Repeating number is :" , arr[i])
             return arr[i]
         i += 1
 
@@ -100,7 +100,7 @@ arr = [1, 2, 3, 4, 4, 5, 6, 7, 8, 9, 1]
 print_first_repeating(arr)
 
 """
-First Repeating number is :  1
+First Repeating number is : 1
 """
 
 def horner_hash(self, key, tableSize):

@@ -1,17 +1,22 @@
 from collections import deque
 
 que = deque([])
-que.append(4)
-que.append(3)
-que.append(2)
 que.append(1)
-print(que)
-
-print(que.popleft())
-print(que)
+que.append(2)
+que.append(3)
+print("Queue : ", que)
+print("Queue size : ", len(que))
+print("Queue peek : ", que[0])
+print("Queue remove : ",  que.popleft())
+print("Queue : ", que)
+print("Queue isEmpty : ", (len(que) == 0))
+        
 
 """
-deque([4, 3, 2, 1])
-4
-deque([3, 2, 1])
+Queue :  deque([1, 2, 3])
+Queue size :  3
+Queue peek :  1
+Queue remove :  1
+Queue :  deque([2, 3])
+Queue isEmpty :  False
 """

@@ -1429,7 +1429,7 @@ def find_missing_number5(arr) :
 def find_missing_number6(arr) :
     size = len(arr)
     for i in range(size) :
-        arr[arr[i] % (size) - 1] += size + 1    
+        arr[(arr[i]-1) % size] += size   
 
     for i in range(size) :
         if (arr[i] < size + 1) :

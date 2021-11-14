@@ -1429,10 +1429,13 @@ def find_missing_number5(arr) :
 def find_missing_number6(arr) :
     size = len(arr)
     for i in range(size) :
-        arr[(arr[i]-1) % size] += size   
+        # len(arr)+1 value should be ignored.
+        if arr[i] != size+1 and arr[i] != size*3 +1 :
+            # 1 should not become (len(arr)+1) so multiplied by 2
+            arr[(arr[i]-1) % size] += size*2   
 
     for i in range(size) :
-        if (arr[i] < size + 1) :
+        if (arr[i] < size*2) :
             return  i + 1    
 
     return  sys.maxsize

@@ -66,17 +66,23 @@ def test3():
 """
 
 def gcd(m, n):
-    if m < n:
-        return (gcd(n, m))
-    if m % n == 0:
-        return (n)
+    if m == 0:
+        return n
+    if n == 0:
+        return m
     return (gcd(n, m % n))
 
 def test4():
     print("Gcd is::", gcd(5, 2))
+    print("Gcd is::", gcd(2, 5))
+    print("Gcd is::", gcd(6, 9))
+    print("Gcd is::", gcd(9, 6))
 
 """
 Gcd is:: 1
+Gcd is:: 1
+Gcd is:: 3
+Gcd is:: 3
 """
 
 def tower_of_hanoi(num, src, dst, temp):

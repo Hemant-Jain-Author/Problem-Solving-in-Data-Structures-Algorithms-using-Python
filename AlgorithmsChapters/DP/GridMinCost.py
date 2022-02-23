@@ -1,12 +1,12 @@
 import math
 
 def min_cost(cost,  m,  n) :
-    if (m == 0 and n == 0) :
-        return  0
-    if (m == 0) :
-        return  cost[0][n - 1] + min_cost(cost, 0, n - 1)
-    if (n == 0) :
-        return  cost[m - 1][0] + min_cost(cost, m - 1, 0)
+    if (m == 0 or n == 0) :
+        return  99999
+    
+    if (m == 1 and n == 1) :
+        return  cost[0][0]
+
     return  cost[m - 1][n - 1] + min(min_cost(cost, m - 1, n - 1), 
                                     min_cost(cost, m - 1, n), 
                                     min_cost(cost, m, n - 1))

@@ -75,6 +75,8 @@ class RangeMaxST :
         #  Value of diff is propagated to the parent node.
         return  self.segarray[index]
 
+
+// Testing Code
 arr = [1, 8, 2, 7, 3, 6, 4, 5]
 tree = RangeMaxST(arr)
 print("Max value in the range(1, 5): " + str(tree.get_max(1, 5)))

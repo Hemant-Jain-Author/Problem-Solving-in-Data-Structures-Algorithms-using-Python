@@ -45,3 +45,10 @@ print(b)
 print(b["mango"])
 print(b.get("mango"))
 print("banana" in b)
+
+"""
+OrderedDict([('apple', 40), ('mango', 20), ('banana', 10)])
+20
+20
+True
+"""

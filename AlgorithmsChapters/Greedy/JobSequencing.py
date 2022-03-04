@@ -31,6 +31,7 @@ def job_sequencing(ids,  deadlines,  profits,  n) :
         if (job[i] != -1) : 
             print(job[i], end =" ")    
 
+# Testing Code
 id = ['a', 'b', 'c', 'd', 'e', 'f']
 deadline = [3, 1, 2, 4, 4, 1]
 profit = [50, 40, 27, 31, 30, 60]

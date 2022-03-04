@@ -97,6 +97,7 @@ def optimal_bst_cost_bu2(keys,  freq) :
             i += 1
     return  cost[0][n - 1]
 
+# Testing Code
 keys = [9, 15, 25]
 freq = [30, 10, 40]
 print("OBST cost:", optimal_bst_cost(keys, freq))

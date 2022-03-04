@@ -72,6 +72,8 @@ class SegmentTree :
         #  Value of diff is propagated to the parent node.
         return  diff
 
+
+// Testing Code
 arr = [1, 2, 4, 8, 16, 32, 64]
 tree = SegmentTree(arr)
 print("Sum of values in the range(0, 3): " + str(tree.get_sum(1, 3)))

@@ -21,8 +21,10 @@ def knapsack_max_cost_greedy(wt,  cost,  capacity) :
             capacity -= items[i].wt
             profit += items[i].cost
         i += 1
+
     return  profit
 
+# Testing Code
 wt = [10, 40, 20, 30]
 cost = [60, 40, 90, 120]
 capacity = 50

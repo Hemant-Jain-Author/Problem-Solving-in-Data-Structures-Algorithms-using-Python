@@ -1,6 +1,6 @@
 import math
 
-def largest_bitonic_subseq(self, arr) :
+def largest_bitonic_subseq(arr) :
     n = len(arr)
     lis = [1] * n #  Initialize LIS values for all indexes as 1.
     lds = [1] * n #  Initialize LDS values for all indexes as 1.
@@ -20,9 +20,10 @@ def largest_bitonic_subseq(self, arr) :
         mx = max(mx, lis[i] + lds[i] - 1)
     return  mx
 
+# Testing Code
 arr = [1, 6, 3, 11, 1, 9, 5, 12, 3, 14, 6, 17, 3, 19, 2, 19]
-print("Length of largest bitonic subseq is " + str(largest_bitonic_subseq(arr)))
+print("Length of largest bitonic subseq is ", largest_bitonic_subseq(arr))
 
 """
-Length of lis is 8
+Length of largest bitonic subseq is  8
 """

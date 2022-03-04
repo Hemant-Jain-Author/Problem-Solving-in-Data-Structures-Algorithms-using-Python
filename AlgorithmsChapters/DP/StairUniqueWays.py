@@ -24,6 +24,7 @@ def stair_unique_ways_bu2(n) :
 
     return  ways[n - 1]
 
+# Testing Code
 print("Unique way to reach top:: ", stair_unique_ways_bu(4))
 print("Unique way to reach top:: ", stair_unique_ways_bu2(4))
 

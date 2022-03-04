@@ -31,7 +31,7 @@ def graph_shortest_dist(graph,  n) :
     print()
     return  dist[n - 1]
 
-#  Driver code
+# Testing Code
 #  Graph stored in the form of an adjacency Matrix
 graph = [[INF, 1, 2, 5, INF, INF, INF, INF], 
 [INF, INF, INF, INF, 4, 11, INF, INF], 

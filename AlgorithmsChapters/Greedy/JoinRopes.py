@@ -29,6 +29,7 @@ def join_ropes2(ropes,  size) :
     print("Total : ", total)
     return  total
 
+# Testing Code
 ropes = [4, 3, 2, 6]
 join_ropes(ropes, len(ropes))
 rope2 = [4, 3, 2, 6]

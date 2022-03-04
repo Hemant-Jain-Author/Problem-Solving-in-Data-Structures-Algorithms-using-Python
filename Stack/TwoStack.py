@@ -26,7 +26,7 @@ class TwoStack(object):
         self.size2 -= 1
         return self.data.pop()
 
-
+# Testing code
 st = TwoStack()
 st.push1(1)
 st.push1(2)

@@ -3,12 +3,27 @@
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": true,
     "cSpell.words": [
+        "atoi",
+        "bhim",
+        "bitonic",
+        "chota",
         "curr",
+        "currsum",
+        "heapify",
         "heapq",
         "infi",
         "Kdistance",
         "klargest",
+        "kruskal",
+        "ksmallest",
+        "maxofmin",
+        "minofmax",
+        "mycounter",
+        "outsrt",
+        "powm",
         "segarray",
-        "segtree"
+        "segtree",
+        "sortk",
+        "strcmp"
     ]
 }

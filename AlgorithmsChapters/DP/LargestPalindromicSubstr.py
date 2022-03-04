@@ -22,6 +22,7 @@ def largest_palindromic_substring(str) :
     print("Max Length Palindromic Substrings : " + str[start:start + mx])
     return  mx
 
+# Testing Code
 str = "ABCAUCBCxxCBA"
 print("Max Palindromic Substrings len: ", largest_palindromic_substring(str))
 

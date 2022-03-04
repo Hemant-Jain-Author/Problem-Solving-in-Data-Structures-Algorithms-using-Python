@@ -1,4 +1,5 @@
 import heapq
+import math
 import sys
 
 def is_max_heap2(arr):
@@ -40,18 +41,17 @@ def is_min_heap(arr):
 
 def is_min_heap2(arr):
 	size = len(arr)
-	parent = 0
 	#last element index size - 1
-	while(parent <= size//2):
+	for parent in range(size//2 + 1):
 		if 2*parent + 1 < size:
 			if arr[parent] > arr[2*parent + 1]:
 				return False
 		if 2*parent + 2 < size:
 			if arr[parent] > arr[2*parent +2]:
 				return False
-		parent += 1
 	return True
 
+# Testing Code
 def test1():
     arr = [1, 2, 3, 4, 5, 6, 7, 8]
     print (is_min_heap(arr))
@@ -62,7 +62,6 @@ def test1():
     arr = [8, 7, 6, 5, 4, 3, 2, 1]
     print (is_max_heap2(arr))
 
-# test1()
 
 """
 True
@@ -102,6 +101,7 @@ def kth_abs_diff2(arr, k):
             heapq.heappush(hp, (abs(arr[src] - arr[dst+1]), src, dst+1))
     return value
 
+# Testing Code
 def test2():
     arr = [1, 2, 3, 4]
     print(kth_abs_diff(arr, 5))
@@ -109,7 +109,6 @@ def test2():
     arr = [1, 2, 3, 4]
     print(kth_abs_diff2(arr, 5))
 
-# test2()
 """
 2
 2
@@ -172,6 +171,7 @@ def k_smallest_product3(arr, k) :
         product *= arr[i]
     return product
 
+# Testing Code
 def test3():
     arr = [8, 7, 6, 5, 7, 5, 2, 1]
     print("Kth Smallest product::", k_smallest_product(arr, 3))
@@ -179,8 +179,6 @@ def test3():
     print("Kth Smallest product::", k_smallest_product2(arr2, 3))
     arr3 = [8, 7, 6, 5, 7, 5, 2, 1] 
     print("Kth Smallest product::", k_smallest_product3(arr3, 3))
-
-# test3()
 
 """
 Kth Smallest product:: 10
@@ -191,10 +189,8 @@ Kth Smallest product:: 10
 def print_larger_half(arr) :
     size = len(arr)
     arr.sort()
-    i = size // 2
-    while i < size:
+    for i in range(size//2, size) :
         print(arr[i], end=" ")
-        i += 1
     print()
 
 def print_larger_half2(arr) :
@@ -212,12 +208,11 @@ def print_larger_half2(arr) :
 def print_larger_half3(arr):
     size = len(arr)
     quick_select_util(arr, 0, size - 1, size // 2)
-    i = size // 2
-    while i < size :
+    for i in range(size//2, size) :
         print(arr[i], end=" ")
-        i += 1
     print()
 
+# Testing Code
 def test4():
     arr = [8, 7, 6, 5, 7, 5, 2, 1]
     print_larger_half(arr)
@@ -225,8 +220,6 @@ def test4():
     print_larger_half2(arr2)
     arr3 = [8, 7, 6, 5, 7, 5, 2, 1]
     print_larger_half3(arr3)
-
-# test4()
 
 """
 6 7 7 8 
@@ -246,23 +239,16 @@ def kth_largest_stream(k):
                 hp.append(data)
                 heapq.heapify(hp)
             elif hp[0] < data :
-                heapq1.heappush(hp, data)
+                heapq.heappush(hp, data)
                 heapq.heappop(hp)
-            print(hp)
             print("Kth larges element is :: ", hp[0])
-        size += 1
 
-# kth_largest_stream(3)
-
-"""
-
-"""
+# Testing Code
+#kth_largest_stream(3)
 
 def kth_smallest(arr, k):
     arr.sort()
     return arr[k-1]
-
-import heapq
 
 def kth_smallest2(arr, k):
     size = len(arr)
@@ -274,16 +260,13 @@ def kth_smallest2(arr, k):
         i += 1
     return value
 
-
-"""
-Quick select method
-"""
 def quick_select(array, k):
     arr = array
     size = len(arr)
     quick_select_util(arr, 0, size-1, k)
     return arr[k-1]
 
+# Testing Code
 def test5():
     first = [1, 7, 5, 4, 8, 3, 9, 2, 6, 10]
     print(kth_smallest(first, 5))
@@ -291,8 +274,6 @@ def test5():
     print(kth_smallest2(first, 5))
     first = [1, 7, 5, 4, 8, 3, 9, 2, 6, 10]
     print(quick_select(first, 5))
-
-test5()
 
 """
 5
@@ -339,13 +320,12 @@ def chota_bhim2(cups):
         time -= 1
     print(value)
 
+# Testing Code
 def test6():
     cups = [2,1,7,4,2]
     chota_bhim(cups)
     cups = [2,1,7,4,2]
     chota_bhim2(cups)
-
-test6()
 
 """
 76
@@ -380,13 +360,12 @@ def join_rope2(ropes):
         total += value
     print(total)
 
+# Testing Code
 def test7():
     ropes = [4, 3, 2, 6]
     join_rope(ropes)
     ropes = [4, 3, 2, 6]
     join_rope2(ropes)
-
-test7()
 
 """
 29
@@ -405,9 +384,21 @@ def sortk(arr, k):
         output.append(heapq.heappop(heap))
     return output
 
+# Testing Code
+def test8():
+    a = [1, 4, 2, 3, 5, 6, 9, 8, 7]
+    print(sortk(a, 3))
 
-a = [1, 4, 2, 3, 5, 6, 9, 8, 7]
-print(sortk(a, 3))
 """
 [1, 2, 3, 4, 5, 6, 7, 8, 9]
 """
+
+
+test1()
+test2()
+test3()
+test4()
+test5()
+test6()
+test7()
+test8()

@@ -1,3 +1,13 @@
+def radix_sort(arr) :
+    n = len(arr)
+    m = get_max(arr, n)
+    #  Counting sort for every digit.
+    #  The dividend passed is used to calculate current working digit.
+    div = 1
+    while (m//div > 0) :
+        count_sort(arr, n, div)
+        div *= 10
+
 def get_max(arr,  n) :
     mx = arr[0]
     for i in range(1, n) :
@@ -23,15 +33,6 @@ def count_sort(arr,  n,  dividend) :
         arr[count[(int(temp[i] / dividend)) % 10] - 1] = temp[i]
         count[(int(temp[i] / dividend)) % 10] -= 1
 
-def radix_sort(arr) :
-    n = len(arr)
-    m = get_max(arr, n)
-    #  Counting sort for every digit.
-    #  The dividend passed is used to calculate current working digit.
-    div = 1
-    while ((m // div) > 0) :
-        count_sort(arr, n, div)
-        div *= 10
 
 # Testing Code
 array = [100, 49, 65, 91, 702, 29, 4, 55]

@@ -39,7 +39,7 @@ class Stack(object):
             temp = temp.next
         print()
 
-
+# Testing code
 s = Stack()
 s.push(1)
 s.push(2)

@@ -49,7 +49,7 @@ def stock_buy_sell_profit_tc2(arr,  t) :
 
     return  dp[n - 1][1]
 
-
+# Testing Code
 arr = [10, 12, 9, 23, 25, 55, 49, 70]
 print("Total profit: ", stock_buy_sell_profit(arr))
 print("Total profit: ", stock_buy_sell_profit2(arr))

@@ -42,7 +42,7 @@ class BinaryIndexTree :
             index -= index & (-index)
         return  sum
 
-
+# Testing Code
 arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 tree = BinaryIndexTree(arr)
 print("Sum of elements in range(0, 5): " + str(tree.prefix_sum(5)))

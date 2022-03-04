@@ -51,7 +51,7 @@ def min_cost_binary_tree_bu(arr) :
             i += 1
     return  dp[0][n - 1]
 
-
+# Testing Code
 arr = [6, 2, 4]
 print("Total cost: ", min_cost_binary_tree_td(arr))
 print("Total cost: ", min_cost_binary_tree_bu(arr))

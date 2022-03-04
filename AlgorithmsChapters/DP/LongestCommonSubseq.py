@@ -29,6 +29,7 @@ def print_LCS(p,  X,  i,  j) :
     else :
         print_LCS(p, X, i, j - 1)
 
+# Testing Code
 X = "carpenter"
 Y = "sharpener"
 print("\nLongest common subseq length:", longest_common_subseq(X, Y))

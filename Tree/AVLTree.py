@@ -147,6 +147,7 @@ class AVLTree :
         self.print_tree_util(node.left, indent, True)
         self.print_tree_util(node.right, indent, False)
 
+# Testing Code
 t = AVLTree()
 t.insert(1)
 t.insert(2)

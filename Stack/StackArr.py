@@ -25,6 +25,7 @@ class Stack(object):
         print(self.data)
 
 
+# Testing Code
 s = Stack()
 s.push(1)
 s.push(2)

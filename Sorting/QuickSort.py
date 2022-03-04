@@ -15,15 +15,16 @@ def quick_sort_util(arr, lower, upper):
         while arr[upper] > pivot and lower <= upper:
             upper -= 1
         if lower < upper:
-            swap(arr, upper, lower)
-    swap(arr, upper, start)
+            arr[upper], arr[lower] = arr[lower], arr[upper] # swap
+    
     # upper is the pivot position
+    arr[upper], arr[start] = arr[start], arr[upper] # swap
+    
     quick_sort_util(arr, start, upper - 1) # pivot -1 is the upper for left sub array.
     quick_sort_util(arr, upper + 1, stop) #  pivot + 1 is the lower for right sub array.
 
-def swap(arr, first, second):
-    arr[first], arr[second] = arr[second], arr[first]
 
+# Testing Code
 array = [3, 4, 2, 1, 6, 5, 7, 8, 1, 1]
 quick_sort(array)
 print(array)

@@ -189,10 +189,8 @@ class BTree :
     #  Remove the index key from leaf node.
     def remove_from_leaf(self, node,  index) :
         #  Move all the keys after the index position one step left.
-        i = index + 1
-        while (i < node.n) :
+        for i in range(index + 1, node.n) :
             node.keys[i - 1] = node.keys[i]    
-            i += 1
         
         #  Reduce the key count.
         node.n -= 1
@@ -301,10 +299,9 @@ class BTree :
         # First key from sibling is inserted into node.
         node.keys[index] = sibling.keys[0]
         #  Moving all keys in sibling one step left
-        i = 1
-        while (i < sibling.n) :
-            sibling.keys[i - 1] = sibling.keys[i]    
-            i += 1
+        for i in range(1, sibling.n) :
+            sibling.keys[i - 1] = sibling.keys[i]  
+              
         #  Moving the child pointers one step behind
         i = 1
         while (not sibling.leaf and i <= sibling.n) :
@@ -347,6 +344,8 @@ class BTree :
         node.n -= 1
         return
 
+
+# Testing Code
 t = BTree(3)
 #  A B-Tree with max key 3
 t.insert(1)

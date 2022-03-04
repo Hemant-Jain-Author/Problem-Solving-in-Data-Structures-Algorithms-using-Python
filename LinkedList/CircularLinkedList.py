@@ -103,12 +103,10 @@ class CircularLinkedList(object):
 
     def search (self, data):
         temp = self.tail
-        i = 0
-        while i < self.size():
+        for i in range(self.size()) :
             if temp.value == data:
                 return True
             temp = temp.next
-            i += 1
         return False
 
     def free(self):
@@ -124,7 +122,7 @@ class CircularLinkedList(object):
             temp = temp.next
         print(temp.value, end=' ')
 
-
+# Testing Code
 ll = CircularLinkedList()
 ll.add_head(1)
 ll.add_head(2)

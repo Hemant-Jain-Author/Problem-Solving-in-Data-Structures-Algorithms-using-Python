@@ -34,15 +34,15 @@ def partition012_(self, arr,  size) :
     zero = 0
     one = 0
     two = 0
-    i = 0
-    while (i < size) :
+    
+    for i in range(size) :
         if (arr[i] == 0) :
             zero += 1
         elif (arr[i] == 1) :
             one += 1
         else :
             two += 1
-        i += 1
+
     index = 0
     while (zero > 0) :
         arr[index] = 0
@@ -57,7 +57,7 @@ def partition012_(self, arr,  size) :
         index += 1
         two -= 1
 
-
+# Testing Code
 def test1():
     arr = [0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 1]
     partition012(arr)
@@ -72,17 +72,18 @@ def test1():
 [0, 0, 1, 1, 1, 1]
 """
 
-def abs_cmp(value1, value2, ref):
+def abs_greater(value1, value2, ref):
     return abs(value1 - ref) > abs(value2 - ref)
 
 def abs_sort(arr, ref):
     size = len(arr)
     for i in range(size - 1):
         for j in range(size - i - 1):
-            if abs_cmp(arr[j], arr[j + 1], ref):
+            if abs_greater(arr[j], arr[j + 1], ref):
                 #  Swapping
                 arr[j], arr[j + 1] = arr[j + 1], arr[j]
 
+# Testing Code
 def test2():
     array = [9, 1, 8, 2, 7, 3, 6, 4, 5]
     ref = 5
@@ -93,7 +94,7 @@ def test2():
 [5, 6, 4, 7, 3, 8, 2, 9, 1]
 """
 
-def eq_cmp(value1, value2, A):
+def eq_greater(value1, value2, A):
     value1 = A*value1*value1
     value2 = A*value2*value2
     return value1 > value2
@@ -102,10 +103,11 @@ def equation_sort(arr, A):
     size = len(arr)
     for i in range(size - 1):
         for j in range(size - i - 1):
-            if eq_cmp(arr[j], arr[j + 1], A):
+            if eq_greater(arr[j], arr[j + 1], A):
                 #  Swapping
                 arr[j], arr[j + 1] = arr[j + 1], arr[j]
- 
+
+# Testing Code
 def test3():
     array = [-1, 0, 1, 2, 3, 4]
     A = 1
@@ -116,10 +118,23 @@ def test3():
 [0, -1, 1, 2, 3, 4]
 """
 
-def swap(arr, left, right):
-    arr[left], arr[right] = arr[right], arr[left]
+def separate_even_odd(data) :
+    left = 0
+    size = len(data)
+    right = size - 1
+    aux = [0]*size
+    for i in range(size):
+        if data[i] % 2 == 0 :
+            aux[left] = data[i]
+            left += 1
+        elif data[i] % 2 == 1 :
+            aux[right] = data[i]
+            right -= 1
 
-def separate_even_odd(arr):
+    for i in range(size):
+        data[i] = aux[i]
+
+def separate_even_odd2(arr):
     size = len(arr)
     left = 0
     right = size - 1
@@ -129,17 +144,23 @@ def separate_even_odd(arr):
         elif arr[right] % 2 == 1:
             right -= 1
         else:
-            swap(arr, left, right)
+            arr[left], arr[right] = arr[right], arr[left]
             left += 1
             right -= 1
     return arr
 
+# Testing Code
 def test4():
     array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     separate_even_odd(array)
     print(array)
+    
+    array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    separate_even_odd2(array)
+    print(array)
 
 """
+[2, 4, 6, 8, 9, 7, 5, 3, 1]
 [8, 2, 6, 4, 5, 3, 7, 1, 9]
 """
 
@@ -157,6 +178,7 @@ def array_reduction(arr) :
 
     print("Total number of reductions", count, end=' ')
 
+# Testing Code
 def test5():
     arr = [ 5, 1, 1, 1, 2, 3, 5 ]
     array_reduction(arr)
@@ -182,6 +204,7 @@ def sort_frequency(arr):
         for i in range(value):
             print(key, end=' ')
 
+# Testing Code
 def test6():
     arr = [2, 3, 2, 4, 5, 12, 2, 3, 3, 3, 12]
     sort_frequency(arr)
@@ -209,7 +232,7 @@ def Sort_by_order(arr, arr2):
         for i in range(mp[key]):
             print(key, end=' ')
 
-
+# Testing Code
 def test7():
     print("")
     arr = [2, 1, 2, 5, 7, 1, 9, 3, 6, 8, 8]
@@ -266,7 +289,7 @@ def min_abs_pair_differences2(arr):
         minimum = min(temp, minimum)
     return minimum 
 
-# Driver code
+# Testing Code
 def test9():
     arr = [5, 101, 11, 14, 18, 71]
     print(min_abs_pair_differences(arr))
@@ -295,6 +318,7 @@ def min_abs_sum(arr):
             high -= 1
     return minSum
 
+# Testing Code
 def test10():
     arr = [1, 60, -10, 70, -80, 85]
     print(min_abs_sum(arr))
@@ -313,7 +337,8 @@ def find_min_diff(arr):
             diff = arr[i+1] - arr[i]
 
     return diff
- 
+
+# Testing Code
 def test11():
     arr = [1, 6, 4, 19, 17, 20]
     print(find_min_diff(arr))
@@ -345,6 +370,7 @@ def min_diff_pair(arr1, arr2):
     print(minDiff)
     return minDiff
 
+# Testing Code
 def test12():
     arr1 = [1, 4, 12, 10, 2]
     arr2 = [20, 128, 2354, 18, 7]
@@ -370,6 +396,7 @@ def min_swaps(arr):
             count += 1
     return count
 
+# Testing Code
 def test13():
     arr = [0, 1, 0, 1, 0]
     print(min_swaps(arr))
@@ -411,6 +438,7 @@ def missing_values2(arr):
             missing.append(i)
     print(missing)
 
+# Testing Code
 def test14():
     arr = [4, 5, 3, 8, 6,10]
     missing_values(arr)
@@ -448,6 +476,7 @@ def number_of_triangles2(arr):
             count += k - j - 1
     return count
 
+# Testing Code
 def test15():
     arr = [1, 2, 6, 4, 5, 3, 7, 8]
     print(number_of_triangles(arr))
@@ -474,6 +503,7 @@ def range_partition(arr, lower, higher):
         else :
             i += 1
 
+# Testing Code
 def test16():
     arr = [1,21,2,20,3,19,4,18,5,17,6,16,7,15,8,14,9,13,10,12,11]
     range_partition(arr, 8, 12)
@@ -493,6 +523,7 @@ def sort_AB(A, B):
                     return False
     return True
 
+# Testing Code
 def test17():
     A = [1, 2, 4, 3, 6, 5]
     B = [0, 0, 1, 1, 1]
@@ -526,6 +557,7 @@ def sub_array_zero_sum(arr):
             hs[sum] = i
     print(start+1, stop, max_length)
 
+# Testing Code
 def test18():
     arr = [4, 1, 1, -5, 1, 3, 0, -2, 6]
     sub_array_zero_sum(arr)
@@ -557,6 +589,7 @@ def sub_array_zero_one_equal(arr):
             hs[sum] = i
     print(start+1, stop, max_length)
 
+# Testing Code
 def test19():
     arr = [0, 0, 0, 1, 0, 1, 0]
     sub_array_zero_one_equal(arr)
@@ -584,7 +617,8 @@ def sum_pair_rest_array(arr):
         else :
             high -= 1
     return False
-    
+
+# Testing Code
 def test20():
     arr = [1, 2, 4, 8, 16, 15]
     print(sum_pair_rest_array(arr))
@@ -624,6 +658,7 @@ def check_reverse(arr):
 
     return True
 
+# Testing Code
 def test21():
     arr =[1,2,3,6,5,4,7,8,9]
     print(check_reverse(arr))
@@ -673,6 +708,7 @@ def union_intersection_sorted(arr1, arr2):
     print(union)
     print(inter)
 
+# Testing Code
 def test22():
     arr1 = [1, 2, 3, 5, 6, 8, 9]
     arr2 = [2, 4, 5, 7, 8, 10]
@@ -688,6 +724,7 @@ def union_intersection_unsorted(arr1, arr2):
     arr2.sort()
     union_intersection_sorted(arr1, arr2)
 
+# Testing Code
 def test23():
     arr1 = [1, 11, 2, 3, 14, 5, 6, 8, 9]
     arr2 = [2, 4, 5, 12, 7, 8, 13, 10]
@@ -734,6 +771,7 @@ def print_unique4(arr, valrange):
             print(arr[i], end=' ')
         count[arr[i]] += 1
 
+# Testing Code
 def test24():
     first = [1, 3, 5, 3, 9, 1, 30]
     print_unique(first)
@@ -750,6 +788,230 @@ def test24():
  Unique elements are :: 1 3 5 9 30 
  Unique elements are :: 1 3 5 9 30 
  Unique elements are :: 1 3 5 9 30 
+"""
+
+def rotate_array(arr, k):
+    n = len(arr)
+    reverse_array(arr, 0, k - 1)
+    reverse_array(arr, k, n - 1)
+    reverse_array(arr, 0, n - 1)
+
+def reverse_array(arr, start, end):
+    i = start
+    j = end
+    while i < j:
+        temp = arr[i]
+        arr[i] = arr[j]
+        arr[j] = temp
+        i += 1
+        j -= 1
+
+def reverse_array2(a):
+    i = 0 # Start index
+    j = len(a) -1 # End index
+    while i < j:
+        temp = a[i]
+        a[i] = a[j]
+        a[j] = temp
+        i += 1
+        j -= 1
+
+# Testing Code
+def test25():
+    arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    rotate_array(arr, 4)
+    print(arr)
+    arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    reverse_array2(arr)
+    print(arr)
+
+
+"""
+[4, 5, 6, 7, 8, 9, 1, 2, 3]
+[9, 8, 7, 6, 5, 4, 3, 2, 1]
+"""
+
+def index_array( arr):
+    size = len(arr)
+    for i in range(size):
+        curr = i
+        value = -1
+
+        # swaps to move elements in proper position.
+        while arr[curr] != -1 and arr[curr] != curr:
+            temp = arr[curr]
+            arr[curr] = value
+            value = curr = temp
+
+        # if some swaps happened.
+        if value != -1: 
+            arr[curr] = value
+
+
+def index_array2(arr):
+    size = len(arr)
+    for i in range(size):
+        while arr[i] != -1 and arr[i] != i:
+            # swap arr[i] and arr[arr[i]]
+            temp = arr[i]
+            arr[i] = arr[temp]
+            arr[temp] = temp
+
+# Testing Code
+def test26():
+    arr = [ 8, -1, 6, 1, 9, 3, 2, 7, 4, -1 ]
+    index_array( arr)
+    print(arr)
+
+    arr = [20, 11, 10, 9, 5, 13, 16, 2, 14, 17,19, 7, 0, 3, 18, 15, 12, 6, 1, 8, 4]
+    index_array2( arr)
+    print(arr)
+
+
+"""
+[-1, 1, 2, 3, 4, -1, 6, 7, 8, 9]
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+"""
+
+def sort_1toN(arr):
+    size = len(arr)
+    for i in range(size):
+        curr = i
+        value = -1
+        # swaps to move elements in proper position.
+        while curr >= 0 and curr < size and arr[curr] != curr+1 :
+            next = arr[curr]
+            arr[curr] = value
+            value = next
+            curr = next - 1
+
+def sort_1toN2(arr):
+    size = len(arr)
+    for i in range(size):
+        while arr[i] != i+1 and arr[i] > 1:
+            temp = arr[i]
+            arr[i] = arr[temp - 1]
+            arr[temp - 1] =  temp
+
+# Testing Code
+def test27():
+    arr = [10, 7, 9, 2, 8, 3, 5, 4, 6, 1]
+    sort_1toN(arr)
+    print(arr)
+    arr = [10, 7, 9, 2, 8, 3, 5, 4, 6, 1]
+    sort_1toN2(arr)
+    print(arr)
+
+
+"""
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+"""
+def max_min_array(arr):
+    size = len(arr)
+    aux = list(arr)
+    start = 0
+    stop = size - 1
+    for i in range(size):
+        if i % 2 == 0 :
+            arr[i] = aux[stop]
+            stop -= 1
+        else :
+            arr[i] = aux[start]
+            start += 1
+
+
+
+def reverse_array(arr, start, stop):
+    while start < stop:
+        arr[start], arr[stop] = arr[stop], arr[start]
+        start += 1
+        stop -= 1
+
+def max_min_array2(arr):
+    size = len(arr)
+    for i in range(size-1):
+        reverse_array(arr, i, size-1)
+
+# Testing Code
+def test28():
+    arr = [1, 2, 3, 4, 5, 6, 7]
+    max_min_array(arr)
+    print(arr)
+    arr = [1, 2, 3, 4, 5, 6, 7]
+    max_min_array2(arr)
+    print(arr)
+
+
+"""
+[7, 1, 6, 2, 5, 3, 4]
+[7, 1, 6, 2, 5, 3, 4]
+"""
+
+
+def swap(arr, i, j):
+    arr[i], arr[j] = arr[j], arr[i]
+
+def wave_array(arr):
+    size = len(arr)
+    arr.sort()
+    # Swap adjacent elements in array
+    for i in range(0, size - 1, 2):
+        swap(arr, i, i+1)
+
+
+def wave_array2(arr):
+    size = len(arr)
+    
+    # Odd elements are lesser then even elements.
+    for i in range(1, size , 2):
+        if (i - 1) >= 0 and arr[i] > arr[i - 1]:
+            swap(arr, i, i-1)
+        if (i + 1) < size and arr[i] > arr[i + 1]:
+            swap(arr, i, i+1)
+
+# Testing Code
+def test29():
+    arr = [8, 1, 2, 3, 4, 5, 6, 4, 2]
+    wave_array(arr)
+    print(arr)
+    arr = [8, 1, 2, 3, 4, 5, 6, 4, 2]
+    wave_array2(arr)
+    print(arr)
+
+
+"""
+[2, 1, 3, 2, 4, 4, 6, 5, 8]
+[8, 1, 3, 2, 5, 4, 6, 2, 4]
+"""
+
+
+def max_circular_sum(arr):
+    sum_all = 0
+    curr_value = 0
+    n = len(arr)
+ 
+    for i in range(n):
+        sum_all += arr[i]
+        curr_value += (i*arr[i])
+ 
+    max_value = curr_value
+    for i in range(1, n, 1):
+        curr_value = ( curr_value + sum_all ) - ( n * arr[n-i] )
+        #print curr_value
+        if curr_value > max_value:
+            max_value = curr_value
+            
+    return max_value
+
+# Testing Code
+def test30():
+    arr = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+    print(max_circular_sum(arr))
+
+
+"""
+290
 """
 
 test1()
@@ -776,3 +1038,9 @@ test21()
 test22()
 test23()
 test24()
+test25()
+test26()
+test27()
+test28()
+test29()
+test30()

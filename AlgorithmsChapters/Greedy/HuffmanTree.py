@@ -27,7 +27,7 @@ class HuffmanTree :
 
     def printUtil(self, root,  s) :
         if (root.left == None and root.right == None and root.c != '+') :
-            print(str(root.c) + " = " + s)
+            print(root.c, "=", s)
             return
         self.printUtil(root.left, s + "0")
         self.printUtil(root.right, s + "1")
@@ -36,6 +36,7 @@ class HuffmanTree :
         print("Char = Huffman code")
         self.printUtil(self.root, "")
 
+# Testing Code
 ar = ['A', 'B', 'C', 'D', 'E']
 fr = [30, 25, 21, 14, 10]
 hf = HuffmanTree(ar, fr)

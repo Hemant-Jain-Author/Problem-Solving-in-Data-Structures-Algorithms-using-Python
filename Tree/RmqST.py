@@ -71,6 +71,8 @@ class RmqST :
         #  Value of diff is propagated to the parent node.
         return  self.segarray[index]
 
+
+// Testing Code
 arr = [2, 3, 1, 7, 12, 5]
 tree = RmqST(arr)
 print("Min value in the range(1, 5): " + str(tree.get_min(1, 5)))

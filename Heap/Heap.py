@@ -83,10 +83,9 @@ hp2 = Heap(True)
 for i in range(len(a)) :
     hp2.add(a[i])
 hp2.print()
-i = 0
-while i < len(a):
+
+for i in range(len(a)):
     print(hp2.remove(), end=' ')
-    i += 1
 print()
 
 """
@@ -97,10 +96,8 @@ print()
 a = [1, 9, 6, 7, 8, 0, 2, 4, 5, 3]
 hp = Heap(True, a)
 hp.print()
-i = 0
-while i < len(a):
+for i in range(len(a)) :
     print(hp.remove(), end=' ')
-    i += 1
 print("")
 """
 [0, 3, 1, 4, 8, 6, 2, 7, 5, 9]
@@ -111,10 +108,8 @@ print("")
 a = [1, 9, 6, 7, 8, 0, 2, 4, 5, 3]
 hp = Heap(False, a)
 hp.print()
-i = 0
-while i < len(a):
+for i in range(len(a)) :
     print(hp.remove(), end=' ')
-    i += 1
 print("")
 """
 [9, 8, 6, 7, 3, 0, 2, 4, 5, 1]
@@ -123,30 +118,30 @@ print("")
 
 def heap_sort(array):
     hp = Heap(False, array)
-    i = 0
     size = len(array)
-    while i < size:
+    for i in range(size):
         array[size - i -1] = hp.remove()
-        i += 1
 
+# Testing Code
 a = [1, 9, 6, 7, 8, 0, 2, 4, 5, 3]
 heap_sort(a)
 print(a)
+
 """
 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 """
+
 def is_min_heap(arr):
     size = len(arr)
-    parent = 0
-    while(parent <= size/2):
+    for parent in range(size//2 + 1):
         left_child = parent * 2 + 1
         right_child = parent * 2 + 2
         # heap property check.
         if (((left_child < size) and (arr[parent] > arr[left_child])) or ((right_child < size) and (arr[parent] > arr[right_child]))):
             return False
-        parent += 1
     return True
 
+# Testing Code
 a = [1, 2, 3, 4, 5, 6, 7, 8]
 print(is_min_heap(a))
 
@@ -156,21 +151,18 @@ True
 
 def is_max_heap(arr):
     size = len(arr)
-    parent = 0
     #last element index size - 1
-    while(parent<= size/2):
+    for parent in range(size//2 + 1):
         left_child = parent * 2 + 1
         right_child = left_child + 1
         # heap property check.
         if (((left_child < size) and (arr[parent] < arr[left_child])) or ((right_child < size) and (arr[parent] < arr[right_child]))):
             return False
-        parent += 1
     return True
 
-
+# Testing Code
 b = [8, 7, 6, 5, 4, 3, 2, 1]
 print(is_max_heap(b))
-
 
 """
 True 

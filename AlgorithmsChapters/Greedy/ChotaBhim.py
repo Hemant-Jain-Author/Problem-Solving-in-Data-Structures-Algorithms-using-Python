@@ -15,7 +15,7 @@ def chota_bhim_max_drink(cups, attempts) :
             index += 1
         cups[index] = temp
 
-    print("Total : " + str(total))
+    print("Total : ", total)
     return  total
 
 def max_heap_push(hp, value):
@@ -36,16 +36,16 @@ def chota_bhim_max_drink2(cups, attempts) :
         total += value
         value = value // 2
         max_heap_push(hp, value)
-    print("Total : " + str(total))
+    print("Total : ", total)
     return  total
 
-
+# Testing Code
 cups = [20, 10, 70, 40, 20]
 chota_bhim_max_drink(cups, 5)
 cups2 = [20, 10, 70, 40, 20]
 chota_bhim_max_drink2(cups2, 5)
 
 """
-Total : 76
-Total : 76
+Total :  185
+Total :  185
 """

@@ -13,6 +13,7 @@ def min_stair_cost(cost):
         dp[i] = min(dp[i - 1], dp[i - 2]) + cost[i]
     return  min(dp[n - 2], dp[n - 1])
 
+# Testing Code
 a = [1, 5, 6, 3, 4, 7, 9, 1, 2, 11]
 print(min_stair_cost(a))
 

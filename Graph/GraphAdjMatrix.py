@@ -56,21 +56,13 @@ class PriorityQueue(object):
 
     def size(self):
         return len(self.que)
-    
-def print_path(count, previous, dist):
-    for i in range(count):
-        if dist[i] == sys.maxsize:
-            print("node id" , i , "prev" , previous[i] , "distance : Unreachable")
-        else:
-            print("node id" , i , "prev" , previous[i] , "distance :" , dist[i])
-
 
 def dijkstra(gph, source):
     previous = [-1] * gph.count
     dist = [sys.maxsize] * gph.count
     visited = [False] * gph.count
     dist[source] = 0
-    previous[source] = -1
+    previous[source] = 0
     
     pq = PriorityQueue()
     for i in range(gph.count):
@@ -88,8 +80,14 @@ def dijkstra(gph, source):
                 dist[dest] = alt
                 previous[dest] = source
                 pq.update_key(alt, dest)
-    print_path(gph.count, previous,dist)
 
+
+    for i in range(gph.count):
+        if dist[i] == sys.maxsize:
+            print("(", previous[i], "->", i , "@ Unreachable )", end="")
+        elif i != previous[i]:
+            print("(", previous[i], "->", i , "@" , dist[i], ")", end="")
+    print()
 
 def prims(gph):
     previous = [-1] * gph.count
@@ -97,7 +95,7 @@ def prims(gph):
     visited = [False] * gph.count
     source = 0
     dist[source] = 0
-    previous[source] = -1
+    previous[source] = 0
     pq = PriorityQueue()
     
     for i in range(gph.count):
@@ -116,7 +114,14 @@ def prims(gph):
                 previous[dest] = source
                 pq.update_key(alt, dest)
     
-    print_path(gph.count, previous,dist)
+    total_cost = 0
+    for i in range(gph.count):
+        if dist[i] == sys.maxsize:
+            print("(", previous[i], "->", i , "@ Unreachable )", end="")
+        elif i != previous[i]:
+            print("(", previous[i], "->", i , "@" , dist[i], ")", end="")
+            total_cost += dist[i]
+    print("\nTotal MST cost: ", total_cost)
 
 # Testing code
 def test2():
@@ -140,27 +145,12 @@ def test2():
 
 
 """ prims
-node id 0 prev -1 distance : 0
-node id 1 prev 0 distance : 4
-node id 2 prev 1 distance : 8
-node id 3 prev 2 distance : 7
-node id 4 prev 3 distance : 9
-node id 5 prev 2 distance : 4
-node id 6 prev 5 distance : 2
-node id 7 prev 6 distance : 1
-node id 8 prev 2 distance : 2
+( 0 -> 1 @ 4 )( 1 -> 2 @ 8 )( 2 -> 3 @ 7 )( 3 -> 4 @ 9 )( 2 -> 5 @ 4 )( 5 -> 6 @ 2 )( 6 -> 7 @ 1 )( 2 -> 8 @ 2 )
+Total MST cost:  37
 """
 
 """dijkstra
-node id 0 prev -1 distance : 0
-node id 1 prev 0 distance : 4
-node id 2 prev 1 distance : 12
-node id 3 prev 2 distance : 19
-node id 4 prev 5 distance : 21
-node id 5 prev 6 distance : 11
-node id 6 prev 7 distance : 9
-node id 7 prev 0 distance : 8
-node id 8 prev 2 distance : 14
+( 0 -> 1 @ 4 )( 1 -> 2 @ 12 )( 2 -> 3 @ 19 )( 5 -> 4 @ 21 )( 6 -> 5 @ 11 )( 7 -> 6 @ 9 )( 0 -> 7 @ 8 )( 2 -> 8 @ 14 )
 """
 
 def hamiltonian_cycle_util(graph , path, added):
@@ -279,7 +269,7 @@ Hamiltonian Cycle not found
 False
 """
 
-test1()
+#test1()
 test2()
-test3()
-test4()
+#test3()
+#test4()

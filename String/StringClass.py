@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 str1 = "Hello"
 print(str1[0])
 str2 = "Hello"

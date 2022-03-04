@@ -850,6 +850,7 @@ class Tree(object):
 
 
 #=======================================================================
+# Testing Code
 def main():
     arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     t = Tree()
@@ -1117,8 +1118,7 @@ def is_bst_array(preorder):
     size = len(preorder)
     stk = []
     root = -sys.maxsize
-    i = 0
-    while i < size :
+    for i in range(size) :
         value = preorder[i]
         # If value of the right child is less than root.
         if (value < root):
@@ -1130,7 +1130,6 @@ def is_bst_array(preorder):
         
         # add current value to the stack.
         stk.append(value)
-        i += 1
 
     return True
 

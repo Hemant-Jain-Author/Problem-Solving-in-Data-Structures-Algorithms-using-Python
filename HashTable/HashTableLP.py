@@ -1,3 +1,6 @@
+import sys
+
+
 class HashTable(object):
     EMPTY_NODE = -1
     LAZY_DELETED = -2
@@ -17,8 +20,7 @@ class HashTable(object):
 
     def add(self, key, value):
         hash_value = self.compute_hash(key)
-        i = 0
-        while i < self.table_size:
+        for i in range(self.table_size):
             if self.flag[hash_value] == self.EMPTY_NODE or self.flag[hash_value] == self.LAZY_DELETED:
                 self.data_arr[hash_value] = value
                 self.key_arr[hash_value] = key
@@ -30,39 +32,33 @@ class HashTable(object):
 
             hash_value += self.resolver_fun(i)
             hash_value %= self.table_size
-            i += 1
         return False
 
     def find(self, key):
         hash_value = self.compute_hash(key)
-        i = 0
-        while i < self.table_size:
+        for i in range(self.table_size):
             if self.flag[hash_value] == self.EMPTY_NODE:
                 return False
             if self.flag[hash_value] == self.FILLED_NODE and self.key_arr[hash_value] == key:
                 return True
             hash_value += self.resolver_fun(i)
             hash_value %= self.table_size
-            i += 1
         return False
 
     def get(self, key):
         hash_value = self.compute_hash(key)
-        i = 0
-        while i < self.table_size:
+        for i in range(self.table_size):
             if self.flag[hash_value] == self.EMPTY_NODE:
                 return sys.maxsize
             if self.flag[hash_value] == self.FILLED_NODE and self.key_arr[hash_value] == key:
                 return self.data_arr[hash_value]
             hash_value += self.resolver_fun(i)
             hash_value %= self.table_size
-            i += 1
         return sys.maxsize
 
     def remove(self, key):
         hash_value = self.compute_hash(key)
-        i = 0
-        while i < self.table_size:
+        for i in range(self.table_size):
             if self.flag[hash_value] == self.EMPTY_NODE:
                 return False
             if self.flag[hash_value] == self.FILLED_NODE and self.key_arr[hash_value] == key:
@@ -70,7 +66,6 @@ class HashTable(object):
                 return True
             hash_value += self.resolver_fun(i)
             hash_value %= self.table_size
-            i += 1
         return False
 
     def print(self):

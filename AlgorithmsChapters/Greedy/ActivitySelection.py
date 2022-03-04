@@ -21,6 +21,7 @@ def maxActivities(s,  f) :
             print(", (" + str(act[j].start) + "," + str(act[j].stop) + ")", end ="")
             i = j
 
+# Testing Code
 s = [1, 5, 0, 3, 5, 6, 8]
 f = [2, 6, 5, 4, 9, 7, 9]
 maxActivities(s, f)

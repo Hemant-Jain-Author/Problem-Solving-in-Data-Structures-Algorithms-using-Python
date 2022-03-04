@@ -87,12 +87,11 @@ class DoublyCircularLinkedList(object):
         temp = self.head
         if self.head == None:
             return False
-        i = 0
-        while i < self.size():
+
+        for i in range(self.size()) :
             if temp.value == key:
                 return True
             temp = temp.next
-            i += 1
         return False
 
     def free(self):
@@ -111,7 +110,7 @@ class DoublyCircularLinkedList(object):
         print(temp.value, end=' ')
             
             
-
+# Testing Code
 ll = DoublyCircularLinkedList()
 ll.add_head(1)
 ll.add_head(2)

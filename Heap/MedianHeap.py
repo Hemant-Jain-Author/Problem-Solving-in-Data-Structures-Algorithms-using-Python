@@ -47,16 +47,13 @@ class MedianHeap(object):
         else:
             return self.min_heap_peek()
 
-def main():
-    arr = [1, 9, 2, 8, 3, 7]
-    hp = MedianHeap()
-    i = 0
-    while i < 6:		
-        hp.insert(arr[i])
-        print("Median after insertion of ", arr[i], " is ", hp.get_median())
-        i += 1
+# Testing Code
+arr = [1, 9, 2, 8, 3, 7]
+hp = MedianHeap()
+for i in range(6) :		
+    hp.insert(arr[i])
+    print("Median after insertion of ", arr[i], " is ", hp.get_median())
 
-main()
 
 """
 Median after insertion of  1  is  1

@@ -17,6 +17,7 @@ def vacation_min_cost(days,  costs) :
             dp[i] = dp[i - 1]
     return  dp[mx]
 
+# Testing Code
 days = [1, 3, 5, 7, 12, 20, 30]
 costs = [2, 7, 20]
 print("Min cost is:" , vacation_min_cost(days, costs))

@@ -16,18 +16,19 @@ def quick_select_util(arr, lower, upper, k):
         while arr[upper] > pivot and lower <= upper:
             upper -= 1
         if lower < upper:
-            swap(arr, upper, lower)
-    swap(arr, upper, start)    # upper is the pivot position
+            arr[upper], arr[lower] = arr[lower], arr[upper] # swap
+    
+    # upper is the pivot position
+    arr[upper], arr[start] = arr[start], arr[upper] # swap
     
     if k < upper: # pivot -1 is the upper for left sub array.
         quick_select_util(arr, start, upper - 1, k)
     
     if k > upper: #  pivot + 1 is the lower for right sub array.
         quick_select_util(arr, upper + 1, stop, k)   
-          
-def swap(arr, first, second):
-    arr[first], arr[second] = arr[second], arr[first]  
 
+
+# Testing Code
 array = [3, 4, 2, 1, 6, 5, 7, 8, 10, 9]
 value = quick_select(array, 5)
 print("value at index 5 is: " , value)

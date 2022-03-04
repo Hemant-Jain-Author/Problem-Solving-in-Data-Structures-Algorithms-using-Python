@@ -63,6 +63,7 @@ To get next
 def get_next(index):
     return index + (index & -index)
 
+# Testing Code
 input = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 binary_indexed_tree = create_tree(input)
 for i in range(len(input)):

@@ -25,6 +25,7 @@ que = QueueUsingStack()
 que.add(1)
 que.add(2)
 que.add(3)
+
 print(que.length())
 print(que.is_empty())
 print(que.remove())

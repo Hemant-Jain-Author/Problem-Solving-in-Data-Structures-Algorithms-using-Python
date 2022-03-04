@@ -22,6 +22,8 @@ def selection_sort2(arr):
         arr[i] = arr[min_index]
         arr[min_index] = temp
 
+
+# Testing Code
 array = [4, 5, 3, 2, 6, 7, 1, 8, 9, 10]
 selection_sort(array)
 print(array)

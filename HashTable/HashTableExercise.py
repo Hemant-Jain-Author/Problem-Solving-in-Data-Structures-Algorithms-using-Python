@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 from collections import Counter
 
 def is_anagram(str1, str2):
@@ -49,11 +48,9 @@ def find_missing(arr, start, end):
     hs = set()
     for i in arr:
         hs.add(i)
-    curr = start
-    while curr <= end:
+    for curr in range(start, end+1):
         if (curr in hs) == False:
             return curr
-        curr += 1
     return sys.maxsize
 
 # Testing Code
@@ -83,17 +80,14 @@ Repeating elements are: 4 1
 
 def print_first_repeating(arr):
     size = len(arr)
-    i = 0
     hs = Counter()
-    while i < size:
+    for i in range(size):
         hs[arr[i]] += 1
-        i += 1
-    i = 0
-    while i < size:
+    
+    for i in range(size):
         if hs.get(arr[i]) > 1:
             print("First Repeating number is :" , arr[i])
             return arr[i]
-        i += 1
 
 # Testing Code
 arr = [1, 2, 3, 4, 4, 5, 6, 7, 8, 9, 1]
@@ -106,8 +100,6 @@ First Repeating number is : 1
 def horner_hash(self, key, tableSize):
     size = len(key)
     h = 0
-    i = 0
-    while i < size:
+    for i in range(size):
         h = (32 * h + key[i]) % tableSize
-        i += 1
     return h

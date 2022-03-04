@@ -41,13 +41,13 @@ def is_balanced_parenthesis(expn):
                 return False
     return len(stk) == 0
 
-def main1():
+# Testing code
+def test1():
     expn = "{()}[]"
     value = is_balanced_parenthesis(expn)
     print("Given Expn:" , expn)
     print("Result after isParenthesisMatched:" , value)
 
-main1()
 
 """
 Given Expn: {()}[]
@@ -97,13 +97,13 @@ def postfix_evaluate(expn):
             stk.append(int(token))
     return stk.pop()
 
-def main2():
+# Testing code
+def test2():
     expn = "6 5 2 3 + 8 * + 3 + *"
     value = postfix_evaluate(expn)
     print("Given Postfix Expn: " , expn)
     print("Result after Evaluation: " , value)
 
-main2()
 
 """
 Given Postfix Expn:  6 5 2 3 + 8 * + 3 + *
@@ -127,7 +127,7 @@ def infix_to_postfix(expn):
     output = ""
     for token in token_list:
         if token in '+-*/^':
-            while len(stk) != 0 and precedence(token) <= precedence(stk[len(stk) - 1]):
+            while len(stk) != 0 and precedence(token) <= precedence(stk[-1]):
                 outsrt = stk.pop()
                 output = output + " " + outsrt
             stk.append(token)
@@ -147,13 +147,13 @@ def infix_to_postfix(expn):
         output = output + " " + outsrt
     return output
 
-def main4():
+# Testing code
+def test4():
     expn = "10 + ( ( 3 ) ) * 5 / ( 16 - 4 )"
     value = infix_to_postfix(expn)
     print("Infix Expn: " , expn)
     print("Postfix Expn: " , value)
 
-main4()
 
 """
 Infix Expn:  10 + ( ( 3 ) ) * 5 / ( 16 - 4 )
@@ -190,13 +190,13 @@ def infix_to_prefix(expn):
     expn = reverse_string(expn)
     return expn
 
-def main3():
+# Testing code
+def test5():
     expn = "10 + ( ( 3 ) ) * 5 / ( 16 - 4 )"
     value = infix_to_prefix(expn)
     print("Infix Expn: " , expn)
     print("Prefix Expn: " , value)
 
-main3()
 
 """
 Infix Expn:  10 + ( ( 3 ) ) * 5 / ( 16 - 4 )
@@ -204,46 +204,43 @@ Prefix Expn:  + 10 * 3 / 5 - 16 4
 """
 
 def stock_span_range(arr):
-    stock_range = [0] * len(arr)
-    stock_range[0] = 1
-    i = 1
     size = len(arr)
+    stock_range = [0] * size
+    stock_range[0] = 1
     
-    while i < size:
+    for i in range(1, size):
         stock_range[i] = 1
         j = i - 1
         while (j >= 0) and (arr[i] >= arr[j]):
             stock_range[i] += 1
             j -= 1
-        i += 1
+        
     return stock_range
 
 def stock_span_range2(arr):
-    stk = []
     size = len(arr)
     stock_range = [0] * size
+    stk = []
     stk.append(0)
     stock_range[0] = 1
-    i = 1
-    while i < size:
-        while len(stk) != 0 and arr[stk[len(stk) - 1]] <= arr[i]:
+    for i in range(1, size) :
+        while len(stk) != 0 and arr[stk[-1]] <= arr[i]:
             stk.pop()
         if (len(stk) == 0):
             stock_range[i] = i + 1  
         else:
-            stock_range[i] = i - stk[len(stk) - 1]
+            stock_range[i] = i - stk[-1]
         stk.append(i)
-        i += 1
     return stock_range
 
-def main5():
+# Testing code
+def test6():
     arr = [6, 5, 4, 3, 2, 4, 5, 7, 9]
     value = stock_span_range(arr)
     print("stock_span_range: " , value)
     value = stock_span_range2(arr)
     print("stock_span_range: " , value)
 
-main5()
 
 """
 stock_span_range:  [1, 1, 1, 1, 1, 4, 6, 8, 9]
@@ -254,8 +251,7 @@ def get_max_area(arr):
     size = len(arr)
     max_area = -1
     min_height = 0
-    i = 1
-    while i < size:
+    for i in range(1, size) :
         min_height = arr[i]
         j = i - 1
         while j >= 0:
@@ -265,7 +261,7 @@ def get_max_area(arr):
             if max_area < curr_area:
                 max_area = curr_area
             j -= 1
-        i += 1
+
     return max_area
 
 def get_max_area2(arr):
@@ -274,23 +270,22 @@ def get_max_area2(arr):
     max_area = 0
     i = 0
     while i < size:
-        while (i < size) and (len(stk) == 0 or arr[stk[len(stk) - 1]] <= arr[i]):
+        while (i < size) and (len(stk) == 0 or arr[stk[-1]] <= arr[i]):
             stk.append(i)
             i += 1
-        while not len(stk) == 0 and (i == size or arr[stk[len(stk) - 1]] > arr[i]):
-            top = stk[len(stk) - 1]
+        while not len(stk) == 0 and (i == size or arr[stk[-1]] > arr[i]):
+            top = stk[-1]
             stk.pop()
-            top_area = arr[top] * (i if len(stk) == 0 else i - stk[len(stk) - 1] - 1)
+            top_area = arr[top] * (i if len(stk) == 0 else i - stk[-1] - 1)
             if max_area < top_area:
                 max_area = top_area
     return max_area
 
-def main6():
+def test7():
     arr = [7, 6, 5, 4, 4, 1, 6, 3, 1]
     print("get_max_area:", get_max_area(arr))
     print("get_max_area:", get_max_area2(arr))
 
-main6()
 
 """
 get_max_area: 20
@@ -360,7 +355,8 @@ def find_celebrity3(relation, count):
 
     return first
 
-def main7():
+# Testing code
+def test8():
     arr = [
         [ 1 , 0 , 1, 1 , 0], 
         [ 1 , 0 , 0, 1 , 0], 
@@ -371,7 +367,6 @@ def main7():
     print(find_celebrity2(arr, 5))
     print(find_celebrity3(arr, 5))
 
-main7()
 
 """
 3
@@ -410,12 +405,12 @@ def decode(text):
         output = stk.pop() + output
     return output
 
-def main8():
+# Testing code
+def test9():
     #str = '3[Z]'
     str = '1[x4[y]]13[Z]1[a]'
     print(decode(str))
 
-main8()
 """
 xyyyyZZZZZZZZZZZZZa
 """
@@ -435,7 +430,8 @@ def is_bst_array(preorder):
         stk.append(value)
     return True
 
-def main9(): 
+# Testing code
+def test10(): 
     preorder1 = [30 , 20 , 25 , 70 , 200]
     print("Is BST Array" , is_bst_array(preorder1) )
     preorder2 = [30 , 20 , 25 , 10 , 70 , 200]
@@ -445,7 +441,6 @@ def main9():
     preorder4 = [30 , 20 , 35 , 29 ]
     print("Is BST Array" , is_bst_array(preorder4) )
 
-main9()
 """
 Is BST Array True
 Is BST Array False
@@ -527,13 +522,13 @@ def water_jug(maxX, maxY, target) :
         ans = parent[ans]
     return path
 
-def main10():
+# Testing code
+def test11():
     print(water_jug(4, 3, 2))
     print(water_jug(6, 1, 2))
     print(water_jug(9, 2, 7))
     print(water_jug(12, 19, 7))
 
-main10()
 """
 [(0, 0), (0, 3), (3, 0), (3, 3), (4, 2), (0, 2)]
 [(0, 0), (0, 1), (1, 0), (1, 1), (2, 0)]
@@ -618,13 +613,12 @@ def next_larger_element3(arr):
     print(output)
 
 # Testing code
-def main11():
+def test12():
     arr = [13,21,3,6,20,3]
     next_larger_element(arr)
     next_larger_element2(arr)
     next_larger_element3(arr)
 
-main11()
 """
 [21, -1, 6, 20, -1, -1]
 [21, -1, 6, 20, -1, -1]
@@ -670,12 +664,11 @@ def next_smaller_element2(arr):
     print(output)
 
 # Testing code
-def main12():
+def test13():
     arr = [13,21,3,6,20,3]
     next_smaller_element(arr)
     next_smaller_element2(arr)
     
-main12()
 """
 [3, 3, -1, 3, 3, -1]
 [3, 3, -1, 3, 3, -1]
@@ -710,12 +703,12 @@ def next_larger_element_circular2(arr):
         output[index] = -1  
     print(output)
 
-def main13():
+# Testing code
+def test14():
     arr = [6, 3, 9, 8, 10, 2, 1, 15, 7]
     next_larger_element_circular(arr)
     next_larger_element_circular2(arr)
 
-main13()
 """
 [9, 9, 10, 10, 15, 15, 15, -1, 9]
 [9, 9, 10, 10, 15, 15, 15, -1, 9]
@@ -748,12 +741,12 @@ def smallest_larger_element_array2(arr):
     output[aux[size - 1][1]] = -1
     print(output)
 
-def main14():
+# Testing code
+def test15():
     arr = [6, 3, 9, 8, 10, 2, 1, 15, 7]
     smallest_larger_element_array(arr)
     smallest_larger_element_array2(arr)
 
-main14()
 """
 [7, 6, 10, 9, 15, 3, 2, -1, 8]
 [7, 6, 10, 9, 15, 3, 2, -1, 8]
@@ -786,12 +779,12 @@ def find_leaders2(arr):
         i -= 1
     print(output)
 
-def main15():
+# Testing code
+def test16():
     arr = [16, 17, 4, 3, 5, 2]
     find_leaders(arr)
     find_leaders2(arr)
 
-main15()
 """
 [17, 5, 2]
 [2, 5, 17]
@@ -813,14 +806,13 @@ def is_balanced_parenthesis(expn):
                 return False
     return len(stk) == 0
 
-
-def main16():
+# Testing code
+def test17():
     expn = "{()}[]"
     value = is_balanced_parenthesis(expn)
     print("Given Expn:", expn)
     print("Result after isParenthesisMatched:", value)
 
-main16()
 """
 Given Expn: {()}[]
 Result after isParenthesisMatched: True
@@ -854,8 +846,8 @@ def max_depth_parenthesis2(expn):
             max_depth = depth
     return max_depth
 
-
-def main17():
+# Testing code
+def test18():
     expn = "((((A)))((((BBB()))))()()()())"
     print("Given expn:", expn)
     value = max_depth_parenthesis(expn)
@@ -864,7 +856,6 @@ def main17():
     print("Max depth parenthesis is:", value)
 
 
-main17()
 """
 Given expn: ((((A)))((((BBB()))))()()()())
 Max depth parenthesis is: 6
@@ -883,13 +874,13 @@ def longest_balanced_parenthesis(expn):
                 count += 2
     return count
 
-def main18():
+# Testing code
+def test19():
     expn = "())(())(())("
     value = longest_balanced_parenthesis(expn)
     print("Given expn:", expn)
     print("longest Balanced Parenthesis is:", value)
 
-main18()
 """
 Given expn: ())(())(())(
 longest Balanced Parenthesis is: 10
@@ -912,12 +903,12 @@ def longest_cont_bal_parenthesis(string):
                 length = max(length, i - stk[-1])
     return length
 
-def main19():
+# Testing code
+def test20():
     expn = "())((()))(())()(()((()))((()))"    
     value = longest_cont_bal_parenthesis(expn)
     print("Longest Continuous Balanced Parenthesis is:", value)
 
-main19()
 """
 Given expn: ())((()))(())()(()
 Longest Continuous Balanced Parenthesis is: 14
@@ -947,14 +938,14 @@ def reverse_parenthesis(expn):
     reversal = math.ceil(open_count / 2) + math.ceil(close_count / 2) # fractional division.
     return reversal
 
-def main20():
+# Testing code
+def test21():
     expn = "())((()))(())()(()()()()))"
     expn2 = ")(())((("
     value = reverse_parenthesis(expn2)
     print("Given expn:", expn2)
     print("reverse Parenthesis is:", value)
 
-main20()
 """
 Given expn: )(())(((
 reverse Parenthesis is: 3
@@ -997,13 +988,13 @@ def find_duplicate_parenthesis2(expn):
 
 	return False
 
-def main21():
+# Testing code
+def test22():
     expn = "(((a+(b))+(c+d)))"
     print("Given expn:", expn)
     value = find_duplicate_parenthesis(expn)
     print("Duplicate Found :", value)
 
-main21()
 """
 Given expn: (((a+(b))+(c+d)))
 Duplicate Found : True
@@ -1023,7 +1014,8 @@ def print_parenthesis_number(expn):
 
     print("Parenthesis Count :", output)
 
-def main22():
+# Testing code
+def test23():
     expn1 = "(((a+(b))+(c+d)))"
     expn2 = "(((a+b))+c)((("
     print("Given expn:", expn1)
@@ -1031,7 +1023,6 @@ def main22():
     print("Given expn:", expn2)
     print_parenthesis_number(expn2)
 
-main22()
 """
 Given expn: (((a+(b))+(c+d)))
 Parenthesis Count : [1, 2, 3, 4, 4, 3, 5, 5, 2, 1]
@@ -1066,11 +1057,11 @@ def print_number_pattern(expr):
     
     print(output)
 
-def main23():
+# Testing code
+def test24():
     print_number_pattern("DIDD")
     print_number_pattern("DDIDDIID")
 
-main23()
 """
 [2, 1, 5, 4, 3]
 [3, 2, 1, 6, 5, 4, 7, 9, 8]
@@ -1110,7 +1101,8 @@ def sorted_insert(stk, element) :
         sorted_insert(stk, element)
         stk.push(temp)
 
-def main24():
+# Testing code
+def test25():
     stk = Stack()
     sorted_insert(stk, 4)
     sorted_insert(stk, 2)
@@ -1118,7 +1110,6 @@ def main24():
     sorted_insert(stk, 1)
     stk.print()
 
-main24()
 """
 [1, 2, 3, 4]
 """
@@ -1140,7 +1131,8 @@ def sort_stack2(stk):
     while stk2.is_empty() == False :
         stk.push(stk2.pop())
 
-def main24():
+# Testing code
+def test26():
     stk = Stack()
     stk.push(4)
     stk.push(2)
@@ -1157,7 +1149,6 @@ def main24():
     sort_stack2(stk)
     stk.print()
 
-main24()
 """
 [1, 2, 3, 4]
 [1, 2, 3, 4]
@@ -1171,7 +1162,8 @@ def bottom_insert(stk, element) :
         bottom_insert(stk, element)
         stk.push(temp)
 
-def main24():
+# Testing code
+def test27():
     stk = Stack()
     stk.push(1)
     stk.push(2)
@@ -1179,7 +1171,6 @@ def main24():
     bottom_insert(stk, 0)
     stk.print()
 
-main24()
 """
 [0, 1, 2, 3]
 """
@@ -1220,8 +1211,8 @@ def reverse_stack2(stk):
     while que.is_empty() == False :
         stk.push(que.remove())
 
-
-def main24():
+# Testing code
+def test28():
     stk = Stack()
     stk.push(1)
     stk.push(2)
@@ -1237,7 +1228,6 @@ def main24():
     stk.print()
 
 
-main24()
 """
 [3, 2, 1]
 [3, 2, 1]
@@ -1278,7 +1268,8 @@ def reverse_Kelement_in_queue(que, k):
         que.add(temp)
         diff -= 1
 
-def main24():
+# Testing code
+def test29():
     stk = Stack()
     stk.push(1)
     stk.push(2)
@@ -1303,7 +1294,6 @@ def main24():
     reverse_Kelement_in_queue(que, 2)
     que.print()
 
-main24()
 """
 [1, 2, 3]
 [1, 3, 2]
@@ -1348,12 +1338,11 @@ def get_max_area2(arr):
 
 
 # Testing code
-def main25():
+def test30():
     arr = [7, 6, 5, 4, 4, 1, 6, 3, 1]
     print("get_max_area: " , get_max_area(arr))
     print("get_max_area: " , get_max_area2(arr))
 
-main25()
 """
 get_max_area:  20
 get_max_area:  20
@@ -1392,7 +1381,8 @@ def rotten_fruit(arr, max_col, max_row):
                     max_day = traversed[i][j]
     return max_day
 
-def main():
+# Testing code
+def test31():
     arr = [
         [ 1, 1, 1, 1, 0], 
         [ 1, 1, 0, 1, 0], 
@@ -1401,7 +1391,6 @@ def main():
         [ 1, 1, 0, 0, 1]]
     print(rotten_fruit(arr, 5, 5))
 
-main()
 """
 6
 """
@@ -1430,7 +1419,8 @@ def dist_nearest_fill(arr, max_col, max_row):
                 dist_nearest_fill_util(arr, max_col, max_row, i, j, traversed, 0)
     print(traversed)
 
-def main2():
+# Testing code
+def test32():
     arr = [
         [ 1 , 0 , 1, 1 , 0], 
         [ 1 , 1, 0, 1 , 0], 
@@ -1439,7 +1429,6 @@ def main2():
         [ 0 , 0 , 0, 0 , 1]]
     dist_nearest_fill(arr, 5, 5)
 
-main2()
 """
 [[0, 1, 0, 0, 1], [0, 0, 1, 0, 1], [1, 1, 2, 1, 0], [2, 2, 2, 1, 0], [3, 3, 2, 1, 0]]
 """
@@ -1469,6 +1458,7 @@ def steps_of_knight(size, srcX, srcY, dstX, dstY):
     steps_of_knight_util(size, srcX - 1, srcY - 1, traversed, 0)
     return traversed[dstX - 1][dstY - 1]
 
+# Testing code
 print(steps_of_knight(20,10,10,20,20))
 """
 8
@@ -1498,11 +1488,11 @@ def find_largest_island(arr, max_col, max_row):
 
     return maxVal
 
-def main19():
+# Testing code
+def test33():
     arr = [[1, 0, 1, 1, 0], [1, 0, 0, 1, 0], [0, 1, 1, 1, 1 ], [ 0, 1, 0, 0, 0], [1, 1, 0, 0, 1]]
     print("Largest Island : " , find_largest_island(arr, 5, 5))
 
-main19()
 """
 Largest Island :  12
 """
@@ -1512,7 +1502,9 @@ def stockAnalystAdd(stk,  value) :
     while (not (len(stk) == 0) and stk[-1] <= value) :
         stk.pop()
     stk.append(value)
-def main7a() :
+
+# Testing code
+def test34() :
     arr = [20, 19, 10, 21, 40, 35, 39, 50, 45, 42]
     stk =  []
     i = len(arr) - 1
@@ -1521,7 +1513,41 @@ def main7a() :
         i -= 1
     print(stk)
 
-main7a()
 """
 [50, 40, 21, 20]
 """
+
+
+test1()
+test2()
+test4()
+test5()
+test6()
+test7()
+test8()
+test9()
+test10()
+test11()
+test12()
+test13()
+test14()
+test15()
+test16()
+test17()
+test18()
+test19()
+test20()
+test21()
+test22()
+test23()
+test24()
+test25()
+test26()
+test27()
+test28()
+test29()
+test30()
+test31()
+test32()
+test33()
+test34()

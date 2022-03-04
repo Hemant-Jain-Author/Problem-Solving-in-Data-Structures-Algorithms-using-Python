@@ -1,5 +1,5 @@
 
-def more(value1,  value2) :
+def greater(value1,  value2) :
     return  value1 > value2
 
 def shell_sort(arr) :
@@ -12,7 +12,7 @@ def shell_sort(arr) :
             #  Shift elements of already sorted list
             #  to find right position for curr value.
             j = i
-            while (j >= gap and more(arr[j - gap], curr)) :
+            while (j >= gap and greater(arr[j - gap], curr)) :
                 arr[j] = arr[j - gap]    
                 j -= gap
             
@@ -20,7 +20,8 @@ def shell_sort(arr) :
             arr[j] = curr
             i += 1
         gap //= 2
-    
+
+# Testing Code
 array = [36, 32, 11, 6, 19, 31, 17, 3]
 shell_sort(array)
 print(array)

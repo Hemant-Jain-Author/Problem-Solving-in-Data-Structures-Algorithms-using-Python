@@ -187,6 +187,7 @@ class SPLAYTree :
             self.print_in_order_util(node.right)
 
 
+// Testing Code
 tree = SPLAYTree()
 tree.insert(5)
 tree.insert(4)

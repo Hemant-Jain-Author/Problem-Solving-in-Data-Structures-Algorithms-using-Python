@@ -2,6 +2,7 @@ def increment1(var):
     """ Source for method increment """
     var += 1
 
+# Testing Code
 def test1():
     """ Source for method # test """
     var = 1
@@ -23,6 +24,7 @@ def increment2(value):
     """ Source for method increment """
     value.value += 1
 
+# Testing Code
 def test2():
     """ Source for method # test """
     var = MyInt()
@@ -52,6 +54,7 @@ def permutation(arr, i, length):
         swap(arr, i, j)
         j += 1
 
+# Testing Code
 def test3():
     arr = list(range(3))
     permutation(arr, 0, 3)
@@ -72,6 +75,7 @@ def gcd(m, n):
         return m
     return (gcd(n, m % n))
 
+# Testing Code
 def test4():
     print("Gcd is::", gcd(5, 2))
     print("Gcd is::", gcd(2, 5))
@@ -89,23 +93,25 @@ def tower_of_hanoi(num, src, dst, temp):
     if num < 1:
         return
     tower_of_hanoi(num - 1, src, temp, dst)
-    print("Move ", num, " disk  from peg ", src, " to peg ", dst)
+    print("Move", num, "disk from peg", src, "to peg", dst)
     tower_of_hanoi(num - 1, temp, dst, src)
 
 def toh(num):  
     print("The sequence of moves involved in the Tower of Hanoi are :")
     tower_of_hanoi(num, 'A', 'C', 'B')
 
+# Testing Code
 toh(3)
 
 """
-Move  1  disk  from peg  A  to peg  C
-Move  2  disk  from peg  A  to peg  B
-Move  1  disk  from peg  C  to peg  B
-Move  3  disk  from peg  A  to peg  C
-Move  1  disk  from peg  B  to peg  A
-Move  2  disk  from peg  B  to peg  C
-Move  1  disk  from peg  A  to peg  C
+The sequence of moves involved in the Tower of Hanoi are :
+Move 1 disk from peg A to peg C
+Move 2 disk from peg A to peg B
+Move 1 disk from peg C to peg B
+Move 3 disk from peg A to peg C
+Move 1 disk from peg B to peg A
+Move 2 disk from peg B to peg C
+Move 1 disk from peg A to peg C
 """
 
 
@@ -142,7 +148,7 @@ def max_subarray_sum(arr):
             maxSoFar = maxEndingHere
     return maxSoFar
 
-
+# Testing Code
 def test6():
     arr = [1, -2, 3, 4, -4, 6, -4, 8, 2]
     print(max_subarray_sum(arr))
@@ -185,6 +191,7 @@ def print_2d_array(arr, row, col):
         for j in range(col):
             print(arr[i][j] , end=' ')
 
+# Testing Code
 def test7():
     twoD_array_example()
 
@@ -200,12 +207,12 @@ def sum_array(arr):
         total += arr[index]
     return total
 
+# Testing Code
 def test8():
     arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     print(sum_array(arr))
 
-
-#45
+# 45
 
 def sequential_search(arr, value):
     size = len(arr)
@@ -248,6 +255,7 @@ def binary_search2(arr, value):
     high = size - 1
     return binary_search_recursive(arr, low, high, value)
 
+# Testing Code
 def test9():
     arr = [1, 2, 3, 4, 5, 7, 8, 9]
     """
@@ -275,50 +283,12 @@ True
 False
 """
 
-def rotate_array(arr, k):
-    n = len(arr)
-    reverse_array(arr, 0, k - 1)
-    reverse_array(arr, k, n - 1)
-    reverse_array(arr, 0, n - 1)
-
-def reverse_array(arr, start, end):
-    i = start
-    j = end
-    while i < j:
-        temp = arr[i]
-        arr[i] = arr[j]
-        arr[j] = temp
-        i += 1
-        j -= 1
-
-def reverse_array2(a):
-    i = 0 # Start index
-    j = len(a) -1 # End index
-    while i < j:
-        temp = a[i]
-        a[i] = a[j]
-        a[j] = temp
-        i += 1
-        j -= 1
-
-def test10():
-    arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    rotate_array(arr, 3)
-    print(arr)
-    arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    reverse_array2(arr)
-    print(arr)
-
-
-"""
-[4, 5, 6, 7, 8, 9, 1, 2, 3]
-[9, 8, 7, 6, 5, 4, 3, 2, 1]
-"""
 
 class coord(object):
     x = int()
     y = int()
 
+# Testing Code
 def test11():
     point = coord()
     point.x = 10
@@ -337,7 +307,7 @@ class Student(object):
     firstName = str()
     lastName = str()
 
-
+# Testing Code
 def test12():
     stud = Student()
     ref = stud
@@ -355,6 +325,7 @@ def sum(num1, num2):
     result = num1 + num2
     return result
 
+# Testing Code
 def test13():
     x = 10
     y = 20
@@ -371,6 +342,7 @@ def factorial(i):
         return 1
     return i * factorial(i - 1)
 
+# Testing Code
 def test14():
     print("Factorial:", factorial(5))
 
@@ -399,10 +371,11 @@ def print_int2(number, base):
     temp += conversion[digit]
     return temp
 
+
+# Testing Code
 def test15():
     print(print_int(50))
-    print(print_int2(50, 2))
-
+    print(print_int2(500, 16))
 
 """
 50
@@ -414,67 +387,15 @@ def fibonacci(n):
         return n
     return fibonacci(n - 1) + fibonacci(n - 2)
 
-def test16():
-    for i in range(7):
-        print(fibonacci(i), end=" ")
+# Testing Code
+print(fibonacci(10))
 
 
 """
-0 1 1 2 3 5 8
+55
 """
 
-"""
-Given array of size N, containing elements from 0 to N-1. 
-All values from O to N-1 are present in array and if they 
-are not there then -1 is there to take its place.
-Arrange values of array so that value i is stored at arr[i].
-arr = [ 8, -1, 6, 1, 9, 3, 2, 7, 4, -1 ]
 
-"""
-def index_array( arr):
-    size = len(arr)
-    for i in range(size):
-        curr = i
-        value = -1
-
-        # swaps to move elements in proper position.
-        while arr[curr] != -1 and arr[curr] != curr:
-            temp = arr[curr]
-            arr[curr] = value
-            value = curr = temp
-
-        # if some swaps happened.
-        if value != -1: 
-            arr[curr] = value
-
-
-def index_array2(arr):
-    size = len(arr)
-    for i in range(size):
-        while arr[i] != -1 and arr[i] != i:
-            # swap arr[i] and arr[arr[i]]
-            temp = arr[i]
-            arr[i] = arr[temp]
-            arr[temp] = temp
-
-def test17():
-    arr = [ 8, -1, 6, 1, 9, 3, 2, 7, 4, -1 ]
-    index_array( arr)
-    print(arr)
-
-    arr = [20, 11, 10, 9, 5, 13, 16, 2, 14, 17,19, 7, 0, 3, 18, 15, 12, 6, 1, 8, 4]
-    index_array2( arr)
-    print(arr)
-
-
-"""
-[-1, 1, 2, 3, 4, -1, 6, 7, 8, 9]
-[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
-"""
-
-"""
-Given an unsorted array , find smallest positive number missing in the array.
-"""
 def smallest_positive_missing_number(arr):
     size = len(arr)
     for i in range(1, size+1, 1):
@@ -542,6 +463,7 @@ def smallest_positive_missing_number5(arr):
             return i+1
     return -1
 
+# Testing Code
 def test18():
     arr = [2, 3, 7, 6, 8, -1, -10, 15]
     print(smallest_positive_missing_number(arr))
@@ -571,98 +493,6 @@ def test18():
 """
 
 
-"""
-Given an array of length N. It contains unique elements from 1 to N. 
-Sort the elements of the array.
-"""
-
-def sort_1toN(arr):
-    size = len(arr)
-    for i in range(size):
-        curr = i
-        value = -1
-        # swaps to move elements in proper position.
-        while curr >= 0 and curr < size and arr[curr] != curr+1 :
-            next = arr[curr]
-            arr[curr] = value
-            value = next
-            curr = next - 1
-
-def sort_1toN2(arr):
-    size = len(arr)
-    for i in range(size):
-        while arr[i] != i+1 and arr[i] > 1:
-            temp = arr[i]
-            arr[i] = arr[temp - 1]
-            arr[temp - 1] =  temp
-
-def test19():
-    arr = [10, 7, 9, 2, 8, 3, 5, 4, 6, 1]
-    sort_1toN(arr)
-    print(arr)
-    arr = [10, 7, 9, 2, 8, 3, 5, 4, 6, 1]
-    print(arr)
-    sort_1toN2(arr)
-    print(arr)
-
-
-"""
-[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-"""
-
-"""Given a sorted array rearrange it in maximum minimum form.
-Input  : [1, 2, 3, 4, 5, 6, 7]
-Output : [7, 1, 6, 2, 5, 3, 4]
-"""
-def max_min_array(arr):
-    size = len(arr)
-    aux = list(arr)
-    start = 0
-    stop = size - 1
-    for i in range(size):
-        if i % 2 == 0 :
-            arr[i] = aux[stop]
-            stop -= 1
-        else :
-            arr[i] = aux[start]
-            start += 1
-
-
-"""
-Without using any auxiliary array.
-1, 2, 3, 4, 5, 6, 7
-7, 6, 5, 4, 3, 2, 1
-7, 1, 2, 3, 4, 5, 6
-7, 1, 6, 5, 4, 3, 2
-7, 1, 6, 2, 3, 4, 5
-7, 1, 6, 2, 5, 4, 3
-7, 1, 6, 2, 5, 3, 4
-"""
-def reverse_array(arr, start, stop):
-    while start < stop:
-        arr[start], arr[stop] = arr[stop], arr[start]
-        start += 1
-        stop -= 1
-
-def max_min_array2(arr):
-    size = len(arr)
-    for i in range(size-1):
-        reverse_array(arr, i, size-1)
-
-def test20():
-    arr = [1, 2, 3, 4, 5, 6, 7]
-    max_min_array(arr)
-    print(arr)
-    arr = [1, 2, 3, 4, 5, 6, 7]
-    max_min_array2(arr)
-    print(arr)
-
-
-"""
-[7, 1, 6, 2, 5, 3, 4]
-[7, 1, 6, 2, 5, 3, 4]
-"""
 
 def find_max_path_util(arr, max_column, max_row, curr_column, curr_row, traversed, temp):
     if curr_column < 0 or curr_column >= max_column or curr_row < 0 or curr_row >= max_row :
@@ -694,6 +524,7 @@ def find_max_path(arr, max_column, max_row):
                 max_value = temp[0]
     return max_value
 
+# Testing Code
 def test21():
     arr = [
         [ 1 , 0 , 1, 1 , 0], 
@@ -746,6 +577,7 @@ def find_max_path(arr, max_column, max_row):
                 max_value = temp
     return max_value
 
+# Testing Code
 def test22():
     arr = [
         [ 1 , 0 , 1, 1 , 0], 
@@ -800,6 +632,7 @@ def rotten_fruit(arr, max_column, max_row):
         
     return max_day
 
+# Testing Code
 def test23():   
     arr = [
         [ 1 , 0 , 1, 1 , 0], 
@@ -814,14 +647,6 @@ def test23():
 3
 """
 
-"""
-Given an array arr[], find maximum distance of index j and i, such that arr[j] > arr[i]
-
-first solution : Brute force, for each index call it i find index j such that arr[j] > arr[i]
-We will need two loops one to select index i and another to traverse index i+1 to size of array.
-always keep decreasing array index. 
-Second solution is done using preprocessing and creating two auxilarry arrays. 
-"""
 def array_index_max_diff(arr):
     size = len(arr)
     max_diff = -1
@@ -890,6 +715,7 @@ def array_index_max_diff3(arr):
             i += 1
     return max_diff
 
+# Testing Code
 def test24():
     arr = [33, 9, 10, 3, 2, 60, 30, 33, 1]
     print(array_index_max_diff(arr))
@@ -915,9 +741,7 @@ def test24():
 6
 """
 
-"""
-Largest Increasing subsequence
-"""
+
 def largest_increasing_subseq(arr ):
     max_value = 0
     size = len(arr)
@@ -931,6 +755,7 @@ def largest_increasing_subseq(arr ):
             max_value = lis[i]
     return max_value
 
+# Testing Code
 def test25():
     arr = [10 , 12 , 9 , 23 , 25 , 55 , 49 , 70]
     print(largest_increasing_subseq(arr))
@@ -959,6 +784,7 @@ def longest_bitonic_subsequence(arr ):
         max_value = max((lis[i] + lds[i] - 1), max_value)
     return max_value
 
+# Testing Code
 def test26():
     arr = [1 , 6 , 3, 11, 1, 9 , 5 , 12 , 3 , 14 , 6 , 17, 3, 19 , 2 , 19]
     print(longest_bitonic_subsequence(arr))
@@ -966,33 +792,6 @@ def test26():
 
 """
 8
-"""
-
-def max_circular_sum(arr):
-    sum_all = 0
-    curr_value = 0
-    n = len(arr)
- 
-    for i in range(n):
-        sum_all += arr[i]
-        curr_value += (i*arr[i])
- 
-    max_value = curr_value
-    for i in range(1, n, 1):
-        curr_value = ( curr_value + sum_all ) - ( n * arr[n-i] )
-        #print curr_value
-        if curr_value > max_value:
-            max_value = curr_value
-            
-    return max_value
-
-def test27():
-    arr = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
-    print(max_circular_sum(arr))
-
-
-"""
-290
 """
 
 def max_profit(price):
@@ -1021,6 +820,7 @@ def max_profit2(price):
     print(profit)
     return profit[size-1]
 
+# Testing Code
 def test28():
     price = [2, 30, 15, 10, 8, 25, 80]
     print("Maximum profit is", max_profit(price))
@@ -1050,6 +850,8 @@ def max_subarray_sum(arr):
  
     return maximum
 
+
+# Testing Code
 def test29():
     a = [-1, -3, 4, -1, -2, 1, 5]
     print(max_subarray_sum(a))
@@ -1090,6 +892,8 @@ def max_path_sum(arr1, arr2):
     result +=  max(sum1, sum2)
     return result
 
+
+# Testing Code
 def test30():
     arr1 = [12, 13, 18, 20, 22, 26, 70]
     arr2 = [11, 15, 18, 19, 20, 26, 30, 31]
@@ -1129,6 +933,7 @@ def min_dist2(arr, first, second):
                 prev = i
     return min_dist
 
+# Testing Code
 def test31():
     arr = [3, 5, 4, 2, 6, 5, 6, 6, 5, 4, 8, 3]
     first = 3
@@ -1142,9 +947,7 @@ def test31():
 4
 """
 
-"""
-Given an array of positive elements. Find minimum product of k elements in array.
-"""
+
 def ksmallest_product(arr, k):
     arr.sort()
     product = 1
@@ -1163,9 +966,7 @@ def ksmallest_product2(arr, k):
         i += 1
     return product
 
-"""
-Quick select method
-"""
+
 def ksmallest_product3(array, k):
     arr = array
     size = len(arr)
@@ -1201,6 +1002,7 @@ def quick_select_util(arr, lower, upper, k):
 def swap(arr, first, second):
     arr[first], arr[second] = arr[second], arr[first]
 
+# Testing Code
 def test32():
     first = [1, 7, 5, 4, 8, 3, 9, 2, 6, 10]
     print(ksmallest_product(first, 5))
@@ -1240,6 +1042,7 @@ def print_larger_half3(array):
     for i in range(size//2, size):
         print(arr[i], end=' ')
 
+# Testing Code
 def test33():
     first = [1, 7, 5, 4, 8, 3, 9, 2, 6, 10]
     print_larger_half(first)
@@ -1253,15 +1056,6 @@ def test33():
 6 7 8 9 10 
 [6, 7, 9, 10, 8]
 6 7 9 8 10
-"""
-
-"""
-Minimum swaps required to bring all elements less than given value together at the start of array. 
-
-Use quick sort kind of technique by taking two index from both end 
-and try to use the given value as key.
-
-Count the number of swaps that is answer.
 """
 
 def min_swaps(arr, val):
@@ -1278,6 +1072,7 @@ def min_swaps(arr, val):
             swap_count += 1
     return swap_count
 
+# Testing Code
 def test34():
     arr = [2, 1, 5, 6, 3]
     k = 3
@@ -1293,11 +1088,7 @@ def test34():
 2
 """
 
-"""
-Now in the above problem we dont want all the elements in start of array.
-We want to find a window for which minimum number of swaps are requered to 
-bring all the elements less then the than given value together.
-"""
+
 def min_swaps_window(arr, val):
     count = 0
     size = len(arr)
@@ -1324,6 +1115,7 @@ def min_swaps_window(arr, val):
         first += 1
     return count - max_count
 
+# Testing Code
 def test35():
     arr = [2, 1, 5, 6, 3]
     k = 3
@@ -1339,14 +1131,6 @@ def test35():
 2
 """
 
-"""
-Given an array of positive integers indicates maximum number of steps jump that can be taken forward.
-Write a function to return the minimum number of jumps needed to reach from start of array
-to its end.
-
-Use an auxiliary array to store how many steps needed to reach some index.
-O(nk)
-"""
 import sys
 def min_jumps(arr):
     size = len(arr)
@@ -1363,6 +1147,7 @@ def min_jumps(arr):
         #print(jumps)
     return jumps[size-1]
 
+# Testing Code
 def test36():
     arr = [1, 4, 3, 7, 6, 1, 0, 3, 5, 1, 10]
     print(min_jumps(arr))
@@ -1372,18 +1157,6 @@ def test36():
 3
 """
 
-"""
-Given a nearly sorted array, in which an element is at max k units away from its sorted position.
-
-If you use sorting then it will take O(NlogN) time 
-
-There is one algorithm by which it can be done in O(NlogK) time.
-You can create a min Heap of size K+1 from first K+1 elements of input array.
-pop an elements from heap and store it into output array. 
-push next element from array to heap.
-repeat this process till all the elements of array are consumed and heap is empty.
-In the end you have sorted array.
-"""
 import heapq
 
 def sortK(arr, k):
@@ -1413,6 +1186,7 @@ def sortK2(arr, k):
         arr[index] = heapq.heappop(heap)
         index += 1
 
+# Testing Code
 def test37():
     k = 3
     arr = [1, 5, 4, 10, 50, 9]
@@ -1424,9 +1198,6 @@ def test37():
 [1, 4, 5, 9, 10, 50]
 """
 
-"""
-Find second largest element in an array.
-"""
 def print_2nd_largest(arr):
     size = len(arr)
     if size < 2:
@@ -1450,9 +1221,6 @@ def print_2nd_largest(arr):
 
     print("second largest value : ", second)
 
-"""
-Find third largest element in an array.
-"""
 def print_3rd_largest(arr):
     size = len(arr)
     if size < 3:
@@ -1475,10 +1243,6 @@ def print_3rd_largest(arr):
 
     print("third largest value : ", third)
 
-"""
-Find Kth largest element in an array.
-Use heap in this case. Min heap.
-"""
 
 def rotten_fruit_util(arr, max_column, max_row, curr_column, curr_row, traversed, day):
     # Range check
@@ -1512,6 +1276,7 @@ def rotten_fruit(arr, max_column, max_row):
                     max_day = traversed[i][j]
     return max_day
 
+# Testing Code
 def test38():
     arr = [
         [ 1 , 0 , 1, 1 , 0], 
@@ -1549,6 +1314,7 @@ def dist_nearest_fill(arr, max_column, max_row):
                 dist_nearest_fill_util(arr, max_column, max_row, i, j, traversed, 0)
     print(traversed)
 
+# Testing Code
 def test39():
     arr = [
         [ 1 , 0 , 1, 1 , 0], 
@@ -1588,6 +1354,7 @@ def steps_of_knight(size, srcX, srcY, dstX, dstY):
     steps_of_knight_util(size, srcX - 1, srcY - 1, traversed, 0)
     return traversed[dstX - 1][dstY - 1]
 
+# Testing Code
 print(steps_of_knight(20,10,10,20,20))
 
 """
@@ -1617,6 +1384,7 @@ def find_largest_island(arr, max_column, max_row):
 
     return max_value
 
+# Testing Code
 def test40():
     arr = [[1, 0, 1, 1, 0], [1, 0, 0, 1, 0], [0, 1, 1, 1, 1 ], [ 0, 1, 0, 0, 0], [1, 1, 0, 0, 1]]
     print("Largest Island :" , find_largest_island(arr, 5, 5))
@@ -1668,6 +1436,7 @@ def count_rotation(arr):
     rotations = (maxIndex + 1) % size
     return rotations
 
+# Testing Code
 def test41():
     first = [34, 56, 1, 1, 5, 6, 6, 6, 6, 6, 6, 7, 8, 10, 13, 20, 30 ]
     second = [1, 5, 6, 6, 6, 6, 6, 6, 7, 8, 10, 13, 20, 30 ]
@@ -1689,12 +1458,6 @@ def test41():
 0
 """
 
-
-
-
-"""
-Segregate positive ans negative.
-"""
 def segregate_positive_negative(arr):
     first = 0
     second = len(arr) - 1
@@ -1706,11 +1469,6 @@ def segregate_positive_negative(arr):
         else:
             arr[first], arr[second] = arr[second], arr[first]
 
-"""
-Segrigate positive and negative , order of appearence should be # maintained.
-Just Segregate like insertion sort.
-Use an array.
-"""
 def segregate_positive_negative2(arr):
     index = 0
     size = len(arr)
@@ -1724,9 +1482,7 @@ def segregate_positive_negative2(arr):
             arr[index] = arr2[i]
             index += 1
 
-"""
-Segregate even odd.
-"""
+
 def segregate_even_odd(arr):
     first = 0
     second = len(arr) - 1
@@ -1739,10 +1495,7 @@ def segregate_even_odd(arr):
             arr[first], arr[second] = arr[second], arr[first]
 
 
-"""
-Segregate Even number at even index and odd numbers at odd index. 
-If possible then return true else return false.
-"""
+
 def segregate_even_odd2(arr):
     odd = 1
     even = 0
@@ -1777,6 +1530,7 @@ def smallest_sub_grater_sum(arr, x):
             start += 1
     return minLen 
 
+# Testing Code
 def test42():
     arr = [1, 4, 45, 6, 10, 19] 
     x = 51
@@ -1787,11 +1541,6 @@ def test42():
 3
 """
 
-"""
-given two sorted array. You need to print all possible sorted array by picking alternate elements from both the array.
-The first element of the arrays should be from the first array. 
-and last element of the output arrays should be from the second array.
-"""
 def sorted_array_util(first, first_size, first_index, second, second_size, second_index,arr, index, flag):
     # print arr # all alternate sorted array. 
     if flag == 0:
@@ -1816,6 +1565,7 @@ def sorted_array(first, second):
     arr=[]
     sorted_array_util(first, first_size, 0, second, second_size, 0, arr, 0, 0)
 
+# Testing Code
 def test43():
     first = [1, 5, 10]
     second = [2, 4, 12]
@@ -1832,42 +1582,6 @@ def test43():
 [1, 12]
 [5, 12]
 [10, 12]
-"""
-
-
-def swap(arr, i, j):
-    arr[i], arr[j] = arr[j], arr[i]
-
-def wave_array(arr):
-    size = len(arr)
-    arr.sort()
-    # Swap adjacent elements in array
-    for i in range(0, size - 1, 2):
-        swap(arr, i, i+1)
-
-
-def wave_array2(arr):
-    size = len(arr)
-    
-    # Odd elements are lesser then even elements.
-    for i in range(1, size , 2):
-        if (i - 1) >= 0 and arr[i] > arr[i - 1]:
-            swap(arr, i, i-1)
-        if (i + 1) < size and arr[i] > arr[i + 1]:
-            swap(arr, i, i+1)
-
-def test44():
-    arr = [8, 1, 2, 3, 4, 5, 6, 4, 2]
-    wave_array(arr)
-    print(arr)
-    arr = [8, 1, 2, 3, 4, 5, 6, 4, 2]
-    wave_array2(arr)
-    print(arr)
-
-
-"""
-[2, 1, 3, 2, 4, 4, 6, 5, 8]
-[8, 1, 3, 2, 5, 4, 6, 2, 4]
 """
 
 def zero_replace(arr):
@@ -1896,6 +1610,7 @@ def zero_replace(arr):
     #print(index , maximum)
     return maximum
 
+# Testing Code
 def test45():
     arr = [1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1]
     print(zero_replace(arr))
@@ -1914,24 +1629,24 @@ test6()
 test7()
 test8()
 test9()
-test10()
+# test10()
 test11()
 test12()
 test13()
 test14()
 test15()
-test16()
-test17()
+# test16()
+# test17()
 test18()
-test19()
-test20()
+# test19()
+# test20()
 test21()
 test22()
 test23()
 test24()
 test25()
 test26()
-test27()
+# test27()
 test28()
 test29()
 test30()
@@ -1948,5 +1663,5 @@ test40()
 test41()
 test42()
 test43()
-test44()
+# test44()
 test45()

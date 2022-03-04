@@ -13,6 +13,7 @@ def optimal_merge_pattern(arr,  size) :
         total += value
     return  total
 
+# Testing Code
 arr = [4, 3, 2, 6]
 print("Total :", optimal_merge_pattern(arr, len(arr)))
 

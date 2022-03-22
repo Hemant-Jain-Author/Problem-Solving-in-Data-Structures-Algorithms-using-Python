@@ -479,17 +479,17 @@ def is_connected_undirected(gph):
 
 # Testing code
 def test8():
-g = Graph(6)
-g.add_undirected_edge(0, 1)
-g.add_undirected_edge(1, 2)
-g.add_undirected_edge(3, 4)
-g.add_undirected_edge(4, 2)
-g.add_undirected_edge(2, 5)
-#g.add_undirected_edge(3, 5)
-print(is_cycle_present_undirected(g))
-print(is_cycle_present_undirected2(g))
-print(is_cycle_present_undirected3(g))
-print("is_connected_undirected : ", is_connected_undirected(g))
+    g = Graph(6)
+    g.add_undirected_edge(0, 1)
+    g.add_undirected_edge(1, 2)
+    g.add_undirected_edge(3, 4)
+    g.add_undirected_edge(4, 2)
+    g.add_undirected_edge(2, 5)
+    #g.add_undirected_edge(3, 5)
+    print(is_cycle_present_undirected(g))
+    print(is_cycle_present_undirected2(g))
+    print(is_cycle_present_undirected3(g))
+    print("is_connected_undirected : ", is_connected_undirected(g))
 
 """
 False
@@ -572,13 +572,13 @@ def transpose_graph(gph):
 
 # Testing code
 def test10():
-g = Graph(4)
-g.add_directed_edge(0, 1)
-g.add_directed_edge(0, 2)
-g.add_directed_edge(1, 2)
-g.add_directed_edge(2, 3)
-g = transpose_graph(g)
-g.print()
+    g = Graph(4)
+    g.add_directed_edge(0, 1)
+    g.add_directed_edge(0, 2)
+    g.add_directed_edge(1, 2)
+    g.add_directed_edge(2, 3)
+    g = transpose_graph(g)
+    g.print()
 
 
 """

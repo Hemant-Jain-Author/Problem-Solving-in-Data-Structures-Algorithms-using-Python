@@ -153,6 +153,7 @@ class SPLAYTree :
                     next = node.right
                 elif (node.right == None) :
                     next = node.left
+                    
                 if (node.left == None or node.right == None) :
                     if (node == self.root) :
                         self.root = next
@@ -161,7 +162,9 @@ class SPLAYTree :
                         parent.left = next
                     else :
                         parent.right = next
-                    if (next != None) : next.parent = parent
+                        
+                    if (next != None) : 
+                        next.parent = parent
                     break
                 minnode = self.find_min_node(node.right)
                 data = minnode.data
@@ -187,7 +190,7 @@ class SPLAYTree :
             self.print_in_order_util(node.right)
 
 
-// Testing Code
+# Testing Code
 tree = SPLAYTree()
 tree.insert(5)
 tree.insert(4)

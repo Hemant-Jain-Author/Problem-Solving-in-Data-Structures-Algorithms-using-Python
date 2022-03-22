@@ -20,7 +20,7 @@ class Graph(object):
             for j in range(self.count):
                 if self.adj[i][j] != 0:
                     print( "(", j,",", self.adj[i][j],")", end =" ")
-            print("")
+            print()
 
 # Testing code
 def test1():
@@ -57,12 +57,33 @@ class PriorityQueue(object):
     def size(self):
         return len(self.que)
 
+
+def printPathsUtil(previous, source, dest) :
+    if  dest == source :
+        print(source, end="", sep="")
+    else :
+        printPathsUtil(previous, source, previous[dest])
+        print("->", dest, end="", sep="")
+
+def printPaths(previous, distance, count,source) :
+    print("Shortest Paths: ", end="");
+    for i in range(count) :
+        if distance[i] == sys.maxsize :
+            print("(", source, "->", i, " @ Unreachable) ", end="", sep="")
+        elif i != previous[i] :
+            print("(", end="", sep="");
+            printPathsUtil(previous, source, i)
+            print(" @ ", distance[i],") ", end="", sep="")
+    print()
+
+
 def dijkstra(gph, source):
     previous = [-1] * gph.count
-    dist = [sys.maxsize] * gph.count
+    distance = [sys.maxsize] * gph.count
     visited = [False] * gph.count
-    dist[source] = 0
-    previous[source] = 0
+
+    distance[source] = 0
+    previous[source] = source
     
     pq = PriorityQueue()
     for i in range(gph.count):
@@ -71,30 +92,24 @@ def dijkstra(gph, source):
     
     while pq.size() != 0:
         val = pq.pop()
-        source = val[1]
-        visited[source] = True
+        curr = val[1]
+        visited[curr] = True
         
         for dest in range(gph.count):
-            alt = gph.adj[source][dest] + dist[source]
-            if gph.adj[source][dest] > 0 and alt < dist[dest] and visited[dest] == False:
-                dist[dest] = alt
-                previous[dest] = source
+            alt = gph.adj[curr][dest] + distance[curr]
+            if gph.adj[curr][dest] > 0 and alt < distance[dest] and visited[dest] == False:
+                distance[dest] = alt
+                previous[dest] = curr
                 pq.update_key(alt, dest)
 
+    printPaths(previous, distance, gph.count, source)
 
-    for i in range(gph.count):
-        if dist[i] == sys.maxsize:
-            print("(", previous[i], "->", i , "@ Unreachable )", end="")
-        elif i != previous[i]:
-            print("(", previous[i], "->", i , "@" , dist[i], ")", end="")
-    print()
-
-def prims(gph):
+def primsMST(gph):
     previous = [-1] * gph.count
-    dist = [sys.maxsize] * gph.count
+    distance = [sys.maxsize] * gph.count
     visited = [False] * gph.count
     source = 0
-    dist[source] = 0
+    distance[source] = 0
     previous[source] = 0
     pq = PriorityQueue()
     
@@ -109,18 +124,19 @@ def prims(gph):
         
         for dest in range(gph.count):
             alt = gph.adj[source][dest]
-            if gph.adj[source][dest] > 0 and alt < dist[dest] and visited[dest] == False:
-                dist[dest] = alt
+            if gph.adj[source][dest] > 0 and alt < distance[dest] and visited[dest] == False:
+                distance[dest] = alt
                 previous[dest] = source
                 pq.update_key(alt, dest)
     
     total_cost = 0
+    print("Edges are : ", end="");
     for i in range(gph.count):
-        if dist[i] == sys.maxsize:
-            print("(", previous[i], "->", i , "@ Unreachable )", end="")
+        if distance[i] == sys.maxsize:
+            print("(", i , "is Unreachable )", end="")
         elif i != previous[i]:
-            print("(", previous[i], "->", i , "@" , dist[i], ")", end="")
-            total_cost += dist[i]
+            print("(", previous[i], "->", i , " @ " , distance[i], ") ", end="",sep="")
+            total_cost += distance[i]
     print("\nTotal MST cost: ", total_cost)
 
 # Testing code
@@ -141,16 +157,19 @@ def test2():
     graph.add_undirected_edge(6, 8, 6)
     graph.add_undirected_edge(7, 8, 7)
     dijkstra(graph, 0)
-    prims(graph)
+    primsMST(graph)
 
 
 """ prims
-( 0 -> 1 @ 4 )( 1 -> 2 @ 8 )( 2 -> 3 @ 7 )( 3 -> 4 @ 9 )( 2 -> 5 @ 4 )( 5 -> 6 @ 2 )( 6 -> 7 @ 1 )( 2 -> 8 @ 2 )
+Edges are : (0->1 @ 4) (1->2 @ 8) (2->3 @ 7) (3->4 @ 9) 
+            (2->5 @ 4) (5->6 @ 2) (6->7 @ 1) (2->8 @ 2) 
+
 Total MST cost:  37
 """
 
 """dijkstra
-( 0 -> 1 @ 4 )( 1 -> 2 @ 12 )( 2 -> 3 @ 19 )( 5 -> 4 @ 21 )( 6 -> 5 @ 11 )( 7 -> 6 @ 9 )( 0 -> 7 @ 8 )( 2 -> 8 @ 14 )
+Shortest Paths: (0->1 @ 4) (0->1->2 @ 12) (0->1->2->3 @ 19) (0->7->6->5->4 @ 21) 
+                (0->7->6->5 @ 11) (0->7->6 @ 9) (0->7 @ 8) (0->1->2->8 @ 14) 
 """
 
 def hamiltonian_cycle_util(graph , path, added):
@@ -269,7 +288,7 @@ Hamiltonian Cycle not found
 False
 """
 
-#test1()
+test1()
 test2()
-#test3()
-#test4()
+test3()
+test4()

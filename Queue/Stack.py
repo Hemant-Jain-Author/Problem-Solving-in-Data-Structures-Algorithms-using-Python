@@ -1,9 +1,10 @@
 from collections import deque
 
 class Stack :
-    que1 =  deque([])
-    que2 =  deque([])
-    size = 0
+    def __init__(self):
+        self.que1 =  deque([])
+        self.que2 =  deque([])
+        self.size = 0
 
     def push(self, value) :
         self.que1.append(value)
@@ -14,7 +15,8 @@ class Stack :
         s = self.size
         while (s > 0) :
             value = self.que1.popleft()
-            if (s > 1) : self.que2.append(value)
+            if (s > 1) : 
+                self.que2.append(value)
             s -= 1
         self.que1, self.que2 = self.que2 , self.que1
         self.size -= 1
@@ -25,19 +27,33 @@ class Stack :
         s = self.size
         while (s > 0) :
             value = self.que1.popleft()
-            if (s > 1) : self.que1.append(value)
+            if (s > 1) : 
+                self.que1.append(value)
             s -= 1
         self.size -= 1
         return  value
 
-
+    
 # Testing Code
-s =  Stack()
-i = 0
-while (i < 5) :
-    s.push(i)    
-    i += 1
-i = 0
-while (i < 5) :
-    print(str(s.pop2()) + " ", end ="")    
-    i += 1
+s = Stack()
+s.push(1)
+s.push(2)
+s.push(3) 
+print("Pop :", s.pop())
+print("Pop :", s.pop())
+print()
+
+s1 = Stack()
+s1.push(1)
+s1.push(2)
+s1.push(3) 
+print("Pop :", s1.pop2())
+print("Pop :", s1.pop2())
+    
+"""
+Pop : 3
+Pop : 2
+"""
+    
+    
+    

@@ -229,18 +229,14 @@ def reverse_string(a):
     lower = 0
     upper = len(a) - 1
     while lower < upper:
-        tempChar = a[lower]
-        a[lower] = a[upper]
-        a[upper] = tempChar
+        a[lower], a[upper] = a[upper],a[lower] 
         lower += 1
         upper -= 1
     return "".join(a)
 
 def reverse_string_util(a, lower, upper):
     while lower < upper:
-        tempChar = a[lower]
-        a[lower] = a[upper]
-        a[upper] = tempChar
+        a[lower], a[upper] = a[upper],a[lower]
         lower += 1
         upper -= 1
 
@@ -274,23 +270,18 @@ world hello
 def print_anagram(a):
     n = len(a)
     a = list(a)
-    print_anagram_util(a, n, n)
+    print_anagram_util(a, 0, n)
 
 
-def print_anagram_util(a, maxindex, n):
-    if maxindex == 1:
+def print_anagram_util(a, i, n):
+    if i == n:
         print("".join(a))
-    i = -1
-    for i in range(-1, maxindex - 1) :
-        if i != -1:
-            temp = a[i]
-            a[i] = a[maxindex - 1] 
-            a[maxindex - 1] = temp
-        print_anagram_util(a, maxindex - 1, n)
-        if i != -1:
-            temp = a[i] 
-            a[i] = a[maxindex - 1] 
-            a[maxindex - 1] = temp
+        return;
+    
+    for j in range(i, n) :
+        a[i], a[j] = a[j], a[i]
+        print_anagram_util(a, i+1, n)
+        a[i], a[j] = a[j], a[i]
 
 # Testing code.
 def test10():
@@ -299,10 +290,10 @@ def test10():
 
 """
 123
-213
-321
-231
 132
+213
+231
+321
 312
 """
 

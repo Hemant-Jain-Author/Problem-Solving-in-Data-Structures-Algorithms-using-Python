@@ -169,7 +169,7 @@ def reverse_string(expn):
         upper -= 1
     return newexp
 
-def replace_paranthesis(expn):
+def replace_parenthesis(expn):
     lower = 0
     upper = len(expn)
     newexp = ""
@@ -185,7 +185,7 @@ def replace_paranthesis(expn):
 
 def infix_to_prefix(expn):
     expn = reverse_string(expn)
-    expn = replace_paranthesis(expn)
+    expn = replace_parenthesis(expn)
     expn = infix_to_postfix(expn)
     expn = reverse_string(expn)
     return expn
@@ -538,14 +538,12 @@ def test11():
 
 def next_larger_element(arr):
     size = len(arr)
-    output = []
+    output = [-1]*size
     for i in range(0, size, 1):
-        next = -1
         for j in range(i+1, size, 1):
             if arr[i] < arr[j]:
-                next = arr[j]
+                output[i] = arr[j]
                 break
-        output.append(next)
     print(output)
 
 class Stack(object):
@@ -571,27 +569,6 @@ class Stack(object):
             raise RuntimeError("StackEmptyException")
         return self.data.pop()
 
-def next_larger_element2(arr):
-    size = len(arr)
-    stk = Stack()
-    output = [-1]*size
-    stk.push(arr[size - 1])
-    output[size - 1] = -1
-    i = size -2
-    while i >= 0:
-        while stk.is_empty() == False :
-            top = stk.top()
-            if top <= arr[i] :
-                stk.pop()
-            else :
-                output[i] = top
-                break
-        
-        if stk.is_empty() :
-            output[i] = -1
-        stk.push(arr[i])
-        i -= 1
-    print(output)
 
 def next_larger_element3(arr):
     size = len(arr)
@@ -605,7 +582,7 @@ def next_larger_element3(arr):
             output[index] = curr
         stk.push(i)
     
-    # index which dont have any next Larger.
+    # index which don't have any next Larger.
     while stk.is_empty() == False :
         index = stk.pop()
         output[index] = -1
@@ -616,36 +593,24 @@ def next_larger_element3(arr):
 def test12():
     arr = [13,21,3,6,20,3]
     next_larger_element(arr)
-    next_larger_element2(arr)
     next_larger_element3(arr)
 
 """
-[21, -1, 6, 20, -1, -1]
 [21, -1, 6, 20, -1, -1]
 [21, -1, 6, 20, -1, -1]
 """
 
 def next_smaller_element(arr):
     size = len(arr)
-    stk = Stack()
     output = [-1]*size
-    stk.push(arr[size - 1])
-    output[size - 1] = -1
-    i = size -2
-    while i >= 0:
-        while stk.is_empty() == False :
-            top = stk.top()
-            if top >= arr[i] :
-                stk.pop()
-            else :
-                output[i] = top
+    for i in range(size):
+        for j in range(i+1, size):
+            if arr[j] < arr[i]:
+                output[i] = arr[j]
                 break
-        
-        if stk.is_empty() :
-            output[i] = -1
-        stk.push(arr[i])
-        i -= 1
     print(output)
+
+
 
 def next_smaller_element2(arr):
     size = len(arr)
@@ -910,7 +875,6 @@ def test20():
     print("Longest Continuous Balanced Parenthesis is:", value)
 
 """
-Given expn: ())((()))(())()(()
 Longest Continuous Balanced Parenthesis is: 14
 """
 
@@ -943,11 +907,9 @@ def test21():
     expn = "())((()))(())()(()()()()))"
     expn2 = ")(())((("
     value = reverse_parenthesis(expn2)
-    print("Given expn:", expn2)
     print("reverse Parenthesis is:", value)
 
 """
-Given expn: )(())(((
 reverse Parenthesis is: 3
 """
 
@@ -974,8 +936,8 @@ def find_duplicate_parenthesis2(expn):
 			# pop character from the stack
 			top = stk.pop()
 
-			# If there are less then 2 elements between paranthesis pair then 
-            # the paranthesis is redundant.
+			# If there are less then 2 elements between parenthesis pair then 
+            # the parenthesis is redundant.
 			count = 0
 			while top != '(':
 				count += 1
@@ -991,12 +953,10 @@ def find_duplicate_parenthesis2(expn):
 # Testing code
 def test22():
     expn = "(((a+(b))+(c+d)))"
-    print("Given expn:", expn)
     value = find_duplicate_parenthesis(expn)
     print("Duplicate Found :", value)
 
 """
-Given expn: (((a+(b))+(c+d)))
 Duplicate Found : True
 """
 
@@ -1017,16 +977,12 @@ def print_parenthesis_number(expn):
 # Testing code
 def test23():
     expn1 = "(((a+(b))+(c+d)))"
-    expn2 = "(((a+b))+c)((("
-    print("Given expn:", expn1)
     print_parenthesis_number(expn1)
-    print("Given expn:", expn2)
+    expn2 = "(((a+b))+c)((("
     print_parenthesis_number(expn2)
 
 """
-Given expn: (((a+(b))+(c+d)))
 Parenthesis Count : [1, 2, 3, 4, 4, 3, 5, 5, 2, 1]
-Given expn: (((a+b))+c)(((
 Parenthesis Count : [1, 2, 3, 3, 2, 1, 4, 5, 6]
 """
 
@@ -1217,6 +1173,7 @@ def test28():
     stk.push(1)
     stk.push(2)
     stk.push(3)
+    stk.print()
     reverse_stack(stk)
     stk.print()
 
@@ -1498,7 +1455,7 @@ Largest Island :  12
 """
 
 
-def stockAnalystAdd(stk,  value) :
+def stock_analyst_add(stk,  value) :
     while (not (len(stk) == 0) and stk[-1] <= value) :
         stk.pop()
     stk.append(value)
@@ -1509,7 +1466,7 @@ def test34() :
     stk =  []
     i = len(arr) - 1
     while (i >= 0) :
-        stockAnalystAdd(stk, arr[i])    
+        stock_analyst_add(stk, arr[i])    
         i -= 1
     print(stk)
 
@@ -1517,7 +1474,7 @@ def test34() :
 [50, 40, 21, 20]
 """
 
-
+"""
 test1()
 test2()
 test4()
@@ -1528,6 +1485,7 @@ test8()
 test9()
 test10()
 test11()
+"""
 test12()
 test13()
 test14()
@@ -1536,6 +1494,7 @@ test16()
 test17()
 test18()
 test19()
+"""
 test20()
 test21()
 test22()
@@ -1551,3 +1510,4 @@ test31()
 test32()
 test33()
 test34()
+"""

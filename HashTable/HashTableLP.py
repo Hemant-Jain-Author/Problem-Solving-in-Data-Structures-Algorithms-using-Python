@@ -71,7 +71,7 @@ class HashTable(object):
     def print(self):
         for i in range(self.table_size) :
             if self.flag[i] == self.FILLED_NODE:
-                print("Value for key [" , self.key_arr[i] , "] ::" , self.data_arr[i])
+                print("Value for key [", self.key_arr[i] , "] ::", self.data_arr[i])
 
 # Testing Code
 ht = HashTable(1000)

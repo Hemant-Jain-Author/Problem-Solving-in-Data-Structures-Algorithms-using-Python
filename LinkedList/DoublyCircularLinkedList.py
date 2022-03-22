@@ -54,13 +54,16 @@ class DoublyCircularLinkedList(object):
     def remove_head(self):
         if self.head == None:
             raise RuntimeError("EmptyListException")
+        
         self.count -= 1
         value = self.head.value
+        
         if self.head == self.head.next:
             value = self.head.value
             self.head = None
             self.tail = None
             return value
+        
         next_node = self.head.next
         next_node.prev = self.tail
         self.tail.next = next_node
@@ -68,15 +71,17 @@ class DoublyCircularLinkedList(object):
         return value
 
     def remove_tail(self):
-        if self.size == 0:
+        if self.count == 0:
             raise RuntimeError("EmptyListException")
+        
         self.count -= 1
         value = self.tail.value
-        self.size -= 1
-        if self.size == 0:
+        
+        if self.count == 0:
             self.head = None
             self.tail = None
             return value
+        
         prev = self.tail.prev
         prev.next = self.head
         self.head.prev = prev
@@ -92,6 +97,7 @@ class DoublyCircularLinkedList(object):
             if temp.value == key:
                 return True
             temp = temp.next
+            
         return False
 
     def free(self):
@@ -99,7 +105,6 @@ class DoublyCircularLinkedList(object):
         self.tail = None
         self.count = 0
 
-    
     def print(self):
         if self.is_empty():
             return
@@ -107,20 +112,65 @@ class DoublyCircularLinkedList(object):
         while temp != self.tail:
             print(temp.value, end=' ')
             temp = temp.next
-        print(temp.value, end=' ')
+        print(temp.value)
             
             
 # Testing Code
-ll = DoublyCircularLinkedList()
-ll.add_head(1)
-ll.add_head(2)
-ll.add_head(3)
-ll.add_head(1)
-ll.add_head(2)
-ll.add_head(3)
-print(ll.size())
-ll.print()
+def test1():
+    ll = DoublyCircularLinkedList()
+    ll.add_head(1)
+    ll.add_head(2)
+    ll.add_head(3)
+    print(ll.size())
+    ll.print()
+
 """
-6
-3 2 1 3 2 1
+3
+3 2 1
 """
+
+def test2():
+    ll = DoublyCircularLinkedList()
+    ll.add_tail(1)
+    ll.add_tail(2)
+    ll.add_tail(3)
+    ll.print()
+
+"""
+1 2 3
+"""
+
+# Testing Code
+def test3():
+    ll = DoublyCircularLinkedList()
+    ll.add_head(1)
+    ll.add_head(2)
+    ll.add_head(3)
+    ll.print()
+    ll.remove_head()
+    ll.print()
+
+"""
+3 2 1
+2 1
+"""
+
+# Testing Code
+def test4():
+    ll = DoublyCircularLinkedList()
+    ll.add_head(1)
+    ll.add_head(2)
+    ll.add_head(3)
+    ll.print()
+    ll.remove_tail()
+    ll.print()
+
+"""
+3 2 1
+3 2
+"""
+
+test1()
+test2()
+test3()
+test4()

@@ -7,7 +7,7 @@ class CircularLinkedList(object):
     def __init__(self):
         self.tail = None
         self.count = 0
-    
+
     def size(self):
         return self.count
 
@@ -120,27 +120,79 @@ class CircularLinkedList(object):
         while temp != self.tail:
             print(temp.value, end=' ')
             temp = temp.next
-        print(temp.value, end=' ')
+        print(temp.value)
+
+
 
 # Testing Code
-ll = CircularLinkedList()
-ll.add_head(1)
-ll.add_head(2)
-ll.add_head(3)
-ll.add_head(1)
-ll.add_head(2)
-ll.add_head(3)
-print(ll.size())
-ll.print()
-print()
-ll2 = ll.copy_list()
-ll2.print()
-print()
-ll3 = ll.copy_list_reversed()
-ll3.print()
+def test1():
+    ll = CircularLinkedList()
+    ll.add_head(1)
+    ll.add_head(2)
+    ll.add_head(3)
+    ll.print()
+    print("Search:", ll.search(2))
+    print("Search:", ll.search(4))
+    ll.remove_head()
+    ll.print()
+
 """
-6
-3 2 1 3 2 1 
-3 2 1 3 2 1 
-1 2 3 1 2 3
+3 2 1
+Search: True
+Search: False
+2 1
 """
+
+# Testing Code
+def test2():
+    ll = CircularLinkedList()
+    ll.add_tail(1)
+    ll.add_tail(2)
+    ll.add_tail(3)
+    ll.print()
+
+"""
+1 2 3
+"""
+
+
+# Testing Code
+def test3():
+    ll = CircularLinkedList()
+    ll.add_head(1)
+    ll.add_head(2)
+    ll.add_head(3)
+    ll.print()
+    ll.remove_node(2)
+    ll.print()
+
+
+"""
+3 2 1
+3 1
+"""
+
+
+# Testing Code
+def test4():
+    ll = CircularLinkedList()
+    ll.add_head(1)
+    ll.add_head(2)
+    ll.add_head(3)
+    ll.print()
+
+    ll2 = ll.copy_list()
+    ll2.print()
+
+    ll3 = ll.copy_list_reversed()
+    ll3.print()
+
+"""
+3 2 1 
+3 2 1
+1 2 3
+"""
+test1()
+test2()
+test3()
+test4()

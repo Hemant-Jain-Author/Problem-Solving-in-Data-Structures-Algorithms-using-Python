@@ -31,7 +31,6 @@ def test1():
     graph.add_undirected_edge(2, 3)
     graph.print()
 
-
 """
 Vertex 0 is connected to: 1 (cost: 1 ) 2 (cost: 1 ) 
 Vertex 1 is connected to: 0 (cost: 1 ) 2 (cost: 1 ) 
@@ -66,6 +65,11 @@ def dfs_util(gph, index, visited):
         if visited[destination] == False:
             dfs_util(gph, destination, visited)
 
+def dfs(gph, source, target):
+    count = gph.count
+    visited = [False] * count
+    dfs_util(gph, source, visited)
+    return visited[target]
 
 def dfs_stack(gph, source, target):
     count = gph.count
@@ -80,12 +84,6 @@ def dfs_stack(gph, source, target):
             if visited[destination] == False:
                 stk.append(destination)
                 visited[destination] = True
-    return visited[target]
-            
-def dfs(gph, source, target):
-    count = gph.count
-    visited = [False] * count
-    dfs_util(gph, source, visited)
     return visited[target]
  
 def bfs(gph, source, target):
@@ -135,15 +133,15 @@ def topological_sort_dfs(gph, index, visited, stk):
 
 def topological_sort(gph):
     stk = []
-    count = gph.count
-    visited = [False] * count
-    for i in range(count):
+    visited = [False] * gph.count
+    for i in range(gph.count):
         if visited[i] == False:
             topological_sort_dfs(gph, i, visited, stk)
+
     print("topological_sort::", end=' ')
     while len(stk) != 0:
         print(stk.pop(), end=' ') 
-    print("")
+    print()
 
 # Testing code
 def test3():
@@ -161,7 +159,7 @@ def test3():
     gph.add_directed_edge(7, 8)
     topological_sort(gph)
 
-# topologicalSort ::  1 4 6 3 5 7 8 0 2
+# topologicalSort :: 1 4 6 3 5 7 8 0 2
 
 def path_exist(gph, source, destination):
     count = gph.count
@@ -234,12 +232,23 @@ def dfs_util(gph, index, visited):
 def root_vertex(gph):
     count = gph.count
     visited = [False] * count
-    retVal = -1
+    ret_val = -1
     for i in range(count):
         if visited[i] == False:
             dfs_util(gph, i, visited)
-            retVal = i
-    print("Root vertex is ::", retVal)
+            ret_val = i
+    
+    # ret_val may be the root vertex.
+    visited = [False] * count
+    dfs_util(gph, i, visited)
+
+    for i in range(count):
+        if visited[i] == False:
+            print("Disconnected graph!")
+            return -1
+
+    print("Root vertex is ::", ret_val)
+    return ret_val
 
 # Testing code
 def test5():
@@ -290,7 +299,6 @@ def test6():
 [1, 1, 1, 1]
 [0, 0, 0, 1]
 """
-
 
 def bfs_distance(gph, source, dest):
     count = gph.count
@@ -471,17 +479,17 @@ def is_connected_undirected(gph):
 
 # Testing code
 def test8():
-    g = Graph(6)
-    g.add_undirected_edge(0, 1)
-    g.add_undirected_edge(1, 2)
-    g.add_undirected_edge(3, 4)
-    g.add_undirected_edge(4, 2)
-    g.add_undirected_edge(2, 5)
-    #g.add_undirected_edge(3, 5)
-    print(is_cycle_present_undirected(g))
-    print(is_cycle_present_undirected2(g))
-    print(is_cycle_present_undirected3(g))
-    print("is_connected_undirected : ", is_connected_undirected(g))
+g = Graph(6)
+g.add_undirected_edge(0, 1)
+g.add_undirected_edge(1, 2)
+g.add_undirected_edge(3, 4)
+g.add_undirected_edge(4, 2)
+g.add_undirected_edge(2, 5)
+#g.add_undirected_edge(3, 5)
+print(is_cycle_present_undirected(g))
+print(is_cycle_present_undirected2(g))
+print(is_cycle_present_undirected3(g))
+print("is_connected_undirected : ", is_connected_undirected(g))
 
 """
 False
@@ -515,7 +523,6 @@ def is_cycle_present(graph):
             if is_cycle_present_dfs(graph, index, visited, marked) :
                 return True
     return False
-
 
 def is_cycle_present_color_dfs(graph, index, visited):
     visited[index] = "Grey"
@@ -565,13 +572,13 @@ def transpose_graph(gph):
 
 # Testing code
 def test10():
-    g = Graph(4)
-    g.add_directed_edge(0, 1)
-    g.add_directed_edge(0, 2)
-    g.add_directed_edge(1, 2)
-    g.add_directed_edge(2, 3)
-    g = transpose_graph(g)
-    g.print()
+g = Graph(4)
+g.add_directed_edge(0, 1)
+g.add_directed_edge(0, 2)
+g.add_directed_edge(1, 2)
+g.add_directed_edge(2, 3)
+g = transpose_graph(g)
+g.print()
 
 
 """
@@ -663,13 +670,32 @@ def test12():
 [6]
 """
 
+def printPathsUtil(previous, source, dest) :
+    if  dest == source :
+        print(source, end="", sep="")
+    else :
+        printPathsUtil(previous, source, previous[dest])
+        print("->", dest, end="", sep="")
+
+def printPaths(previous, distance, count,source) :
+    print("Shortest Paths: ", end="");
+    for i in range(count) :
+        if distance[i] == sys.maxsize :
+            print("(", source, "->", i, " @ Unreachable) ", end="", sep="")
+        elif i != previous[i] :
+            print("(", end="", sep="");
+            printPathsUtil(previous, source, i)
+            print(" @ ", distance[i],") ", end="", sep="")
+    print()
+
 def dijkstra(gph, source):
     previous = [-1] * gph.count
-    dist = [sys.maxsize] * gph.count
+    distance = [sys.maxsize] * gph.count
     visited = [False] * gph.count
 
-    dist[source] = 0
-    previous[source] = 0
+    distance[source] = 0
+    previous[source] = source
+
     pq = PriorityQueue()
     for i in range(gph.count):
         pq.add(sys.maxsize, i)
@@ -677,32 +703,28 @@ def dijkstra(gph, source):
     
     while pq.size() != 0:
         val = pq.pop()
-        source = val[1]
-        visited[source] = True
-        for edge in gph.adj[source]:
+        curr = val[1]
+        visited[curr] = True
+        for edge in gph.adj[curr]:
             destination = edge[0]
             cost = edge[1]
-            alt = cost + dist[source]
-            if alt < dist[destination] and visited[destination] == False:
-                dist[destination] = alt
-                previous[destination] = source
+            alt = cost + distance[curr]
+            if alt < distance[destination] and visited[destination] == False:
+                distance[destination] = alt
+                previous[destination] = curr
                 pq.update_key(alt, destination)
 
-    
-    for i in range(gph.count):
-        if dist[i] == sys.maxsize:
-            print("(", previous[i], "->", i , "@ Unreachable )", end="")
-        elif i != previous[i]:
-            print("(", previous[i], "->", i , "@" , dist[i], ")", end="")
-    print()
+    printPaths(previous, distance, gph.count, source)
 
 def primsMST(gph):
     previous = [-1] * gph.count
-    dist = [sys.maxsize] * gph.count
+    distance = [sys.maxsize] * gph.count
     visited = [False] * gph.count
+
     source = 0
-    dist[source] = 0
+    distance[source] = 0
     previous[source] = 0
+
     pq = PriorityQueue()
     for i in range(gph.count):
         pq.add(sys.maxsize, i)
@@ -716,20 +738,21 @@ def primsMST(gph):
         for edge in gph.adj[source]:
             destination = edge[0]
             cost = edge[1]
-            if cost < dist[destination] and visited[destination] == False:
-                dist[destination] = cost
+            if cost < distance[destination] and visited[destination] == False:
+                distance[destination] = cost
                 previous[destination] = source
                 pq.update_key(cost, destination)
     
     total_cost = 0
+    print("Edges are : ", end="");
     for i in range(gph.count):
-        if dist[i] == sys.maxsize:
-            print("(", previous[i], "->", i, "@" ,  "Unreachable )", end="")
+        if distance[i] == sys.maxsize:
+            print("(", i, " is Unreachable)", end="", sep="")
         elif i != previous[i]:
-            print("(", previous[i], "->", i, "@", dist[i], ")", end="")
-            total_cost += dist[i]
+            print("(", previous[i], "->", i, " @ ", distance[i], ")", end="", sep="")
+            total_cost += distance[i]
 
-    print("\nTotal MST cost: ", total_cost)
+    print("\nTotal MST cost:", total_cost)
 
 
 def kruskalMST(gph) :
@@ -750,15 +773,17 @@ def kruskalMST(gph) :
     edges.sort(key=lambda edge : edge[2])
     sum = 0
     output =  []
+
+    print("Edges are : ", end="");
     for i in range(E) :
         x = find(sets, edges[i][0])
         y = find(sets, edges[i][1])
         if (x != y) :
-            print("(", edges[i][0], "->" , edges[i][1], "@", edges[i][2], ")", end ="")
+            print("(", edges[i][0], "->" , edges[i][1], " @ ", edges[i][2], ")", end ="", sep="")
             sum += edges[i][2]
             output.append(edges[i])
             union(sets, x, y)
-    print("\nTotal MST cost: ", str(sum))
+    print("\nTotal MST cost:", str(sum))
    
 
 # Testing code
@@ -784,75 +809,74 @@ def test13():
 
 
 """ primsMST
-( 0 -> 1 @ 4 )( 1 -> 2 @ 8 )( 2 -> 3 @ 7 )( 3 -> 4 @ 9 )( 2 -> 5 @ 4 )( 5 -> 6 @ 2 )( 6 -> 7 @ 1 )( 2 -> 8 @ 2 )
-Total MST cost:  37
+Edges are : (0->1 @ 4)(1->2 @ 8)(2->3 @ 7)(3->4 @ 9)(2->5 @ 4)(5->6 @ 2)(6->7 @ 1)(2->8 @ 2)
+Total MST cost: 37
 """
 
 """ kruskalMST
-( 6 -> 7 @ 1 )( 2 -> 8 @ 2 )( 5 -> 6 @ 2 )( 0 -> 1 @ 4 )( 2 -> 5 @ 4 )( 2 -> 3 @ 7 )( 0 -> 7 @ 8 )( 3 -> 4 @ 9 )
-Total MST cost:  37
+Edges are : (6->7 @ 1)(2->8 @ 2)(5->6 @ 2)(0->1 @ 4)(2->5 @ 4)(2->3 @ 7)(0->7 @ 8)(3->4 @ 9)
+Total MST cost: 37
 """
 
 """dijkstra
-( 0 -> 1 @ 4 )( 1 -> 2 @ 12 )( 2 -> 3 @ 19 )( 5 -> 4 @ 21 )( 6 -> 5 @ 11 )( 7 -> 6 @ 9 )( 0 -> 7 @ 8 )( 2 -> 8 @ 14 )
+Shortest Paths: (0->1 @ 4) (0->1->2 @ 12) (0->1->2->3 @ 19) (0->7->6->5->4 @ 21) 
+                (0->7->6->5 @ 11) (0->7->6 @ 9) (0->7 @ 8) (0->1->2->8 @ 14) 
+ 
 """
 
 def shortest_path(gph, source):
     count = gph.count
     distance = [-1] * count
-    path = [-1] * count
+    previous = [-1] * count
     que = deque([])
-    que.append(source)
+    
     distance[source] = 0
+    previous[source] = source
+    que.append(source)
+
     while len(que) != 0:
         curr = que.popleft()
         for edge in gph.adj[curr]:
             destination = edge[0]
             if distance[destination] == -1:
                 distance[destination] = distance[curr] + 1
-                path[destination] = curr
+                previous[destination] = curr
                 que.append(destination)
-    
-    for i in range(count):
-        print(path[i] , "to" , i , "weight" , distance[i])
+        
+    printPaths(previous, distance, gph.count, source)
 
 # Testing code
 def test14():
     gph = Graph(9)
-    gph.add_directed_edge(0, 1, 4)
-    gph.add_directed_edge(0, 7, 8)
-    gph.add_directed_edge(1, 2, 8)
-    gph.add_directed_edge(1, 7, 11)
-    gph.add_directed_edge(2, 3, 7)
-    gph.add_directed_edge(2, 8, 2)
-    gph.add_directed_edge(2, 5, 4)
-    gph.add_directed_edge(3, 4, 9)
-    gph.add_directed_edge(3, 5, 14)
-    gph.add_directed_edge(4, 5, 10)
-    gph.add_directed_edge(5, 6, 2)
-    gph.add_directed_edge(6, 7, 1)
-    gph.add_directed_edge(6, 8, 6)
-    gph.add_directed_edge(7, 8, 7)
+    gph.add_directed_edge(0, 1)
+    gph.add_directed_edge(0, 7)
+    gph.add_directed_edge(1, 2)
+    gph.add_directed_edge(1, 7)
+    gph.add_directed_edge(2, 3)
+    gph.add_directed_edge(2, 8)
+    gph.add_directed_edge(2, 5)
+    gph.add_directed_edge(3, 4)
+    gph.add_directed_edge(3, 5)
+    gph.add_directed_edge(4, 5)
+    gph.add_directed_edge(5, 6)
+    gph.add_directed_edge(6, 7)
+    gph.add_directed_edge(6, 8)
+    gph.add_directed_edge(7, 8)
     shortest_path(gph, 0)
 
-
 """
--1 to 0 weight 0
-0 to 1 weight 1
-1 to 2 weight 2
-2 to 3 weight 3
-3 to 4 weight 4
-2 to 5 weight 3
-5 to 6 weight 4
-0 to 7 weight 1
-7 to 8 weight 2
+Shortest Paths: (0->1 @ 1) (0->1->2 @ 2) (0->1->2->3 @ 3) (0->1->2->3->4 @ 4) 
+                (0->1->2->5 @ 3) (0->1->2->5->6 @ 4) (0->7 @ 1) (0->7->8 @ 2) 
+
 """
 
 def bellman_ford_shortest_path(gph, source):
     count = gph.count
     distance = [sys.maxsize] * count
-    path = [-1] * count
+    previous = [-1] * count
+
     distance[source] = 0
+    previous[source] = source
 
     # Outer loop will run (V-1) number of times. 
     # Inner for loop and loop runs combined will 
@@ -864,9 +888,10 @@ def bellman_ford_shortest_path(gph, source):
                 newDistance = distance[j] + edge[1]
                 if distance[edge[0]] > newDistance:
                     distance[edge[0]] = newDistance
-                    path[edge[0]] = j
-    for i in range(count):
-        print(path[i] , "to" , i , "weight" , distance[i])
+                    previous[edge[0]] = j
+
+
+    printPaths(previous, distance, gph.count, source)
 
 # Testing code
 def test15():
@@ -880,11 +905,7 @@ def test15():
     bellman_ford_shortest_path(g, 0)
 
 """
--1 to 0 weight 0
-4 to 1 weight 0
-1 to 2 weight 1
-2 to 3 weight 2
-0 to 4 weight 2
+Shortest Paths: (0->4->1 @ 0) (0->4->1->2 @ 1) (0->4->1->2->3 @ 2) (0->4 @ 2) 
 """
 
 def height_tree_parent_arr(arr):
@@ -1151,17 +1172,17 @@ def printSolution(cost,  path,  V) :
     for u in range(V) :
         for v in range(V) :
             if (u != v and path[u][v] != -1) :
-                print("Shortest Path from %d to %d " % (u,v),end ="", sep ="")
-                print("Cost:" + str(cost[u][v]) + " Path:", end ="")
+                print("Shortest Path from %d to %d, " % (u,v), end ="")
+                print("Cost: " + str(cost[u][v]) + " & Path: ", end ="")
                 printPath(path, u, v)
                 print()
 
 def printPath(path,  u,  v) :
     if (path[u][v] == u) :
-        print(str(u) + " " + str(v) + " ", end ="")
+        print(str(u) + "->" + str(v), end ="")
         return
     printPath(path, u, path[u][v])
-    print(str(v) + " ", end ="")
+    print("->" + str(v), end ="")
 
 def test20() :
     gph = Graph(4)
@@ -1176,14 +1197,14 @@ def test20() :
     floydWarshall(gph)
 
 """
-Shortest Path from 0 to 1 Cost:5 Path:0 1 
-Shortest Path from 0 to 2 Cost:8 Path:0 1 2 
-Shortest Path from 0 to 3 Cost:9 Path:0 1 2 3 
-Shortest Path from 1 to 2 Cost:3 Path:1 2 
-Shortest Path from 1 to 3 Cost:4 Path:1 2 3 
-Shortest Path from 2 to 3 Cost:1 Path:2 3 
+Shortest Path from 0 to 1, Cost: 5 & Path: 0->1
+Shortest Path from 0 to 2, Cost: 8 & Path: 0->1->2
+Shortest Path from 0 to 3, Cost: 9 & Path: 0->1->2->3
+Shortest Path from 1 to 2, Cost: 3 & Path: 1->2
+Shortest Path from 1 to 3, Cost: 4 & Path: 1->2->3
+Shortest Path from 2 to 3, Cost: 1 & Path: 2->3
 """
-"""
+
 test1()
 test2()
 test3()
@@ -1196,9 +1217,7 @@ test9()
 test10()
 test11()
 test12()
-"""
 test13()
-"""
 test14()
 test15()
 test16()
@@ -1206,4 +1225,3 @@ test17()
 test18()
 test19()
 test20()
-"""

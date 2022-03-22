@@ -55,10 +55,10 @@ def find_missing(arr, start, end):
 
 # Testing Code
 arr = [1, 2, 3, 5, 6, 7, 8, 9, 10]
-print(find_missing(arr, 1, 10))
+print("Missing number :", find_missing(arr, 1, 10))
 
 """
-4
+Missing number : 4
 """
 
 def print_repeating(arr):

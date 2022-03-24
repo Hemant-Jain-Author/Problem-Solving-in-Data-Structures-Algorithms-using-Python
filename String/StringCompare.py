@@ -17,6 +17,7 @@ def robinkarp_search(text, pattern):
     powm = 1
     text_hash = 0
     pattern_hash = 0
+
     if m == 0 or m > n:
         return -1
     

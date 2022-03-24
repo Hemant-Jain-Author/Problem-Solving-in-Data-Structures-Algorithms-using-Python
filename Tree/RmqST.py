@@ -72,7 +72,7 @@ class RmqST :
         return  self.segarray[index]
 
 
-// Testing Code
+# Testing Code
 arr = [2, 3, 1, 7, 12, 5]
 tree = RmqST(arr)
 print("Min value in the range(1, 5): " + str(tree.get_min(1, 5)))

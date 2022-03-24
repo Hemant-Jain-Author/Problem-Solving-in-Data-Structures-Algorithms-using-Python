@@ -44,13 +44,13 @@ def test1():
     tour = [[8, 6], 
     [1, 4], 
     [7, 6]]
-    print(circular_tour(tour, 3))
-    print(circular_tour2(tour, 3))
+    print("Circular tour :", circular_tour(tour, 3))
+    print("Circular tour :", circular_tour2(tour, 3))
 
 
 """
-2
-2
+Circular tour : 2
+Circular tour : 2
 """
 
 def convert_XY(src, dst):
@@ -77,9 +77,9 @@ def test2():
     print("3 to 6 Steps counter ::", convert_XY(3, 6))
 
 """
-3 to  4  :  2
-3 to  5  :  2
-3 to  6  :  1
+3 to 4 Steps counter :: 2
+3 to 5 Steps counter :: 2
+3 to 6 Steps counter :: 1
 """
 
 def max_sliding_windows(arr,  k) :
@@ -192,11 +192,11 @@ def maxofmin_sliding_windows(arr, k):
 
 # Testing Code
 def test6():
-    arr = [10, 20, 30, 50, 10, 70, 30]
+    arr = [11, 2, 75, 92, 59, 90, 55]
     maxofmin_sliding_windows(arr, 3)
 
 """     
-Max of min is : 20
+Max of min is : 59
 """
 
 def rotten_fruit_util(arr,  maxCol,  maxRow,  currCol,  currRow,  traversed,  day) :
@@ -266,7 +266,10 @@ def test7() :
     print("rotten_fruit : ", rotten_fruit(arr, 5, 5))
     print("rotten_fruit : ", rotten_fruit2(arr, 5, 5))
 
-#  3
+"""
+Rotten Fruit : 3
+Rotten Fruit : 3
+"""
 
 def steps_of_knight_util(size,  currCol,  currRow,  traversed,  dist) :
     dir = [[-2, -1], [-2, 1], [2, -1], [2, 1], [-1, -2], [1, -2], [-1, 2], [1, 2]]
@@ -308,7 +311,10 @@ def test8() :
     print("steps_of_knight : ", steps_of_knight(20, 10, 10, 20, 20))
     print("steps_of_knight : ", steps_of_knight2(20, 10, 10, 20, 20))
 
-#  8
+"""
+Steps of knight : 8
+Steps of knight : 8
+"""
 
 def dist_nearest_fill_util(arr,  maxCol,  maxRow,  currCol,  currRow,  traversed,  dist) :
     #  Range check
@@ -394,7 +400,6 @@ def test10() :
     stk =  []
     for i in range(5) :
         stk.append(i)    
-
     print(stk)
     reverse_stack(stk)
     print(stk)
@@ -402,7 +407,6 @@ def test10() :
     que =  deque()
     for i in range( 5) :
         que.append(i)    
-
     print(que)
     reverse_queue(que)
     print(que)
@@ -422,7 +426,9 @@ def josephus(n,  k) :
 def test11() :
     print("Position :", josephus(11, 5))
 
-# Position : 8
+"""
+Position : 8
+"""
 
 test1()
 test2()

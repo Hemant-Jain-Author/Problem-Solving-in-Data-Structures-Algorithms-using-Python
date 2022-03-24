@@ -27,56 +27,56 @@ class RangeMaxST :
         return  self.segarray[index]
 
 
-    def get_max(self, start,  end) :
-        #  Check for error conditions.
-        if (start > end or start < 0 or end > self.n - 1) :
-            print("Invalid Input.")
-            return  -sys.maxsize
-        return  self.get_max_util(0, self.n - 1, start, end, 0)
+def get_max(self, start,  end) :
+    #  Check for error conditions.
+    if (start > end or start < 0 or end > self.n - 1) :
+        print("Invalid Input.")
+        return  -sys.maxsize
+    return  self.get_max_util(0, self.n - 1, start, end, 0)
 
-    def get_max_util(self, seg_start,  seg_end,  query_start,  query_end,  index) :
-        if (query_start <= seg_start and seg_end <= query_end) : #  complete overlapping case.
-            return  self.segarray[index]
-        if (seg_end < query_start or query_end < seg_start) : #  no overlapping case.
-            return  -sys.maxsize
-        #  Segment tree is partly overlaps with the query range.
-        mid = int((seg_start + seg_end) / 2)
-        return  max(self.get_max_util(seg_start, mid, query_start, query_end, 2 * index + 1), self.get_max_util(mid + 1, seg_end, query_start, query_end, 2 * index + 2))
+def get_max_util(self, seg_start,  seg_end,  query_start,  query_end,  index) :
+    if (query_start <= seg_start and seg_end <= query_end) : #  complete overlapping case.
+        return  self.segarray[index]
+    if (seg_end < query_start or query_end < seg_start) : #  no overlapping case.
+        return  -sys.maxsize
+    #  Segment tree is partly overlaps with the query range.
+    mid = int((seg_start + seg_end) / 2)
+    return  max(self.get_max_util(seg_start, mid, query_start, query_end, 2 * index + 1), self.get_max_util(mid + 1, seg_end, query_start, query_end, 2 * index + 2))
 
-    def update(self, ind,  val) :
-        #  Check for error conditions.
-        if (ind < 0 or ind > self.n - 1) :
-            print("Invalid Input.")
-            return
-        #  Update the values in segment tree
-        self.update_util(0, self.n - 1, ind, val, 0)
-    
-    #  Always min inside valid range will be returned.
-    def update_util(self, seg_start,  seg_end,  ind,  val,  index) :
-        #  Update index lies outside the range of current segment.
-        #  So minimum will not change.
-        if (ind < seg_start or ind > seg_end) :
-            return  self.segarray[index]
+def update(self, ind,  val) :
+    #  Check for error conditions.
+    if (ind < 0 or ind > self.n - 1) :
+        print("Invalid Input.")
+        return
+    #  Update the values in segment tree
+    self.update_util(0, self.n - 1, ind, val, 0)
 
-        #  If the input index is in range of this node, then update the
-        #  value of the node and its children
-        if (seg_start == seg_end) :
-            if (seg_start == ind) : #  Index value need to be updated.
-                self.segarray[index] = val
-                return  val
-            else :
-                return  self.segarray[index]
-
-        mid = (seg_start + seg_end) // 2
-
-        #  Current node value is updated with min. 
-        self.segarray[index] = max(self.update_util(seg_start, mid, ind, val, 2 * index + 1), self.update_util(mid + 1, seg_end, ind, val, 2 * index + 2))
-        
-        #  Value of diff is propagated to the parent node.
+#  Always min inside valid range will be returned.
+def update_util(self, seg_start,  seg_end,  ind,  val,  index) :
+    #  Update index lies outside the range of current segment.
+    #  So minimum will not change.
+    if (ind < seg_start or ind > seg_end) :
         return  self.segarray[index]
 
+    #  If the input index is in range of this node, then update the
+    #  value of the node and its children
+    if (seg_start == seg_end) :
+        if (seg_start == ind) : #  Index value need to be updated.
+            self.segarray[index] = val
+            return  val
+        else :
+            return  self.segarray[index]
 
-// Testing Code
+    mid = (seg_start + seg_end) // 2
+
+    #  Current node value is updated with min. 
+    self.segarray[index] = max(self.update_util(seg_start, mid, ind, val, 2 * index + 1), self.update_util(mid + 1, seg_end, ind, val, 2 * index + 2))
+    
+    #  Value of diff is propagated to the parent node.
+    return  self.segarray[index]
+
+
+# Testing Code
 arr = [1, 8, 2, 7, 3, 6, 4, 5]
 tree = RangeMaxST(arr)
 print("Max value in the range(1, 5): " + str(tree.get_max(1, 5)))

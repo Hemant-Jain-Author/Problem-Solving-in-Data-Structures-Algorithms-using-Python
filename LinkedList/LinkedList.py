@@ -1,5 +1,5 @@
 class LinkedList(object):
-    # Node class representing elements of linked list.
+        # Node class representing elements of linked list.
     class Node:
         def __init__(self, v, n=None):
             self.value = v
@@ -197,9 +197,11 @@ class LinkedList(object):
             curr = curr.next
         return curr.value
 
-    def find_intersection(self, head, head2):
+    def find_intersection(self, list2):
         l1 = 0
         l2 = 0
+        head = self.head
+        head2 = list2.head
         tempHead = head
         tempHead2 = head2
         while tempHead != None:
@@ -209,16 +211,18 @@ class LinkedList(object):
             l2 += 1
             tempHead2 = tempHead2.next
         diff = int()
-        if l1 < 12:
+        if l1 < l2:
             temp = head
             head = head2
             head2 = temp
             diff = l2 - l1
         else:
             diff = l1 - l2
+        
         while diff > 0:
             head = head.next
             diff -= 1
+        
         while head != head2:
             head = head.next
             head2 = head2.next
@@ -327,65 +331,184 @@ class LinkedList(object):
 
 
 # Testing Code
-ll = LinkedList()
-ll.add_head(1)
-ll.add_head(2)
-ll.add_head(3)
-ll.add_head(4)
-ll.print()
+def test1():
+    ll = LinkedList()
+    ll.add_head(1)
+    ll.add_head(2)
+    ll.add_head(3)
+    ll.print()
+    ll.delete_node(2)
+    ll.print()
 
-print(ll.compare_list2(ll))
+"""
+3 2 1 
+3 1 
+"""
+# Testing Code
+def test2():
+    ll = LinkedList()
+    ll.sorted_insert(1)
+    ll.sorted_insert(3)
+    ll.sorted_insert(2)
+    ll.sorted_insert(4)
+    ll.print()
+
+"""
+1 2 3 4 
+"""
+
+# Testing Code
+def test3():
+    ll = LinkedList()
+    ll.add_head(1)
+    ll.add_head(2)
+    ll.add_head(1)
+    ll.add_head(3)
+    ll.add_head(1)
+    ll.print()
+    ll.delete_nodes(1)
+    ll.print()
+
+"""
+1 3 1 2 1 
+3 2 
+"""
+
+# Testing Code
+def test4():
+    ll = LinkedList()
+    ll.add_head(1)
+    ll.add_head(2)
+    ll.add_head(3)
+    ll.print()
+    ll.reverse()
+    ll.print()
+    ll.reverse_recurse()
+    ll.print()
+
+"""
+3 2 1 
+1 2 3 
+3 2 1
+"""
+
+# Testing Code
+def test5():
+    ll = LinkedList()
+    for i in range(3):
+        ll.add_head(i)
+        ll.add_head(i)
+    ll.print()
+    ll.remove_duplicate()
+    ll.print()
+
+"""
+2 2 1 1 0 0 
+2 1 0 
+    """
+
+# Testing Code
+def test6():
+    ll = LinkedList()
+    ll.add_head(1)
+    ll.add_head(2)
+    ll.add_head(3)
+    ll.print()
+    l2 = ll.copy_list()
+    l2.print()
+    l3 = ll.copy_list_reversed()
+    l3.print()
+    print("Compare list:", ll.compare_list(l2))
+    print("Compare list:", ll.compare_list2(l2))
+
+
+"""
+3 2 1 
+3 2 1 
+1 2 3 
+Compare list: True
+"""
+
+
+# Testing Code
+def test7():
+    ll = LinkedList()
+    ll.add_head(1)
+    ll.add_head(2)
+    ll.add_head(3)
+    ll.add_head(4)
+    ll.print()
+    print("Nth Node from begining:", ll.nth_node_from_begining(2))
+    print("Nth Node from end:", ll.nth_node_from_end(2))
+    print("Nth Node from end:", ll.nth_node_from_end2(2))
+
+
 """
 4 3 2 1 
-True
+Nth Node from begining: 3
+Nth Node from end: 2
+Nth Node from end: 2
+    """
+
+# Testing Code
+def test8():
+    ll = LinkedList()
+    ll.add_head(1)
+    ll.add_head(2)
+    ll.add_head(3)
+    ll.print()
+    ll.make_loop()
+    print(ll.loop_detect())
+    print(ll.loop_type_detect())
+    print(ll.loop_point_detect().value)
+    print(ll.reverse_list_loop_detect())
+    ll.remove_loop()
+    print(ll.loop_detect())
+
 """
-# ll.sorted_insert(1)
-# ll.sorted_insert(2)
-# ll.sorted_insert(3)
-# ll.sorted_insert(5)
-# ll.sorted_insert(0)
-# ll.print()
-# ll.make_loop()
-# print(ll.loop_detect())
-# print(ll.loop_type_detect())
-# print(ll.loop_point_detect().value)
-# print(ll.reverse_list_loop_detect())
-# print(ll.remove_loop())
+3 2 1 
+loop found
+True
+circular list loop found
+2
+3
+loop found
+True
+None
+loop not found
+False
+    """
 
-#=======================================================================
-# print ll.is_empty()
-#=======================================================================
-#=======================================================================
-# print ll.is_empty()
-# print ll.peek()
-# print ll.remove_head()
-# ll.print()
-#=======================================================================
-#=======================================================================
-# print ll.is_present(5)
-# print ll.is_present(2)
-# ll.remove_duplicate()
-# print ll.is_empty()
-# ll.delete_nodes(3)
-#=======================================================================
-#=======================================================================
-# ll.reverse()
-# ll.print()
-# ll.reverse_recurse()
-# ll.print()
-#=======================================================================
-#=======================================================================
-# ll3 = ll.copy_list_reversed()
-# ll3.print()
-#  
-# ll2 = ll.copy_list()
-# ll2.print()
-# print ll.length()
-#=======================================================================
-#=======================================================================
-# print ll.nth_node_from_begining(2)
-# print ll.nth_node_from_end(2)
-# print ll.nth_node_from_end2(2)
-#=======================================================================
+# Testing Code
+def test9():
+    ll = LinkedList()
+    ll.add_head(1)
+    ll.add_head(2)
+    ll.add_head(3)
+    l2 = LinkedList()
+    l2.head = ll.head
+    l2.add_head(4)
+    ll.add_head(5)
+    ll.add_head(6)
+    ll.print()
+    l2.print()
 
-      
+    nd = ll.find_intersection(l2)
+    print("Value at the intersection is:", nd.value)
+
+
+"""
+6 5 3 2 1 
+4 3 2 1 
+Value at the intersection is: 3
+"""
+
+test1()
+test2()
+test3()
+test4()
+test5()
+test6()
+test7()
+test8()
+test9()

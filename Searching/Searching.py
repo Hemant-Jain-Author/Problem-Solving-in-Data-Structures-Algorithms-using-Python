@@ -39,8 +39,6 @@ def binary_search(arr, value):
 def binary_search_recursive(arr, value):
     return binary_search_recursive_util(arr, 0, len(arr) - 1, value)
 
-
-#  Binary Search Algorithm - Recursive Way
 def binary_search_recursive_util(arr, low, high, value):
     if low > high:
         return False
@@ -52,7 +50,8 @@ def binary_search_recursive_util(arr, low, high, value):
     else:
         return binary_search_recursive_util(arr, low, mid - 1, value)
 
-def fibonacci_search(arr,  size,  value) :
+def fibonacci_search(arr,  value) :
+    size = len(arr)
     # Initialize fibonacci numbers 
     fibNMn2 = 0
     fibNMn1 = 1
@@ -87,36 +86,47 @@ def test1():
     first = [1, 3, 5, 7, 9, 25, 30]
     print(linear_search_unsorted(first, 8))
     print(linear_search_unsorted(first, 3))
+
     print(linear_search_sorted(first, 8))
     print(linear_search_sorted(first, 3))
 
     first = [1, 3, 5, 7, 9, 25, 30]
-    print(binary_search_recursive(first, 3))
+    print(binary_search(first, 8))
     print(binary_search(first, 3))
 
-    for i in range(10):
-        print(i, ":", fibonacci_search(first, 7, i))  
+    print(binary_search_recursive(first, 8))
+    print(binary_search_recursive(first, 3))
+    
+    print(fibonacci_search(first, 8))
+    print(fibonacci_search(first, 3))
+
 
 """
 False
 True
 False
 True
+False
 True
+False
+True
+False
 True
 """
-"""
-0 : False
-1 : True
-2 : False
-3 : True
-4 : False
-5 : True
-6 : False
-7 : True
-8 : False
-9 : True
-"""
+
+def sum_array(arr):
+    size = len(arr)
+    total = 0
+    for index in range(size):
+        total += arr[index]
+    return total
+
+# Testing Code
+def test8():
+    arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    print(sum_array(arr))
+
+# 45
 
 def first_repeated(arr):
     size = len(arr)
@@ -124,7 +134,7 @@ def first_repeated(arr):
         for j in range(i+1, size):
             if arr[i] == arr[j]:
                 return arr[i]
-    return sys.maxsize  # can raise exception.
+    return sys.maxsize
 
 def first_repeated2(arr) :
     size = len(arr)
@@ -138,7 +148,7 @@ def first_repeated2(arr) :
     for i in range(size) :
         if (hm.get(arr[i]) == 2) :
             return  arr[i]
-    return  0
+    return sys.maxsize
 
 
 # Testing Code
@@ -863,7 +873,7 @@ def sum_pair_rest_array(arr):
     while low < high:
         curr = arr[low] + arr[high]
         if curr == value:
-            print(arr[low] , arr[high])
+            print("Pair is", arr[low] , arr[high])
             return True
         elif curr < value:
             low += 1
@@ -1068,15 +1078,13 @@ def find_key_count2(arr, key):
 
 # Testing Code
 def test20():
-    first = [1, 5, 10, 13, 20, 30, 8, 7, 6]
+    first = [1, 5, 6, 6, 6, 7, 8, 10, 13, 20, 30 ]
     print(find_key_count(first, 6))
-
-    first = [1, 5, 6, 6, 6, 6, 6, 6, 7, 8, 10, 13, 20, 30 ]
     print(find_key_count2(first, 6))
 
 """
-1
-6
+3
+3
 """
 
 def swap(arr, first, second):
@@ -1493,14 +1501,17 @@ def find_missing_number(arr, upper_range):
                 break
         if found == 0:
             return i
+        
     return sys.maxsize
 
 def find_missing_number2(arr) :
     size = len(arr)
     arr.sort()
+    
     for i in range(size) :
         if (arr[i] != i + 1) :
             return  i + 1
+        
     return  size
 
 def find_missing_number3(arr) :
@@ -1519,10 +1530,12 @@ def find_missing_number4(arr) :
     size = len(arr)
     count = [-1] * (size + 1)
     for i in range(size) :
-        count[arr[i] - 1] = 1    
+        count[arr[i] - 1] = 1 
+           
     for i in range(size+1) :
         if (count[i] == -1) :
-            return  i + 1    
+            return  i + 1  
+          
     return  sys.maxsize
 
 def find_missing_number5(arr) :
@@ -1531,8 +1544,10 @@ def find_missing_number5(arr) :
     #  Element value range is from 1 to size+1.
     for i in range(1, (size + 2)) :
         sum += i    
+        
     for i in range(size) :
-        sum -= arr[i]    
+        sum -= arr[i]   
+         
     return  sum
 
 def find_missing_number6(arr) :
@@ -1553,6 +1568,7 @@ def find_missing_number7(arr, upper_range):
     size = len(arr)
     i = 1
     xor_sum = 0
+    
     for i in range(1, upper_range+1):
         xor_sum ^= i
 
@@ -1571,6 +1587,7 @@ def find_missing_number8(arr, upper_range):
     for i in range(1, upper_range+1):
         if (i in mset) == False:
             return i
+        
     return sys.maxsize
 
 # Testing Code
@@ -1872,14 +1889,13 @@ def find_ceil(arr, value):
 # Testing Code
 def test38():
     arr = [2, 4, 8, 16]
-    for i in range(2,6):
+    for i in range(2,5):
         print(i , find_floor(arr, i), find_ceil(arr, i))
 
 """
 2 2 2
 3 2 4
 4 4 4
-5 4 8
 """
 
 def closest_number(arr, num):
@@ -1904,7 +1920,7 @@ def closest_number(arr, num):
 
 # Testing Code
 def test38A():
-    arr = [2, 5, 8, 8, 9]
+    arr = [2, 5, 8, 9]
     for i in range(6):
         print(i, "is closest to:", closest_number(arr, i))
 
@@ -2316,7 +2332,7 @@ def max_con_sub_arr2(A,  B) :
 
 # Testing Code
 def test47() :
-    arr = [1, 2, -3, 4, 5, -10, 6, 7]
+    arr = [1, -2, 3, 4, -4, 6, -4, 8, 2]
     max_con_sub(arr)
     arr2 = [1, 2, 3, 4, 5, -10, 6, 7, 3]
     arr3 = [1, 3]
@@ -2324,7 +2340,7 @@ def test47() :
     max_con_sub_arr2(arr2, arr3)
 
 """
-13
+15
 13
 13
 """

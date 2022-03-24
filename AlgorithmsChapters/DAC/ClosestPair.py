@@ -1,11 +1,6 @@
 import math
 import sys
 
-class Point :
-    def __init__(self, a,  b) :
-        self.x = a
-        self.y = b
-
 def closestPairBF(arr) :
     n = len(arr)
     dmin = sys.maxsize
@@ -15,6 +10,12 @@ def closestPairBF(arr) :
             if (d < dmin) :
                 dmin = d
     return  dmin
+
+
+class Point :
+    def __init__(self, a,  b) :
+        self.x = a
+        self.y = b
 
 def distance(a,  b) :
     return  math.sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y))

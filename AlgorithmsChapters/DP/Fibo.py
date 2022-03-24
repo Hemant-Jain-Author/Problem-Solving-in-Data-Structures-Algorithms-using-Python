@@ -5,7 +5,6 @@ def fibonacci(n) :
     return  fibonacci(n - 1) + fibonacci(n - 2)
 
 def fibonacci_series(n) :
-    arr = [0] * n
     for i in range(0, n) :
         arr[i] = fibonacci(i)
     print(arr)

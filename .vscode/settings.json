@@ -5,8 +5,11 @@
         "bhim",
         "bitonic",
         "chota",
+        "coeff",
+        "coeffs",
         "curr",
         "currsum",
+        "expn",
         "heapify",
         "heapq",
         "infi",
@@ -22,6 +25,7 @@
         "segarray",
         "segtree",
         "sortk",
-        "strcmp"
+        "strcmp",
+        "treversal"
     ]
 }

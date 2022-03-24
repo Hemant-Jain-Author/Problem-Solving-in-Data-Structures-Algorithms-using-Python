@@ -137,6 +137,24 @@ def k_smallest_product2(arr, k):
         i += 1
     return product
 
+
+def k_smallest_product3(arr, k) :
+    size = len(arr)
+    hp = []
+    for i in range(size) :
+        if(i < k) :
+            heapq.heappush(hp, -1*arr[i])
+        else :
+            if (-1*hp[0] > arr[i]) :
+                heapq.heappush(hp, -1*arr[i])
+                heapq.heappop(hp)
+
+    product = 1
+    for i in range(k) :
+        product *= -1*hp[i]
+    return product;
+
+
 def swap(arr, first, second):
     arr[first], arr[second] = arr[second], arr[first]
 
@@ -163,7 +181,7 @@ def quick_select_util(arr, lower, upper, k):
         #  pivot + 1 is the lower for right sub array.
         quick_select_util(arr, upper + 1, stop, k)   
 
-def k_smallest_product3(arr, k) :
+def k_smallest_product4(arr, k) :
     size = len(arr)
     quick_select_util(arr, 0, size - 1, k)
     product = 1
@@ -179,8 +197,11 @@ def test3():
     print("Kth Smallest product::", k_smallest_product2(arr2, 3))
     arr3 = [8, 7, 6, 5, 7, 5, 2, 1] 
     print("Kth Smallest product::", k_smallest_product3(arr3, 3))
+    arr4 = [8, 7, 6, 5, 7, 5, 2, 1] 
+    print("Kth Smallest product::", k_smallest_product4(arr4, 3))
 
 """
+Kth Smallest product:: 10
 Kth Smallest product:: 10
 Kth Smallest product:: 10
 Kth Smallest product:: 10
@@ -260,6 +281,19 @@ def kth_smallest2(arr, k):
         i += 1
     return value
 
+def kth_smallest3(arr, k) :
+    size = len(arr)
+    hp = []
+    for i in range(size) :
+        if(i < k) :
+            heapq.heappush(hp, -1*arr[i])
+        else :
+            if (-1*hp[0] > arr[i]) :
+                heapq.heappush(hp, -1*arr[i])
+                heapq.heappop(hp)
+    return -1*hp[0]
+
+
 def quick_select(array, k):
     arr = array
     size = len(arr)
@@ -274,8 +308,11 @@ def test5():
     print(kth_smallest2(first, 5))
     first = [1, 7, 5, 4, 8, 3, 9, 2, 6, 10]
     print(quick_select(first, 5))
+    first = [1, 7, 5, 4, 8, 3, 9, 2, 6, 10]
+    print(kth_smallest3(first, 5))
 
 """
+5
 5
 5
 5

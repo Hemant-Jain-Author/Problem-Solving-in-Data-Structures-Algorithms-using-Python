@@ -25,19 +25,16 @@ que = Queue()
 que.add(1)
 que.add(2)
 que.add(3)
-print(que.length())
-print(que.is_empty())
-print(que.remove())
-print(que.remove())
-print(que.remove())
-print(que.length())
-print(que.is_empty())
+que.print()
+print("Queue length:", que.length())
+print("Queue is empty:", que.is_empty())
+print("Queue remove:", que.remove())
+que.print()
+
 """
-3
-False
-1
-2
-3
-0
-True
+deque([1, 2, 3])
+Queue length: 3
+Queue is empty: False
+Queue remove: 1
+deque([2, 3])
 """

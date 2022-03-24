@@ -12,18 +12,18 @@ class Tree(object):
     def __init__(self):
         self.root = None
 
-    def level_order_binary_tree(self, arr):
-        self.root = self.level_order_binary_tree_util(arr, 0)
+    def create_complete_binary_tree(self, arr):
+        self.root = self.create_complete_binary_tree_util(arr, 0)
 
-    def level_order_binary_tree_util(self, arr, start):
+    def create_complete_binary_tree_util(self, arr, start):
         size = len(arr)
         curr = self.Node(arr[start])
         left = 2 * start + 1
         right = 2 * start + 2
         if left < size:
-            curr.left = self.level_order_binary_tree_util(arr, left)
+            curr.left = self.create_complete_binary_tree_util(arr, left)
         if right < size:
-            curr.right = self.level_order_binary_tree_util(arr, right)
+            curr.right = self.create_complete_binary_tree_util(arr, right)
         return curr
 
     def add(self, value):
@@ -61,7 +61,7 @@ class Tree(object):
         if node != None:
             count[0] += 1
             if count[0] == index:
-                print(node.value, end=' ')
+                print("nth pre order:", node.value)
             self.nth_pre_order_util(node.left, index, count)
             self.nth_pre_order_util(node.right, index, count)
 
@@ -89,7 +89,7 @@ class Tree(object):
             self.nth_post_order_util(node.right, index, count)
             count[0] += 1
             if count[0] == index:
-                print(node.value, end=' ')
+                print("nth post order:", node.value)
 
 
     def print_in_order(self):
@@ -115,7 +115,7 @@ class Tree(object):
             self.nth_in_order_util(node.left, index, count)
             count[0] += 1
             if count[0] == index:
-                print(node.value, end=' ')
+                print("nth in order:", node.value)
             self.nth_in_order_util(node.right, index, count)
 
     def print_breadth_first(self):
@@ -130,6 +130,7 @@ class Tree(object):
                 que.append(temp.left)
             if temp.right != None:
                 que.append(temp.right)
+        print()
 
     def print_depth_first(self):
         stk = []
@@ -143,6 +144,7 @@ class Tree(object):
                 stk.append(temp.right)            
             if temp.left != None:
                 stk.append(temp.left)
+        print()
 
     def print_level_order_linebyline(self):
         que1 = deque([])
@@ -260,31 +262,31 @@ class Tree(object):
     def free(self):
         self.root = None
 
-    def delete_node(self, value):
-        self.root = self.delete_node_util(self.root, value)
+def delete_node(self, value):
+    self.root = self.delete_node_util(self.root, value)
 
-    def delete_node_util(self, node, value):
-        temp = None
-        if node != None:
-            if node.value == value:
-                if node.left == None and node.right == None:
-                    return None
-                else:
-                    if node.left == None:
-                        temp = node.right
-                        return temp
-                    if node.right == None:
-                        temp = node.left
-                        return temp
-                    maxnode = self.find_max_util(node.left)
-                    node.value = maxnode.value
-                    node.left = self.delete_node_util(node.left, maxnode.value)
+def delete_node_util(self, node, value):
+    temp = None
+    if node != None:
+        if node.value == value:
+            if node.left == None and node.right == None:
+                return None
             else:
-                if node.value > value:
-                    node.left = self.delete_node_util(node.left, value)
-                else:
-                    node.right = self.delete_node_util(node.right, value)
-        return node
+                if node.left == None:
+                    temp = node.right
+                    return temp
+                if node.right == None:
+                    temp = node.left
+                    return temp
+                maxnode = self.find_max_util(node.left)
+                node.value = maxnode.value
+                node.left = self.delete_node_util(node.left, maxnode.value)
+        else:
+            if node.value > value:
+                node.left = self.delete_node_util(node.left, value)
+            else:
+                node.right = self.delete_node_util(node.right, value)
+    return node
 
 
     def tree_depth(self):
@@ -440,6 +442,7 @@ class Tree(object):
                 stk.append(curr.right)
             if curr.left != None:
                 stk.append(curr.left)
+        print()
 
     def iterative_post_order(self):
         stk = []
@@ -461,6 +464,7 @@ class Tree(object):
                 if curr.left != None:
                     stk.append(curr.left)
                     visited.append(0)
+        print()
 
     def iterative_in_order(self):
         stk = []
@@ -482,56 +486,51 @@ class Tree(object):
                 if curr.left != None:
                     stk.append(curr.left)
                     visited.append(0)
+        print()
 
-    def is_bst3(self):
-        return self.is_bst3_util(self.root)
+    def is_bst1(self):
+        return self.is_bst1_util(self.root)
 
 
-    def is_bst3_util(self, root):
+    def is_bst1_util(self, root):
         if root == None:
             return True
         if root.left != None and self.find_max_util(root.left).value > root.value:
             return False
         if root.right != None and self.find_min_util(root.right).value <= root.value:
             return False
-        return (self.is_bst3_util(root.left) and self.is_bst3_util(root.right))
+        return (self.is_bst1_util(root.left) and self.is_bst1_util(root.right))
 
 
-    def is_bst(self):
-        return self.is_bst_util(self.root, -sys.maxsize, sys.maxsize)
+    def is_bst2(self):
+        return self.is_bst2_util(self.root, -sys.maxsize, sys.maxsize)
 
-    def is_bst_util(self, curr, minval, maxval):
+    def is_bst2_util(self, curr, minval, maxval):
         if curr == None:
             return True
         if curr.value < minval or curr.value > maxval:
             return False
-        return self.is_bst_util(curr.left, minval, curr.value) and self.is_bst_util(curr.right, curr.value, maxval)
+        return self.is_bst2_util(curr.left, minval, curr.value) and self.is_bst2_util(curr.right, curr.value, maxval)
 
 
-    def is_bst2(self):
-        count = [0]
-        return self.is_bst2_util(self.root, count)
+def is_bst3(self):
+    count = [0]
+    return self.is_bst3_util(self.root, count)
 
-    def is_bst2_util(self, curr, count):
-        #   in order  traversal 
-        ret = bool()
-        if curr != None:
-            ret = self.is_bst2_util(curr.left, count)
-            if not ret:
-                return False
-            if count[0] > curr.value:
-                return False
-            count[0] = curr.value
-            ret = self.is_bst2_util(curr.right, count)
-            if not ret:
-                return False
-        return True
+def is_bst3_util(self, curr, count):
+    #   in order  traversal 
+    if curr != None:
+        if not self.is_bst3_util(curr.left, count):
+            return False
 
-    """
-    To see if tree is a heap we need to check two conditions:
-    1) It is a complete tree.
-    2) Value of a node is grater than or equal to it's left and right child.
-    """
+        if count[0] > curr.value:
+            return False
+
+        count[0] = curr.value
+        if not self.is_bst3_util(curr.right, count):
+            return False
+    return True
+
     def find_count_util(self, curr):
         if curr == None:
             return 0
@@ -547,11 +546,11 @@ class Tree(object):
             return False 
         return self.is_complete_tree_util(curr.left, index*2+1, count) and self.is_complete_tree_util(curr.right, index*2+2, count)
 
-    def is_complete_tree(self):
+    def is_complete_tree2(self):
         count = self.find_count()
         return self.is_complete_tree_util(self.root, 0, count)
 
-    def is_complete_tree2(self):
+    def is_complete_tree(self):
         que = deque([])
         temp = None
         noChild = False
@@ -664,26 +663,26 @@ class Tree(object):
             return right
 
 
-    def lca_bst(self, first, second):
-        if first > second:
-            first, second = second, first
-        val = self.lca_bst_util(self.root, first, second)
-        if(val == sys.maxsize):
-            print("LCA does not exist")
-        else:
-            print("LCA is :", val) 
-        return  val
+def lca_bst(self, first, second):
+    if first > second:
+        first, second = second, first
+    val = self.lca_bst_util(self.root, first, second)
+    if(val == sys.maxsize):
+        print("LCA does not exist")
+    else:
+        print("LCA is :", val) 
+    return  val
 
-    def lca_bst_util(self, curr, first, second):
-        if curr == None:
-            return sys.maxsize
-        if curr.value > second:
-            return self.lca_bst_util(curr.left, first, second)
-        if curr.value < first:
-            return self.lca_bst_util(curr.right, first, second)
-        if self.find(first) and self.find(second):
-            return curr.value
+def lca_bst_util(self, curr, first, second):
+    if curr == None:
         return sys.maxsize
+    if curr.value > second:
+        return self.lca_bst_util(curr.left, first, second)
+    if curr.value < first:
+        return self.lca_bst_util(curr.right, first, second)
+    if self.find(first) and self.find(second):
+        return curr.value
+    return sys.maxsize
 
 
     def trim_outside_range(self, minval, maxval):
@@ -816,45 +815,25 @@ class Tree(object):
         tail.right = head
         return head
 
-    def level_order_binary_tree(self, arr):
-        self.root = self.level_order_binary_tree_util(arr, 0)
+    def create_complete_binary_tree(self, arr):
+        self.root = self.create_complete_binary_tree_util(arr, 0)
 
-    def level_order_binary_tree_util(self, arr, start):
+    def create_complete_binary_tree_util(self, arr, start):
         size = len(arr)
         curr = self.Node(arr[start])
         left = 2 * start + 1
         right = 2 * start + 2
         if left < size:
-            curr.left = self.level_order_binary_tree_util(arr, left)
+            curr.left = self.create_complete_binary_tree_util(arr, left)
         if right < size:
-            curr.right = self.level_order_binary_tree_util(arr, right)
+            curr.right = self.create_complete_binary_tree_util(arr, right)
         return curr
 
-    def print_breadth_first(self):
-        que = deque([])
-        output = []
-        temp = None
-        if self.root != None:
-            que.append(self.root)
-        while len(que) != 0:
-            temp = que.popleft()
-            output.append(temp.value)
-            if temp.left != None:
-                que.append(temp.left)
-            if temp.right != None:
-                que.append(temp.right)
-        print(output)
-
-
-   
-
-
-#=======================================================================
 # Testing Code
-def main():
+def test1():
     arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     t = Tree()
-    t.level_order_binary_tree(arr)
+    t.create_complete_binary_tree(arr)
     t.print_pre_order()
     # 1 2 4 8 9 5 10 3 6 7 
 
@@ -865,7 +844,7 @@ def main():
     # 8 4 9 2 10 5 1 6 3 7 
 
     t.print_breadth_first()
-    # [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    # 1 2 3 4 5 6 7 8 9 10 
 
     t.print_depth_first()
     # 1 2 4 8 9 5 10 3 6 7
@@ -885,18 +864,25 @@ def main():
     4 5 6 7 
     8 9 10
     """
+
     t.print_spiral_tree()
     # [1, 2, 3, 7, 6, 5, 4, 8, 9, 10]
+
+# Testing Code
+def test2():
+    arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    t = Tree()
+    t.create_complete_binary_tree(arr)
 
     t.nth_in_order(2)
     t.nth_post_order(2)
     t.nth_pre_order(2)
-    """
-    4 
-    9 
-    2 
-    """
 
+    """
+    nth in order: 4
+    nth post order: 9
+    nth pre order: 2
+    """
     t.print_all_path()
     """
     [1, 3, 7]
@@ -906,46 +892,66 @@ def main():
     [1, 2, 4, 8]
     """
 
+
+# Testing Code
+def test3():
+    arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    t = Tree()
+    t.create_complete_binary_tree(arr)
     print(t.num_nodes())
     # 10
 
-    print(t.sum_all_bt())
-    # 55
+    print("sum_all_bt:", t.sum_all_bt())
+    # sum_all_bt: 55
 
-    print(t.num_leaf_nodes())
-    # 5
+    print("num_leaf_nodes", t.num_leaf_nodes())
+    # num_leaf_nodes: 5
 
-    print(t.num_full_nodes_bt())
-    # 4
+    print("num_full_nodes_bt:", t.num_full_nodes_bt())
+    # num_full_nodes_bt: 4
+
+
+# Testing Code
+def test4():
+    arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    t = Tree()
+    t.create_complete_binary_tree(arr)
 
     print(t.search_bt(9))  
     # True
 
-    print(t.find_max_bt())
-    # 10
+    print("find_max_bt:", t.find_max_bt())
+    # find_max_bt: 10
 
-    print(t.tree_depth())
-    # 4
+    print("tree_depth:", t.tree_depth())
+    # tree_depth: 4
 
-    print(t.max_length_path_bt())
-    # 6
+    print("max_length_path_bt:", t.max_length_path_bt())
+    # max_length_path_bt: 6
 
-    t2 = t.copy_tree()
-    #
-    print("Printing original tree")
-    t.print_level_order_linebyline()
-    """
-    Printing original tree
-    1 
-    2 3 
-    4 5 6 7 
-    8 9 10 
-    """
 
-def main2():
+# Testing Code
+def test5():
     arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     t = Tree()
-    t.level_order_binary_tree(arr)
+    t.create_complete_binary_tree(arr)
+    t2 = t.copy_tree()
+    t.print_breadth_first()
+    t2.print_breadth_first()  
+    t3 = t.copy_mirror_tree()
+    t3.print_breadth_first()
+
+    """
+    1 2 3 4 5 6 7 8 9 10 
+    1 2 3 4 5 6 7 8 9 10 
+    1 3 2 7 6 5 4 10 9 8 
+    """
+
+# Testing Code
+def test6():
+    arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    t = Tree()
+    t.create_complete_binary_tree(arr)
     t.print_level_order_linebyline()
     t2 = t.copy_tree()
     t2.print_level_order_linebyline()
@@ -963,41 +969,39 @@ def main2():
 
     print("Printing mirror tree")
     t2.print_level_order_linebyline()
-    """
-    Printing mirror tree
-    1 
-    2 3 
-    4 5 6 7 
-    8 9 10 
-    """
     print(t.is_equal(t2))
     # True
 
-    print(t.is_complete_tree())
-    # True
 
-    print(t.is_complete_tree2())
-    # True
-
-    print(t.is_heap())
-    print(t.is_heap2())
-    print(t.is_heap3())
-
+# Testing Code
+def test6():
+    arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    t = Tree()
+    t.create_complete_binary_tree(arr)
+    print("is_complete_tree:", t.is_complete_tree())
+    print("is_complete_tree:", t.is_complete_tree2())
+    print("is_heap:", t.is_heap())
+    print("is_heap:", t.is_heap2())
+    print("is_heap:", t.is_heap3())
     """
-    True
-    True
-    True
+    is_complete_tree: True
+    is_complete_tree: True
+    is_heap: True
+    is_heap: True
+    is_heap: True
     """
 
     # l = t.tree_to_list()
     # l.PrintDLL()	
 
+    # Testing Code
     arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     t = Tree()
     t.create_binary_search_tree(arr)
     t.iterative_in_order()
     # 1 2 3 4 5 6 7 8 9 10 
 
+    # Testing Code
     t = Tree()
     t.add(2)
     t.add(1)
@@ -1010,9 +1014,9 @@ def main2():
     """
     True
     False
-    1
-    4
     """
+
+    # Testing Code
     t = Tree()
     t.add(2)
     t.add(1)
@@ -1030,30 +1034,30 @@ def main2():
     t.add(1)
     t.add(3)
     t.add(4)
-    print(t.is_bst())
-    print(t.is_bst2())
-    print(t.is_bst3())
+    print("Is BST :", t.is_bst1())
+    print("Is BST :", t.is_bst2())
+    print("Is BST :", t.is_bst3())
     """
-    True
-    True
-    True
+    Is BST : True
+    Is BST : True
+    Is BST : True
     """
 
-    t = Tree()
-    t.add(2)
-    t.add(1)
-    t.add(3)
-    t.add(4)
-    print("Before delete operation.")
-    t.print_in_order()
-    t.delete_node(2)
-    print("After delete operation.")
-    t.print_in_order()
-    """
-    Before delete operation.
-    1 2 3 4 
-    After delete operation.
-    1 3 4 
+t = Tree()
+t.add(2)
+t.add(1)
+t.add(3)
+t.add(4)
+print("Before delete operation.")
+t.print_in_order()
+t.delete_node(2)
+print("After delete operation.")
+t.print_in_order()
+"""
+Before delete operation.
+1 2 3 4 
+After delete operation.
+1 3 4 
     """
 
     t = Tree()
@@ -1070,7 +1074,7 @@ def main2():
     LCA does not exist
     """
 
-def main3():
+def test7():
     arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     t = Tree()
     t.create_binary_search_tree(arr)
@@ -1085,26 +1089,23 @@ def main3():
     print(t.ancestor(1, 10))
     # 5
 
-
-    arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    arr = [1, 2, 3, 4, 5, 6, 8, 9, 10]
     t = Tree()
     t.create_binary_search_tree(arr)    
-    print(t.ceil_bst(5.5))
+    print(t.ceil_bst(7))
     # 6
 
-    print(t.floor_bst(8))
+    print(t.floor_bst(7))
     # 8
 
-def main4():
+def test8():
     arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     t = Tree()
     t.create_binary_search_tree(arr)
     t.iterative_in_order()
-    print()
     t.iterative_pre_order()
-    print()
     t.iterative_post_order()
-    print()
+
     print ( t.lca(10, 3) )
     """
     1 2 3 4 5 6 7 8 9 10 
@@ -1135,7 +1136,7 @@ def is_bst_array(preorder):
 
 
 
-def main5():
+def test9():
     arr = [5, 2, 4, 6, 9, 10]
     print(is_bst_array(arr))
 
@@ -1147,8 +1148,11 @@ True
 False
 """
 
-main()
-main2()
-main3()
-main4()
-main5()
+"""
+test1()
+test2()
+test3()
+test4()
+test5()
+"""
+test6()

@@ -9,9 +9,10 @@ def largest_increasing_subseq(arr) :
         for j in range(i) :
             if (arr[j] < arr[i] and lis[i] < lis[j] + 1) : 
                 lis[i] = lis[j] + 1
-        if (mx < lis[i]) : #  mx LIS values.
-            mx = lis[i]
-    return  mx
+
+        mx = max ( mx, lis[i])
+    
+    return mx
 
 # Testing Code
 arr = [10, 12, 9, 23, 25, 55, 49, 70]

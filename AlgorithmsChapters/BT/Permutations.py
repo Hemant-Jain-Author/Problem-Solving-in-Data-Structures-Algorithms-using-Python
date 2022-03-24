@@ -9,7 +9,6 @@ def permutation(arr,  i,  length) :
         arr[i], arr[j] = arr[j], arr[i] # Swap 
         permutation(arr, i + 1, length)
         arr[i], arr[j] = arr[j], arr[i] # Swap 
-    return
 
 def isValid(arr,  n) :
     for j in range(1, n) :
@@ -27,7 +26,6 @@ def permutation2(arr,  i,  length) :
         arr[i], arr[j] = arr[j], arr[i] # Swap
         permutation2(arr, i + 1, length)
         arr[i], arr[j] = arr[j], arr[i] # Swap
-    return
 
 def isValid2(arr,  i) :
     if (i < 1 or abs(arr[i] - arr[i - 1]) >= 2) :
@@ -44,7 +42,6 @@ def permutation3(arr,  i,  length) :
         if (isValid2(arr, i)) : 
             permutation3(arr, i + 1, length)
         arr[i], arr[j] = arr[j], arr[i] # Swap
-    return
     
 # Testing code
 arr = list(range(1, 5))

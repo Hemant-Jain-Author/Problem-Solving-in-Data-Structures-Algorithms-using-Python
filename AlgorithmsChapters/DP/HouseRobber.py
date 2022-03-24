@@ -3,11 +3,15 @@ import math
 def max_robbery(house) :
     n = len(house)
     dp = [0] * n
+    
+    #Base case
     dp[0] = house[0]
     dp[1] = house[1]
     dp[2] = dp[0] + house[2]
+    
     for i in range(3, n) :
         dp[i] = max(dp[i - 2],dp[i - 3]) + house[i]
+        
     return  max(dp[n - 1],dp[n - 2])
 
 

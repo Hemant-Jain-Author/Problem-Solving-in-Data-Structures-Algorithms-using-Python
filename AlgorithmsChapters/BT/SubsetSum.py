@@ -5,11 +5,9 @@ def print_subset(flags,  arr,  size) :
             print(str(arr[i]), end =" ")
     print()
 
-
 def subset_sum(arr,  n,  target) :
     flags = [False] * n
     subset_sum_util(arr, n, flags, 0, 0, target)
-
 
 def subset_sum_util(arr,  n,  flags,  sum,  curr,  target) :
     if (target == sum) : #  Solution found.
@@ -24,6 +22,8 @@ def subset_sum_util(arr,  n,  flags,  sum,  curr,  target) :
     subset_sum_util(arr, n, flags, sum + arr[curr], curr + 1, target)
     flags[curr] = False #  Current element excluded.
     subset_sum_util(arr, n, flags, sum, curr + 1, target)
+
+
 
 # Testing code
 arr = [15, 22, 14, 26, 32, 9, 16, 8]

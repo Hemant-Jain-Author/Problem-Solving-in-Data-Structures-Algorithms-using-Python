@@ -1,68 +1,54 @@
 def fibonacci(n) :
-    if (n <= 2) :
-        return  n - 1
+    if n < 2 :
+        return  n
+    
     return  fibonacci(n - 1) + fibonacci(n - 2)
 
 def fibonacci_series(n) :
     arr = [0] * n
     for i in range(0, n) :
-        arr[i] = fibonacci(i+1)
+        arr[i] = fibonacci(i)
     print(arr)
 
 def fibonacci_bu(n) :
-    if (n <= 2) :
-        return  n - 1
-    first = 0
-    second = 1
-    temp = 0
-    for i in range(2, n) :
-        temp = first + second
-        first = second
-        second = temp
-    return  temp
+    if n < 2 :
+        return  n
 
-def fibonacci_series_bu(n) :
-    if (n < 1) :
-        return
-    if (n == 1) :
-        print(0)
-        return
-    dp = [0] * n
+    dp = [0]*(n+1)
     dp[0] = 0
     dp[1] = 1
-    for i in range(2, n) :
-        dp[i] = dp[i - 2] + dp[i - 1]
-    print(dp)
 
-def fibonacci_series_td(n) :
-    if (n < 1) :
-        return
-    dp = [0] * n
-    fibonacci_series_td_util(n - 1, dp)
-    print(dp)    
+    for i in range(2, n+1) :
+        dp[i] = dp[i-1] + dp[i-2]
 
-def fibonacci_series_td_util(n,  dp) :
-    if (n <= 1) :
+    return  dp[n]
+
+
+
+def fibonacci_td(n) :
+    dp = [0] * (n+1)
+    fibonacci_td_util(n, dp)
+    return dp[n]    
+
+def fibonacci_td_util(n,  dp) :
+    if n < 2 :
         dp[n] = n
-        return dp[n]
-    if (dp[n] != 0) :
-        return  dp[n]
-    dp[n] = fibonacci_series_td_util(n - 1, dp) + fibonacci_series_td_util(n - 2, dp)
+        return n
+
+    if dp[n] == 0:
+        dp[n] = fibonacci_td_util(n - 1, dp) + fibonacci_td_util(n - 2, dp)
+    
     return  dp[n]
 
 #  Testing code
-fibonacci_series(6)
-fibonacci_series_bu(6)
-fibonacci_series_td(6)
-print(fibonacci(6))
-print(fibonacci_bu(6))
-
-
-
+print(fibonacci(10))
+print(fibonacci_bu(10))
+print(fibonacci_td(10))
+print(fibonacci(1))
+print(fibonacci_bu(1))
+print(fibonacci_td(1))
 """
-[0, 1, 1, 2, 3, 5]
-[0, 1, 1, 2, 3, 5]
-[0, 1, 1, 2, 3, 5]
-5
-5
+55
+55
+55
 """

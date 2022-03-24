@@ -293,9 +293,7 @@ get_max_area: 20
 """
 
 def is_known(relation, a, b) :
-    if relation[a][b] == 1 : 
-        return True
-    return False
+    return relation[a][b] == 1  
 
 def find_celebrity(relation, count):
     stk = []
@@ -363,15 +361,15 @@ def test8():
         [ 0 , 0 , 1, 1 , 1], 
         [ 0 , 0 , 0, 1 , 0], 
         [ 1 , 1 , 0, 1 , 1]]
-    print(find_celebrity(arr, 5))
-    print(find_celebrity2(arr, 5))
-    print(find_celebrity3(arr, 5))
+    print("find_celebrity :", find_celebrity(arr, 5))
+    print("find_celebrity :", find_celebrity2(arr, 5))
+    print("find_celebrity :", find_celebrity3(arr, 5))
 
 
 """
-3
-3
-3
+find_celebrity : 3
+find_celebrity : 3
+find_celebrity : 3
 """
 
 def decode(text):
@@ -1459,43 +1457,45 @@ def steps_of_knight(size, srcX, srcY, dstX, dstY):
     return traversed[dstX - 1][dstY - 1]
 
 # Testing code
-print(steps_of_knight(20,10,10,20,20))
+def test33():
+    print(steps_of_knight(20,10,10,20,20))
+
 """
 8
 """
 
+def find_largest_island_util(arr,  maxCol,  maxRow,  currCol,  currRow,  traversed) :
+    dir = [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]]
+    sum = 1
 
-def find_largest_island_util(arr, max_col, max_row, curr_col, curr_row, value, traversed) :
-    if curr_col < 0 or curr_col >= max_col or curr_row < 0 or curr_row >= max_row :
-        return 0
-    if traversed[curr_col][curr_row] == 1 or arr[curr_col][curr_row] != value :
-        return 0
-    traversed[curr_col][curr_row] = 1
+    for i in range(8) :
+        x = currCol + dir[i][0]
+        y = currRow + dir[i][1]
+        if (x >= 0 and x < maxCol and y >= 0 and y < maxRow and traversed[x][y] == False and arr[x][y] == 1) :
+            traversed[x][y] = True
+            sum += find_largest_island_util(arr, maxCol, maxRow, x, y, traversed)
+    return  sum
 
-    # each call corresponding to 8 direction.
-    return 1 + find_largest_island_util(arr, max_col, max_row, curr_col - 1, curr_row - 1, value, traversed) + find_largest_island_util(arr, max_col, max_row, curr_col - 1, curr_row, value, traversed) + find_largest_island_util(arr, max_col, max_row, curr_col - 1, curr_row + 1, value, traversed) + find_largest_island_util(arr, max_col, max_row, curr_col, curr_row - 1, value, traversed) + find_largest_island_util(arr, max_col, max_row, curr_col, curr_row + 1, value, traversed) + find_largest_island_util(arr, max_col, max_row, curr_col + 1, curr_row - 1, value, traversed) + find_largest_island_util(arr, max_col, max_row, curr_col + 1, curr_row, value, traversed) + find_largest_island_util(arr, max_col, max_row, curr_col + 1, curr_row + 1, value, traversed)
-
-def find_largest_island(arr, max_col, max_row):
+def find_largest_island(arr,  maxCol,  maxRow) :
     maxVal = 0
     currVal = 0
-    traversed = [[infi]*max_col for i in range(max_row)]
+    traversed = [[False] * (maxRow) for _ in range(maxCol)]
 
-    for i in range(max_col):
-        for j in range(max_row):
-            currVal = find_largest_island_util(arr, max_col, max_row, i, j, arr[i][j], traversed)
-            if currVal > maxVal :
-                maxVal = currVal
+    for i in range(maxCol) :
+        for j in range(maxRow) :
+            if (arr[i][j] == 1 and traversed[i][j] == False) :
+                traversed[i][j] = True
+                currVal = find_largest_island_util(arr, maxCol, maxRow, i, j, traversed)
+                if (currVal > maxVal) : 
+                    maxVal = currVal
+    return  maxVal
 
-    return maxVal
+# Testing Code
+def test34() :
+    arr = [[1, 0, 1, 1, 0], [1, 0, 0, 1, 0], [0, 1, 1, 1, 1], [0, 1, 0, 0, 0], [1, 1, 0, 0, 1]]
+    print("Largest Island :", find_largest_island(arr, 5, 5))
 
-# Testing code
-def test33():
-    arr = [[1, 0, 1, 1, 0], [1, 0, 0, 1, 0], [0, 1, 1, 1, 1 ], [ 0, 1, 0, 0, 0], [1, 1, 0, 0, 1]]
-    print("Largest Island : " , find_largest_island(arr, 5, 5))
-
-"""
-Largest Island :  12
-"""
+#  Largest Island : 12
 
 
 def stockAnalystAdd(stk,  value) :
@@ -1504,7 +1504,7 @@ def stockAnalystAdd(stk,  value) :
     stk.append(value)
 
 # Testing code
-def test34() :
+def test35() :
     arr = [20, 19, 10, 21, 40, 35, 39, 50, 45, 42]
     stk =  []
     i = len(arr) - 1
@@ -1551,3 +1551,4 @@ test31()
 test32()
 test33()
 test34()
+test35()

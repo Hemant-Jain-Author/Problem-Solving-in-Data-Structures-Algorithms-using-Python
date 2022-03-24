@@ -17,13 +17,8 @@ def find_ways(n,  m,  V) :
     
 # Testing code.
 for i in range(1, 7) :
-    print(find_ways(i, 6, 6))
+    print(find_ways(i, 6, 6), end=" ")
 
 """
-1
-5
-10
-10
-5
-1
+1 5 10 10 5 1 
 """

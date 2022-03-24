@@ -4,6 +4,7 @@ import sys
 def maxVal(mx,  i,  j) :
     if (mx[i][j] != -sys.maxsize) :
         return  mx[i][j]
+    
     for k in range(i, j) :
         mx[i][j] = max(mx[i][j], maxVal(mx, i, k), maxVal(mx, k + 1, j))
     return  mx[i][j]
@@ -39,16 +40,16 @@ def min_cost_binary_tree_bu(arr) :
     for i in range(n) :
         mx[i][i] = arr[i]
 
-    l = 1
     for l in range(1, n) : #  l is length of range.
         i = 0
         j = l
-        for j in range(l, n) :
+        while j < n :
             dp[i][j] = sys.maxsize
             for k in range(i, j) :
                 dp[i][j] = min(dp[i][j],dp[i][k] + dp[k + 1][j] + mx[i][k] * mx[k + 1][j])
                 mx[i][j] = max(mx[i][k],mx[k + 1][j])
             i += 1
+            j += 1
     return  dp[0][n - 1]
 
 # Testing Code

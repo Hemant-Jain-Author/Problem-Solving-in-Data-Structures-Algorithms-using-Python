@@ -199,7 +199,7 @@ def test6():
 Max of min is : 20
 """
 
-def rottenFruitUtil(arr,  maxCol,  maxRow,  currCol,  currRow,  traversed,  day) :
+def rotten_fruit_util(arr,  maxCol,  maxRow,  currCol,  currRow,  traversed,  day) :
     dir = [[-1, 0], [1, 0], [0, -1], [0, 1]]
     for i in range(4) :
         x = currCol + dir[i][0]
@@ -208,20 +208,16 @@ def rottenFruitUtil(arr,  maxCol,  maxRow,  currCol,  currRow,  traversed,  day)
             y >= 0 and y < maxRow and 
             traversed[x][y] > day + 1 and arr[x][y] == 1) :
             traversed[x][y] = day + 1
-            rottenFruitUtil(arr, maxCol, maxRow, x, y, traversed, day + 1)
+            rotten_fruit_util(arr, maxCol, maxRow, x, y, traversed, day + 1)
 
-def rottenFruit(arr,  maxCol,  maxRow) :
-    traversed = [[0] * (maxRow) for _ in range(maxCol)]
-    
-    for i in range(maxCol) :
-        for j in range(maxRow) :
-            traversed[i][j] = sys.maxsize
+def rotten_fruit(arr,  maxCol,  maxRow) :
+    traversed = [[sys.maxsize] * (maxRow) for _ in range(maxCol)]
         
     for i in range(maxCol) :
         for j in range(maxRow) :
             if (arr[i][j] == 2) :
                 traversed[i][j] = 0
-                rottenFruitUtil(arr, maxCol, maxRow, i, j, traversed, 0)
+                rotten_fruit_util(arr, maxCol, maxRow, i, j, traversed, 0)
 
     maxDay = 0
     for i in range(maxCol) :
@@ -235,13 +231,12 @@ def rottenFruit(arr,  maxCol,  maxRow) :
     
     return  maxDay
 
-def rottenFruit2(arr,  maxCol,  maxRow) :
+def rotten_fruit2(arr,  maxCol,  maxRow) :
     traversed = [[False] * (maxRow) for _ in range(maxCol)]
     dir = [[-1, 0], [1, 0], [0, -1], [0, 1]]
     que =  deque()
     for i in range( maxCol) :
         for j in range(maxRow) :
-            traversed[i][j] = False
             if (arr[i][j] == 2) :
                 que.append((i, j, 0))
                 traversed[i][j] = True
@@ -268,41 +263,34 @@ def rottenFruit2(arr,  maxCol,  maxRow) :
 # Testing Code
 def test7() :
     arr = [[1, 0, 1, 1, 0], [2, 1, 0, 1, 0], [0, 0, 0, 2, 1], [0, 2, 0, 0, 1], [1, 1, 0, 0, 1]]
-    print(rottenFruit(arr, 5, 5))
-    print(rottenFruit2(arr, 5, 5))
+    print("rotten_fruit : ", rotten_fruit(arr, 5, 5))
+    print("rotten_fruit : ", rotten_fruit2(arr, 5, 5))
 
 #  3
 
-def stepsOfKnightUtil(size,  currCol,  currRow,  traversed,  dist) :
+def steps_of_knight_util(size,  currCol,  currRow,  traversed,  dist) :
     dir = [[-2, -1], [-2, 1], [2, -1], [2, 1], [-1, -2], [1, -2], [-1, 2], [1, 2]]
     for i in range(8) :
         x = currCol + dir[i][0]
         y = currRow + dir[i][1]
         if (x >= 0 and x < size and y >= 0 and y < size and traversed[x][y] > dist + 1) :
             traversed[x][y] = dist + 1
-            stepsOfKnightUtil(size, x, y, traversed, dist + 1)
+            steps_of_knight_util(size, x, y, traversed, dist + 1)
 
-def stepsOfKnight(size,  srcX,  srcY,  dstX,  dstY) :
-    traversed = [[0] * (size) for _ in range(size)]
-    for i in range(size) :
-        for j in range(size) :
-            traversed[i][j] = sys.maxsize
-
+def steps_of_knight(size,  srcX,  srcY,  dstX,  dstY) :
+    traversed = [[sys.maxsize] * (size) for _ in range(size)]
     traversed[srcX - 1][srcY - 1] = 0
-    stepsOfKnightUtil(size, srcX - 1, srcY - 1, traversed, 0)
+    steps_of_knight_util(size, srcX - 1, srcY - 1, traversed, 0)
     return  traversed[dstX - 1][dstY - 1]
 
 
-def stepsOfKnight2(size,  srcX,  srcY,  dstX,  dstY) :
-    traversed = [[0] * (size) for _ in range(size)]
+def steps_of_knight2(size,  srcX,  srcY,  dstX,  dstY) :
+    traversed = [[sys.maxsize] * (size) for _ in range(size)]
     dir = [[-2, -1], [-2, 1], [2, -1], [2, 1], [-1, -2], [1, -2], [-1, 2], [1, 2]]
     que =  deque()
-    for i in range(size) :
-        for j in range(size) :
-            traversed[i][j] = sys.maxsize
-
     que.append((srcX - 1, srcY - 1, 0))
     traversed[srcX - 1][srcY - 1] = 0
+
     while (len(que) != 0) :
         temp = que.popleft()
         for i in range(8) :
@@ -317,12 +305,12 @@ def stepsOfKnight2(size,  srcX,  srcY,  dstX,  dstY) :
 
 # Testing Code
 def test8() :
-    print(stepsOfKnight(20, 10, 10, 20, 20))
-    print(stepsOfKnight2(20, 10, 10, 20, 20))
+    print("steps_of_knight : ", steps_of_knight(20, 10, 10, 20, 20))
+    print("steps_of_knight : ", steps_of_knight2(20, 10, 10, 20, 20))
 
 #  8
 
-def distNearestFillUtil(arr,  maxCol,  maxRow,  currCol,  currRow,  traversed,  dist) :
+def dist_nearest_fill_util(arr,  maxCol,  maxRow,  currCol,  currRow,  traversed,  dist) :
     #  Range check
     dir = [[-1, 0], [1, 0], [0, -1], [0, 1]]
     for i in range(4) :
@@ -330,19 +318,16 @@ def distNearestFillUtil(arr,  maxCol,  maxRow,  currCol,  currRow,  traversed,  
         y = currRow + dir[i][1]
         if (x >= 0 and x < maxCol and y >= 0 and y < maxRow and traversed[x][y] > dist + 1) :
             traversed[x][y] = dist + 1
-            distNearestFillUtil(arr, maxCol, maxRow, x, y, traversed, dist + 1)
+            dist_nearest_fill_util(arr, maxCol, maxRow, x, y, traversed, dist + 1)
 
-def distNearestFill(arr,  maxCol,  maxRow) :
-    traversed = [[0] * (maxRow) for _ in range(maxCol)]
-    for i in range(maxCol) :
-        for j in range(maxRow) :
-            traversed[i][j] = sys.maxsize
+def dist_nearest_fill(arr,  maxCol,  maxRow) :
+    traversed = [[sys.maxsize] * (maxRow) for _ in range(maxCol)]
     
     for i in range(maxCol) :
         for j in range(maxRow) :
             if (arr[i][j] == 1) :
                 traversed[i][j] = 0
-                distNearestFillUtil(arr, maxCol, maxRow, i, j, traversed, 0)
+                dist_nearest_fill_util(arr, maxCol, maxRow, i, j, traversed, 0)
     
     for i in range(maxCol) :
         for j in range(maxRow) :
@@ -350,13 +335,13 @@ def distNearestFill(arr,  maxCol,  maxRow) :
         print()
 
 
-def distNearestFill2(arr,  maxCol,  maxRow) :
-    traversed = [[0] * (maxRow) for _ in range(maxCol)]
+def dist_nearest_fill2(arr,  maxCol,  maxRow) :
+    traversed = [[sys.maxsize] * (maxRow) for _ in range(maxCol)]
     dir = [[-1, 0], [1, 0], [0, -1], [0, 1]]
     que =  deque()
+
     for i in range(maxCol) :
-        for j in range(maxRow) :
-            traversed[i][j] = sys.maxsize
+        for j in range(maxRow) : 
             if (arr[i][j] == 1) :
                 que.append((i, j, 0))
                 traversed[i][j] = 0
@@ -379,52 +364,15 @@ def distNearestFill2(arr,  maxCol,  maxRow) :
 # Testing Code
 def test9() :
     arr = [[1, 0, 1, 1, 0], [1, 1, 0, 1, 0], [0, 0, 0, 0, 1], [0, 0, 0, 0, 1], [0, 0, 0, 0, 1]]
-    distNearestFill(arr, 5, 5)
-    distNearestFill2(arr, 5, 5)
+    dist_nearest_fill(arr, 5, 5)
+    dist_nearest_fill2(arr, 5, 5)
 #    0 1 0 0 1 
 #    0 0 1 0 1 
 #    1 1 2 1 0 
 #    2 2 2 1 0 
 #    3 3 2 1 0
 
-def findLargestIslandUtil(arr,  maxCol,  maxRow,  currCol,  currRow,  traversed) :
-    dir = [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]]
-    sum = 1
-
-    for i in range(8) :
-        x = currCol + dir[i][0]
-        y = currRow + dir[i][1]
-        if (x >= 0 and x < maxCol and y >= 0 and y < maxRow and traversed[x][y] == False and arr[x][y] == 1) :
-            traversed[x][y] = True
-            sum += findLargestIslandUtil(arr, maxCol, maxRow, x, y, traversed)
-    return  sum
-
-def findLargestIsland(arr,  maxCol,  maxRow) :
-    maxVal = 0
-    currVal = 0
-    traversed = [[False] * (maxRow) for _ in range(maxCol)]
-
-    for i in range(maxCol) :
-        for j in range(maxRow) :
-            traversed[i][j] = False
-
-    for i in range(maxCol) :
-        for j in range(maxRow) :
-            if (arr[i][j] == 1) :
-                traversed[i][j] = True
-                currVal = findLargestIslandUtil(arr, maxCol, maxRow, i, j, traversed)
-                if (currVal > maxVal) : 
-                    maxVal = currVal
-    return  maxVal
-
-# Testing Code
-def test10() :
-    arr = [[1, 0, 1, 1, 0], [1, 0, 0, 1, 0], [0, 1, 1, 1, 1], [0, 1, 0, 0, 0], [1, 1, 0, 0, 1]]
-    print("Largest Island :", findLargestIsland(arr, 5, 5))
-
-#  Largest Island : 12
-
-def reverseStack(stk) :
+def reverse_stack(stk) :
     que =  deque()
     while len(stk) != 0 :
         que.append(stk[-1])
@@ -432,7 +380,7 @@ def reverseStack(stk) :
     while len(que) != 0 :
         stk.append(que.popleft())
 
-def reverseQueue(que) :
+def reverse_queue(que) :
     stk =  []
     while len(que) != 0 :
         stk.append(que.popleft())
@@ -442,13 +390,13 @@ def reverseQueue(que) :
         stk.pop()
 
 # Testing Code
-def test11() :
+def test10() :
     stk =  []
     for i in range(5) :
         stk.append(i)    
 
     print(stk)
-    reverseStack(stk)
+    reverse_stack(stk)
     print(stk)
 
     que =  deque()
@@ -456,10 +404,10 @@ def test11() :
         que.append(i)    
 
     print(que)
-    reverseQueue(que)
+    reverse_queue(que)
     print(que)
 
-def Josephus(n,  k) :
+def josephus(n,  k) :
     que =  deque()
     for i in range(n) :
         que.append(i + 1)    
@@ -471,8 +419,8 @@ def Josephus(n,  k) :
     return  que[0]
 
 # Testing Code
-def test12() :
-    print("Position :", Josephus(11, 5))
+def test11() :
+    print("Position :", josephus(11, 5))
 
 # Position : 8
 
@@ -487,4 +435,3 @@ test8()
 test9()
 test10()
 test11()
-test12()

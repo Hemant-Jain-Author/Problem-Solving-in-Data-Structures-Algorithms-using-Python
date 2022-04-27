@@ -262,31 +262,31 @@ class Tree(object):
     def free(self):
         self.root = None
 
-def delete_node(self, value):
-    self.root = self.delete_node_util(self.root, value)
+    def delete_node(self, value):
+        self.root = self.delete_node_util(self.root, value)
 
-def delete_node_util(self, node, value):
-    temp = None
-    if node != None:
-        if node.value == value:
-            if node.left == None and node.right == None:
-                return None
+    def delete_node_util(self, node, value):
+        temp = None
+        if node != None:
+            if node.value == value:
+                if node.left == None and node.right == None:
+                    return None
+                else:
+                    if node.left == None:
+                        temp = node.right
+                        return temp
+                    if node.right == None:
+                        temp = node.left
+                        return temp
+                    maxnode = self.find_max_util(node.left)
+                    node.value = maxnode.value
+                    node.left = self.delete_node_util(node.left, maxnode.value)
             else:
-                if node.left == None:
-                    temp = node.right
-                    return temp
-                if node.right == None:
-                    temp = node.left
-                    return temp
-                maxnode = self.find_max_util(node.left)
-                node.value = maxnode.value
-                node.left = self.delete_node_util(node.left, maxnode.value)
-        else:
-            if node.value > value:
-                node.left = self.delete_node_util(node.left, value)
-            else:
-                node.right = self.delete_node_util(node.right, value)
-    return node
+                if node.value > value:
+                    node.left = self.delete_node_util(node.left, value)
+                else:
+                    node.right = self.delete_node_util(node.right, value)
+        return node
 
 
     def tree_depth(self):
@@ -513,23 +513,23 @@ def delete_node_util(self, node, value):
         return self.is_bst2_util(curr.left, minval, curr.value) and self.is_bst2_util(curr.right, curr.value, maxval)
 
 
-def is_bst3(self):
-    count = [0]
-    return self.is_bst3_util(self.root, count)
+    def is_bst3(self):  
+        count = [0]
+        return self.is_bst3_util(self.root, count)
 
-def is_bst3_util(self, curr, count):
-    #   in order  traversal 
-    if curr != None:
-        if not self.is_bst3_util(curr.left, count):
-            return False
+    def is_bst3_util(self, curr, count):
+        #   in order  traversal 
+        if curr != None:
+            if not self.is_bst3_util(curr.left, count):
+                return False
 
-        if count[0] > curr.value:
-            return False
+            if count[0] > curr.value:
+                return False
 
-        count[0] = curr.value
-        if not self.is_bst3_util(curr.right, count):
-            return False
-    return True
+            count[0] = curr.value
+            if not self.is_bst3_util(curr.right, count):
+                return False
+        return True
 
     def find_count_util(self, curr):
         if curr == None:
@@ -663,26 +663,26 @@ def is_bst3_util(self, curr, count):
             return right
 
 
-def lca_bst(self, first, second):
-    if first > second:
-        first, second = second, first
-    val = self.lca_bst_util(self.root, first, second)
-    if(val == sys.maxsize):
-        print("LCA does not exist")
-    else:
-        print("LCA is :", val) 
-    return  val
+    def lca_bst(self, first, second):
+        if first > second:
+            first, second = second, first
+        val = self.lca_bst_util(self.root, first, second)
+        if(val == sys.maxsize):
+            print("LCA does not exist")
+        else:
+            print("LCA is :", val) 
+        return  val
 
-def lca_bst_util(self, curr, first, second):
-    if curr == None:
+    def lca_bst_util(self, curr, first, second):
+        if curr == None:
+            return sys.maxsize
+        if curr.value > second:
+            return self.lca_bst_util(curr.left, first, second)
+        if curr.value < first:
+            return self.lca_bst_util(curr.right, first, second)
+        if self.find(first) and self.find(second):
+            return curr.value
         return sys.maxsize
-    if curr.value > second:
-        return self.lca_bst_util(curr.left, first, second)
-    if curr.value < first:
-        return self.lca_bst_util(curr.right, first, second)
-    if self.find(first) and self.find(second):
-        return curr.value
-    return sys.maxsize
 
 
     def trim_outside_range(self, minval, maxval):
@@ -756,21 +756,17 @@ def lca_bst_util(self, curr, first, second):
             maxval = right
         return maxval
 
-    def search_bt(self, value):
-        return self.search_bt_util(self.root, value)
+def search_bt(self, value):
+    return self.search_bt_util(self.root, value)
 
-    def search_bt_util(self, root, value):
-        if root == None:
-            return False
-        if root.value == value:
-            return True
-        left = self.search_bt_util(root.left, value)
-        if left:
-            return True
-        right = self.search_bt_util(root.right, value)
-        if right:
-            return True
+def search_bt_util(self, root, value):
+    if root == None:
         return False
+    
+    if root.value == value or self.search_bt_util(root.left, value) or self.search_bt_util(root.right, value):
+        return True
+
+    return False
 
 
     def create_binary_search_tree(self, arr):
@@ -974,7 +970,7 @@ def test6():
 
 
 # Testing Code
-def test6():
+def test7():
     arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     t = Tree()
     t.create_complete_binary_tree(arr)
@@ -1043,22 +1039,22 @@ def test6():
     Is BST : True
     """
 
-t = Tree()
-t.add(2)
-t.add(1)
-t.add(3)
-t.add(4)
-print("Before delete operation.")
-t.print_in_order()
-t.delete_node(2)
-print("After delete operation.")
-t.print_in_order()
-"""
-Before delete operation.
-1 2 3 4 
-After delete operation.
-1 3 4 
+    t = Tree()
+    t.add(2)
+    t.add(1)
+    t.add(3)
+    t.add(4)
+    print("Before delete operation.")
+    t.print_in_order()
+    t.delete_node(2)
+    print("After delete operation.")
+    t.print_in_order()
     """
+    Before delete operation.
+    1 2 3 4 
+    After delete operation.
+    1 3 4 
+        """
 
     t = Tree()
     t.add(2)
@@ -1074,7 +1070,7 @@ After delete operation.
     LCA does not exist
     """
 
-def test7():
+def test8():
     arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     t = Tree()
     t.create_binary_search_tree(arr)
@@ -1098,7 +1094,7 @@ def test7():
     print(t.floor_bst(7))
     # 8
 
-def test8():
+def test9():
     arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     t = Tree()
     t.create_binary_search_tree(arr)
@@ -1136,7 +1132,7 @@ def is_bst_array(preorder):
 
 
 
-def test9():
+def test10():
     arr = [5, 2, 4, 6, 9, 10]
     print(is_bst_array(arr))
 
@@ -1148,11 +1144,13 @@ True
 False
 """
 
-"""
 test1()
 test2()
 test3()
 test4()
 test5()
-"""
 test6()
+test7()
+test8()
+test9()
+test10()

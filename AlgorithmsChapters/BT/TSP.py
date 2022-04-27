@@ -11,7 +11,7 @@ def tsp(graph,  n) :
     return  ans
 
 def tsp_util(graph,  n,  path,  path_size,  path_cost,  visited,  ans) :
-    if ans[0] < path_cost : # Ignore useless paths.
+    if ans[0] <= path_cost : # Ignore useless paths.
         return;
     
     curr = path[path_size - 1]

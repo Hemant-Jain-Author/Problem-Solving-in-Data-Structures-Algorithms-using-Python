@@ -1857,9 +1857,10 @@ def find_floor(arr, value):
     stop = size -1
     while start <= stop:
         mid = (start + stop)//2
-        # search value is equal to arr[mid] value..
-        # search value is grater then mid index value and less then mid+1 index value.
-        # value is grater then arr[size-1] then floor is arr[size-1]
+        # arr[mid] is floor value if:
+        # 1) Search value is equal to arr[mid] value.
+        # 2) Search value is greater than  arr[mid] and mid is size-1 or last index.
+        # 3) Search value is greater than  arr[mid] and less then arr[mid+1].
         if arr[mid] == value or ( arr[mid] < value and (mid == size-1 or arr[mid + 1] > value)):
             return arr[mid]
         elif arr[mid] < value:
@@ -1875,9 +1876,10 @@ def find_ceil(arr, value):
     
     while start <= stop:
         mid = (start + stop)//2
-        # search value is equal to arr[mid] value..
-        # search value is less then mid index value and grater then mid-1 index value.
-        # value is less then arr[0] then ceil is arr[0]
+        # arr[mid] is ceil value if:
+        # 1) Search value is equal to arr[mid] value.
+        # 2) Search value is less than  arr[mid] and mid is 0 or first index.
+        # 3) Search value is less than  arr[mid] and greater then arr[mid+1].
         if arr[mid] == value or ( arr[mid] > value and (mid == 0 or arr[mid - 1] < value)):
             return arr[mid]
         elif arr[mid] < value:

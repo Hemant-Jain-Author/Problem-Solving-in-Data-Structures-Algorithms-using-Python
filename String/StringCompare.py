@@ -24,7 +24,6 @@ def robinkarp_search(text, pattern):
     for i in range(m - 1) :
         powm = (powm << 1) % prime
     
-    
     for i in range(m) :
         pattern_hash = ((pattern_hash << 1) + ord(pattern[i])) % prime
         text_hash = ((text_hash << 1) + ord(text[i])) % prime

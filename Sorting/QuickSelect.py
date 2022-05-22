@@ -1,7 +1,7 @@
 def quick_select(array, k):
     arr = array
     size = len(arr)
-    quick_select_util(arr, 0, size-1, k)
+    quick_select_util(arr, 0, size-1, k-1)
     return arr[k-1]
 
 def quick_select_util(arr, lower, upper, k):

@@ -36,8 +36,6 @@ print(lst)
 lst.reverse()
 print(lst)
 
-
-
 """
 [1, 2, 3]
 [1, 2, 3, 4]

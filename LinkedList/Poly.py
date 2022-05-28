@@ -1,6 +1,6 @@
 
 class Polynomial(object):
-        # Node class representing elements of linked list.
+    # Node class representing elements of linked list.
     class Node:
         def __init__(self, c, p, n=None):
             self.coeff = c
@@ -26,7 +26,7 @@ class Polynomial(object):
         p2 = poly2.head
 
         while (p1 != None or p2 != None) :
-            if (p1 == None or p1.pow < p2.pow) :
+            if (p1 == None or (p2 != None and p1.pow < p2.pow)) :
                 temp = self.Node(p2.coeff, p2.pow)
                 p2 = p2.next
             elif (p2 == None or p1.pow > p2.pow) :

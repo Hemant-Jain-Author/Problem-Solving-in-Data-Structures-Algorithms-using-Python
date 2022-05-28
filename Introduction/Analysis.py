@@ -31,7 +31,7 @@ print("N = 100, Number of instructions in O(n^2)::", fun2(100))
 N = 100, Number of instructions in O(n^2):: 10000
 """
 
-def fun6(n):
+def fun3(n):
     m = 0
     i = 0
     while i < n:
@@ -45,15 +45,35 @@ def fun6(n):
         i += 1
     return m
 
-print("N = 100, Number of instructions in O(n^3)::", fun6(100))
+print("N = 100, Number of instructions in O(n^3)::", fun3(100))
 
 """
 N = 100, Number of instructions in O(n^3):: 1000000
 """
 
 
+def fun4(n):
+    m = 0
+    i = 0
+    while i < n:
+        j = i
+        while j < n:
+            k = j + 1
+            while k < n:
+                m += 1
+                k += 1
+            j += 1
+        i += 1
+    return m
 
-def fun3(n):
+print("N = 100, Number of instructions in O(n^3)::", fun4(100))
+
+"""
+N = 100, Number of instructions in O(n^3):: 166650
+"""
+
+
+def fun5(n):
     m = 0
     i = 0
     while i < n:
@@ -64,13 +84,66 @@ def fun3(n):
         i += 1
     return m
 
-print("N = 100, Number of instructions in O(n^2)::", fun3(100))
+print("N = 100, Number of instructions in O(n^2)::", fun5(100))
 
 """
 N = 100, Number of instructions in O(n^2):: 4950
 """
 
-def fun4(n):
+
+def fun6(n):
+    m = 0
+    i = 0
+    while i < n:
+        j = i
+        while j > 0:
+            m += 1
+            j -= 1
+        i += 1
+    return m
+
+print("N = 100, Number of instructions in O(n^2)::", fun6(100))
+
+"""
+N = 100, Number of instructions in O(n^2):: 4950
+"""
+
+def fun7(n):
+    m = 0
+    i = n
+    while i > 0:
+        j = 0
+        while j < i:
+            m += 1
+            j += 1
+        i //= 2
+    return m
+
+print("N = 100, Number of instructions in O(n)::", fun7(100))
+
+"""
+N = 100, Number of instructions in O(n):: 197
+"""
+
+def fun8(n):
+    m = 0
+    i = 1
+    while i <= n:
+        j = 0
+        while j <= i:
+            m += 1
+            j += 1
+        i *= 2
+    return m
+
+print("N = 100, Number of instructions in O(n)::", fun8(100))
+
+"""
+N = 100, Number of instructions in O(n):: 134
+"""
+
+
+def fun9(n):
     m = 0
     i = 1
     while i < n:
@@ -78,13 +151,13 @@ def fun4(n):
         i = i * 2
     return m
 
-print("N = 100, Number of instructions in O(log(n))::", fun4(100))
+print("N = 100, Number of instructions in O(log(n))::", fun9(100))
 
 """
 N = 100, Number of instructions in O(log(n)):: 7
 """
 
-def fun5(n):
+def fun10(n):
     m = 0
     i = n
     while i > 0:
@@ -92,13 +165,15 @@ def fun5(n):
         i = i // 2
     return m
 
-print("N = 100, Number of instructions in O(log(n))::", fun5(100))
+print("N = 100, Number of instructions in O(log(n))::", fun10(100))
 
 """
 N = 100, Number of instructions in O(log(n)):: 7
 """
 
-def fun7(n):
+
+
+def fun11(n):
     m = 0
     i = 0
     while i < n:
@@ -116,13 +191,13 @@ def fun7(n):
         i += 1
     return m
 
-print("N = 100, Number of instructions in O(n^2)::", fun7(100))
+print("N = 100, Number of instructions in O(n^2)::", fun11(100))
 
 """
 N = 100, Number of instructions in O(n^2):: 20000
 """
 
-def fun8(n):
+def fun12(n):
     m = 0
     i = 0
     while i < n:
@@ -133,67 +208,13 @@ def fun8(n):
         i += 1
     return m
 
-print("N = 100, Number of instructions in O(n^(3/2))::", fun8(100))
+print("N = 100, Number of instructions in O(n^(3/2))::", fun12(100))
 
 """
 N = 100, Number of instructions in O(n^(3/2)):: 1000
 """
 
-def fun9(n):
-    m = 0
-    i = n
-    while i > 0:
-        j = 0
-        while j < i:
-            m += 1
-            j += 1
-        i //= 2
-    return m
-
-print("N = 100, Number of instructions in O(n)::", fun9(100))
-
-"""
-N = 100, Number of instructions in O(n):: 197
-"""
-
-def fun10(n):
-    m = 0
-    i = 0
-    while i < n:
-        j = i
-        while j > 0:
-            m += 1
-            j -= 1
-        i += 1
-    return m
-
-print("N = 100, Number of instructions in O(n^2)::", fun10(100))
-
-"""
-N = 100, Number of instructions in O(n^2):: 4950
-"""
-
-def fun11(n):
-    m = 0
-    i = 0
-    while i < n:
-        j = i
-        while j < n:
-            k = j + 1
-            while k < n:
-                m += 1
-                k += 1
-            j += 1
-        i += 1
-    return m
-
-print("N = 100, Number of instructions in O(n^3)::", fun11(100))
-
-"""
-N = 100, Number of instructions in O(n^3):: 166650
-"""
-
-def fun12(n):
+def fun13(n):
     m = 0
     i = 0
     j = 0
@@ -204,25 +225,8 @@ def fun12(n):
         i += 1
     return m
 
-print("N = 100, Number of instructions in O(n)::", fun12(100))
-
-"""
-N = 100, Number of instructions in O(n):: 100
-"""
-
-def fun13(n):
-    m = 0
-    i = 1
-    while i <= n:
-        j = 0
-        while j <= i:
-            m += 1
-            j += 1
-        i *= 2
-    return m
-
 print("N = 100, Number of instructions in O(n)::", fun13(100))
 
 """
-N = 100, Number of instructions in O(n):: 134
+N = 100, Number of instructions in O(n):: 100
 """

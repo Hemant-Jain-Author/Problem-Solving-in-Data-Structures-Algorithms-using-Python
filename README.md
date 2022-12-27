@@ -1,6 +1,9 @@
 # Problem-Solving-in-Data-Structures-Algorithms-using-Python3
 
-**This is the code repository for Problem Solving in Data Structures & Algorithms Using Python.**
+This is the code repository of book **Problem Solving in Data Structures & Algorithms using Python**.
+
+![alt text](https://m.media-amazon.com/images/P/B0BL3WN3SQ.jpg)
+
 
 **About The Book**
 - This textbook provides in depth coverage of various Data Structures and Algorithms.
@@ -36,5 +39,4 @@
 - Chapter 19: Backtracking
 - Chapter 20: Complexity Theory
 
-![alt text](https://m.media-amazon.com/images/P/B0BL3WN3SQ.jpg)
 
